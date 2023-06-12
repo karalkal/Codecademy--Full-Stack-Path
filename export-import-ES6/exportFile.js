@@ -17,8 +17,7 @@ function func1() {
     console.log("Named export")
 }
 export function func2(a, b) {
-    console.log("Named export", arguments)
-
+    console.log("Exported func2 triggered with arguments: ", arguments)
 }
 
 export {strValue1, func1}
