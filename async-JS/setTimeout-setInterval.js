@@ -14,7 +14,7 @@ function printEightTimesAfter4Seconds() {
             for (let pesho = 1; pesho <= 8; pesho++) {
                 console.log("Function called asynchronously", pesho);
             }
-            console.log("without clearInterval(nIntervId) the loop will restart indefinitelly (not the same as indefinite loop though)")
+            console.log("Without clearInterval(nIntervId) the loop will get restarted indefinitelly (not the same as indefinite loop.)")
             clearInterval(nIntervId)
         },
         4000);
