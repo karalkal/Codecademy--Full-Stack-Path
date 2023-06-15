@@ -48,6 +48,7 @@ prom.then((resolvedValue) => {
     prom is a promise which either resolves with 'Even' or rejects with 'Odd' depending on a random number (0-9).
     We pass a success handler to .then() and a failure handler to .catch().
     If the promise resolves, .then()‘s success handler will be invoked.
-    If the promise rejects, .then() will return a promise with the same rejection reason as the original promise 
+    If the promise rejects, .then() will return a promise with the same rejection reason as the original promise
     and .catch()‘s failure handler will be invoked with that rejection reason.
 */
+

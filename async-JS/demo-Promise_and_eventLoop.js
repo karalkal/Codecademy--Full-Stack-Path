@@ -9,7 +9,8 @@ The final log statement will then be added to the stack, log the argument, and p
 The stack will be clear afterward, so the response event in the event queue will get added back to the stack and executed. 
 The final two console.log() statements will then be added to the stack and popped off after logging their arguments.
 
-Second example (without timeOut) demonstrates how even second console.log is execured before Promise being resolved.
+In second example (without timeOut) step 2 console.log is executed before Promise gets resolved
+because it does't depend on the outcome but step 3 console.log still awaits and the extra line is printed before it.
 */
 
 const shopForBeans = () => {
@@ -33,15 +34,14 @@ async function getBeans() {
 // getBeans();
 // console.log("This is printed prior to the Promise being resolved.");
 
-console.log("---------------------------")
 
 const shopForBeans2 = () => {
     return new Promise((resolve, reject) => {
-        const beanTypes = ['kidney', 'fava', 'pinto', 'black', 'garbanzo'];        
-            let randomIndex = Math.floor(Math.random() * beanTypes.length);
-            let beanType = beanTypes[randomIndex];
-            resolve(beanType);
-            console.log(`2. I bought ${beanType} beans because they were on sale.`);
+        const beanTypes = ['kidney', 'fava', 'pinto', 'black', 'garbanzo'];
+        let randomIndex = Math.floor(Math.random() * beanTypes.length);
+        let beanType = beanTypes[randomIndex];
+        resolve(beanType);
+        console.log(`2. I bought ${beanType} beans because they were on sale.`);
     });
 }
 

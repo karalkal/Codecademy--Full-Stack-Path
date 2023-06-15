@@ -1,9 +1,9 @@
 console.log("FIRST");
 
-function usingsetTimeout() {
+function usingSetTimeout() {
     console.log("I'm going to be queued in the Event Loop.");
 }
-setTimeout(usingsetTimeout, 3000);
+setTimeout(usingSetTimeout, 3000);
 
 console.log("LAST");
 /*
