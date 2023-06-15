@@ -1,9 +1,3 @@
-const inventory = {
-    sunglasses: 1900,
-    pants: 1088,
-    bags: 1344
-};
-
 /*
     resolve is a function with one argument. Under the hood, if invoked, 
     resolve() will change the promise’s status from pending to fulfilled, 
@@ -25,16 +19,17 @@ const inventory = {
     as the promise it was called on. One important feature of .then() is that it always returns a promise. 
 */
 let prom = new Promise((resolve, reject) => {
-    let num = Math.random();
-    if (num < .5) {
-        resolve('Yay!');
+    let num = Math.floor(Math.random() * 10);
+    if (num % 2 === 0) {
+        resolve(`EVEN - resolved with ${num}`);
     } else {
-        reject('Ohhh noooo!');
+        reject(`OOD - rejected with ${num}`);
     }
 });
 
 
-//PROMISE SETTLES, the appropriate handler will be invoked
+// PROMISE SETTLES, the appropriate handler will be invoked
+// The eventual state of a pending promise can either be fulfilled with a value or rejected with a reason (error)
 
 // const handleSuccess = (resolvedValue) => { console.log(resolvedValue); };
 // const handleFailure = (rejectionReason) => { console.log(rejectionReason); };
@@ -50,8 +45,9 @@ prom.then((resolvedValue) => {
     });
 
 /*
-    prom is a promise which randomly either resolves with 'Yay!' or rejects with 'Ohhh noooo!'.
+    prom is a promise which either resolves with 'Even' or rejects with 'Odd' depending on a random number (0-9).
     We pass a success handler to .then() and a failure handler to .catch().
-    If the promise resolves, .then()‘s success handler will be invoked with 'Yay!'.
-    If the promise rejects, .then() will return a promise with the same rejection reason as the original promise and .catch()‘s failure handler will be invoked with that rejection reason.
+    If the promise resolves, .then()‘s success handler will be invoked.
+    If the promise rejects, .then() will return a promise with the same rejection reason as the original promise 
+    and .catch()‘s failure handler will be invoked with that rejection reason.
 */
