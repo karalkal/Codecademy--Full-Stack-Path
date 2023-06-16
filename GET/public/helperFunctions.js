@@ -2,6 +2,9 @@
 const renderResponse = (res) => {
     // Handles if res is falsey
     if (!res) {
+        // console.log(res.status);  // ? Error in codecademy's exercise -> if no res, then no res.status surely ???
+        responseField.innerHTML = "<p>Something went wrong</p>";
+        return
     }
     // In case res comes back as a blank array
     if (!res.length) {
