@@ -1,0 +1,15 @@
+body {
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+#container {
+  text-align: center;
+}
+
+video {
+  width: 40%;
+  height: auto;
+  margin-top: 55px;
+  ;
+}
