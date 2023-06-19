@@ -40,7 +40,7 @@ const shortenUrl = () => {
 const shortenUrl = async () => {
     const urlToShorten = inputField.value;
     const data = JSON.stringify({ destination: urlToShorten });
-    try { nhgdh
+    try {
         const response = await fetch(url, {
             method: "POST",
             headers: {
