@@ -13,7 +13,7 @@ import axios from 'axios';
 
 
 import logo from './logo.svg';
-// import './AppExample.css';
+import './AppExample.css';
 
 import { useEffect, useState } from 'react';
 
@@ -81,9 +81,9 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Tutorial Spotify React</h1>
-        <a href='https://dev.to/dom_the_dev/how-to-use-the-spotify-api-in-your-react-js-app-50pn'>could be found here</a>
         <img src={logo} className="App-logo" alt="logo" />
+        <h1>Tutorial Spotify React</h1>
+        <a href='https://dev.to/dom_the_dev/how-to-use-the-spotify-api-in-your-react-js-app-50pn' ><span className='App-link'>link to Tutorial</span></a>
       </header>
       <main>
         {!token
