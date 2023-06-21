@@ -70,7 +70,7 @@ function App() {
   // Displaying Data create the renderArtists function and call it inside the return of our App.js.
   const renderArtists = () => {
     return artists.map(artist => (
-      <div key={artist.id}>
+      <div key={artist.id} className={styles.resultDiv}>
         {artist.images.length ? <img width={"100%"} src={artist.images[0].url} alt="" /> : <div>No Image</div>}
         {artist.name}
       </div>
@@ -93,14 +93,18 @@ function App() {
             to Spotify</a>
           :
           <>
+
+            <button onClick={logout}>Logout</button>
+
             <form onSubmit={searchArtists}>
               <input type="text" onChange={e => setSearchKey(e.target.value)} />
               <button type={"submit"}>Search</button>
             </form>
 
-            {renderArtists()}
+            <section id={styles.results}>
+              {renderArtists()}
+            </section>
 
-            <button onClick={logout}>Logout</button>
           </>
         }
       </main>
