@@ -64,6 +64,7 @@ function App() {
       }
     })
 
+    // console.log(data.artists.items)
     setArtists(data.artists.items)
   }
 
@@ -71,7 +72,7 @@ function App() {
   const renderArtists = () => {
     return artists.map(artist => (
       <div key={artist.id} className={styles.resultDiv}>
-        {artist.images.length ? <img width={"100%"} src={artist.images[0].url} alt="" /> : <div>No Image</div>}
+        {artist.images.length ? <img width={"100%"} src={artist.images[0].url} alt={artist.name} /> : <div>No Image</div>}
         {artist.name}
       </div>
     ))
