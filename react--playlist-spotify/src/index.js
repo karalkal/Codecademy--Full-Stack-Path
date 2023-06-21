@@ -2,13 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import AppExample from './AppExample';    // since it is default export we can name in any way we like
+import AppFindArtists from './AppFindArtists';    // since it is default export we can name in any way we like
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <AppExample />
+    {/* <App /> */}
+    <AppFindArtists />
   </React.StrictMode>
 );
 

@@ -16,7 +16,8 @@ main {
 }
 
 main>a,
-main button {
+main button,
+main #error {
   background-color: #1ed760;
   color: #000;
   font-family: Helvetica, Arial, sans-serif;
