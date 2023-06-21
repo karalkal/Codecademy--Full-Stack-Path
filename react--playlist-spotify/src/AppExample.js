@@ -9,11 +9,11 @@ This example app has been seen here: https://dev.to/dom_the_dev/how-to-use-the-s
             Authorization: `Bearer ${token}`,
         },
 */
+
 import axios from 'axios';
 
-
 import logo from './logo.svg';
-import './AppExample.css';
+import styles from './AppExample.module.css'; // Import css modules stylesheet as styles
 
 import { useEffect, useState } from 'react';
 
@@ -79,11 +79,12 @@ function App() {
 
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+    <div className={styles.App}>
+      {/* You need to access the property via bracket notation to avoid dash being treated as minus */}
+      <header className={styles["App-header"]}>
+        <img src={logo} className={styles["App-logo"]} alt="logo" />
         <h1>Tutorial Spotify React</h1>
-        <a href='https://dev.to/dom_the_dev/how-to-use-the-spotify-api-in-your-react-js-app-50pn' ><span className='App-link'>link to Tutorial</span></a>
+        <a href='https://dev.to/dom_the_dev/how-to-use-the-spotify-api-in-your-react-js-app-50pn' ><span className={styles["App-link"]}>link to Tutorial</span></a>
       </header>
       <main>
         {!token
@@ -96,7 +97,9 @@ function App() {
               <input type="text" onChange={e => setSearchKey(e.target.value)} />
               <button type={"submit"}>Search</button>
             </form>
+
             {renderArtists()}
+
             <button onClick={logout}>Logout</button>
           </>
         }
