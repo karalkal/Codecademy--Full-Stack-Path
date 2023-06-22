@@ -1,34 +1,98 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
+  height: 62px;
+  padding: 11px 31px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  justify-content: space-between;
   color: white;
 }
 
 .App-link {
-  color: #61dafb;
+  color: #1ed760;
+  margin: 22px;
+}
+
+.App-logo {
+  height: 90%;
+  pointer-events: none;
+}
+
+main {
+  margin-top: 26px;
+}
+
+main>a,
+main button,
+main #error {
+  background-color: #1ed760;
+  color: #000;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: 600;
+  font-size: .8em;
+  padding: 14px 32px;
+  border-radius: 500px;
+  text-transform: uppercase;
+  text-decoration: none;
+  box-shadow: none;
+  border: none;
+}
+
+main>form {
+  margin-top: 35px;
+}
+
+main>form>input {
+  border-radius: 500px;
+  border: 2px solid #1ed760;
+  margin-right: 15px;
+  height: 3.2em;
+  width: 26%;
+}
+
+section#info {
+  margin: 0 40px;
+  border: 1px solid #1ed760;
+  font-style: oblique;
+  font-size: 1.3em;
+  padding: 17px;
+}
+
+section#results {
+  padding: 40px;
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  gap: 10px 80px;
+  /* row-gap: 40; column-gap: 50px; */
+}
+
+.resultDiv {
+  border: 1px solid #1ed760;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+
+  /* @keyframes rule the animation (App-logo-spin) will gradually change at certain times. */
+  .App-logo {
+    animation: App-logo-spin infinite 4s ease-in-out alternate;
+  }
 }
 
 @keyframes App-logo-spin {
+
+  /* keywords "from" and "to" (which represents 0% (start) and 100% (complete)). */
+  /* It is also possible to use percent. By using percent, you can add as many style changes as you like. */
   from {
     transform: rotate(0deg);
   }

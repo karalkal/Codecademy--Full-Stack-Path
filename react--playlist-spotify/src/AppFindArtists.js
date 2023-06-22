@@ -27,13 +27,13 @@ function App() {
   const [artists, setArtists] = useState([]);
 
   const [token, setToken] = useState("");
-
+  // as soon as App starts set token after Promise resolves 
   useEffect(() => {
     fetchAuthToken().then(token => setToken(token))
   }, [])
 
 
-  const searchArtists = async (e) => {
+  async function searchArtists(e) {
     e.preventDefault()
     const { data } = await axios.get("https://api.spotify.com/v1/search", {
       headers: {
@@ -63,13 +63,27 @@ function App() {
       {/* You need to access the property via bracket notation to avoid dash being treated as minus */}
       <header className={styles["App-header"]}>
         <img src={logo} className={styles["App-logo"]} alt="logo" />
-        <h1>Find Artists - Auto login</h1>
-        <a href='https://dev.to/dom_the_dev/how-to-use-the-spotify-api-in-your-react-js-app-50pn' ><span className={styles["App-link"]}>link to Tutorial</span></a>
+        <h1>Find Artists</h1>
+        <div>
+          <a href='https://developer.spotify.com/documentation/web-api/tutorials/code-flow' target='_blank' rel="noreferrer">
+            <span className={styles["App-link"]}>Authorization Code Flow</span>
+          </a>
+          <a href='https://developer.spotify.com/documentation/web-api/tutorials/client-credentials-flow' target='_blank' rel="noreferrer">
+            <span className={styles["App-link"]}>Client Credentials Flow</span>
+          </a>
+        </div>
+
       </header>
       <main>
+        <section id={styles.info}>
+          <p></p>
+          <p>In this basic app token is obtained with dev credentials (Client Credentials Flow), meaning authentication without authorization.</p>
+          <p>This allows us to get only endpoints that do not access user information, i.e. artists.</p>
+          <p>For access to any sort of user-related data use Authorization Code Flow (links in header).</p>
+        </section>
         {!token
           ?
-          <div id={styles.error}>Dev Login details seem to be invalid</div>
+          <div id={styles.error}>Ay, ay, ay, my Dev login details seem to be invalid!</div>
           :
           <>
             <form onSubmit={searchArtists}>

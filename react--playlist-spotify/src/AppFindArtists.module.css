@@ -1,9 +1,27 @@
 * {
   box-sizing: border-box;
+  padding: 0;
+  margin: 0;
 }
 
 .App {
   text-align: center;
+}
+
+.App-header {
+  background-color: #282c34;
+  height: 62px;
+  padding: 11px 31px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  color: white;
+}
+
+.App-link {
+  color: #1ed760;
+  margin: 22px;
 }
 
 .App-logo {
@@ -12,7 +30,7 @@
 }
 
 main {
-  margin-top: 44px;
+  margin-top: 26px;
 }
 
 main>a,
@@ -43,6 +61,14 @@ main>form>input {
   width: 26%;
 }
 
+section#info {
+  margin: 0 40px;
+  border: 1px solid #1ed760;
+  font-style: oblique;
+  font-size: 1.3em;
+  padding: 17px;
+}
+
 section#results {
   padding: 40px;
   display: grid;
@@ -61,21 +87,6 @@ section#results {
   .App-logo {
     animation: App-logo-spin infinite 4s ease-in-out alternate;
   }
-}
-
-.App-header {
-  background-color: #282c34;
-  height: 62px;
-  padding: 11px 31px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  color: white;
-}
-
-.App-link {
-  color: #1ed760;
 }
 
 @keyframes App-logo-spin {
