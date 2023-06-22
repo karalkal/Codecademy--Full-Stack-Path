@@ -48,6 +48,10 @@ html {
   background-color: var(--c5);
 }
 
+a {
+  text-decoration: none;
+}
+
 .App {
   text-align: center;
 }
@@ -55,7 +59,7 @@ html {
 .App-header {
   background-color: var(--c1);
   height: 62px;
-  padding: 11px 31px;
+  padding: 11px 44px;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -82,8 +86,8 @@ html {
   margin-top: 26px;
   }
 
-#main>a,
 #main button,
+.App-header button,
 #main #error {
   background-color: var(--mauve);
   color: var(--c1);
@@ -92,7 +96,6 @@ html {
   padding: 14px 32px;
   border-radius: 500px;
   text-transform: uppercase;
-  text-decoration: none;
   box-shadow: none;
   border: none;
 }
