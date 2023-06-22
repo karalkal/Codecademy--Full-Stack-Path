@@ -12,7 +12,7 @@ This example app has been seen here: https://dev.to/dom_the_dev/how-to-use-the-s
 
 import axios from 'axios';
 
-import logo from './logo2.svg';
+import logo from './logo1.svg';
 import './App.css'; 
 import { useEffect, useState } from 'react';
 
@@ -82,12 +82,12 @@ function App() {
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <h1>Tutorial Spotify React</h1>
+        <h1>Spotify Playlist Creator</h1>
         <a href='https://dev.to/dom_the_dev/how-to-use-the-spotify-api-in-your-react-js-app-50pn' >
           <span className="App-link">link to Tutorial</span>
         </a>
       </header>
-      <main>
+      <main id="main">
         {!token
           ?
           <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}>Login
