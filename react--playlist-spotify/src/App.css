@@ -128,6 +128,11 @@ section#result {
   /* row-gap: 40; column-gap: 50px; */
 }
 
-.resultDiv {
-  border: 1px solid var(--french-violet);
+.mainContainer {
+  margin-top: 44px;
+  padding: 11px 44px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }

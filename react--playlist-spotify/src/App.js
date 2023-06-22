@@ -8,6 +8,11 @@ This example app has been seen here: https://dev.to/dom_the_dev/how-to-use-the-s
         headers: {
             Authorization: `Bearer ${token}`,
         },
+
+Tried to use onClick={logIn} and get tghe token from the response. This is WRONG:
+https://stackoverflow.com/questions/33029349/getting-spotify-api-access-token-from-frontend-javascript-code
+I believe the issue here is that you're attempting to retrieve JSON data from the endpoint where you should direct your users. 
+So instead of making a request to it, you should supply a button on your page that links to your https://accounts.spotify.com/authorize/{...} URL
 */
 
 import axios from 'axios';
@@ -16,23 +21,30 @@ import logo from './logo1.svg';
 import './App.css';
 import { useEffect, useState } from 'react';
 
+import FoundSection from './FoundSection';
+
 
 function App() {
+  const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
   const CLIENT_ID = process.env.REACT_APP_CLIENT_ID
   const REDIRECT_URI = "http://localhost:3000"
-  const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
   const RESPONSE_TYPE = "token"
+
+  const SEARCH_ENDPOINT = "https://api.spotify.com/v1/search"
+  const SEARCH_TYPE = ["track"].join(",") // excluded "album", "artist", "playlist", "show", "episode", "audiobook"
+  const SEARCH_RESULTS_LIMIT = 10   //Default value: 20 Range: 0 - 50
 
   const [token, setToken] = useState("");
   const [searchKey, setSearchKey] = useState("");
-  const [artists, setArtists] = useState([]);
-
+  const [tracks, setTracks] = useState([]);
 
   useEffect(() => {
     /* If we DO HAVE a token stored, we simply continue by setting our token state variable.
        If we DON'T have a token, we check if we have a hash. If so we perform tasks on that string to extract the token.
        The response from the server will have hash value like:
-       #access_token=BQA[....]Yh4o&token_type=Bearer&expires_in=3600 */
+       #access_token=BQA[....]Yh4o&token_type=Bearer&expires_in=3600 
+       N.B. Token will expire in 1 hour. */
+
     const hash = window.location.hash
     let token = window.localStorage.getItem("token")
 
@@ -46,37 +58,26 @@ function App() {
 
   }, [])
 
-  const logout = () => {
+  function logout() {
     setToken("")
     window.localStorage.removeItem("token")
   }
 
-  const searchArtists = async (e) => {
+  async function performSearch(e) {
     e.preventDefault()
-    const { data } = await axios.get("https://api.spotify.com/v1/search", {
+    const { data } = await axios.get(SEARCH_ENDPOINT, {
       headers: {
         Authorization: `Bearer ${token}`
       },
       params: {
         q: searchKey,
-        type: "artist"
+        type: SEARCH_TYPE,
+        limit: SEARCH_RESULTS_LIMIT,
       }
     })
 
-    // console.log(data.artists.items)
-    setArtists(data.artists.items)
+    setTracks(data.tracks.items)
   }
-
-  // Displaying Data create the renderArtists function and call it inside the return of our App.js.
-  const renderArtists = () => {
-    return artists.map(artist => (
-      <div key={artist.id} className="resultDiv">
-        {artist.images.length ? <img width={"100%"} src={artist.images[0].url} alt={artist.name} /> : <div>No Image</div>}
-        {artist.name}
-      </div>
-    ))
-  }
-
 
   return (
     <div className="App">
@@ -94,20 +95,17 @@ function App() {
         }
       </header>
       <main id="main">
-        {token && <form onSubmit={searchArtists}>
+        {token && <form onSubmit={performSearch}>
           <input type="text" onChange={e => setSearchKey(e.target.value)} />
           <button type={"submit"}>Search</button>
         </form>}
+        {token && tracks.length > 0 && <section className='mainContainer'>
+          <FoundSection />
+          <FoundSection />
+        </section>}
       </main>
     </div>
   );
 }
 
 export default App;
-
-/*
- <section id="result">
-              {renderArtists()}
-            </section>
-*/
-
