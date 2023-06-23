@@ -46,10 +46,9 @@ html {
     conic-gradient(from -90deg at 50% 50%, var(--c5) 0 32deg, var(--c3) 0 60.5deg, var(--c4) 0 90deg, var(--c5) 0 119.5deg, var(--c1) 0 148deg, var(--c5) 0 180deg, #fff0 0 360deg) var(--gp),
     conic-gradient(from 90deg at 50% 50%, var(--c2) 0 32deg, var(--c4) 0 60.5deg, var(--c3) 0 90deg, var(--c1) 0 119.5deg, var(--c5) 0 148deg, var(--c2) 0 180deg, #fff0 0 360deg) var(--gp);
   background-color: var(--c5);
-
   text-align: center;
-
 }
+
 
 a {
   text-decoration: none;
@@ -67,10 +66,8 @@ button {
   border: none;
 }
 
-.App {
-}
 
-.App-header {
+#header {
   background-color: var(--c1);
   height: 62px;
   padding: 11px 44px;
@@ -80,18 +77,18 @@ button {
   justify-content: space-between;
 }
 
-.App-header>h1 {
+#header>h1 {
   font-family: var(--font-funky);
   color: var(--french-violet);
   font-size: 2.2em;
 }
 
-.App-link {
+#header>.link {
   color: var(--french-violet);
   margin: 22px;
 }
 
-.App-logo {
+#header>.logo {
   height: 90%;
   pointer-events: none;
 }

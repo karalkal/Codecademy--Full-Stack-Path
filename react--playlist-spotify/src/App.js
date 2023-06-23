@@ -96,9 +96,9 @@ function App() {
   }
 
   return (
-    <div className={styles["App"]}>
-      <header className={styles["App-header"]}>
-        <img src={logo} className={styles["App-logo"]} alt="logo" />
+    <>
+      <header id={styles.header}>
+        <img src={logo} className={styles["logo"]} alt="logo" />
         <h1>Spotify Playlist Creator</h1>
         {!token
           ?
@@ -127,7 +127,7 @@ function App() {
           <FoundSection />
         </section>}
       </main>
-    </div>
+    </>
   );
 }
 

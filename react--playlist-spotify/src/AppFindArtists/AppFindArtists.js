@@ -59,17 +59,17 @@ function App() {
   }
 
   return (
-    <div className={styles.App}>
+    <div>
       {/* You need to access the property via bracket notation to avoid dash being treated as minus */}
-      <header className={styles["App-header"]}>
-        <img src={logo} className={styles["App-logo"]} alt="logo" />
+      <header className={styles["header"]}>
+        <img src={logo} className={styles["logo"]} alt="logo" />
         <h1>Find Artists</h1>
         <div>
           <a href='https://developer.spotify.com/documentation/web-api/tutorials/code-flow' target='_blank' rel="noreferrer">
-            <span className={styles["App-link"]}>Authorization Code Flow</span>
+            <span className={styles["link"]}>Authorization Code Flow</span>
           </a>
           <a href='https://developer.spotify.com/documentation/web-api/tutorials/client-credentials-flow' target='_blank' rel="noreferrer">
-            <span className={styles["App-link"]}>Client Credentials Flow</span>
+            <span className={styles["link"]}>Client Credentials Flow</span>
           </a>
         </div>
 
