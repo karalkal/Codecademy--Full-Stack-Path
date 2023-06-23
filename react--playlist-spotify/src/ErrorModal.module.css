@@ -47,6 +47,7 @@
 
 #modalBtn {
     background-color: var(--c4);
+    color: var(--mauve);
 }
 
 .displayBlock {

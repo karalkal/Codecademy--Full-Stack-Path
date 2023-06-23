@@ -5,9 +5,6 @@ export default function ErrorModal({ handleClose, show, errorMsg }) {
         ? `${styles.modal} ${styles.displayBlock}`
         : `${styles.modal} ${styles.displayNone}`;
 
-    console.log(showHideClassName)
-    console.log(errorMsg)
-
     return (
         <div className={showHideClassName}>
             <section className={styles.modalMain}>

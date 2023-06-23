@@ -104,9 +104,15 @@ button {
 #main>form>input {
   border-radius: 500px;
   border: 2px solid var(--french-violet);
-  margin-right: 15px;
+  margin-right: 26px;
+  padding-left: 26px;
   height: 3.2em;
   width: 26%;
+}
+
+#main>form>input:focus {
+  border: 2px solid var(--mauve);
+  outline: none;
 }
 
 section#info {

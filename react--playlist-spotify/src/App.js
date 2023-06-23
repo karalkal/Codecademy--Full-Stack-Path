@@ -68,30 +68,40 @@ function App() {
   async function performSearch(e) {
     e.preventDefault()
     try {
-      const { data } = await axios.get(SEARCH_ENDPOINT, {
+      const fullURI = `${SEARCH_ENDPOINT}?q=${searchKey}&type=${SEARCH_TYPE}&limit=${SEARCH_RESULTS_LIMIT}`
+      // 'https://api.spotify.com/v1/search?q=alice&type=track'
+      const data = await fetch(fullURI, {
         headers: {
           Authorization: `Bearer ${token}`
-        },
-        params: {
-          q: searchKey,
-          type: SEARCH_TYPE,
-          limit: SEARCH_RESULTS_LIMIT,
         }
       })
-      // If search retunrd results
-      if (data.tracks.items.length > 0) {
-        setTracks(data.tracks.items)
-      } else {
-        setErrorMsg("Your search returned nothing.")
+      const dataJson = await data.json()
+
+      // If search returns Json with error Object
+      if (dataJson.error) {
+        setErrorMsg(`${dataJson.error.status} - ${dataJson.error.message}`)
         setShowErrorModal(true);
+        // If error is 401, i.e. token expired -->> display message, reset localStorage, set token state to "", 
+        // since state has changed app will rerender, this time will log in button
+        if (dataJson.error.status === 401) {
+          setToken("")
+          window.localStorage.removeItem("token")
+        }
       }
+      else {        // No error => dataJson must have tracks.items
+        if (dataJson.tracks.items.length === 0) {   //... but it could be ampty array
+          setErrorMsg("Your search returned zero results")
+          setShowErrorModal(true);
+        } else {    // and finally, if all is good
+          setTracks(dataJson.tracks.items)          
+        }
+      }
+
 
     } catch (error) {   // If an error is thrown it will most likely be 401, i.e. token has experided (TTL 1 hour)
       setShowErrorModal(true);
-      // setToken("")
-      // window.localStorage.removeItem("token")
       setErrorMsg(error.message)
-      console.log(errorMsg, showErrorModal)
+      console.log(error)
     }
   }
 
@@ -110,8 +120,8 @@ function App() {
           <button onClick={logout}>Logout</button>
         }
       </header>
-      <main id="main">
 
+      <main id={styles.main}>
         <ErrorModal
           show={showErrorModal}
           handleClose={() => setShowErrorModal(false)}
@@ -123,8 +133,8 @@ function App() {
         </form>}
 
         {token && tracks.length > 0 && <section className={styles.mainContainer}>
-          <FoundSection />
-          <FoundSection />
+          <FoundSection tracks={tracks}/>
+          {/* <FoundSection /> */}
         </section>}
       </main>
     </>
