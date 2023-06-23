@@ -18,11 +18,11 @@ So instead of making a request to it, you should supply a button on your page th
 import axios from 'axios';
 
 import logo from './logo1.svg';
-import './App.css';
+import styles from './App.module.css';
 import { useEffect, useState } from 'react';
 
 import FoundSection from './FoundSection';
-
+import ErrorModal from './ErrorModal';
 
 function App() {
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
@@ -37,6 +37,8 @@ function App() {
   const [token, setToken] = useState("");
   const [searchKey, setSearchKey] = useState("");
   const [tracks, setTracks] = useState([]);
+  const [showErrorModal, setShowErrorModal] = useState(false)
+  const [errorMsg, setErrorMsg] = useState("")
 
   useEffect(() => {
     /* If we DO HAVE a token stored, we simply continue by setting our token state variable.
@@ -65,24 +67,38 @@ function App() {
 
   async function performSearch(e) {
     e.preventDefault()
-    const { data } = await axios.get(SEARCH_ENDPOINT, {
-      headers: {
-        Authorization: `Bearer ${token}`
-      },
-      params: {
-        q: searchKey,
-        type: SEARCH_TYPE,
-        limit: SEARCH_RESULTS_LIMIT,
+    try {
+      const { data } = await axios.get(SEARCH_ENDPOINT, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        },
+        params: {
+          q: searchKey,
+          type: SEARCH_TYPE,
+          limit: SEARCH_RESULTS_LIMIT,
+        }
+      })
+      // If search retunrd results
+      if (data.tracks.items.length > 0) {
+        setTracks(data.tracks.items)
+      } else {
+        setErrorMsg("Your search returned nothing.")
+        setShowErrorModal(true);
       }
-    })
 
-    setTracks(data.tracks.items)
+    } catch (error) {   // If an error is thrown it will most likely be 401, i.e. token has experided (TTL 1 hour)
+      setShowErrorModal(true);
+      // setToken("")
+      // window.localStorage.removeItem("token")
+      setErrorMsg(error.message)
+      console.log(errorMsg, showErrorModal)
+    }
   }
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+    <div className={styles["App"]}>
+      <header className={styles["App-header"]}>
+        <img src={logo} className={styles["App-logo"]} alt="logo" />
         <h1>Spotify Playlist Creator</h1>
         {!token
           ?
@@ -95,11 +111,18 @@ function App() {
         }
       </header>
       <main id="main">
+
+        <ErrorModal
+          show={showErrorModal}
+          handleClose={() => setShowErrorModal(false)}
+          errorMsg={errorMsg} />
+
         {token && <form onSubmit={performSearch}>
           <input type="text" onChange={e => setSearchKey(e.target.value)} />
           <button type={"submit"}>Search</button>
         </form>}
-        {token && tracks.length > 0 && <section className='mainContainer'>
+
+        {token && tracks.length > 0 && <section className={styles.mainContainer}>
           <FoundSection />
           <FoundSection />
         </section>}
