@@ -21,7 +21,7 @@
     font-family: var(--font-main);
 }
 
-.playlistContainer {
+.resultsContainer {
     height: 910px;
     background-color: var(--c1);
     border: 2px solid var(--french-violet);
@@ -29,11 +29,11 @@
     width: 44%;
 }
 
-.foundContainer {
+.playlistContainer {
     display: grid;
     grid-template-areas:
-        'top-grid top-grid top-grid'
-        'bottom-grid bottom-grid bottom-grid';
+        'left-grid top-right-grid'
+        'left-grid bottom-right-grid';
     justify-content: space-between;
     background-color: var(--c4);
     padding: 4px;
@@ -44,31 +44,33 @@
     padding: 10px;
 }
 
-.foundContainer>span {
-    grid-area: bottom-grid;
-    display: flex;
-    flex-direction: row;
-    justify-content: left;
-    gap: 11px
-}
-
-.foundContainer * {
+.playlistContainer * {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis
 }
 
-.foundTrack {
-    grid-area: top-grid;
+.playlistTrack {
+    grid-area: left-grid;
     font-weight: 800;
 }
 
-.foundArtist::before {
+.playlistArtist::before {
     content: "artist: ";
     color: var(--french-violet);
 }
 
-.foundAlbum::before {
+.playlistArtist {
+    text-align: right;
+    grid-area: top-right-grid;
+}
+
+.playlistAlbum {
+    text-align: right;
+    grid-area: bottom-right-grid;
+}
+
+.playlistAlbum::before {
     content: "album: ";
     color: var(--french-violet);
 }
@@ -85,10 +87,14 @@ form>div {
 }
 
 #playlistCreateForm>input {
+    border-radius: 500px;
+    border: 2px solid var(--french-violet);
     color: var(--c1);
-    background-color: var(--mauve);
-    border: none;
     padding: 11px;
     width: 71%;
 }
 
+#playlistCreateForm>input:focus {
+    outline: none;
+    border: none;
+}
