@@ -29,18 +29,11 @@
     width: 44%;
 }
 
-.resultsContainer>h1 {
-    font-family: var(--font-funky);
-    color: var(--mauve);
-    font-size: 1.3em;
-    padding: 11px
-}
-
 .foundContainer {
     display: grid;
     grid-template-areas:
-        'top-grid top-grid top-grid right-grid'
-        'bottom-grid bottom-grid bottom-grid right-grid';
+        'top-grid top-grid top-grid'
+        'bottom-grid bottom-grid bottom-grid';
     justify-content: space-between;
     background-color: var(--c4);
     padding: 4px;
@@ -80,10 +73,22 @@
     color: var(--french-violet);
 }
 
-.addBtn {
-    grid-area: right-grid;
-    width: 80px;
-    max-width: 3.2em;
-    max-height: 3.2em;
-    padding: 0;
+form>div {
+    height: 2.9em;
 }
+
+#playlistCreateForm {
+    width: 88%;
+    display: flex;
+    justify-content: space-between;
+    margin: 11px auto;
+}
+
+#playlistCreateForm>input {
+    color: var(--c1);
+    background-color: var(--mauve);
+    border: none;
+    padding: 11px;
+    width: 71%;
+}
+

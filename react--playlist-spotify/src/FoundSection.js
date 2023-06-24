@@ -1,6 +1,6 @@
-import styles from "./FoundSection.module.css"
+import styles from "./FoundSection.module.css";
 
-export default function FoundSection({ tracks }) {
+export default function FoundSection({ tracks, onAddTrack }) {
     const truncate = (input, charCount) => input.length > charCount ? `${input.substring(0, charCount)}...` : input;
 
     const tracksComponents = tracks.map((track, index) => {
@@ -15,7 +15,9 @@ export default function FoundSection({ tracks }) {
                 <p className={styles.foundTrack}>{index + 1}. {trackName}</p>
                 <span><p className={styles.foundArtist}>{trackArtist} </p>
                     <p className={styles.foundAlbum}>{trackAlbum}</p></span>
-                <button className={styles.addBtn}>add</button>
+                <button 
+                className={styles.addBtn}
+                onClick={() => onAddTrack(track.id)}>add</button>
             </div>)
     });
 

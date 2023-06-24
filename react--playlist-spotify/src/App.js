@@ -15,8 +15,6 @@ I believe the issue here is that you're attempting to retrieve JSON data from th
 So instead of making a request to it, you should supply a button on your page that links to your https://accounts.spotify.com/authorize/{...} URL
 */
 
-import axios from 'axios';
-
 import logo from './logo1.svg';
 import styles from './App.module.css';
 import { useEffect, useState } from 'react';
@@ -37,7 +35,8 @@ function App() {
 
   const [token, setToken] = useState("");
   const [searchKey, setSearchKey] = useState("");
-  const [tracks, setTracks] = useState([]);
+  const [foundTracks, setFoundTracks] = useState([]);
+  const [addedTracks, setAddedTracks] = useState([]);
   const [showErrorModal, setShowErrorModal] = useState(false)
   const [errorMsg, setErrorMsg] = useState("")
 
@@ -94,16 +93,24 @@ function App() {
           setErrorMsg("Your search returned zero results")
           setShowErrorModal(true);
         } else {    // and finally, if all is good
-          setTracks(dataJson.tracks.items)          
+          setFoundTracks(dataJson.tracks.items)
         }
       }
-
-
     } catch (error) {   // If an error is thrown it will most likely be 401, i.e. token has experided (TTL 1 hour)
       setShowErrorModal(true);
       setErrorMsg(error.message)
       console.log(error)
     }
+  }
+
+  function addTrackHandler(idOfTrack) {
+    const trackToAdd = foundTracks.find(t => t.id === idOfTrack);
+
+    setAddedTracks(prevPlaylistArr => [
+      ...prevPlaylistArr,
+      trackToAdd,
+    ])
+
   }
 
   return (
@@ -133,9 +140,9 @@ function App() {
           <button type={"submit"}>Search</button>
         </form>}
 
-        {token && tracks.length > 0 && <section className={styles.mainContainer}>
-          <FoundSection tracks={tracks}/>
-          <PlaylistSection />
+        {token && foundTracks.length > 0 && <section className={styles.mainContainer}>
+          <FoundSection tracks={foundTracks} onAddTrack={addTrackHandler}/>
+          <PlaylistSection playlist={addedTracks}/>
         </section>}
       </main>
     </>
