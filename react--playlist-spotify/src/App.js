@@ -22,6 +22,7 @@ import styles from './App.module.css';
 import { useEffect, useState } from 'react';
 
 import FoundSection from './FoundSection';
+import PlaylistSection from './PlaylistSection';
 import ErrorModal from './ErrorModal';
 
 function App() {
@@ -134,7 +135,7 @@ function App() {
 
         {token && tracks.length > 0 && <section className={styles.mainContainer}>
           <FoundSection tracks={tracks}/>
-          {/* <FoundSection /> */}
+          <PlaylistSection />
         </section>}
       </main>
     </>

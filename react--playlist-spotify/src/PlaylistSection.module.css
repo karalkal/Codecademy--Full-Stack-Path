@@ -21,11 +21,11 @@
     font-family: var(--font-main);
 }
 
-.resultsContainer {
+.playlistContainer {
     height: 910px;
     background-color: var(--c1);
     border: 2px solid var(--french-violet);
-    box-shadow: -8px -8px var(--french-violet);
+    box-shadow: 8px -8px var(--french-violet);
     width: 44%;
 }
 

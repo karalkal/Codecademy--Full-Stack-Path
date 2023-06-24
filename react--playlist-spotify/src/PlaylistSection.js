@@ -1,8 +1,9 @@
-import styles from "./FoundSection.module.css"
+import styles from "./PlaylistSection.module.css"
 
-export default function FoundSection({ tracks }) {
+export default function PlaylistSection(props) {
+
+    /*
     const truncate = (input, charCount) => input.length > charCount ? `${input.substring(0, charCount)}...` : input;
-
     const tracksComponents = tracks.map((track, index) => {
         const trackName = truncate(track.name, 62)
         const trackArtist = truncate(track.artists[0].name, 31)
@@ -18,12 +19,14 @@ export default function FoundSection({ tracks }) {
                 <button className={styles.addBtn}>add</button>
             </div>)
     });
+    */
+   console.log(props)
 
     return (
-        <div className={styles.resultsContainer}>
+        <div className={styles.playlistContainer}>
             <h1>Results: </h1>
             <div>
-                {tracksComponents}
+                {/* {tracksComponents} */}
             </div>
         </div>
     )
