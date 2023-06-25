@@ -86,5 +86,5 @@
     max-width: 4em;
     max-height: 4em;
     padding: 0;
-    cursor: cell;
+    cursor: url("./cursors/plus-svgrepo-com.svg" ), pointer;
 }

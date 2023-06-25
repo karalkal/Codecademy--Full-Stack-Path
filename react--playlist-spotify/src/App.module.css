@@ -64,7 +64,7 @@ button {
   text-transform: uppercase;
   box-shadow: none;
   border: none;
-  cursor:pointer;
+  cursor: url("./cursors/arrow-svgrepo-com.svg" ), pointer;
 }
 
 
