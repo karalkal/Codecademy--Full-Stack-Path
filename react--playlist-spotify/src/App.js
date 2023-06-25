@@ -129,12 +129,18 @@ function App() {
     const currentUserId = await getUserId()
     console.log(currentUserId, playlistName)
 
-    // const postData = await fetch(PLAYLIST_ENDPOINT + `/${user_id}/playlists`)
+    const postData = await fetch(PLAYLIST_ENDPOINT + `/${currentUserId}/playlists`,
+      {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      })
   }
 
   function displayNoPlaylistTitleError() {
     setShowErrorModal(true);
-    setErrorMsg("Please enter title of your Playlist")
+    setErrorMsg("Please enter title of your playlist")
   }
 
   return (
