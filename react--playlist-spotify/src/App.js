@@ -71,39 +71,46 @@ function App() {
 
   async function performSearch(e) {
     e.preventDefault()
+    e.target.reset()      // clear search input
     try {
       const fullURI = `${SEARCH_ENDPOINT}?q=${searchKey}&type=${SEARCH_TYPE}&limit=${SEARCH_RESULTS_LIMIT}`
       // 'https://api.spotify.com/v1/search?q=alice&type=track'
-      const data = await fetch(fullURI, {
+      let data = await fetch(fullURI, {
         headers: {
           Authorization: `Bearer ${token}`
         }
       })
-      const dataJson = await data.json()
+      let dataJson = await data.json()
 
       // If search returns Json with error Object
       if (dataJson.error) {
         setErrorMsg(`${dataJson.error.status} - ${dataJson.error.message}`)
         setShowErrorModal(true);
-        // If error is 401, i.e. token expired -->> display message, reset localStorage, set token state to "", 
-        // since state has changed app will rerender, this time will log in button
+        // If error.status is 401, i.e. token expired -->> display message, reset localStorage, set token state to "", 
+        // Since state has changed app will rerender, this time will log in button
         if (dataJson.error.status === 401) {
           setToken("")
           window.localStorage.removeItem("token")
         }
       }
-      else {        // No error => dataJson must have tracks.items
-        if (dataJson.tracks.items.length === 0) {   //... but it could be ampty array
+      // No error => dataJson must have tracks.items
+      else {
+        //... but it could be ampty array
+        if (dataJson.tracks.items.length === 0) {
           setErrorMsg("Your search returned zero results")
           setShowErrorModal(true);
-        } else {    // and finally, if all is good
-          setFoundTracks(dataJson.tracks.items)
+        }
+        // and finally, if ALL IS GOOD
+        else {
+          setFoundTracks(dataJson.tracks.items);
+          setSearchKey('')
+          // dataJson.tracks.items = []
+          // console.log(dataJson.tracks.items)
         }
       }
-    } catch (error) {   // If an error is thrown it will most likely be 401, i.e. token has experided (TTL 1 hour)
+    } catch (error) {
       setShowErrorModal(true);
       setErrorMsg(error.message)
-      console.log(error)
     }
   }
 
@@ -143,14 +150,12 @@ function App() {
         })
       })
     const playlistCreatedJson = await playlistCreated.json()
-    if(playlistCreated.status === 201) {
+    if (playlistCreated.status === 201) {
       setSearchKey('')
       setFoundTracks([])
       setAddedTracks([])
       alert("playlist created")
-
     }
-
   }
 
 
