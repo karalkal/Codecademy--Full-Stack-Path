@@ -34,6 +34,7 @@ function App() {
   const SEARCH_RESULTS_LIMIT = 10   //Default value: 20 Range: 0 - 50
 
   const PLAYLIST_ENDPOINT = "https://api.spotify.com/v1/users"
+  const PLAYLIST_SCOPES = 'playlist-modify-private playlist-modify-public';
   const CURRENT_USER_ENDPOINT = "https://api.spotify.com/v1/me"
 
   const [token, setToken] = useState("");
@@ -125,18 +126,34 @@ function App() {
     return currentUserJson.id
   }
 
-  async function createPlaylist(playlistName) {
+  async function createPlaylist(playlistName) {   //Create a playlist for a Spotify user. (The playlist will be empty until you add tracks.)
     const currentUserId = await getUserId()
-    console.log(currentUserId, playlistName)
 
-    const postData = await fetch(PLAYLIST_ENDPOINT + `/${currentUserId}/playlists`,
+    const playlistCreated = await fetch(PLAYLIST_ENDPOINT + `/${currentUserId}/playlists`,
       {
         method: "POST",
         headers: {
-          Authorization: `Bearer ${token}`
-        }
+          Authorization: `Bearer ${token}`,
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({
+          "name": playlistName,
+          "description": `${playlistName} as created by KK`,
+          "public": false
+        })
       })
+    const playlistCreatedJson = await playlistCreated.json()
+    if(playlistCreated.status === 201) {
+      setSearchKey('')
+      setFoundTracks([])
+      setAddedTracks([])
+      alert("playlist created")
+
+    }
+
   }
+
+
 
   function displayNoPlaylistTitleError() {
     setShowErrorModal(true);
@@ -151,7 +168,7 @@ function App() {
         {!token
           ?
           <button>
-            <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}>Login
+            <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${PLAYLIST_SCOPES}`}>Login
               to Spotify</a>
           </button>
           :
