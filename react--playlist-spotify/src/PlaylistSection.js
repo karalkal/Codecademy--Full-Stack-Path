@@ -1,6 +1,8 @@
+import { useRef } from "react";
 import styles from "./PlaylistSection.module.css"
 
-export default function PlaylistSection({ playlist }) {
+export default function PlaylistSection({ playlist, createPlaylist, displayNoPlaylistTitleError }) {
+    const playlistName = useRef("");
     const truncate = (input, charCount) => input.length > charCount ? `${input.substring(0, charCount)}...` : input;
 
     const tracksComponents = playlist.map((track, index) => {
@@ -20,11 +22,19 @@ export default function PlaylistSection({ playlist }) {
     });
 
 
+    function preCreatePlaylist(e) {
+        e.preventDefault();
+        playlistName.current.value === ""
+            ? displayNoPlaylistTitleError()
+            : createPlaylist(playlistName.current.value)
+    }
+
+    // onClick={createPlaylist}
     return (
-        <div className={styles.resultsContainer}>
+        <div className={styles.resultsContainer} onSubmit={preCreatePlaylist}>
             <form id={styles.playlistCreateForm}>
-                <input type="text" placeholder="Playlist Name" />
-                <button>create</button>
+                <input type="text" placeholder="Playlist Name" ref={playlistName} />
+                <button >create</button>
             </form>
 
             <div>

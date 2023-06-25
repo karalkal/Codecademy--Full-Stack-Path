@@ -86,4 +86,5 @@
     max-width: 4em;
     max-height: 4em;
     padding: 0;
+    cursor: cell;
 }

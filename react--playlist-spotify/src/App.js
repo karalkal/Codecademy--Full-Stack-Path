@@ -33,6 +33,9 @@ function App() {
   const SEARCH_TYPE = ["track"].join(",") // excluded "album", "artist", "playlist", "show", "episode", "audiobook"
   const SEARCH_RESULTS_LIMIT = 10   //Default value: 20 Range: 0 - 50
 
+  const PLAYLIST_ENDPOINT = "https://api.spotify.com/v1/users"
+  const CURRENT_USER_ENDPOINT = "https://api.spotify.com/v1/me"
+
   const [token, setToken] = useState("");
   const [searchKey, setSearchKey] = useState("");
   const [foundTracks, setFoundTracks] = useState([]);
@@ -110,7 +113,28 @@ function App() {
       ...prevPlaylistArr,
       trackToAdd,
     ])
+  }
 
+  async function getUserId() {
+    const currentUserData = await fetch(CURRENT_USER_ENDPOINT, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+    const currentUserJson = await currentUserData.json()
+    return currentUserJson.id
+  }
+
+  async function createPlaylist(playlistName) {
+    const currentUserId = await getUserId()
+    console.log(currentUserId, playlistName)
+
+    // const postData = await fetch(PLAYLIST_ENDPOINT + `/${user_id}/playlists`)
+  }
+
+  function displayNoPlaylistTitleError() {
+    setShowErrorModal(true);
+    setErrorMsg("Please enter title of your Playlist")
   }
 
   return (
@@ -141,8 +165,15 @@ function App() {
         </form>}
 
         {token && foundTracks.length > 0 && <section className={styles.mainContainer}>
-          <FoundSection tracks={foundTracks} onAddTrack={addTrackHandler}/>
-          <PlaylistSection playlist={addedTracks}/>
+          <FoundSection
+            tracks={foundTracks}
+            onAddTrack={addTrackHandler} />
+          <PlaylistSection
+            playlist={addedTracks}
+            createPlaylist={createPlaylist}
+            displayNoPlaylistTitleError={displayNoPlaylistTitleError}
+          />
+          {/* Last two only to display error if no playlist name is entered */}
         </section>}
       </main>
     </>
