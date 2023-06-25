@@ -59,8 +59,7 @@ function App() {
       window.location.hash = ""                     // clear hash from URL
       window.localStorage.setItem("token", token)   // set the token in localStorage
     }
-
-    setToken(token)
+    setToken(token)                                 // set token state
 
   }, [])
 
@@ -72,8 +71,10 @@ function App() {
   async function performSearch(e) {
     e.preventDefault()
     e.target.reset()      // clear search input
+
+    const trimmedKey = searchKey.trim()   // if string is "  ", return 400: No search query, not 400: Bad request; if "   some name   ", just remove spaces  
     try {
-      const fullURI = `${SEARCH_ENDPOINT}?q=${searchKey}&type=${SEARCH_TYPE}&limit=${SEARCH_RESULTS_LIMIT}`
+      const fullURI = `${SEARCH_ENDPOINT}?q=${trimmedKey}&type=${SEARCH_TYPE}&limit=${SEARCH_RESULTS_LIMIT}`
       // 'https://api.spotify.com/v1/search?q=alice&type=track'
       let data = await fetch(fullURI, {
         headers: {
@@ -84,7 +85,7 @@ function App() {
 
       // If search returns Json with error Object
       if (dataJson.error) {
-        setErrorMsg(`${dataJson.error.status} - ${dataJson.error.message}`)
+        setErrorMsg(`${dataJson.error.status} - ${dataJson.error.message}`)   // example 400 - No search query
         setShowErrorModal(true);
         // If error.status is 401, i.e. token expired -->> display message, reset localStorage, set token state to "", 
         // Since state has changed app will rerender, this time will log in button
@@ -95,7 +96,7 @@ function App() {
       }
       // No error => dataJson must have tracks.items
       else {
-        //... but it could be ampty array
+        //... but it could be an empty array
         if (dataJson.tracks.items.length === 0) {
           setErrorMsg("Your search returned zero results")
           setShowErrorModal(true);
@@ -103,9 +104,7 @@ function App() {
         // and finally, if ALL IS GOOD
         else {
           setFoundTracks(dataJson.tracks.items);
-          setSearchKey('')
-          // dataJson.tracks.items = []
-          // console.log(dataJson.tracks.items)
+          setSearchKey('')    // reset so it does not hold prev values, otherwise if after initial search user attempts serach with empty string, 
         }
       }
     } catch (error) {
@@ -157,7 +156,6 @@ function App() {
       alert("playlist created")
     }
   }
-
 
 
   function displayNoPlaylistTitleError() {
