@@ -54,8 +54,7 @@ a {
   text-decoration: none;
 }
 
-button,
-#logInLink {
+button {
   background-color: var(--mauve);
   color: var(--c1);
   font-weight: 600;
@@ -65,7 +64,7 @@ button,
   text-transform: uppercase;
   box-shadow: none;
   border: none;
-  cursor: url("./cursors/arrow-svgrepo-com.svg" ), pointer;
+  cursor: url("./cursors/sign-of-the-horns-svgrepo-com.svg" ), pointer;
 }
 
 
