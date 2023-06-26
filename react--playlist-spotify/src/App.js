@@ -28,14 +28,15 @@ function App() {
   const CLIENT_ID = process.env.REACT_APP_CLIENT_ID
   const REDIRECT_URI = "http://localhost:3000"
   const RESPONSE_TYPE = "token"
+  const PLAYLIST_SCOPES = 'playlist-modify-private playlist-modify-public';
 
   const SEARCH_ENDPOINT = "https://api.spotify.com/v1/search"
   const SEARCH_TYPE = ["track"].join(",") // excluded "album", "artist", "playlist", "show", "episode", "audiobook"
   const SEARCH_RESULTS_LIMIT = 10   //Default value: 20 Range: 0 - 50
 
-  const PLAYLIST_ENDPOINT = "https://api.spotify.com/v1/users"
-  const PLAYLIST_SCOPES = 'playlist-modify-private playlist-modify-public';
   const CURRENT_USER_ENDPOINT = "https://api.spotify.com/v1/me"
+  const PLAYLIST_CREATE_ENDPOINT = "https://api.spotify.com/v1/users"    //https://api.spotify.com/v1/users/{user_id}/playlists
+  const PLAYLIST_EDIT_ENDPOINT = "https://api.spotify.com/v1/playlists"    //https://api.spotify.com/v1/playlists/{playlist_id}/tracks
 
   const [token, setToken] = useState("");
   const [searchKey, setSearchKey] = useState("");
@@ -115,7 +116,6 @@ function App() {
 
   function addTrackHandler(idOfTrack) {
     const trackToAdd = foundTracks.find(t => t.id === idOfTrack);
-    console.log(trackToAdd)
 
     setAddedTracks(prevPlaylistArr => [
       ...prevPlaylistArr,
@@ -123,12 +123,10 @@ function App() {
     ])
   }
 
-  function removeTrackHandler(idOfTrack) {
+  function removeTrackHandler(idOfTrackToRemove) {
     setAddedTracks(prevPlaylistArr => prevPlaylistArr.filter(tr => {
-      console.log(tr.id, idOfTrack)
-      return tr.id !== idOfTrack
+      return tr.id !== idOfTrackToRemove
     }))
-    console.log(addedTracks)
   }
 
   async function getUserId() {
@@ -144,7 +142,7 @@ function App() {
   async function createPlaylist(playlistName) {   //Create a playlist for a Spotify user. (The playlist will be empty until you add tracks.)
     const currentUserId = await getUserId()
 
-    const playlistCreated = await fetch(PLAYLIST_ENDPOINT + `/${currentUserId}/playlists`,
+    const playlistCreated = await fetch(PLAYLIST_CREATE_ENDPOINT + `/${currentUserId}/playlists`,
       {
         method: "POST",
         headers: {
@@ -163,7 +161,35 @@ function App() {
       setAddedTracks([])
       alert("playlist created")
     }
+
+    let playlistJson = await playlistCreated.json()
+    let playlistID = playlistJson.id
+    console.log("playlistID", playlistID)
+
+    // Playlist created, now another request to add tracks to it - {playlist_id}/tracks
+    let playlistURIsArray = (addedTracks.map(track => track.uri))
+    console.log(playlistURIsArray)
+    let body = JSON.stringify({
+      "uris": playlistURIsArray,
+      "position": 0
+    });
+
+
+    const tracksAdded = await fetch(`${PLAYLIST_EDIT_ENDPOINT}/${playlistID}/tracks`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-type": "application/json",
+      },
+      body: body
+    })
+
+    console.log(tracksAdded)
+
+
   }
+
+
 
 
   function displayNoPlaylistTitleError() {
