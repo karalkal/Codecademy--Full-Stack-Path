@@ -32,8 +32,8 @@
 .playlistContainer {
     display: grid;
     grid-template-areas:
-        'left-grid top-right-grid'
-        'left-grid bottom-right-grid';
+        'top-grid top-grid top-grid right-grid'
+        'bottom-grid bottom-grid bottom-grid right-grid';
     justify-content: space-between;
     background-color: var(--c4);
     padding: 4px;
@@ -44,6 +44,14 @@
     padding: 10px;
 }
 
+.playlistContainer>span {
+    grid-area: bottom-grid;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    gap: 11px
+}
+
 .playlistContainer * {
     white-space: nowrap;
     overflow: hidden;
@@ -51,23 +59,13 @@
 }
 
 .playlistTrack {
-    grid-area: left-grid;
+    grid-area: top-grid;
     font-weight: 800;
 }
 
 .playlistArtist::before {
     content: "artist: ";
     color: var(--french-violet);
-}
-
-.playlistArtist {
-    text-align: right;
-    grid-area: top-right-grid;
-}
-
-.playlistAlbum {
-    text-align: right;
-    grid-area: bottom-right-grid;
 }
 
 .playlistAlbum::before {
@@ -97,4 +95,13 @@ form>div {
 #playlistCreateForm>input:focus {
     outline: none;
     border: none;
+}
+
+.removeBtn {
+    grid-area: right-grid;
+    width: 80px;
+    max-width: 4em;
+    max-height: 4em;
+    padding: 0;
+    cursor: url("./cursors/remove-svgrepo-com.svg" ), pointer;
 }

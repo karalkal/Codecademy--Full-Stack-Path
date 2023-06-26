@@ -54,7 +54,8 @@ a {
   text-decoration: none;
 }
 
-button {
+button,
+#logInLink {
   background-color: var(--mauve);
   color: var(--c1);
   font-weight: 600;

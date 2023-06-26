@@ -53,6 +53,7 @@ function App() {
 
     const hash = window.location.hash
     let token = window.localStorage.getItem("token")
+    console.log(hash)
 
     if (!token && hash) {
       token = hash.substring(1).split("&").find(elem => elem.startsWith("access_token")).split("=")[1]  // get substring we need
@@ -122,6 +123,14 @@ function App() {
     ])
   }
 
+  function removeTrackHandler(idOfTrack) {
+    setAddedTracks(prevPlaylistArr => prevPlaylistArr.filter(tr => {
+      console.log(tr.id, idOfTrack)
+      return tr.id !== idOfTrack
+    }))
+    console.log(addedTracks)
+  }
+
   async function getUserId() {
     const currentUserData = await fetch(CURRENT_USER_ENDPOINT, {
       headers: {
@@ -148,7 +157,6 @@ function App() {
           "public": false
         })
       })
-    const playlistCreatedJson = await playlistCreated.json()
     if (playlistCreated.status === 201) {
       setSearchKey('')
       setFoundTracks([])
@@ -170,10 +178,9 @@ function App() {
         <h1>Spotify Playlist Creator</h1>
         {!token
           ?
-          <button>
-            <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${PLAYLIST_SCOPES}`}>Login
-              to Spotify</a>
-          </button>
+          <a id="logInLink" href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${PLAYLIST_SCOPES}`}>
+            <button>Login to Spotify</button>
+          </a>
           :
           <button onClick={logout}>Logout</button>
         }
@@ -198,8 +205,8 @@ function App() {
             playlist={addedTracks}
             createPlaylist={createPlaylist}
             displayNoPlaylistTitleError={displayNoPlaylistTitleError}
+            onRemoveTrack={removeTrackHandler}
           />
-          {/* Last two only to display error if no playlist name is entered */}
         </section>}
       </main>
     </>

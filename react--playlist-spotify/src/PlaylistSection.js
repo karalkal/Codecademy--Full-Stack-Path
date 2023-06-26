@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import styles from "./PlaylistSection.module.css"
 
-export default function PlaylistSection({ playlist, createPlaylist, displayNoPlaylistTitleError }) {
+export default function PlaylistSection({ playlist, createPlaylist, displayNoPlaylistTitleError, onRemoveTrack }) {
     const playlistName = useRef("");
     const truncate = (input, charCount) => input.length > charCount ? `${input.substring(0, charCount)}...` : input;
 
@@ -16,9 +16,13 @@ export default function PlaylistSection({ playlist, createPlaylist, displayNoPla
                 name={track.name}
                 className={styles.playlistContainer}>
                 <p className={styles.playlistTrack}>{index + 1}. {trackName}</p>
-                <p className={styles.playlistArtist}>{trackArtist} </p>
-                <p className={styles.playlistAlbum}>{trackAlbum}</p>
+                <span><p className={styles.playlistArtist}>{trackArtist} </p>
+                    <p className={styles.playlistAlbum}>{trackAlbum}</p></span>
+                <button
+                    className={styles.removeBtn}
+                    onClick={() => onRemoveTrack(track.id)}>del</button>
             </div>)
+
     });
 
 
