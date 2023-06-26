@@ -1,3 +1,5 @@
+import { nanoid } from 'nanoid'
+
 import { useRef } from "react";
 import styles from "./PlaylistSection.module.css"
 
@@ -11,7 +13,7 @@ export default function PlaylistSection({ playlist, createPlaylist, displayNoPla
         const trackAlbum = truncate(track.album.name, 31)
 
         return (
-            <div key={track.id}
+            <div key={nanoid()}     // IDs need to be unique, issues if key={track.id} when adding duplicate tracks and try to remove them afterwards
                 id={track.id}
                 name={track.name}
                 className={styles.playlistContainer}>

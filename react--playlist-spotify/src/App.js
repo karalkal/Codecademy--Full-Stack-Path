@@ -53,7 +53,6 @@ function App() {
 
     const hash = window.location.hash
     let token = window.localStorage.getItem("token")
-    console.log(hash)
 
     if (!token && hash) {
       token = hash.substring(1).split("&").find(elem => elem.startsWith("access_token")).split("=")[1]  // get substring we need
@@ -116,6 +115,7 @@ function App() {
 
   function addTrackHandler(idOfTrack) {
     const trackToAdd = foundTracks.find(t => t.id === idOfTrack);
+    console.log(trackToAdd)
 
     setAddedTracks(prevPlaylistArr => [
       ...prevPlaylistArr,

@@ -15,9 +15,9 @@ export default function FoundSection({ tracks, onAddTrack }) {
                 <p className={styles.foundTrack}>{index + 1}. {trackName}</p>
                 <span><p className={styles.foundArtist}>{trackArtist} </p>
                     <p className={styles.foundAlbum}>{trackAlbum}</p></span>
-                <button 
-                className={styles.addBtn}
-                onClick={() => onAddTrack(track.id)}>add</button>
+                <button
+                    className={styles.addBtn}
+                    onClick={() => onAddTrack(track.id)}>add</button>
             </div>)
     });
 
