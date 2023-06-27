@@ -15,6 +15,8 @@ I believe the issue here is that you're attempting to retrieve JSON data from th
 So instead of making a request to it, you should supply a button on your page that links to your https://accounts.spotify.com/authorize/{...} URL
 */
 
+import { nanoid } from 'nanoid'
+// each entry needs to have unique id to allow one track to be added more than one and each entry be removed individually
 import logo from './logo1.svg';
 import styles from './App.module.css';
 import { useEffect, useState } from 'react';
@@ -115,17 +117,30 @@ function App() {
   }
 
   function addTrackHandler(idOfTrack) {
-    const trackToAdd = foundTracks.find(t => t.id === idOfTrack);
+    const spotifyTrack = foundTracks.find(t => t.id === idOfTrack);
+    // Create objects myTrack with: 
+    // 1. title, artist, album (to display)
+    // 2. uri to identify what needs to be added to playlist (id as well)
+    // 3. unique (not spotify's) ID created by me for each playlist ENTRY, NOT TRACK to allow duplicate entries and removal of one item only, 
+    // i.e. add Even Flow 4 times, when remove is clicked, remove only the clicked entry, not all Even Flow entries
+    const myTrack = {
+      name: spotifyTrack.name,
+      artist: spotifyTrack.artists[0].name,
+      album: spotifyTrack.album.name,
+      id: spotifyTrack.id,
+      uri: spotifyTrack.uri,
+      myId: nanoid()
+    }
 
     setAddedTracks(prevPlaylistArr => [
       ...prevPlaylistArr,
-      trackToAdd,
+      myTrack,
     ])
   }
 
-  function removeTrackHandler(idOfTrackToRemove) {
+  function removeTrackHandler(idOfEntryToRemove) {
     setAddedTracks(prevPlaylistArr => prevPlaylistArr.filter(tr => {
-      return tr.id !== idOfTrackToRemove
+      return tr.myId !== idOfEntryToRemove
     }))
   }
 
@@ -142,7 +157,7 @@ function App() {
   async function createPlaylist(playlistName) {   //Create a playlist for a Spotify user. (The playlist will be empty until you add tracks.)
     const currentUserId = await getUserId()
 
-    const playlistCreated = await fetch(PLAYLIST_CREATE_ENDPOINT + `/${currentUserId}/playlists`,
+    const playlistCreatedResponse = await fetch(PLAYLIST_CREATE_ENDPOINT + `/${currentUserId}/playlists`,
       {
         method: "POST",
         headers: {
@@ -155,27 +170,18 @@ function App() {
           "public": false
         })
       })
-    if (playlistCreated.status === 201) {
-      setSearchKey('')
-      setFoundTracks([])
-      setAddedTracks([])
-      alert("playlist created")
-    }
-
-    let playlistJson = await playlistCreated.json()
-    let playlistID = playlistJson.id
-    console.log("playlistID", playlistID)
+    let playlistCreatedJson = await playlistCreatedResponse.json()
+    let playlistID = playlistCreatedJson.id
 
     // Playlist created, now another request to add tracks to it - {playlist_id}/tracks
     let playlistURIsArray = (addedTracks.map(track => track.uri))
-    console.log(playlistURIsArray)
     let body = JSON.stringify({
       "uris": playlistURIsArray,
       "position": 0
     });
 
 
-    const tracksAdded = await fetch(`${PLAYLIST_EDIT_ENDPOINT}/${playlistID}/tracks`, {
+    const tracksAddedToPlaylistResponse = await fetch(`${PLAYLIST_EDIT_ENDPOINT}/${playlistID}/tracks`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -184,9 +190,12 @@ function App() {
       body: body
     })
 
-    console.log(tracksAdded)
-
-
+    if (tracksAddedToPlaylistResponse.status === 201) {
+      setSearchKey('')
+      setFoundTracks([])
+      setAddedTracks([])
+      alert(`Playlist ${playlistName} created`)
+    }
   }
 
 
