@@ -22,12 +22,15 @@ const router = createBrowserRouter(
       <Route path='articles' element={<Articles />} />;
       <Route path='articles/:title' element={<Article />} />;
       <Route path='authors/:name' element={<Author />} />;
-      <Route path='categories' element={<Categories />} />;
-      <Route path='profile' element={<Profile />} />;
+      <Route path='categories' element={<Categories />} >
+        <Route path=":name" element={<Category />} />
+      </Route>;
+      <Route path='profile' element={<Profile />}>
+        <Route path="edit" element={<EditProfileForm />} />s
+      </Route>
 
     </Route >)
 );
-
 
 
 function App() {

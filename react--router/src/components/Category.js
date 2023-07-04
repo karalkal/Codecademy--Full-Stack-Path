@@ -9,6 +9,7 @@ export default function Category () {
   const articles = useSelector(selectArticles)
 
   const { name } = useParams()
+  console.log(name)
 
   return (
     <div>

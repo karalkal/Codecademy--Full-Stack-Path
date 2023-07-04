@@ -63,3 +63,48 @@ But **anchor tag refreshes the page, these do not**.
 <NavLink to="/about">About</NavLink>     // the link will automatically have an 'active' class applied to it
 ```
 ## 5.
+URL parameters to create dynamic routes:
+```
+const route = createBrowserRouter(createRoutesFromElement(
+  <Route path='/articles/:title' element={ <Article /> }/>
+))
+```
+## 6.
+useParams hook then allows to get the param passed from the route URL, e.g. from example above:
+  `const { title } = useParams()`
+
+## 7. 
+Use  <Outlet /> component when nested routes are present. You can think of it as the router replacing Outlet with our defined child route. 
+Then child element will be rendered inside parent. In the example with articles we can render selected article within Articles component, which is not what we want but just as an example:
+```
+<Route path='articles' element={<Articles />}>
+        <Route path=':title' element={<Article />} />;
+</Route>
+
+```
+## 8.
+Navigate component is rendered, the user will automatically be taken to the location specified by the `to` prop. The classic example:
+```
+import { Navigate } from 'react-router-dom';
+ 
+const UserProfile = ({ loggedIn }) => {
+  if (!loggedIn) {
+    return  <Navigate to='/' />
+    }
+ 
+  return (
+    // ... user profile content here
+  )  
+}
+```
+## 9.
+`const navigate = useNavigate()`  
+
+- The useNavigate()  function allows you to respond immediately to user input without having to wait.  
+
+- The useNavigate() function also gives us the ability to programmatically navigate our users through their history stack - go forward or backward in an application, or redirecting users to their previous page after they’ve logged in.   
+In this case  “Back” and “Forward” buttons in the Footer component `navigate(-1)` or `navigate(+1)`   
+and redirect to '/profile' at the end of the handleSubmit method `navigate("/profile")`
+.
+
+
