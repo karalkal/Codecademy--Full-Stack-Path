@@ -105,6 +105,41 @@ const UserProfile = ({ loggedIn }) => {
 - The useNavigate() function also gives us the ability to programmatically navigate our users through their history stack - go forward or backward in an application, or redirecting users to their previous page after they’ve logged in.   
 In this case  “Back” and “Forward” buttons in the Footer component `navigate(-1)` or `navigate(+1)`   
 and redirect to '/profile' at the end of the handleSubmit method `navigate("/profile")`
-.
+
+## 10. 
+useSearchParams() to get querystrings. Example:
+```
+import { useSearchParams } from 'react-router-dom';
+ 
+// Rendered when a user visits "/list?order=DESC"
+export const SortedList = (numberList) => {
+  const [ searchParams, setSearchParams ] = useSearchParams();
+  const sortOrder = searchParams.get('order');
+  console.log(sortOrder); // Prints "DESC"
+};
+```
+
+**To navigate to a path and include query parameters - use the `createSearchParams()`**
+Example:
+```
+import { useNavigate, createSearchParams } from 'react-router-dom';
+// get navigate function
+const navigate = useNavigate();
+ 
+// define an object where the key is is the query parameter name and value is query parameter value
+const searchQueryParams = {
+  order: 'ASC'
+}
+ 
+// use createSearchParams which takes an object and transforms it to a query string of the form order=ASC
+const searchQueryString = createSearchParams(searchQueryParams);
+ 
+// force a navigate by passing in an object with pathname indicating that path to navigate and search indicating the query parameters to append
+navigate({
+  pathname:'/list',
+  search: `?${searchQueryString}`
+})
+```
+
 
 
