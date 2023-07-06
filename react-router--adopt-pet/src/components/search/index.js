@@ -15,12 +15,15 @@ const Search = () => {
       name: searchInputRef.current.value
     }
 
-    const query = createSearchParams(searchQuery);
+    const query = createSearchParams(searchQuery);    // will return URLSearchParams object
 
-    navigate(`/search?name=${searchQuery.name}`);
-    
-    
-
+    // navigate(`/search?name=${searchQuery.name}`);
+    // navigate(`/search?${query}`);     // can use URLSearchParams objects straight away
+    // and the correct way is:
+    navigate({
+      pathname: "/search",
+      search: `?${query}`,
+    })
   };
 
   return (

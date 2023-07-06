@@ -29,7 +29,7 @@ const SearchPage = () => {
       <Hero displayText={`Results for ${petNameToFind}`} />
 
       <h3>Pets available for adoption near you</h3>
-
+      {/* here we surely need some sort of error displayed if length == 0 */}
       <main>
         <div className="grid">
           {pets.map((pet) => (

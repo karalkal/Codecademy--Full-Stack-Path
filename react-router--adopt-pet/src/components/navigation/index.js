@@ -26,8 +26,10 @@ const Navigation = () => {
       </div>
       <ul className="nav-links">
         <li key={'all'}>
-          <NavLink to="/"
-            className={({ isActive }) => (isActive ? 'nav-link nav-link-active' : 'nav-link')}
+          <NavLink
+            to="/"
+            // className={({ isActive }) => (isActive ? 'nav-link nav-link-active' : 'nav-link')}
+            className={({ isActive }) => `nav-link ${isActive ? 'nav-link-active' : ''}`}
           >
             All Pets
           </NavLink>
@@ -35,9 +37,11 @@ const Navigation = () => {
         {petTypes
           ? petTypes.map((type) => (
             <li key={type.name}>
-              <NavLink to={`/${type._links.self.href.split('/').pop()}`}
+              <NavLink
+                to={`/${type._links.self.href.split('/').pop()}`}
                 key={type.name}
-                className={({ isActive }) => (isActive ? 'nav-link nav-link-active' : 'nav-link')}
+                // className={({ isActive }) => (isActive ? 'nav-link nav-link-active' : 'nav-link')}
+                className={({ isActive }) => `nav-link ${isActive ? 'nav-link-active' : ''}`}
               >
                 {type.name}s
               </NavLink>{' '}
