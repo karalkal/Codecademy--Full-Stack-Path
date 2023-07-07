@@ -7,10 +7,11 @@ Iterate over the values in the description object, passed in via props, and rend
 */
 
 export const Tile = ({ name, description }) => {
-  console.log(description)
-  const descriptionItems = Object.keys(description).map(key =>
-    <p className="tile">{description[key]}</p>
-  )
+  const descriptionItems = Object.values(description)
+    .map(
+      (value, idx) =>
+        <p className="tile" key={idx}>{value}</p>
+    )
 
   return (
     <div className="tile-container">
