@@ -17,14 +17,12 @@ function App() {
     })
   }
 
-
   function handleAddAppointment(name, contact, date, time) {
     const newAppointment = { name, contact, date, time }
     setAppointments(prevContacts => {
       return [...prevContacts, newAppointment]
     })
   }
-
 
   const router = createBrowserRouter(createRoutesFromElements(
     <Route path="/" element={<Root />}>

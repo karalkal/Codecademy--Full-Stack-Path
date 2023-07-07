@@ -4,25 +4,27 @@ import { ContactForm } from "../../components/contactForm/ContactForm";
 import { TileList } from "../../components/tileList/TileList";
 
 export const ContactsPage = ({ contacts, onAddContact }) => {
-  console.log(contacts, onAddContact)
-
   // Define state variables for contact info and duplicate check
   const [name, setName] = useState('')
   const [phone, setPhone] = useState('')
   const [email, setEmail] = useState('')
 
-  function checkDuplicateName(nameToCheck) {
-    //TODO: kajwdjh
-
-  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    /*
-    Add contact info and clear data
-    if the contact name is not a duplicate
-    */
+    const namesInContactList = contacts.map(cntct => cntct.name);
+    console.log(namesInContactList);
+    if (namesInContactList.includes(name)) {
+      alert("Ain't gonna happen.");
+      return;
+    }
+    onAddContact(name, phone, email)
+    // Add contact info and clear data if the contact name is not a duplicate
+    setName('');
+    setPhone('');
+    setEmail('');
   };
+
 
   /*
   Using hooks, check for contact name in the 
