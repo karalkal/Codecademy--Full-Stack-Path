@@ -26,17 +26,22 @@ function App() {
 
   const router = createBrowserRouter(createRoutesFromElements(
     <Route path="/" element={<Root />}>
+
       <Route index element={<Navigate to={ROUTES.CONTACTS} replace />} />
+
       <Route path={ROUTES.CONTACTS}
         element={<ContactsPage
           contacts={contacts}
           onAddContact={handleAddContact} />
-          /* Add props to ContactsPage */} />
+        } />
+
       <Route path={ROUTES.APPOINTMENTS}
         element={<AppointmentsPage
+          contacts={contacts}
           appointments={appointments}
           onAddAppointment={handleAddAppointment} />
-          /* Add props to AppointmentsPage */} />
+
+        } />
     </Route>
   ));
 
