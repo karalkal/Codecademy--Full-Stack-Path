@@ -4,7 +4,7 @@ import { AppointmentForm } from "../../components/appointmentForm/AppointmentFor
 import { TileList } from "../../components/tileList/TileList";
 
 export const AppointmentsPage = ({ contacts, appointments, onAddAppointment: addAppointmentToList }) => {
-   // MIGHT BE WRONG BUT IT SEEMS THEY MEAN NAME AS APPOINTMENT NAME. NOT PERSON NAME, HENCE WE HAVE CONTACT
+   // MIGHT BE WRONG BUT IT SEEMS THEY MEAN NAME AS APPOINTMENT NAME. NOT PERSON NAME, HENCE WE HAVE CONTACT SEPARATELY
   const [name, setName] = useState('')
   const [contact, setContact] = useState('')
   const [date, setDate] = useState('')

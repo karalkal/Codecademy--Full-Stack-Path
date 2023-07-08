@@ -83,4 +83,11 @@ select {
 
 .tile-container {
   margin-bottom: 20px;
+  background: #78c7df;
+}
+
+.existingName {
+  margin-left: 20px;
+  color: red;
+  font-style: italic;
 }

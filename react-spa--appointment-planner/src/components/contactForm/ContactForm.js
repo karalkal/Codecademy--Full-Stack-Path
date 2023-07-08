@@ -1,7 +1,7 @@
 import React from "react";
 
 export function ContactForm({ name, setName,
-  phone, setPhone, email, setEmail, onSubmit: submitForm }) {
+  phone, setPhone, email, setEmail, onSubmit: submitForm, isDuplicate }) {
 
   // accept only numbers
   function handlePhoneChange(e) {
@@ -13,6 +13,8 @@ export function ContactForm({ name, setName,
   return (
     <form onSubmit={submitForm}>
       <label htmlFor="name">Name</label>
+      {isDuplicate && <span className="existingName">name exists</span>}
+
       <input id="name"
         onChange={(e) => setName(e.target.value)}
         name="name"
