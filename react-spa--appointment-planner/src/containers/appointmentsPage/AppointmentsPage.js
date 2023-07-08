@@ -4,6 +4,7 @@ import { AppointmentForm } from "../../components/appointmentForm/AppointmentFor
 import { TileList } from "../../components/tileList/TileList";
 
 export const AppointmentsPage = ({ contacts, appointments, onAddAppointment }) => {
+   // MIGHT BE WRONG BUT IT SEEMS THEY MEAN NAME AS APPOINTMENT NAME. NOT PERSON NAME, HENCE WE HAVE CONTACT
   const [name, setName] = useState('')
   const [contact, setContact] = useState('')
   const [date, setDate] = useState('')
@@ -28,6 +29,8 @@ export const AppointmentsPage = ({ contacts, appointments, onAddAppointment }) =
           date={date} setDate={setDate}
           time={time} setTime={setTime}
           onSubmit={handleSubmit}
+          contacts={contacts}
+          // need to pass contacts further to ContactPicker
         />
       </section>
       <hr />

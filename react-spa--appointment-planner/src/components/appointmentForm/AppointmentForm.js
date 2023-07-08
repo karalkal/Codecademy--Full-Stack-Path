@@ -9,16 +9,19 @@ const getTodayString = () => {
 };
 
 export function AppointmentForm({ contacts,
-  title, setTitle, contact, setContact, date, setDate, time, setTime,
+  name, setName, contact, setContact, date, setDate, time, setTime,
   onSubmit: submitForm }) {
+ // MIGHT BE WRONG BUT IT SEEMS THEY MEAN NAME AS APPOINTMENT NAME. NOT PERSON NAME
 
-    let name = "Bay Huy"
+  function fuckOff(pickedNme) {
+    console.log(pickedNme);
+  }
 
   return (
     <form onSubmit={submitForm}>
       <label htmlFor="name">Name</label>
       <input id="name"
-        // onChange={(e) => setName(e.target.value)}
+        onChange={(e) => setName(e.target.value)}
         name="name"
         value={name} />
 
@@ -39,7 +42,11 @@ export function AppointmentForm({ contacts,
 
       <input type="submit" />
 
-      <ContactPicker />
+      <ContactPicker
+        contacts={contacts}
+        onChange={cnt => setContact(cnt)}
+        name="contact"
+        value={contact} />
 
     </form>
 

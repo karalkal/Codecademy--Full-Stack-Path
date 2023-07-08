@@ -13,7 +13,7 @@ export const ContactsPage = ({ contacts, onAddContact }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const namesInContactList = contacts.map(cntct => cntct.name);
-    console.log(namesInContactList);
+
     if (namesInContactList.includes(name)) {
       alert("Ain't gonna happen.");
       return;
