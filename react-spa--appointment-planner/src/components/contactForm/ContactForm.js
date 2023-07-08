@@ -10,7 +10,6 @@ export function ContactForm({ name, setName,
     }
   }
 
-  
   return (
     <form onSubmit={submitForm}>
       <label htmlFor="name">Name</label>
