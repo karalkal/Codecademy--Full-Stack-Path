@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { AppointmentForm } from "../../components/appointmentForm/AppointmentForm";
 import { TileList } from "../../components/tileList/TileList";
 
-export const AppointmentsPage = ({ contacts, appointments, onAddAppointment }) => {
+export const AppointmentsPage = ({ contacts, appointments, onAddAppointment: addAppointmentToList }) => {
    // MIGHT BE WRONG BUT IT SEEMS THEY MEAN NAME AS APPOINTMENT NAME. NOT PERSON NAME, HENCE WE HAVE CONTACT
   const [name, setName] = useState('')
   const [contact, setContact] = useState('')
@@ -12,7 +12,11 @@ export const AppointmentsPage = ({ contacts, appointments, onAddAppointment }) =
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onAddAppointment(name, contact, date, time);
+    if([name, contact, date, time].some(val => val ==="")) {
+      alert("No, no, no!!!");
+      return;
+    }
+    addAppointmentToList(name, contact, date, time);
     setName('');
     setContact('');
     setDate('');
