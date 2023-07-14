@@ -3,7 +3,6 @@
 
 <head>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="./index.css">
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.2.1/redux.min.js"
     integrity="sha512-1/8Tj23BRrWnKZXeBruk6wTnsMJbi/lJsk9bsRgVwb6j5q39n0A00gFjbCTaDo5l5XrPVv4DZXftrJExhRF/Ug=="
@@ -15,11 +14,19 @@
 
 <body>
   <main id="app">
-    <p id='count'></p>
+    <button id='stop'>stop alerts (unsubscribe)</button>
+    <hr>
+    <p>counter "slice"</p>
+    <h3 id='count'></h3>
     <button id='decrementer'>-</button>
     <button id='incrementer'>+</button>
     <br>
-    <button id='stop'>stop alerts (unsubscribe)</button>
+    <hr>
+    <br>
+    <p>add to list "slice"</p>
+    <input id="userInput">
+    <button id="submitBtn">Add to List</button>
+    <ul id="list"></ul>
   </main>
 
 </body>
