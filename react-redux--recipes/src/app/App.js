@@ -16,8 +16,8 @@ export function App(props) {
         <main>
             <section>
                 <SearchTerm
-                    searchTerm={state.searchTerm}
                     dispatch={dispatch}
+                    searchTerm={state.searchTerm}
                 />
             </section>
             <section>
@@ -31,8 +31,8 @@ export function App(props) {
             <section>
                 <h2>All Recipes</h2>
                 <AllRecipes
-                    allRecipes={visibleAllRecipes}
                     dispatch={dispatch}
+                    allRecipes={visibleAllRecipes}
                 />
             </section>
         </main>
