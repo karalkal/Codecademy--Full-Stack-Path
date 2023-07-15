@@ -1,4 +1,4 @@
-const tmdbKey = 'hidden';
+const tmdbKey = 'hidden';           //replace with actual key 
 const tmdbBaseUrl = 'https://api.themoviedb.org';
 const playBtn = document.getElementById('playBtn');
 
