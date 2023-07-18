@@ -4,7 +4,7 @@ import {
     loadCommentsForArticleId,
     selectComments,
     isLoadingComments,
-} from '../comments/commentsSlice';
+} from './commentsSlice'
 import { selectCurrentArticle } from '../currentArticle/currentArticleSlice';
 import CommentList from '../../components/CommentList';
 import CommentForm from '../../components/CommentForm';
@@ -13,10 +13,18 @@ const Comments = () => {
     const dispatch = useDispatch();
     const article = useSelector(selectCurrentArticle);
     // Declare additional selected data here.
-    const comments = [];
-    const commentsAreLoading = false;
+    const comments = useSelector(selectComments);
+    console.log(comments)
+    const commentsAreLoading = useSelector(isLoadingComments);
 
     // Dispatch loadCommentsForArticleId with useEffect here.
+    useEffect(() => {
+        if (article === undefined) {
+            return
+        }
+        dispatch(loadCommentsForArticleId(article.id),
+            [dispatch, article])
+    })
 
     if (commentsAreLoading) return <div>Loading Comments</div>;
     if (!article) return null;

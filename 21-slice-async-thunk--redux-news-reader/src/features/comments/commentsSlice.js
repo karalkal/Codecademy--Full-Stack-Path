@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 // Create loadCommentsForArticleId here.
-const loadCommentsForArticleId = createAsyncThunk(
+export const loadCommentsForArticleId = createAsyncThunk(
     'comments/loadCommentsForArticleId',
     async (userId) => {
         //payload creator
@@ -24,7 +24,7 @@ export const commentsSlice = createSlice({
         }
         */
         byArticleId: {},
-        comments: [],
+        // comments: [],
         isLoadingComments: false,
         failedToLoadComments: false,
     },
@@ -36,6 +36,7 @@ export const commentsSlice = createSlice({
         [loadCommentsForArticleId.fulfilled]: (state, action) => {
             // action.payload is a comment object with an articleId property you can use to add the comment to the correct article’s comment list in state.
             console.log(action.payload)
+            state.byArticleId.push(action.payload)
             state.comments = action.payload;
             state.isLoadingComments = false;
             state.failedToLoadComments = false;
