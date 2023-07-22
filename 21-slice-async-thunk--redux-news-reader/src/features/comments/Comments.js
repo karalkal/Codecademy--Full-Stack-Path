@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
     loadCommentsForArticleId,
+    postCommentForArticleId,
     selectComments,
     isLoadingComments,
 } from './commentsSlice'
@@ -22,15 +23,15 @@ const Comments = () => {
             dispatch(loadCommentsForArticleId(article.id))
         }
     },
-        [dispatch, article])
+        [article])
 
 
     if (commentsAreLoading) return <div>Loading Comments</div>;
     if (!article) return null;      // probably not necessary, see check in useEffect
-    console.log(comments, article.id)
     const commentsForArticleId = article === undefined
         ? []
         : comments[article.id]
+
     console.log(commentsForArticleId)
 
     return (
