@@ -1,12 +1,14 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { act } from "react-dom/test-utils";
 
 // Create loadCommentsForArticleId here.
 export const loadCommentsForArticleId = createAsyncThunk(
     'comments/loadCommentsForArticleId',
-    async (userId) => {
+    async (articleId) => {
         //payload creator
-        const data = await fetch(`api/articles/${userId}/comments`);
+        const data = await fetch(`api/articles/${articleId}/comments`);
         const json = await data.json();
+        console.log(json)
         return json;
     }
 )
@@ -24,7 +26,6 @@ export const commentsSlice = createSlice({
         }
         */
         byArticleId: {},
-        // comments: [],
         isLoadingComments: false,
         failedToLoadComments: false,
     },
@@ -34,10 +35,9 @@ export const commentsSlice = createSlice({
             state.failedToLoadComments = false;
         },
         [loadCommentsForArticleId.fulfilled]: (state, action) => {
-            // action.payload is a comment object with an articleId property you can use to add the comment to the correct article’s comment list in state.
-            console.log(action.payload)
-            state.byArticleId.push(action.payload)
-            state.comments = action.payload;
+            // action.payload is a comment object with properties articleId and comments - an array
+            const commentsForArticle = { [action.payload.articleId]: action.payload.comments }
+            state.byArticleId = commentsForArticle;
             state.isLoadingComments = false;
             state.failedToLoadComments = false;
         },
@@ -51,5 +51,4 @@ export const commentsSlice = createSlice({
 export const selectComments = (state) => state.comments.byArticleId;
 export const isLoadingComments = (state) => state.comments.isLoadingComments;
 export const createCommentIsPending = (state) => state.comments.createCommentIsPending;
-
 export default commentsSlice.reducer;

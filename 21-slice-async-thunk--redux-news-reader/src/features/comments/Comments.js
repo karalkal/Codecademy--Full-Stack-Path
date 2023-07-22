@@ -14,25 +14,29 @@ const Comments = () => {
     const article = useSelector(selectCurrentArticle);
     // Declare additional selected data here.
     const comments = useSelector(selectComments);
-    console.log(comments)
     const commentsAreLoading = useSelector(isLoadingComments);
 
     // Dispatch loadCommentsForArticleId with useEffect here.
     useEffect(() => {
-        if (article === undefined) {
-            return
+        if (article !== undefined) {
+            dispatch(loadCommentsForArticleId(article.id))
         }
-        dispatch(loadCommentsForArticleId(article.id),
-            [dispatch, article])
-    })
+    },
+        [dispatch, article])
+
 
     if (commentsAreLoading) return <div>Loading Comments</div>;
-    if (!article) return null;
+    if (!article) return null;      // probably not necessary, see check in useEffect
+    console.log(comments, article.id)
+    const commentsForArticleId = article === undefined
+        ? []
+        : comments[article.id]
+    console.log(commentsForArticleId)
 
     return (
         <div className='comments-container'>
             <h3 className='comments-title'>Comments</h3>
-            <CommentList comments={[]} />
+            <CommentList comments={commentsForArticleId} />
             <CommentForm articleId={article.id} />
         </div>
     );
