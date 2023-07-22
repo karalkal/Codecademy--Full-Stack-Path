@@ -15,8 +15,10 @@ export default function CommentForm({ articleId }) {
     const handleSubmit = (e) => {
         e.preventDefault();
         // dispatch your asynchronous action here!
-        dispatch(postCommentForArticleId({ articleId, comment }))
-        setComment('');
+        if (!isCreatePending && comment.trim() !== "") {
+            dispatch(postCommentForArticleId({ articleId, comment }))
+            setComment('');
+        }
     };
 
     return (

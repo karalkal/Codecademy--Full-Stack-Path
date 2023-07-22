@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
     loadCommentsForArticleId,
-    postCommentForArticleId,
     selectComments,
     isLoadingComments,
 } from './commentsSlice'
@@ -31,8 +30,6 @@ const Comments = () => {
     const commentsForArticleId = article === undefined
         ? []
         : comments[article.id]
-
-    console.log(commentsForArticleId)
 
     return (
         <div className='comments-container'>
