@@ -8,26 +8,30 @@ import { addTopic } from "./topicsSlice";
 
 export default function Topics() {
   const topics = useSelector(selectTopics);
-  console.log("Topics Comp", topics)
+  // console.log("Topics Comp", topics.topics, Object.keys(topics.topics).length)
 
   return (
     <section className="center">
       <h1>Topics</h1>
-      <ul className="topics-list">
-        {Object.values(topics).map((topic) => (
-          <li className="topic" key={topic.id}>
-            <Link to={ROUTES.topicRoute(topic.id)} className="topic-link">
-              <div className="topic-container">
-                <img src={topic.icon} alt="" />
-                <div className="text-content">
-                  <h2>{topic.name}</h2>
-                  <p>{topic.quizIds.length} Quizzes</p>
+      {/* if topics */}
+      {Object.keys(topics.topics).length > 0
+        ? <ul className="topics-list">
+          {Object.values(topics).map((topic) => (
+            <li className="topic" key={topic.id}>
+              <Link to={ROUTES.topicRoute(topic.id)} className="topic-link">
+                <div className="topic-container">
+                  <img src={topic.icon} alt="" />
+                  <div className="text-content">
+                    <h2>{topic.name}</h2>
+                    <p>{topic.quizIds.length} Quizzes</p>
+                  </div>
                 </div>
-              </div>
-            </Link>
-          </li>
-        ))}
-      </ul>
+              </Link>
+            </li>
+          ))}
+        </ul>
+        : <h1>No topics found!</h1>}
+
       <Link
         to={ROUTES.newTopicRoute()}
         className="button create-new-topic-button"

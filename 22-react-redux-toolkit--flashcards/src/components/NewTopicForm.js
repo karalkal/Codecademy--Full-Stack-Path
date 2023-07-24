@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import ROUTES from "../app/routes";
 import { ALL_ICONS } from "../data/icons";
@@ -7,7 +7,7 @@ import { ALL_ICONS } from "../data/icons";
 export default function NewTopicForm() {
   const [name, setName] = useState("");
   const [icon, setIcon] = useState("");
-  const history = useHistory();
+  const history = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();

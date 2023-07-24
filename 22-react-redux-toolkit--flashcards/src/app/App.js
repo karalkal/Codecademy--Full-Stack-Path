@@ -1,10 +1,9 @@
 import React from "react";
 import {
   BrowserRouter as Router,
-  Switch,
+  Routes,
   Route,
   NavLink,
-  useRouteMatch,
 } from "react-router-dom";
 import NewQuizForm from "../components/NewQuizForm";
 import NewTopicForm from "../components/NewTopicForm";
@@ -37,54 +36,36 @@ export default function App() {
         </ul>
       </nav>
 
-      <Switch>
-        <Route path="/topics">
-          <TopicsRoutes />
-        </Route>
-        <Route path="/quizzes">
-          <QuizRoutes />
-        </Route>
-      </Switch>
+
+      <Routes>
+        <Route path="topics/*" element={<TopicsRoutes />} />
+        <Route path="quizzes/*" element={<QuizRoutes />} />
+      </Routes>
     </Router>
   );
 }
 
 function TopicsRoutes() {
-  let match = useRouteMatch();
-
   return (
     <>
-      <Switch>
-        <Route path={`${match.path}/new`}>
-          <NewTopicForm />
-        </Route>
-        <Route path={`${match.path}/:topicId`}>
-          <Topic />
-        </Route>
-        <Route path={`${match.path}`}>
-          <Topics />
-        </Route>
-      </Switch>
+      <Routes>
+        <Route path={'new'} element={<NewTopicForm />} />
+        <Route path={':topicId'} element={<Topic />} />
+        <Route path={''} element={<Topics />} />
+      </Routes >
     </>
   );
 }
 
-function QuizRoutes() {
-  let match = useRouteMatch();
 
+function QuizRoutes() {
   return (
     <>
-      <Switch>
-        <Route path={`${match.path}/new`}>
-          <NewQuizForm />
-        </Route>
-        <Route path={`${match.path}/:quizId`}>
-          <Quiz />
-        </Route>
-        <Route path={`${match.path}`}>
-          <Quizzes />
-        </Route>
-      </Switch>
+      <Routes>
+        <Route path={'new'} element={<NewQuizForm />} />
+        <Route path={':quizId'} element={<Quiz />} />
+        <Route path={''} element={<Quizzes />} />
+      </Routes>
     </>
   );
 }

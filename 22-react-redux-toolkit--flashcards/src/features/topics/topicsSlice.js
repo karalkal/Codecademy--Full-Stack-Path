@@ -1,13 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-const initialState = {
-    topics: {},
-    // pendingTopicCreate: false,
-    // failedTopicCreate: false,
-}
-
-export const topicssSlice = createSlice({
-    /*APP STATE WILL BE
+/*APP STATE WILL BE
         {
         topics: {
             topics: {
@@ -29,7 +22,15 @@ export const topicssSlice = createSlice({
             }
         }
     },
-    */
+*/
+
+const initialState = {
+    topics: {},
+    // pendingTopicCreate: false,
+    // failedTopicCreate: false,
+}
+
+export const topicssSlice = createSlice({
     name: 'topics',
     initialState,
     reducers: {
