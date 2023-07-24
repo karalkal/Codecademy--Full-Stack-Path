@@ -68,9 +68,6 @@ export const commentsSlice = createSlice({
             console.log(newComments)
             state.byArticleId = { [articleId]: newComments };
 
-
-            // state.byArticleId = {[articleId]: }
-
             state.createCommentIsPending = false;
             state.failedToCreateComment = false;
         },
