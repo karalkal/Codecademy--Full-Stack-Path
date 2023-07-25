@@ -30,7 +30,6 @@ export const topicsSlice = createSlice({
         topics: {},
         // pendingTopicCreate: false,
         // failedTopicCreate: false,
-
     },
     reducers: {
         //  You can expect the payload for this action to look like {id: '123456', name: 'name of topic', icon: 'icon url'}
@@ -44,13 +43,20 @@ export const topicsSlice = createSlice({
             console.log(newTopic)
             state.topics[id] = newTopic; // add new object to "dictionary" - Object.assign(objectname,{prooerty:value});
             return state;
-        }
-    },
+        },
+
+        //  action to adds a quiz’s id to the quizIds array of the topic with which the newly created quiz is associated. Payload will be like {quizId: '123', topicId: '456'}
+        associateQuizWithTopic: (state, action) => {
+            const { quizId, topicId } = action;
+            const targetTopic = state.topics[topicId];
+            targetTopic.quizId.push(quizId);
+        },
+    }
 })
 
 
 // export const addTopicIsPendingSelector = (state) => state.topics.pendingTopicCreate;
 export const selectTopics = (state) => state.topics.topics;
-export const { addTopic } = topicsSlice.actions;
+export const { addTopic, associateQuizWithTopic } = topicsSlice.actions;
 export default topicsSlice.reducer;
 
