@@ -83,4 +83,3 @@ export const selectFilteredAllRecipes = (state) => {
 };
 
 export default allRecipesSlice.reducer;
-export default allRecipesSlice.reducer;
