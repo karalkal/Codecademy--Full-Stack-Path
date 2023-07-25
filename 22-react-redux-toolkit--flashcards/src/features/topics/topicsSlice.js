@@ -24,7 +24,7 @@ import { createSlice } from "@reduxjs/toolkit";
     },
 */
 
-export const topicssSlice = createSlice({
+export const topicsSlice = createSlice({
     name: 'topics',
     initialState: {
         topics: {},
@@ -51,6 +51,6 @@ export const topicssSlice = createSlice({
 
 // export const addTopicIsPendingSelector = (state) => state.topics.pendingTopicCreate;
 export const selectTopics = (state) => state.topics.topics;
-export const { addTopic } = topicssSlice.actions;
-export default topicssSlice.reducer;
+export const { addTopic } = topicsSlice.actions;
+export default topicsSlice.reducer;
 
