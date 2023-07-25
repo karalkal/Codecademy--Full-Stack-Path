@@ -2,19 +2,18 @@ import NewTopicForm from "../../components/NewTopicForm";
 import { Link } from "react-router-dom";
 import ROUTES from "../../app/routes";
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { selectTopics } from './topicsSlice';
-import { addTopic } from "./topicsSlice";
+
 
 export default function Topics() {
   const topics = useSelector(selectTopics);
-  // console.log("Topics Comp", topics.topics, Object.keys(topics.topics).length)
 
   return (
     <section className="center">
       <h1>Topics</h1>
       {/* if topics */}
-      {Object.keys(topics.topics).length > 0
+      {Object.keys(topics).length > 0
         ? <ul className="topics-list">
           {Object.values(topics).map((topic) => (
             <li className="topic" key={topic.id}>

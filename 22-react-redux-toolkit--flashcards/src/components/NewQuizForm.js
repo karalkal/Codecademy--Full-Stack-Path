@@ -7,7 +7,7 @@ export default function NewQuizForm() {
   const [name, setName] = useState("");
   const [cards, setCards] = useState([]);
   const [topicId, setTopicId] = useState("");
-  const history = useNavigate();
+  const navigate = useNavigate();
   const topics = {};
 
   const handleSubmit = (e) => {
@@ -21,7 +21,7 @@ export default function NewQuizForm() {
     // create the new cards here and add each card's id to cardIds
     // create the new quiz here
 
-    history.push(ROUTES.quizzesRoute());
+    navigate(ROUTES.quizzesRoute());
   };
 
   const addCardInputs = (e) => {

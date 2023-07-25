@@ -1,22 +1,40 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
 import { v4 as uuidv4 } from "uuid";
+
 import ROUTES from "../app/routes";
 import { ALL_ICONS } from "../data/icons";
+import { addTopic } from "../features/topics/topicsSlice";
+
 
 export default function NewTopicForm() {
+  // const topics = useSelector(selectTopics);
+  const dispatch = useDispatch();
+
   const [name, setName] = useState("");
   const [icon, setIcon] = useState("");
-  const history = useNavigate();
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (name.length === 0) {
       return;
     }
-
     // dispatch your add topic action here
-    history.push(ROUTES.topicsRoute());
+    dispatch(
+      addTopic({
+        name: name,
+        icon: icon,
+        id: uuidv4(),
+        quizIds: []
+        // quizIds array - initially empty, will add later
+      })
+    );
+    setName("");
+
+    navigate(ROUTES.topicsRoute());
   };
 
   return (
