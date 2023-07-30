@@ -38,7 +38,6 @@ export default function NewQuizForm() {
         cardIds,
       })
     );
-    console.log("topicID", topicId)
     setName("");
     navigate(ROUTES.quizzesRoute());
   };
