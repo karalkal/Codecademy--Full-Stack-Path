@@ -10,7 +10,6 @@ import { addTopic } from "../features/topics/topicsSlice";
 
 
 export default function NewTopicForm() {
-  // const topics = useSelector(selectTopics);
   const dispatch = useDispatch();
 
   const [name, setName] = useState("");

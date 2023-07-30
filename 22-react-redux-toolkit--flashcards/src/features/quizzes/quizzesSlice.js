@@ -12,7 +12,7 @@ export const thunkActionCreator = (payload) => {
         // associating quiz with its topic, expects payload {quizId: '123', topicId: '456'}
         const quizId = payload.id;
         const topicId = payload.topicId;
-        dispatch(associateQuizWithTopic(quizId, topicId));
+        // dispatch(associateQuizWithTopic(quizId, topicId));
     };
 };
 
@@ -28,6 +28,7 @@ export const quizzesSlice = createSlice({
             const newQuizz = {
                 id, name, topicId, cardIds,
             }
+            console.log("New quizz is:", newQuizz)
             state.quizzes[id] = newQuizz; // add new object to "dictionary"
             return state;
         }
