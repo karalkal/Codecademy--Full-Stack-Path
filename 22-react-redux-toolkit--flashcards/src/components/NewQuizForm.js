@@ -12,12 +12,11 @@ import { addCard } from "../features/cards/cardsSlice";
 
 export default function NewQuizForm() {
   const dispatch = useDispatch()
+  const navigate = useNavigate();
 
   const [name, setName] = useState("");
   const [cards, setCards] = useState([]);
   const [topicId, setTopicId] = useState("");
-
-  const navigate = useNavigate();
 
   const topics = useSelector(selectTopics);
 
@@ -38,11 +37,16 @@ export default function NewQuizForm() {
     if (topicId === "" || !allTopicIds.includes(topicId)) {
       alert("No valid topic selected.");
       return;
-    } const cardIds = [];
+    }
 
+    const cardIds = [];
     // create the new cards here and add each card's id to cardIds
-    // iterate through the cards in that form’s local state 
+    // iterate through the cards in form’s local state 
     cards.forEach(element => {
+      if (element.front.trim() === "" || element.back.trim() === "") {
+        alert("Neither of card faces cannot be left empty.");
+        return;
+      }
       // 1. create unique id for each card
       const cardId = uuidv4()
       // 2. for each card dispatch addCard 
@@ -55,18 +59,22 @@ export default function NewQuizForm() {
       cardIds.push(cardId);
     });
 
-
-    console.log(cards, cardIds)
-
     // create the new quiz
-    dispatch(
-      thunkActionCreator({
-        id: uuidv4(),
-        name,
-        topicId,
-        cardIds,
-      })
-    );
+    // BUT ONLY OF CARDS ARE CREATED, otheriwse it would be pointless + double check for values
+    if (name.trim() !== "" && topicId
+      && cardIds.length > 0) {
+      dispatch(
+        thunkActionCreator({
+          id: uuidv4(),
+          name,
+          topicId,
+          cardIds,
+        })
+      );
+    } else {
+      alert("Something ###### up!");
+      return;
+    }
     setName("");
     navigate(ROUTES.quizzesRoute());
   };
