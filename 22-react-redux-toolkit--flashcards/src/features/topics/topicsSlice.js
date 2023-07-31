@@ -40,7 +40,6 @@ export const topicsSlice = createSlice({
                 id, name, icon,
                 quizIds: [],
             }
-            console.log(newTopic)
             state.topics[id] = newTopic; // add new object to "dictionary" - Object.assign(objectname,{prooerty:value});
             return state;
         },
@@ -50,7 +49,7 @@ export const topicsSlice = createSlice({
             const quizId = action.payload.id;
             const topicId = action.payload.topicId;
 
-            console.log("quiz with ID", quizId, "will be added to topic", topicId);
+            // console.log("quiz with ID", quizId, "will be added to topic", topicId);
             (state.topics[topicId].quizIds).push(quizId)
             // const targetTopic = state.topics[topicId];
             // targetTopic[quizId].push(quizId);

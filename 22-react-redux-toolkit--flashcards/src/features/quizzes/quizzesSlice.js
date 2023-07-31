@@ -9,7 +9,7 @@ import { associateQuizWithTopic } from "../topics/topicsSlice"
 export const thunkActionCreator = (payload) => {
     return (dispatch) => {
         dispatch(addQuizz(payload))         // create new quiz
-        dispatch(associateQuizWithTopic(payload));        // associating quiz with its topic
+        dispatch(associateQuizWithTopic(payload));        // associate quiz with topic
     };
 };
 

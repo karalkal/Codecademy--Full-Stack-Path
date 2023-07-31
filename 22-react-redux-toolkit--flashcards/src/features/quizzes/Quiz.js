@@ -10,6 +10,7 @@ export default function Topic() {
   const quizzes = useSelector(selectQuizzes)
   let { quizId } = useParams();
   const quiz = quizzes[quizId];
+  console.log("selected quiz", quiz)
 
   return (
     <section>

@@ -6,7 +6,8 @@ import { selectQuizzes } from "./quizzesSlice";
 
 
 export default function Quizzes() {
-  const quizzes = useSelector(selectQuizzes)
+  const quizzes = useSelector(selectQuizzes);
+
   return (
     <section className="center">
       <h1>Quizzes</h1>

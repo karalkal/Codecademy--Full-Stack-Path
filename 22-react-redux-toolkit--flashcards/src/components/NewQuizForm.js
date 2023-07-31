@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 
 import { v4 as uuidv4 } from "uuid";
 
 import ROUTES from "../app/routes";
 import { selectTopics } from '../features/topics/topicsSlice';
-import { useDispatch, useSelector } from "react-redux";
 import { thunkActionCreator } from "../features/quizzes/quizzesSlice";
+import { addCard } from "../features/cards/cardsSlice";
 
 
 export default function NewQuizForm() {
@@ -15,21 +16,49 @@ export default function NewQuizForm() {
   const [name, setName] = useState("");
   const [cards, setCards] = useState([]);
   const [topicId, setTopicId] = useState("");
+
   const navigate = useNavigate();
+
   const topics = useSelector(selectTopics);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    // No blank quizz entries allowed and topic must be selecetd
     if (name.length === 0) {
+      alert("A quizz must have a title.")
       return;
     }
-
-    const cardIds = [];
+    // No topics created at all
+    if (Object.keys(topics).length === 0) {
+      alert("Quizz must be associated with a topic but no topics have been created yet.");
+      return;
+    }
+    // No topicID or topicID not in predefined IDs
+    const allTopicIds = (Object.values(topics)).map(t => t.id)
+    if (topicId === "" || !allTopicIds.includes(topicId)) {
+      alert("No valid topic selected.");
+      return;
+    } const cardIds = [];
 
     // create the new cards here and add each card's id to cardIds
+    // iterate through the cards in that form’s local state 
+    cards.forEach(element => {
+      // 1. create unique id for each card
+      const cardId = uuidv4()
+      // 2. for each card dispatch addCard 
+      dispatch(addCard({
+        id: cardId,
+        front: element.front,
+        back: element.back,
+      }));
+      // 3. add each card's id to cardIds
+      cardIds.push(cardId);
+    });
 
-    // create the new quiz here
-    // action creator expects{ id: '123', name: 'quiz name', topicId: '456', cardIds: ['1', '2', '3', ...]}
+
+    console.log(cards, cardIds)
+
+    // create the new quiz
     dispatch(
       thunkActionCreator({
         id: uuidv4(),
@@ -45,7 +74,7 @@ export default function NewQuizForm() {
   const addCardInputs = (e) => {
     e.preventDefault();
     setCards(cards.concat({ front: "", back: "" }));
-  };
+  }
 
   const removeCard = (e, index) => {
     e.preventDefault();
