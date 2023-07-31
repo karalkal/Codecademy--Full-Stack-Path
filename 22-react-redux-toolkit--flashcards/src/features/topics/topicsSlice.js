@@ -45,9 +45,11 @@ export const topicsSlice = createSlice({
             return state;
         },
 
-        //  action to adds a quiz’s id to the quizIds array of the topic with which the newly created quiz is associated. Payload will be like {quizId: '123', topicId: '456'}
+        //  Action to add a quiz’s id to the quizIds array of the relevant topic. Receives whole object, need only id and topicId
         associateQuizWithTopic: (state, action) => {
-            const { quizId, topicId } = action.payload;
+            const quizId = action.payload.id;
+            const topicId = action.payload.topicId;
+
             console.log("quiz with ID", quizId, "will be added to topic", topicId);
             (state.topics[topicId].quizIds).push(quizId)
             // const targetTopic = state.topics[topicId];
