@@ -1,0 +1,11 @@
+.button {
+    background-color: var(--safety-orange);
+    color: var(--medium-blue);
+    font-weight: 600;
+    font-size: .8em;
+    padding: 8px 19px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    box-shadow: none;
+    border: none;
+}
