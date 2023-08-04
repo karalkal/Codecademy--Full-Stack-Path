@@ -1,11 +1,10 @@
-import styles from './App.module.css';
 import { useEffect, useState } from 'react';
 import Header from './components/Header';
-var Buffer = require('buffer/').Buffer  // note: the trailing slash is important!
+
+let counter = 1
 
 function App() {
   const [hasGrantedAccess, setHasGrantedAccess] = useState(false);
-  const [token, setToken] = useState("");
 
   // Bypass the cross-origin-policy with "https://cors-anywhere.herokuapp.com/{type_your_url_here}"
   // Or just use browser add-on
@@ -15,48 +14,51 @@ function App() {
   const CLIENT_ID = process.env.REACT_APP_CLIENT_ID
   const CLIENT_SECRET = process.env.REACT_APP_REDDIT_SECRET_KEY
   const REDIRECT_URI = process.env.REACT_APP_REDIRECT_URI
-  let DURATION = "permanent"  //or temporary
+  let DURATION = "permanent"  //or "temporary"
   let RESP_TYPE = "code"      //	Must be the string "code"  
   let RANDOM_STR = "ldkfkjdfhkj";
-  let SCOPE_STRING = "read"
-  // Scope Values: identity, edit, flair, history, modconfig, modflair, modlog, modposts, modwiki, mysubreddits, privatemessages, read, report, save, submit, subscribe, vote, wikiedit, wikiread
+  let SCOPE_STRING = "read"  // Scope Values: read, report, save, submit, etc...
 
   useEffect(() => {
-    let afterPermissionQueryString = window.location.search
+    console.log("effect ran!");
+    console.log(hasGrantedAccess, "times rendered:", counter);
+
+    let afterPermissionQueryString = window.location.search   // get "response" querystring from url
+    // window.location.search = "";    // clear address bar
+
     // get substrings needed
     let returnedErrorPortion = afterPermissionQueryString.substring(1).split("&").find(elem => elem.startsWith("error"));
-    // If user hasn't granted permission or another error
+    // ERROR in querysting -> If user hasn't granted permission or similar
     if (afterPermissionQueryString) {
       if (returnedErrorPortion) {
-        const errMsg = returnedErrorPortion.split("=")[1]
-        console.log("ERROR RETURNED", errMsg);
-        if (errMsg === "access_denied") {
-          window.localStorage.removeItem("user has granted access");
-          alert("Access to API has been withdrawn")
+        const errMsg = returnedErrorPortion.split("=")[1];
+        if (errMsg === "access_denied" && hasGrantedAccess) {
+          setHasGrantedAccess(false);
+          console.log("Access removed");
+          alert("Access to API has been withdrawn");
         }
         return;
-
       }
-      // If state strings don't match -> error, could happen probably
+      // If state strings don't match -> alert, could happen probably
       let returnedStateStr = afterPermissionQueryString.substring(1).split("&").find(elem => elem.startsWith("state")).split("=")[1];
       if (returnedStateStr !== RANDOM_STR) {
         // console.log("ERROR MATCHING STATE", "returned:", returnedStateStr, "mine:", RANDOM_STR)
         alert("ERROR MATCHING STATE");
         return;
+      } else {
+        // The below var is needed if token will be required, for now not required
+        // let returnedCodeStr = afterPermissionQueryString.substring(1).split("&").find(elem => elem.startsWith("code")).split("=")[1];
+
+        // getToken(returnedCodeStr)
+        setHasGrantedAccess(true);
       }
-
-      let returnedCodeStr = afterPermissionQueryString.substring(1).split("&").find(elem => elem.startsWith("code")).split("=")[1];
-      // window.location.search = ""
-      // window.location.hash = ""search = ""
-      setHasGrantedAccess(true)
-      window.location = REDIRECT_URI    // clear address bar
-      // getToken(returnedCodeStr)
-      window.localStorage.setItem("user has granted access", hasGrantedAccess)
+      counter++;
     }
-  }, [hasGrantedAccess])
+  }, [hasGrantedAccess, RANDOM_STR])
 
 
-  /* Could't implement getToken, cannot figure out the correct request
+
+  /* Could't implement getToken, cannot figure out the correct request :-( but this is not needed for the app anyway
   async function getToken(returnedCodeStr) {
     const body = {
       grant_type: "authorization_code",
@@ -95,10 +97,8 @@ function App() {
         redirectURI={REDIRECT_URI}
         duration={DURATION}
         scopeStr={SCOPE_STRING}
+        hasGrantedAccess={hasGrantedAccess}
       />
-
-      <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&response_type=${RESP_TYPE}&state=${RANDOM_STR}&redirect_uri=${REDIRECT_URI}&duration=${DURATION}&scope=${SCOPE_STRING}`}>
-      </a>
     </>
   );
 }
