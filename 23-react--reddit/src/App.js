@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import Header from './components/Header';
 
-let counter = 1
 
 function App() {
   const [hasGrantedAccess, setHasGrantedAccess] = useState(false);
@@ -20,11 +19,8 @@ function App() {
   let SCOPE_STRING = "read"  // Scope Values: read, report, save, submit, etc...
 
   useEffect(() => {
-    console.log("effect ran!");
-    console.log(hasGrantedAccess, "times rendered:", counter);
-
     let afterPermissionQueryString = window.location.search   // get "response" querystring from url
-    // window.location.search = "";    // clear address bar
+    // window.location.search = "";    // clear address bar, NOT THIS WAY, THIS RE-RENDERS
 
     // get substrings needed
     let returnedErrorPortion = afterPermissionQueryString.substring(1).split("&").find(elem => elem.startsWith("error"));
@@ -32,9 +28,8 @@ function App() {
     if (afterPermissionQueryString) {
       if (returnedErrorPortion) {
         const errMsg = returnedErrorPortion.split("=")[1];
-        if (errMsg === "access_denied" && hasGrantedAccess) {
+        if (errMsg === "access_denied") {
           setHasGrantedAccess(false);
-          console.log("Access removed");
           alert("Access to API has been withdrawn");
         }
         return;
@@ -52,7 +47,6 @@ function App() {
         // getToken(returnedCodeStr)
         setHasGrantedAccess(true);
       }
-      counter++;
     }
   }, [hasGrantedAccess, RANDOM_STR])
 
