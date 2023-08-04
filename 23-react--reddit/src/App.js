@@ -1,6 +1,7 @@
 import styles from './App.module.css';
 import { useEffect, useState } from 'react';
 import Header from './components/Header';
+var Buffer = require('buffer/').Buffer  // note: the trailing slash is important!
 
 function App() {
   const [hasGrantedAccess, setHasGrantedAccess] = useState(false);
@@ -27,55 +28,77 @@ function App() {
     // If user hasn't granted permission or another error
     if (afterPermissionQueryString) {
       if (returnedErrorPortion) {
-        console.log("ERROR RETURNED", returnedErrorPortion.split("=")[1]);
+        const errMsg = returnedErrorPortion.split("=")[1]
+        console.log("ERROR RETURNED", errMsg);
+        if (errMsg === "access_denied") {
+          window.localStorage.removeItem("user has granted access");
+          alert("Access to API has been withdrawn")
+        }
         return;
+
       }
-      // If state strings don't match -> error
+      // If state strings don't match -> error, could happen probably
       let returnedStateStr = afterPermissionQueryString.substring(1).split("&").find(elem => elem.startsWith("state")).split("=")[1];
       if (returnedStateStr !== RANDOM_STR) {
-        console.log("ERROR MATCHING STATE", "returned:", returnedStateStr, "mine:", RANDOM_STR)
+        // console.log("ERROR MATCHING STATE", "returned:", returnedStateStr, "mine:", RANDOM_STR)
+        alert("ERROR MATCHING STATE");
         return;
       }
 
       let returnedCodeStr = afterPermissionQueryString.substring(1).split("&").find(elem => elem.startsWith("code")).split("=")[1];
-      window.location.search = ""
-      window.location.hash = ""
+      // window.location.search = ""
+      // window.location.hash = ""search = ""
       setHasGrantedAccess(true)
-      getToken(returnedCodeStr)
-      // window.localStorage.setItem("token", token)
+      window.location = REDIRECT_URI    // clear address bar
+      // getToken(returnedCodeStr)
+      window.localStorage.setItem("user has granted access", hasGrantedAccess)
     }
-  }
-    ,
-    [hasGrantedAccess])
+  }, [hasGrantedAccess])
 
+
+  /* Could't implement getToken, cannot figure out the correct request
   async function getToken(returnedCodeStr) {
+    const body = {
+      grant_type: "authorization_code",
+      code: returnedCodeStr,
+      redirect_uri: REDIRECT_URI,
+    }
     try {
-      let TOKEN_URL = `${TOKEN_ENDPOINT}?grant_type=authorization_code&code=${returnedCodeStr}redirect_uri=${REDIRECT_URI}`
-      let tokenRequestHeader = { user: CLIENT_ID, password: CLIENT_SECRET }
+      const credentials = Buffer.from(`${CLIENT_ID}:${CLIENT_SECRET}`).toString("base64")
+      let newUrl = `${TOKEN_ENDPOINT}?grant_type=authorization_code&code=${returnedCodeStr}&&redirect_uri=${REDIRECT_URI}`
 
-      const tokenResponse = await fetch(
-        TOKEN_URL,
-        {
-          method: 'POST',
-          headers: tokenRequestHeader
-        })
+      const res = await fetch(TOKEN_ENDPOINT, {
+        method: "POST",
+        headers: {
+          Authorization:
+            { client_id: CLIENT_ID, password: CLIENT_SECRET }
+        },
+        data: JSON.stringify(body)
+      })
 
-      const tokenResJson = tokenResponse.json();
-      console.log(tokenResJson)
+      const resJson = res.json()
+      console.log(resJson)
+
     } catch (error) {
       console.log(error)
     }
   }
-
-
+  */
 
   return (
     <>
-      <Header />
+      <Header
+        authEndpoint={AUTH_ENDPOINT}
+        clientId={CLIENT_ID}
+        responseType={RESP_TYPE}
+        randomStr={RANDOM_STR}
+        redirectURI={REDIRECT_URI}
+        duration={DURATION}
+        scopeStr={SCOPE_STRING}
+      />
+
       <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&response_type=${RESP_TYPE}&state=${RANDOM_STR}&redirect_uri=${REDIRECT_URI}&duration=${DURATION}&scope=${SCOPE_STRING}`}>
-        <button> Access </button>
       </a>
-      {/* <button onClick={authorize}>CLICK</button> */}
     </>
   );
 }
