@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import Header from './components/Header';
+import Root from './components/Root';
 import { RouterProvider, createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom';
 
 
@@ -22,7 +23,7 @@ function App() {
   const appRouter = createBrowserRouter(
     createRoutesFromElements(
       < Route index element={
-        <Header
+        <Root
           authEndpoint={AUTH_ENDPOINT}
           clientId={CLIENT_ID}
           responseType={RESP_TYPE}
@@ -68,8 +69,6 @@ function App() {
       }
     }
   }, [hasGrantedAccess, RANDOM_STR])
-
-
 
   /* Could't implement getToken, cannot figure out the correct request :-( but this is not needed for the app anyway
   async function getToken(returnedCodeStr) {
