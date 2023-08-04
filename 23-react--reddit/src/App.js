@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import Header from './components/Header';
+import { RouterProvider, createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom';
 
 
 function App() {
@@ -17,6 +18,24 @@ function App() {
   let RESP_TYPE = "code"      //	Must be the string "code"  
   let RANDOM_STR = "ldkfkjdfhkj";
   let SCOPE_STRING = "read"  // Scope Values: read, report, save, submit, etc...
+
+  const appRouter = createBrowserRouter(
+    createRoutesFromElements(
+      < Route index element={
+        <Header
+          authEndpoint={AUTH_ENDPOINT}
+          clientId={CLIENT_ID}
+          responseType={RESP_TYPE}
+          randomStr={RANDOM_STR}
+          redirectURI={REDIRECT_URI}
+          duration={DURATION}
+          scopeStr={SCOPE_STRING}
+          hasGrantedAccess={hasGrantedAccess}
+        />
+      }>
+      </Route >)
+  );
+
 
   useEffect(() => {
     let afterPermissionQueryString = window.location.search   // get "response" querystring from url
@@ -83,16 +102,7 @@ function App() {
 
   return (
     <>
-      <Header
-        authEndpoint={AUTH_ENDPOINT}
-        clientId={CLIENT_ID}
-        responseType={RESP_TYPE}
-        randomStr={RANDOM_STR}
-        redirectURI={REDIRECT_URI}
-        duration={DURATION}
-        scopeStr={SCOPE_STRING}
-        hasGrantedAccess={hasGrantedAccess}
-      />
+      <RouterProvider router={appRouter} />
     </>
   );
 }
