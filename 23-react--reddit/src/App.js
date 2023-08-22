@@ -3,6 +3,7 @@ import Root from './components/Root';
 import Search from './components/Search';
 import Home from './components/Home';
 import { RouterProvider, createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom';
+import PageNotFound from './components/PageNotFound';
 
 
 function App() {
@@ -23,20 +24,21 @@ function App() {
 
   const appRouter = createBrowserRouter(
     createRoutesFromElements(
-      <Route path="/" element={
-        <Root
-          authEndpoint={AUTH_ENDPOINT}
-          clientId={CLIENT_ID}
-          responseType={RESP_TYPE}
-          randomStr={RANDOM_STR}
-          redirectURI={REDIRECT_URI}
-          duration={DURATION}
-          scopeStr={SCOPE_STRING}
-          hasGrantedAccess={hasGrantedAccess}
-        />
-      }>
+      <Route path="/" element={<Root
+        authEndpoint={AUTH_ENDPOINT}
+        clientId={CLIENT_ID}
+        responseType={RESP_TYPE}
+        randomStr={RANDOM_STR}
+        redirectURI={REDIRECT_URI}
+        duration={DURATION}
+        scopeStr={SCOPE_STRING}
+        hasGrantedAccess={hasGrantedAccess}
+      />}>
+
         <Route index element={<Home />} />
         <Route path="search" element={<Search />} />
+        <Route path="*" element={<PageNotFound />} />
+
       </Route >)
   );
 

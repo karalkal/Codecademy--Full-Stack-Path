@@ -31,6 +31,15 @@
     text-decoration: none;
   }
 
-  main{
+  main {
     margin: 35px auto;
+  }
+
+  main>h1,
+  main>h2 {
+    color: var(--aureolin);
+  }
+
+  main>h2 a {
+    color: var(--safety-orange);
   }
