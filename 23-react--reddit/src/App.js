@@ -21,7 +21,7 @@ function App() {
 
   const appRouter = createBrowserRouter(
     createRoutesFromElements(
-      <Route index element={
+      < Route index element={
         <Root
           authEndpoint={AUTH_ENDPOINT}
           clientId={CLIENT_ID}

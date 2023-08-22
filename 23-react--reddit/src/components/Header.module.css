@@ -20,4 +20,15 @@
     pointer-events: none;
 }
 
+#header>nav {
+    display: flex;
+    gap: 11px;
+    justify-content: end;
+    max-width: 800px;
 
+}
+
+#header>nav>a:active>button {
+    background-color: var(--phlox);
+    color: var(--aureolin);
+}
