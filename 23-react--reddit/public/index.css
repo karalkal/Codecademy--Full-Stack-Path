@@ -30,3 +30,7 @@
   a {
     text-decoration: none;
   }
+
+  main{
+    margin: 35px auto;
+  }

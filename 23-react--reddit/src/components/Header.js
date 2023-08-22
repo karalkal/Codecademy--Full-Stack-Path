@@ -9,7 +9,11 @@ export default function Header({ authEndpoint, clientId, responseType, randomStr
         <h1>Mini Reddit</h1>
         <nav>
             <NavLink to="/">
-                <Button>Home</Button>
+                <Button>Random</Button>
+            </NavLink>
+
+            <NavLink to="search">
+                <Button>Search</Button>
             </NavLink>
 
             <NavLink to={`${authEndpoint}?client_id=${clientId}&response_type=${responseType}&state=${randomStr}&redirect_uri=${redirectURI}&duration=${duration}&scope=${scopeStr}`}>

@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react';
 import Root from './components/Root';
+import Search from './components/Search';
+import Home from './components/Home';
 import { RouterProvider, createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom';
 
 
@@ -21,7 +23,7 @@ function App() {
 
   const appRouter = createBrowserRouter(
     createRoutesFromElements(
-      < Route index element={
+      <Route path="/" element={
         <Root
           authEndpoint={AUTH_ENDPOINT}
           clientId={CLIENT_ID}
@@ -33,6 +35,8 @@ function App() {
           hasGrantedAccess={hasGrantedAccess}
         />
       }>
+        <Route index element={<Home />} />
+        <Route path="search" element={<Search />} />
       </Route >)
   );
 

@@ -15,7 +15,9 @@ const Root = ({ authEndpoint, clientId, responseType, randomStr, redirectURI, du
                 scopeStr={scopeStr}
                 hasGrantedAccess={hasGrantedAccess}
             />
-            {<Outlet />}
+
+            {/* Outlet will render a <main> component depending on the route selected */}
+            <Outlet />
         </>
     );
 };
