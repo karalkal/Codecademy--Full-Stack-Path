@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react';
-import Root from './components/Root';
-import Search from './components/Search';
-import Home from './components/Home';
 import { RouterProvider, createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom';
+
+import Root from './components/Root';
+import Home from './components/Home';
+import Random from './components/Random';
+import Search from './components/Search';
 import PageNotFound from './components/PageNotFound';
 
+import { getRandomSubreddit } from './api/api';
 
 function App() {
   const [hasGrantedAccess, setHasGrantedAccess] = useState(false);
@@ -35,7 +38,13 @@ function App() {
         hasGrantedAccess={hasGrantedAccess}
       />}>
 
-        <Route index element={<Home />} />
+        <Route
+          index
+          element={<Home />} />
+        <Route
+          path="random"
+          element={<Random />}
+          loader={getRandomSubreddit} />
         <Route path="search" element={<Search />} />
         <Route path="*" element={<PageNotFound />} />
 
@@ -69,40 +78,10 @@ function App() {
         // The below var is needed if token will be required, for now not required
         // let returnedCodeStr = afterPermissionQueryString.substring(1).split("&").find(elem => elem.startsWith("code")).split("=")[1];
 
-        // getToken(returnedCodeStr)
         setHasGrantedAccess(true);
       }
     }
   }, [hasGrantedAccess, RANDOM_STR])
-
-  /* Could't implement getToken, cannot figure out the correct request :-( but this is not needed for the app anyway
-  async function getToken(returnedCodeStr) {
-    const body = {
-      grant_type: "authorization_code",
-      code: returnedCodeStr,
-      redirect_uri: REDIRECT_URI,
-    }
-    try {
-      const credentials = Buffer.from(`${CLIENT_ID}:${CLIENT_SECRET}`).toString("base64")
-      let newUrl = `${TOKEN_ENDPOINT}?grant_type=authorization_code&code=${returnedCodeStr}&&redirect_uri=${REDIRECT_URI}`
-
-      const res = await fetch(TOKEN_ENDPOINT, {
-        method: "POST",
-        headers: {
-          Authorization:
-            { client_id: CLIENT_ID, password: CLIENT_SECRET }
-        },
-        data: JSON.stringify(body)
-      })
-
-      const resJson = res.json()
-      console.log(resJson)
-
-    } catch (error) {
-      console.log(error)
-    }
-  }
-  */
 
   return (
     <>

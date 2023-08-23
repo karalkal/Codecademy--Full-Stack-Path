@@ -9,6 +9,10 @@ export default function Header({ authEndpoint, clientId, responseType, randomStr
         <h1>Mini Reddit</h1>
         <nav>
             <NavLink to="/">
+                <Button>Home</Button>
+            </NavLink>
+
+            <NavLink to="random">
                 <Button>Random</Button>
             </NavLink>
 
