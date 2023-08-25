@@ -1,6 +1,6 @@
 #header {
     background-color: var(--electric-indigo);
-    height: 62px;
+    height: 88px;
     padding: 11px 44px;
     display: flex;
     flex-direction: row;
@@ -21,14 +21,21 @@
 }
 
 #header>nav {
-    display: flex;
-    gap: 11px;
-    justify-content: end;
-    max-width: 800px;
-
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 17px 11px;
 }
+
 
 #header>nav>a:active>button {
     background-color: var(--phlox);
     color: var(--aureolin);
+}
+
+.first-row-item {
+    grid-column: span 3;
+}
+
+.second-row-item {
+    grid-column: span 2;
 }
