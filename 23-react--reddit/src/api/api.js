@@ -54,9 +54,7 @@ export async function fetchBestPosts(appAccessToken) {
     })
 
     const json = await response.json();
-    console.log(json)
     return json
-
 }
 
 
