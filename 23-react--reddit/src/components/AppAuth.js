@@ -10,7 +10,7 @@ const AppAuth = (props) => {
     props.setHasGrantedAccess(true)
 
     return (
-        <Navigate to="/random" />
+        <Navigate to="" />
     );
 };
 

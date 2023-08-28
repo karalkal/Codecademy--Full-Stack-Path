@@ -7,15 +7,22 @@ import Random from './components/Random';
 import Search from './components/Search';
 import PageNotFound from './components/PageNotFound';
 
-import { getRandomSubreddit, obtainAccessToken } from './api/api';
+import { fetchSearchResult, getRandomSubreddit, obtainAccessToken } from './api/api';
 import AppAuth from './components/AppAuth';
 
 
 function App() {
   const [hasGrantedAccess, setHasGrantedAccess] = useState(false);
-  const appAccessToken = JSON.parse(localStorage.getItem("access_token"))
+  const [appAccessToken, setAppAccessToken] = useState("");
 
-  console.log(appAccessToken)
+  useEffect(() => {
+    const tokenfromLS = JSON.parse(localStorage.getItem("access_token"))
+    if (tokenfromLS) {
+      setHasGrantedAccess(true)
+      setAppAccessToken(tokenfromLS)
+    }
+  },
+    [])
 
   const appRouter = createBrowserRouter(
     createRoutesFromElements(
@@ -32,9 +39,12 @@ function App() {
 
         <Route
           path="random"
-          element={<Random />}
-          loader={getRandomSubreddit} />
-        <Route path="search" element={<Search />} />
+          element={<Random appAccessToken={appAccessToken} />}
+          loader={() => getRandomSubreddit(appAccessToken)} />
+
+        <Route path="search" element={<Search />}
+          loader={fetchSearchResult} />
+
         <Route path="*" element={<PageNotFound />} />
 
       </Route >)

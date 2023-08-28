@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom'
 
 
 export default function Header({ authEndpoint, clientId, responseType, randomStr, redirectURI, duration, scopeStr, hasGrantedAccess }) {
+    console.log(hasGrantedAccess)
     return <header id={styles.header}>
         <div>
             <img src='logo.svg' className={styles["logo"]} alt="logo" />
