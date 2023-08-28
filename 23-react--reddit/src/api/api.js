@@ -19,27 +19,24 @@ let SCOPE_STRING = "read"  // Scope Values: read, report, save, submit, etc...
 export async function obtainAccessToken() {
 
     const encodedCredentials = base64_encode(CLIENT_ID + ':' + CLIENT_SECRET).toString('base64')
-    console.log(CLIENT_ID, CLIENT_SECRET)
-    const body = JSON.stringify({ grant_type: "client_credentials" })
 
+    // For client_credentials grants include the following information in your POST data (NOT as part of the URL)
     try {
         let response = await fetch(AUTH_ENDPOINT, {
             method: "POST",
-            body,
+            body: "grant_type=client_credentials",
             headers: {
-                'Content-Type': 'application/x-www-form-urlencoded; charset=utf-8',
+                'Content-Type': "application/x-www-form-urlencoded",
                 'Authorization': `Basic ${encodedCredentials}`,
             }
         })
 
-        console.log(response)
         //    let response = await fetch("https://swapi.dev/api/people/1")
 
         if (!response.ok) {
             let error = await response.json()
             throw new Error(error.message)
         }
-
         const token = await response.json()
 
         console.log(token)

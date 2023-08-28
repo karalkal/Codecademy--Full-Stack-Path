@@ -5,7 +5,7 @@ import { useLoaderData, Link } from 'react-router-dom';
 const Random = (props) => {
     // Get random subreddit as prop from App.js which is gonna be loaded before it is rendered 
     const randomSubreddit = useLoaderData();
-    console.log(props);
+    console.log(randomSubreddit);
 
     return (
         <main>
