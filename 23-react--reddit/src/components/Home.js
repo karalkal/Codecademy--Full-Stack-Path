@@ -4,7 +4,7 @@ import React from 'react';
 const Home = () => {
     return (
         <main>
-            <h1>Random</h1>
+            <h1>Home</h1>
         </main>
     );
 };

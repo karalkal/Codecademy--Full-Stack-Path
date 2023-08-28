@@ -18,21 +18,26 @@ export default function Header({ authEndpoint, clientId, responseType, randomStr
                 className={`${styles.firstRowItem} ${styles.navLink}`}>
                 App Only OAuth (userless)
             </NavLink>
+            {/* depending on state of hasGrantedAccess display links */}
+            {!hasGrantedAccess &&
+                <NavLink to="/"
+                    className={`${styles.secondRowItem} ${styles.navLink}`}>
+                    Home
+                </NavLink>
+            }
+            {hasGrantedAccess &&
+                <>
+                    <NavLink to="random"
+                        className={`${styles.secondRowItem} ${styles.navLink}`}>
+                        Random
+                    </NavLink>
 
-            <NavLink to="/"
-                className={`${styles.secondRowItem} ${styles.navLink}`}>
-                Home
-            </NavLink>
-
-            <NavLink to="random"
-                className={`${styles.secondRowItem} ${styles.navLink}`}>
-                Random
-            </NavLink>
-
-            <NavLink to="search"
-                className={`${styles.secondRowItem} ${styles.navLink}`}>
-                Search
-            </NavLink>
+                    <NavLink to="search"
+                        className={`${styles.secondRowItem} ${styles.navLink}`}>
+                        Search
+                    </NavLink>
+                </>
+            }
         </nav>
     </header>
 }

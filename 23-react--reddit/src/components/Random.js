@@ -11,11 +11,11 @@ const Random = (props) => {
         <main>
             <h1>Random</h1>
             <div className='results'>
-                {randomSubreddit.map(subrdt => {
+                {/* {randomSubreddit.map(subrdt => {
                     <Link to="/">
                         {subrdt}
                     </Link>
-                })}
+                })} */}
 
             </div>
         </main>

@@ -1,15 +1,16 @@
-import React from 'react';
 import { useLoaderData } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 
-const AppAuth = () => {
-    const authResponse = useLoaderData();
-    console.log(authResponse)
-    
+
+const AppAuth = (props) => {
+    const authData = useLoaderData();
+
+    localStorage.setItem("access_token", JSON.stringify(authData.access_token))
+    props.setHasGrantedAccess(true)
+
     return (
-        <main>
-            <h1>{authResponse.gender}</h1>
-        </main>
+        <Navigate to="/random" />
     );
 };
 

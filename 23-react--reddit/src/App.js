@@ -13,42 +13,23 @@ import AppAuth from './components/AppAuth';
 
 function App() {
   const [hasGrantedAccess, setHasGrantedAccess] = useState(false);
+  const appAccessToken = JSON.parse(localStorage.getItem("access_token"))
 
-  // Bypass the cross-origin-policy with "https://cors-anywhere.herokuapp.com/{type_your_url_here}"
-  // Or just use browser add-on
-  const AUTH_ENDPOINT = "https://www.reddit.com/api/v1/authorize"
-  const TOKEN_ENDPOINT = "https://www.reddit.com/api/v1/access_token"
-  // NEVER store in front-end app, even in .env  
-  const CLIENT_ID = process.env.REACT_APP_CLIENT_ID
-  const CLIENT_SECRET = process.env.REACT_APP_REDDIT_SECRET_KEY
-  const REDIRECT_URI = process.env.REACT_APP_REDIRECT_URI
-  let DURATION = "permanent"  //or "temporary"
-  let RESP_TYPE = "code"      //	Must be the string "code"  
-  let RANDOM_STR = "ldkfkjdfhkj";
-  let SCOPE_STRING = "read"  // Scope Values: read, report, save, submit, etc...
+  console.log(appAccessToken)
 
   const appRouter = createBrowserRouter(
     createRoutesFromElements(
-      <Route path="/" element={<Root
-        authEndpoint={AUTH_ENDPOINT}
-        clientId={CLIENT_ID}
-        responseType={RESP_TYPE}
-        randomStr={RANDOM_STR}
-        redirectURI={REDIRECT_URI}
-        duration={DURATION}
-        scopeStr={SCOPE_STRING}
-        hasGrantedAccess={hasGrantedAccess}
-      />}>
+      <Route path="/" element={
+        <Root hasGrantedAccess={hasGrantedAccess} />} >
 
-        <Route
-          index
-          element={<Home />} />
+        <Route index element={<Home />} />
 
         <Route
           path='appauth'
-          element={<AppAuth />} 
+          element={<AppAuth
+            setHasGrantedAccess={setHasGrantedAccess} />}
           loader={obtainAccessToken} />
-          
+
         <Route
           path="random"
           element={<Random />}
@@ -59,37 +40,6 @@ function App() {
       </Route >)
   );
 
-
-  useEffect(() => {
-    let afterPermissionQueryString = window.location.search   // get "response" querystring from url
-    // window.location.search = "";    // clear address bar, NOT THIS WAY, THIS RE-RENDERS
-
-    // get substrings needed
-    let returnedErrorPortion = afterPermissionQueryString.substring(1).split("&").find(elem => elem.startsWith("error"));
-    // ERROR in querysting -> If user hasn't granted permission or similar
-    if (afterPermissionQueryString) {
-      if (returnedErrorPortion) {
-        const errMsg = returnedErrorPortion.split("=")[1];
-        if (errMsg === "access_denied") {
-          setHasGrantedAccess(false);
-          alert("Access to API has been withdrawn");
-        }
-        return;
-      }
-      // If state strings don't match -> alert, could happen probably
-      let returnedStateStr = afterPermissionQueryString.substring(1).split("&").find(elem => elem.startsWith("state")).split("=")[1];
-      if (returnedStateStr !== RANDOM_STR) {
-        // console.log("ERROR MATCHING STATE", "returned:", returnedStateStr, "mine:", RANDOM_STR)
-        alert("ERROR MATCHING STATE");
-        return;
-      } else {
-        // The below var is needed if token will be required, for now not required
-        // let returnedCodeStr = afterPermissionQueryString.substring(1).split("&").find(elem => elem.startsWith("code")).split("=")[1];
-
-        setHasGrantedAccess(true);
-      }
-    }
-  }, [hasGrantedAccess, RANDOM_STR])
 
   return (
     <>

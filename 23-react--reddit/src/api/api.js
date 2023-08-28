@@ -8,7 +8,6 @@ import { decode as base64_decode, encode as base64_encode } from 'base-64';
 const AUTH_ENDPOINT = "https://www.reddit.com/api/v1/access_token"
 const CLIENT_ID = process.env.REACT_APP_CLIENT_ID
 const CLIENT_SECRET = process.env.REACT_APP_REDDIT_SECRET_KEY
-console.log(CLIENT_ID)
 const REDIRECT_URI = process.env.REACT_APP_REDIRECT_URI
 let DURATION = "permanent"  //or "temporary"
 let RESP_TYPE = "code"      //	Must be the string "code"  
@@ -31,21 +30,17 @@ export async function obtainAccessToken() {
             }
         })
 
-        //    let response = await fetch("https://swapi.dev/api/people/1")
-
         if (!response.ok) {
-            let error = await response.json()
-            throw new Error(error.message)
+            let error = await response.json();
+            throw new Error(error.message);
         }
-        const token = await response.json()
+        const authData = await response.json()
 
-        console.log(token)
-        return token
+        return authData
     }
     catch (error) {
-        alert(error.message)
+        throw new Error(error.message);
     }
-
 }
 
 
