@@ -1,32 +1,42 @@
 .card {
-    background-color: var(--picton-blue);
+    background-color: var(--columbia-blue);
+    border: 22px solid var(--platinum);
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding: 16px;
     text-align: left;
-
+    border-radius: 11px;
     grid-column: span 3;
+    box-shadow: 0px 0px 8px 8px var(--powder-blue);
+
+    height: 440px;
 
 }
 
 .card>.cardTitle {
-    color: var(--red-cmyk);
+    color: var(--rich-black);
+    font-family: var(--font-display);
+    font-size: 1.7em;
+    margin-bottom: 8px;
+    padding: 4px;
 }
 
-.card>.cardSubreddit {}
+.card>.cardSubreddit {
+    font-family: var(--font-primary);
+    font-weight: 600;
+    font-size: 1.3em;
+    margin-bottom: 8px;
+}
 
-.card>.cardUrl {
-    background-color: var(--safety-orange);
-    color: var(--medium-blue);
+.card>.linkToPost {
+    background-color: var(--glaucous);
+    color: var(--rich_black);
     font-weight: 600;
     font-size: .8em;
     padding: 8px 11px;
     border-radius: 4px;
-    width: 100%;
     text-transform: uppercase;
-    box-shadow: none;
-    border: none;
 
 }
 

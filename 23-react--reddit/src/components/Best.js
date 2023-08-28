@@ -30,7 +30,6 @@ const Best = (props) => {
 
     return (
         <main>
-            <h1>Best</h1>
             <div className={styles.galleryContainer}>
                 {resultsArr.map(rslt =>
                     <Card result={rslt} />

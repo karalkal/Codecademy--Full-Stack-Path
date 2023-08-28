@@ -4,14 +4,11 @@
     --font-main: 'Dai Banna SIL', serif;
     --font-display: 'Rowdies', cursive;
     /* CSS HSL */
-    --red-cmyk: hsla(356, 98%, 48%, 1);
-    --safety-orange: hsla(27, 100%, 55%, 1);
-    --aureolin: hsla(55, 98%, 50%, 1);
-    --sgbus-green: hsla(112, 91%, 46%, 1);
-    --picton-blue: hsla(203, 100%, 62%, 1);
-    --medium-blue: hsla(242, 100%, 39%, 1);
-    --electric-indigo: hsla(262, 98%, 50%, 1);
-    --phlox: hsla(296, 100%, 46%, 1);
+    --rich-black: hsla(218, 58%, 4%, 1);
+    --glaucous: hsla(215, 45%, 53%, 1);
+    --powder-blue: hsla(210, 63%, 77%, 1);
+    --columbia-blue: hsla(212, 53%, 83%, 1);
+    --platinum: hsla(191, 17%, 88%, 1);
   }
 
   * {
@@ -22,7 +19,6 @@
   }
 
   html {
-    background-color: var(--medium-blue);
     text-align: center;
   }
 
