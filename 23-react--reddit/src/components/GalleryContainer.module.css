@@ -1,0 +1,6 @@
+.galleryContainer {
+    padding: 2%;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 17px 2%;
+}

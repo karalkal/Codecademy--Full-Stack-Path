@@ -48,7 +48,7 @@ export async function fetchBestPosts(appAccessToken) {
     const response = await fetch(`https://oauth.reddit.com/best`, {
         method: "GET",
         headers: {
-            'Authorization': `bearer ${appAccessToken}`,
+            'Authorization': `Bearer ${appAccessToken}`,
             'Content-Type': 'application/json',
         }
     })

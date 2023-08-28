@@ -1,5 +1,7 @@
 import React from 'react';
 import { useLoaderData, Link } from 'react-router-dom';
+import Card from './Card';
+import styles from "./GalleryContainer.module.css"
 
 
 const Best = (props) => {
@@ -7,7 +9,8 @@ const Best = (props) => {
     const randomSubreddit = useLoaderData();
     const resultsArr = (randomSubreddit.data.children).map(obj => {
         return {
-            title: obj.data,
+            id: obj.data.id,
+            title: obj.data.title,
             text: obj.data.selftext,
             author: obj.data.author,
             subreddit: obj.data.subreddit,
@@ -28,12 +31,10 @@ const Best = (props) => {
     return (
         <main>
             <h1>Best</h1>
-            <div className='results'>
-                {/* {randomSubreddit.map(subrdt => {
-                    <Link to="/">
-                        {subrdt}
-                    </Link>
-                })} */}
+            <div className={styles.galleryContainer}>
+                {resultsArr.map(rslt =>
+                    <Card result={rslt} />
+                )}
 
             </div>
         </main>
