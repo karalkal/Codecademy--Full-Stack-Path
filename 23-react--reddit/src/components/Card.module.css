@@ -1,6 +1,7 @@
 .card {
     background-color: var(--columbia-blue);
     border: 22px solid var(--platinum);
+    color: var(--rich-black);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -9,12 +10,10 @@
     border-radius: 11px;
     grid-column: span 3;
     box-shadow: 0px 0px 8px 8px var(--powder-blue);
-
     height: 440px;
-
 }
 
-.card>.cardTitle {
+.card .cardTitle {
     color: var(--rich-black);
     font-family: var(--font-display);
     font-size: 1.7em;
@@ -22,22 +21,37 @@
     padding: 4px;
 }
 
-.card>.cardSubreddit {
+.card .cardSubreddit,
+.card .cardAuthor {
     font-family: var(--font-primary);
     font-weight: 600;
-    font-size: 1.3em;
+    font-size: 1.1em;
     margin-bottom: 8px;
 }
 
-.card>.linkToPost {
+.card .cardSubreddit>span,
+.card .cardAuthor>span {
+    font-size: 1.3em;
+    color: var(--glaucous);
+}
+
+.card .linkToPost {
     background-color: var(--glaucous);
+    font-family: var(--font-display);
     color: var(--rich_black);
-    font-weight: 600;
-    font-size: .8em;
+    font-size: 1em;
     padding: 8px 11px;
     border-radius: 4px;
     text-transform: uppercase;
+    width: fit-content;
+    align-self: flex-end;
+}
 
+.card .cardText {
+    color: (--rich-black);
+    font-size: 1.1em;
+    margin-bottom: 8px;
+    padding: 4px;
 }
 
 /* Responsive columns - one column layout (vertical) on small screens */
