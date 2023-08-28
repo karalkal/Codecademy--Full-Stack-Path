@@ -26,7 +26,6 @@ const Best = (props) => {
                 : obj.data.secure_media.reddit_video.scrubber_media_url
         }
     })
-    console.log(resultsArr);
 
     return (
         <main>

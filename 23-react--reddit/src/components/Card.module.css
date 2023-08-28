@@ -10,7 +10,13 @@
     border-radius: 11px;
     grid-column: span 3;
     box-shadow: 0px 0px 8px 8px var(--powder-blue);
-    height: 440px;
+}
+
+.card .cardImage {}
+
+.card .videoWindow {
+    width: 35%;
+    height: 53%; 
 }
 
 .card .cardTitle {
