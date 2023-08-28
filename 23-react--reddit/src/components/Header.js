@@ -14,7 +14,7 @@ export default function Header({ authEndpoint, clientId, responseType, randomStr
                 {!hasGrantedAccess ? "Grant" : "Remove"} User Auth
             </NavLink>
 
-            <NavLink to="kur"
+            <NavLink to="appauth"
                 className={`${styles.firstRowItem} ${styles.navLink}`}>
                 App Only OAuth (userless)
             </NavLink>

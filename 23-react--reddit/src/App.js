@@ -7,7 +7,9 @@ import Random from './components/Random';
 import Search from './components/Search';
 import PageNotFound from './components/PageNotFound';
 
-import { getRandomSubreddit } from './api/api';
+import { getRandomSubreddit, obtainAccessToken } from './api/api';
+import AppAuth from './components/AppAuth';
+
 
 function App() {
   const [hasGrantedAccess, setHasGrantedAccess] = useState(false);
@@ -41,6 +43,12 @@ function App() {
         <Route
           index
           element={<Home />} />
+
+        <Route
+          path='appauth'
+          element={<AppAuth />} 
+          loader={obtainAccessToken} />
+          
         <Route
           path="random"
           element={<Random />}
