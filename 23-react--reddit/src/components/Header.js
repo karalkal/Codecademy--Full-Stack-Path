@@ -1,5 +1,4 @@
 import styles from './Header.module.css'
-import Button from './Button'
 import { NavLink } from 'react-router-dom'
 
 
@@ -11,32 +10,28 @@ export default function Header({ authEndpoint, clientId, responseType, randomStr
         </div>
         <nav>
             <NavLink to={`${authEndpoint}?client_id=${clientId}&response_type=${responseType}&state=${randomStr}&redirect_uri=${redirectURI}&duration=${duration}&scope=${scopeStr}`}
-                className={styles["first-row-item"]}>
-                <Button                    >
-                    {!hasGrantedAccess ? "Grant" : "Remove"} User Auth
-                </Button>
+                className={`${styles.firstRowItem} ${styles.navLink}`}>
+                {!hasGrantedAccess ? "Grant" : "Remove"} User Auth
             </NavLink>
 
             <NavLink to="kur"
-                className={styles["first-row-item"]}>
-                <Button>
-                    App Only OAuth (userless)
-                </Button>
+                className={`${styles.firstRowItem} ${styles.navLink}`}>
+                App Only OAuth (userless)
             </NavLink>
 
             <NavLink to="/"
-                className={styles["second-row-item"]}>
-                <Button>Home</Button>
+                className={`${styles.secondRowItem} ${styles.navLink}`}>
+                Home
             </NavLink>
 
             <NavLink to="random"
-                className={styles["second-row-item"]}>
-                <Button>Random</Button>
+                className={`${styles.secondRowItem} ${styles.navLink}`}>
+                Random
             </NavLink>
 
             <NavLink to="search"
-                className={styles["second-row-item"]}>
-                <Button>Search</Button>
+                className={`${styles.secondRowItem} ${styles.navLink}`}>
+                Search
             </NavLink>
         </nav>
     </header>
