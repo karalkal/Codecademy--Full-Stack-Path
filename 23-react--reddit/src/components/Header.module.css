@@ -8,22 +8,30 @@
     justify-content: space-between;
 }
 
-#header>h1 {
+#header>div{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 44px;
+}
+
+#header>div>.logo {
+    height: 80px;
+    pointer-events: none;
+}
+
+#header>div>h1 {
     font-family: var(--font-display);
     color: var(--safety-orange);
     font-size: 2.2em;
     text-shadow: 2px 2px var(--medium-blue);
 }
 
-#header>.logo {
-    height: 90%;
-    pointer-events: none;
-}
-
 #header>nav {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     gap: 17px 11px;
+    width: 62%;
 }
 
 
