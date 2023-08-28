@@ -28,9 +28,9 @@ export default function Header({ authEndpoint, clientId, responseType, randomStr
             }
             {hasGrantedAccess &&
                 <>
-                    <NavLink to="random"
+                    <NavLink to="best"
                         className={`${styles.secondRowItem} ${styles.navLink}`}>
-                        Random
+                        Best
                     </NavLink>
 
                     <NavLink to="search"

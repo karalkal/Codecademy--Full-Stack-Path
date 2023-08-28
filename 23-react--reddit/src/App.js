@@ -3,11 +3,11 @@ import { RouterProvider, createBrowserRouter, createRoutesFromElements, Route } 
 
 import Root from './components/Root';
 import Home from './components/Home';
-import Random from './components/Random';
+import Best from './components/Best';
 import Search from './components/Search';
 import PageNotFound from './components/PageNotFound';
 
-import { fetchSearchResult, getRandomSubreddit, obtainAccessToken } from './api/api';
+import { fetchSearchResult, fetchBestPosts, obtainAccessToken } from './api/api';
 import AppAuth from './components/AppAuth';
 
 
@@ -32,15 +32,15 @@ function App() {
         <Route index element={<Home />} />
 
         <Route
-          path='appauth'
+          path='app-auth'
           element={<AppAuth
             setHasGrantedAccess={setHasGrantedAccess} />}
           loader={obtainAccessToken} />
 
         <Route
-          path="random"
-          element={<Random appAccessToken={appAccessToken} />}
-          loader={() => getRandomSubreddit(appAccessToken)} />
+          path="best"
+          element={<Best appAccessToken={appAccessToken} />}
+          loader={() => fetchBestPosts(appAccessToken)} />
 
         <Route path="search" element={<Search />}
           loader={fetchSearchResult} />

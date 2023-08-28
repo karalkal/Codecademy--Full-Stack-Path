@@ -44,16 +44,19 @@ export async function obtainAccessToken() {
 }
 
 
-export async function getRandomSubreddit(appAccessToken) {
-    const res = await fetch(`https://oauth.reddit.com/r/AppleCard/random`, {
+export async function fetchBestPosts(appAccessToken) {
+    const response = await fetch(`https://oauth.reddit.com/best`, {
         method: "GET",
         headers: {
             'Authorization': `bearer ${appAccessToken}`,
             'Content-Type': 'application/json',
         }
-    });
-    console.log(res)
-    return res.json();      //Promise but it does not matter, React router will wait for it to resolve
+    })
+
+    const json = await response.json();
+    console.log(json)
+    return json
+
 }
 
 

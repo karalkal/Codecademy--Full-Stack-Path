@@ -2,14 +2,14 @@ import React from 'react';
 import { useLoaderData, Link } from 'react-router-dom';
 
 
-const Random = (props) => {
+const Best = (props) => {
     // Get random subreddit as prop from App.js which is gonna be loaded before it is rendered 
     const randomSubreddit = useLoaderData();
     console.log(randomSubreddit);
 
     return (
         <main>
-            <h1>Random</h1>
+            <h1>Best</h1>
             <div className='results'>
                 {/* {randomSubreddit.map(subrdt => {
                     <Link to="/">
@@ -22,4 +22,4 @@ const Random = (props) => {
     );
 };
 
-export default Random;
+export default Best;
