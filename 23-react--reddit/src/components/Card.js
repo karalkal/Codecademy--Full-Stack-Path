@@ -10,7 +10,7 @@ export default function Card({ result }) {
     const unixTime = result.created_utc * 1000
     console.log(result.secure_media, result.media_metadata)
     const videoFile = (
-        <video width="750" height="500" controls className={styles.videoWindow}>
+        <video width="750" height="500" controls className={`${styles.videoWindow} ${styles.mediaCardContent} `}>
             <source src={result.secure_media} type="video/mp4" />
         </video>
     )
@@ -25,7 +25,7 @@ export default function Card({ result }) {
                     Posted by&nbsp;
                     <span>{result.author}</span>
                     &nbsp;on&nbsp;
-                    <span>{new Date(unixTime).toDateString()}</span>
+                    <span>{new Date(unixTime).toLocaleDateString()}</span>
                 </div>
 
                 <div className={styles.cardSubreddit}>
@@ -33,13 +33,13 @@ export default function Card({ result }) {
                     <span>{result.subreddit}</span>
                 </div>
                 <div className={styles.cardText}>
-                    {result.text.length > 170
-                        ? `${(result.text).substring(0, 170)}...`
-                        : `${result.text}`
+                    {result.text.length > 260
+                        ? `${(result.text).substring(0, 260)}...`
+                        : `${result.text} `
                     }
                 </div>
-                <Link to={result.url} className={styles.linkToPost}>Visit</Link>
-
             </div>
+            
+            <Link to={result.url} className={styles.linkToPost}>Visit</Link>
         </Link>)
 }
