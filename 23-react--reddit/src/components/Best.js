@@ -20,10 +20,13 @@ const Best = (props) => {
             main_icon: (obj.data.all_awardings).map(award => award.static_icon_url),
             upvotes: obj.data.ups,
             created_utc: obj.data.created_utc,
-            media_metadata: obj.data.media_metadata,
-            secure_media: obj.data.secure_media === null
+            img_thumbnail: obj.data.url_overridden_by_dest,
+            img_url: obj.data.preview === undefined
                 ? null
-                : obj.data.secure_media.reddit_video.scrubber_media_url
+                : obj.data.preview.images[0].source.url,
+            media: obj.data.secure_media === null
+                ? null
+                : obj.data.media.reddit_video.fallback_url
         }
     })
 

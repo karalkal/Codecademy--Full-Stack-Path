@@ -2,30 +2,52 @@ import styles from "./Card.module.css"
 import { Link } from "react-router-dom"
 
 export default function Card({ result }) {
-    //text, author, icons, main_icon, upvotes, created_utc, media_metadata, secure_media, permalink
-
-
     // The Date constructor from Javascript accepts the number of milliseconds as timestamp, not unix time (number of seconds).
     // So, to adjust that, is just multiply the unix time by 1000.
     const unixTime = result.created_utc * 1000
     const redditLink = "https://www.reddit.com" + result.permalink
-    console.log(result.title, "Permalink:", result.permalink, "URL:", result.url)
-    const videoFile = (
-        <video muted controls className={styles.mediaCardContent} >
-            <source src={result.secure_media} type="video/mp4" />
-        </video>
+    // if thumbnail is "self" (no idea what this is) or we have video (video has thumbnail attached too)
+    // check for extension too as articles with no img also have "url_overridden_by_dest"
+    let imageSrc = null
+    if (result.img_thumbnail && !result.media
+        && (result.img_thumbnail.slice(-4) === ".png" || result.img_thumbnail.slice(-4) === ".jpg")) {
+        imageSrc = result.img_thumbnail
+        console.log("HERE")
+    }
+
+
+    console.log(
+        // "Title:", result.title,
+        // "\nPermalink: ", result.permalink,
+        // "\nURL: ", result.url,
+        "\nPic Thumbnail: ", result.img_thumbnail,
+        // "\nPic URL: ", result.img_url,
     )
 
-    const imgFile = (
-        <img src="https://preview.redd.it/6j8wydgbm2lb1.png?auto=webp&amp;s=1e644bf1bbc32e8ea4a6aecb0fa9db9be4ba5f94"></img>
-    )
+
 
     return (
-        <Link to={redditLink} className={styles.card} key={result.id}>
-            <div >
-                {/* {imgFile} */}
+        <Link to={redditLink} className={styles.card} key={result.id} target="_blank">
+            <div>
 
-                {result.secure_media ? <h1>{videoFile}</h1> : ""}
+                {/* IMG if any */}
+                {imageSrc &&
+                    <img src={imageSrc}
+                        alt={`article titled ${result.title}`}
+                        className={styles.mediaCardContent}>
+                    </img>}
+                {/* VIDEO if any */}
+                {result.media &&
+                    <video
+                        controls
+                        className={styles.mediaCardContent} >
+                        <source src={result.media} type="video/mp4" />
+                        <source src={result.media} type="video/ogg" />
+                        Your browser does not support the video tag.
+                    </video>
+                }
+
+                {/* title, author, datestamp */}
                 <div className={styles.cardTitle}>{result.title}</div>
                 <div className={styles.cardAuthor}>
                     Posted by&nbsp;
@@ -33,7 +55,7 @@ export default function Card({ result }) {
                     &nbsp;on&nbsp;
                     <span>{new Date(unixTime).toLocaleDateString()}</span>
                 </div>
-
+                {/* subreddit, text*/}
                 <div className={styles.cardSubreddit}>
                     r/
                     <span>{result.subreddit}</span>
@@ -46,6 +68,6 @@ export default function Card({ result }) {
                 </div>
             </div>
 
-            <Link to={redditLink} className={styles.linkToPost}>View</Link>
+            <Link to={redditLink} className={styles.linkToPost} target="_blank">View</Link>
         </Link>)
 }
