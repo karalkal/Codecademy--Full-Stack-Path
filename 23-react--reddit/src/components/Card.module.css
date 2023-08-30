@@ -49,7 +49,24 @@
     color: var(--glaucous);
 }
 
-.card .linkToPost {
+.card .cardText {
+    color: (--rich-black);
+    font-size: 1.1em;
+    margin-bottom: 8px;
+    padding: 4px;
+}
+
+.card>.cardFooter{
+    display: flex;
+    justify-content: space-between;
+}
+
+.card>.cardFooter>.cardIcons>img {
+    width: 44px;
+    margin-right: 11px;
+}
+
+.card>.cardFooter>.linkToPost {
     background-color: var(--glaucous);
     font-family: var(--font-display);
     color: var(--rich_black);
@@ -58,16 +75,8 @@
     border-radius: 4px;
     text-transform: uppercase;
     width: fit-content;
-    float: right;
-    align-self: flex-end;
 }
 
-.card .cardText {
-    color: (--rich-black);
-    font-size: 1.1em;
-    margin-bottom: 8px;
-    padding: 4px;
-}
 
 /* Responsive columns - one column layout (vertical) on small screens */
 @media screen and (max-width: 600px) {

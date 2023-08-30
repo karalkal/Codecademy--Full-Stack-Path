@@ -16,8 +16,14 @@ const Best = (props) => {
             subreddit: obj.data.subreddit,
             permalink: obj.data.permalink,
             url: obj.data.url,
-            icons: (obj.data.all_awardings).map(award => award.resized_icons[3]),
-            main_icon: (obj.data.all_awardings).map(award => award.static_icon_url),
+            resized_icons: (obj.data.all_awardings).map(award => award.resized_icons[3].url),
+            main_icons: (obj.data.all_awardings).map(award => {
+                return {
+                    icon_url: award.icon_url,
+                    icon_description: award.description,
+                    icon_name: award.name,
+                }
+            }),
             upvotes: obj.data.ups,
             created_utc: obj.data.created_utc,
             img_thumbnail: obj.data.url_overridden_by_dest,

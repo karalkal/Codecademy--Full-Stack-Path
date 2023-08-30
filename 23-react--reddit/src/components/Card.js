@@ -12,7 +12,6 @@ export default function Card({ result }) {
     if (result.img_thumbnail && !result.media
         && (result.img_thumbnail.slice(-4) === ".png" || result.img_thumbnail.slice(-4) === ".jpg")) {
         imageSrc = result.img_thumbnail
-        console.log("HERE")
     }
 
 
@@ -20,8 +19,10 @@ export default function Card({ result }) {
         // "Title:", result.title,
         // "\nPermalink: ", result.permalink,
         // "\nURL: ", result.url,
-        "\nPic Thumbnail: ", result.img_thumbnail,
+        // "\nPic Thumbnail: ", result.img_thumbnail,
         // "\nPic URL: ", result.img_url,
+        "\nBadges large: ", result.main_icons,
+        "\nBadges small: ", result.resized_icons,
     )
 
 
@@ -67,7 +68,17 @@ export default function Card({ result }) {
                     }
                 </div>
             </div>
+            {/* icons and link*/}
+            <div className={styles.cardFooter}>
+                <div className={styles.cardIcons}>
+                    {result.main_icons.map(bdg =>
+                        <img src={bdg.icon_url}
+                            alt={bdg.icon_name}
+                            title={`****    ${bdg.icon_name}    ****\n${bdg.icon_description}`}></img>
+                    )}
+                </div>
 
-            <Link to={redditLink} className={styles.linkToPost} target="_blank">View</Link>
+                <Link to={redditLink} className={styles.linkToPost} target="_blank">View</Link>
+            </div>
         </Link>)
 }
