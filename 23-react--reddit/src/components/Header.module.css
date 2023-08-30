@@ -36,7 +36,8 @@
     width: 62%;
 }
 
-.navLink {
+.navLink,
+.firstRowItem button {
     background-color: var(--glaucous);
     color: var(--rich-black);
     font-weight: 600;
@@ -54,7 +55,27 @@
 }
 
 .firstRowItem {
-    grid-column: span 4;
+    grid-column: span 8;
+    /* get all 8 colums from parent grid.. then create new grid */
+}
+
+.firstRowItem>form {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 17px 11px;
+}
+
+.firstRowItem input {
+    grid-column: span 3;
+    padding: 6px 11px;
+    border-radius: 4px;
+    border: 1px solid var(--rich-black);
+    background-color: var(--platinum);
+}
+
+.firstRowItem .button {
+    grid-column: span 1;
 }
 
 .secondRowItem {

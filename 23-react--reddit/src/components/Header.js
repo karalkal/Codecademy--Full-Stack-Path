@@ -1,3 +1,4 @@
+import Form from './Form'
 import styles from './Header.module.css'
 import { NavLink } from 'react-router-dom'
 
@@ -9,8 +10,10 @@ export default function Header({ authEndpoint, clientId, responseType, randomStr
             <h1>Mini Reddit</h1>
         </div>
         <nav>
-
-            <NavLink
+            <div className={`${styles.firstRowItem}`}>
+                <Form className={`${styles.firstRowItem}`} />
+            </div>
+            {/* <NavLink
                 className={`${styles.firstRowItem} ${styles.navLink}`}>
                 First
             </NavLink>
@@ -19,7 +22,7 @@ export default function Header({ authEndpoint, clientId, responseType, randomStr
             <NavLink
                 className={`${styles.firstRowItem} ${styles.navLink}`}>
                 Second
-            </NavLink>
+            </NavLink> */}
 
             <NavLink to="best"
                 className={`${styles.secondRowItem} ${styles.navLink}`}>
