@@ -4,11 +4,17 @@ import { RouterProvider, createBrowserRouter, createRoutesFromElements, Route } 
 import Root from './components/Root';
 import Home from './components/Home';
 import Best from './components/Best';
+import Controversial from './components/Controversial';
 import Search from './components/Search';
 import PageNotFound from './components/PageNotFound';
 
-import { fetchSearchResult, fetchBestPosts, getUserlessAuthorizarion as getUserlessAuthorizarion } from './api/api';
-import AppAuth from './components/AppAuth';
+import {
+  fetchSearchResult, fetchBestPosts, getUserlessAuthorizarion, fetchTopPosts,
+  fetchHottestPosts,
+  fetchControversialPosts
+} from './api/api';
+import Top from './components/Top';
+import Hot from './components/Hot';
 
 
 function App() {
@@ -21,6 +27,7 @@ function App() {
       console.log("Already have token")
       setAppAccessToken(JSON.parse(accessToken))
     }
+
     else {
       const getToken = async () => {
         const authData = await getUserlessAuthorizarion()
@@ -28,7 +35,6 @@ function App() {
         localStorage.setItem("access_token", accessToken)
         console.log("Just got new token");
       }
-
       // call the function
       getToken()
         // make sure to catch any error
@@ -47,14 +53,24 @@ function App() {
         <Route index element={<Home />} />
 
         <Route
-          path='app-auth'
-          element={<AppAuth />}
-          loader={getUserlessAuthorizarion} />
-
-        <Route
           path="best"
           element={<Best appAccessToken={appAccessToken} />}
           loader={() => fetchBestPosts(appAccessToken)} />
+
+        <Route
+          path="top"
+          element={<Top appAccessToken={appAccessToken} />}
+          loader={() => fetchTopPosts(appAccessToken)} />
+
+        <Route
+          path="hot"
+          element={<Hot appAccessToken={appAccessToken} />}
+          loader={() => fetchHottestPosts(appAccessToken)} />
+
+        <Route
+          path="controversial"
+          element={<Controversial appAccessToken={appAccessToken} />}
+          loader={() => fetchControversialPosts(appAccessToken)} />
 
         <Route path="search" element={<Search />}
           loader={fetchSearchResult} />

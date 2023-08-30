@@ -31,7 +31,7 @@
 
 #header>nav {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(8, 1fr);
     gap: 17px 11px;
     width: 62%;
 }
@@ -54,7 +54,7 @@
 }
 
 .firstRowItem {
-    grid-column: span 3;
+    grid-column: span 4;
 }
 
 .secondRowItem {

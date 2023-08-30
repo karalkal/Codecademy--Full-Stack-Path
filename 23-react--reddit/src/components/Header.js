@@ -10,20 +10,15 @@ export default function Header({ authEndpoint, clientId, responseType, randomStr
         </div>
         <nav>
 
-            <NavLink to="app-auth"
+            <NavLink
                 className={`${styles.firstRowItem} ${styles.navLink}`}>
                 First
             </NavLink>
 
 
-            <NavLink to="app-auth"
+            <NavLink
                 className={`${styles.firstRowItem} ${styles.navLink}`}>
                 Second
-            </NavLink>
-
-            <NavLink to="/"
-                className={`${styles.secondRowItem} ${styles.navLink}`}>
-                Home
             </NavLink>
 
             <NavLink to="best"
@@ -31,9 +26,19 @@ export default function Header({ authEndpoint, clientId, responseType, randomStr
                 Best
             </NavLink>
 
-            <NavLink to="search"
+            <NavLink to="top"
                 className={`${styles.secondRowItem} ${styles.navLink}`}>
-                Search
+                Top
+            </NavLink>
+
+            <NavLink to="hot"
+                className={`${styles.secondRowItem} ${styles.navLink}`}>
+                Hot
+            </NavLink>
+
+            <NavLink to="controversial"
+                className={`${styles.secondRowItem} ${styles.navLink}`}>
+                Controversial
             </NavLink>
 
 

@@ -21,8 +21,8 @@ export default function Card({ result }) {
         // "\nURL: ", result.url,
         // "\nPic Thumbnail: ", result.img_thumbnail,
         // "\nPic URL: ", result.img_url,
-        "\nBadges large: ", result.main_icons,
-        "\nBadges small: ", result.resized_icons,
+        // "\nBadges large: ", result.main_icons,
+        // "\nBadges small: ", result.resized_icons,
     )
 
 

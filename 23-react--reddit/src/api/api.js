@@ -8,11 +8,7 @@ import { decode as base64_decode, encode as base64_encode } from 'base-64';
 const AUTH_ENDPOINT = "https://www.reddit.com/api/v1/access_token"
 const CLIENT_ID = process.env.REACT_APP_CLIENT_ID
 const CLIENT_SECRET = process.env.REACT_APP_REDDIT_SECRET_KEY
-const REDIRECT_URI = process.env.REACT_APP_REDIRECT_URI
-let DURATION = "permanent"  //or "temporary"
-let RESP_TYPE = "code"      //	Must be the string "code"  
-let RANDOM_STR = "ldkfkjdfhkj";
-let SCOPE_STRING = "read"  // Scope Values: read, report, save, submit, etc...
+const LIST_RESULT_LIMIT_STR = "?limit=44"
 
 // Load before it renders, no need to use useEffect
 export async function getUserlessAuthorizarion() {
@@ -43,9 +39,47 @@ export async function getUserlessAuthorizarion() {
     }
 }
 
-
 export async function fetchBestPosts(appAccessToken) {
-    const response = await fetch(`https://oauth.reddit.com/best`, {
+    const response = await fetch(`https://oauth.reddit.com/best` + LIST_RESULT_LIMIT_STR, {
+        method: "GET",
+        headers: {
+            'Authorization': `Bearer ${appAccessToken}`,
+            'Content-Type': 'application/json',
+        },
+    })
+
+    const json = await response.json();
+    return json
+}
+
+export async function fetchTopPosts(appAccessToken) {
+    const response = await fetch(`https://oauth.reddit.com/top` + LIST_RESULT_LIMIT_STR, {
+        method: "GET",
+        headers: {
+            'Authorization': `Bearer ${appAccessToken}`,
+            'Content-Type': 'application/json',
+        }
+    })
+
+    const json = await response.json();
+    return json
+}
+
+export async function fetchHottestPosts(appAccessToken) {
+    const response = await fetch(`https://oauth.reddit.com/hot` + LIST_RESULT_LIMIT_STR, {
+        method: "GET",
+        headers: {
+            'Authorization': `Bearer ${appAccessToken}`,
+            'Content-Type': 'application/json',
+        }
+    })
+
+    const json = await response.json();
+    return json
+}
+
+export async function fetchControversialPosts(appAccessToken) {
+    const response = await fetch(`https://oauth.reddit.com/controversial` + LIST_RESULT_LIMIT_STR, {
         method: "GET",
         headers: {
             'Authorization': `Bearer ${appAccessToken}`,

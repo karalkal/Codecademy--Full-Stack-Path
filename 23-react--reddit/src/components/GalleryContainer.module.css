@@ -1,7 +1,24 @@
-.galleryContainer {
+.mainContainer {
     background-color: var(--columbia-blue);
-    padding: 2%;
+    padding: 17px 2%;
+}
+
+.galleryContainer {
+    margin-top: 17px;
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     gap: 17px 2%;
+}
+
+.galleryTitle {
+    font-family: var(--font-display);
+    text-shadow: 2px 2px var(--glaucous);
+    font-weight: 400;
+    font-size: 1em;
+}
+
+.gallerySubtitle {
+    font-family: var(--font-display);
+    font-weight: 200;
+    font-size: .8em;
 }

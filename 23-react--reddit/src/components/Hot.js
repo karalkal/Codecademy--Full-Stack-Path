@@ -4,12 +4,10 @@ import Card from './Card';
 import styles from "./GalleryContainer.module.css"
 
 
-const Best = (props) => {
+const Hot = (props) => {
     // Get results as prop from App.js which is gonna be loaded before it is rendered 
-    const bestPosts = useLoaderData();
-    console.log(bestPosts)
-
-    const resultsArr = (bestPosts.data.children).map(obj => {
+    const hottestPosts = useLoaderData();
+    const resultsArr = (hottestPosts.data.children).map(obj => {
         return {
             id: obj.data.id,
             title: obj.data.title,
@@ -40,8 +38,8 @@ const Best = (props) => {
 
     return (
         <main className={styles.mainContainer}>
-            <h1><span className={styles.galleryTitle}>Best</span>
-                <span className={styles.gallerySubtitle}> (proportion of upvotes to downvotes)</span></h1>
+            <h1><span className={styles.galleryTitle}>Hot</span>
+                <span className={styles.gallerySubtitle}> (upvoted fresher posts)</span></h1>
             <div className={styles.galleryContainer}>
                 {resultsArr.map(rslt =>
                     <Card result={rslt} />
@@ -52,4 +50,4 @@ const Best = (props) => {
     );
 };
 
-export default Best;
+export default Hot;
