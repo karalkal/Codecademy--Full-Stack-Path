@@ -5,7 +5,7 @@ import Root from './components/Root';
 import Home from './components/Home';
 import Best from './components/Best';
 import Controversial from './components/Controversial';
-import Search from './components/Search';
+import Found from './components/Found';
 import PageNotFound from './components/PageNotFound';
 
 import {
@@ -72,7 +72,7 @@ function App() {
           element={<Controversial appAccessToken={appAccessToken} />}
           loader={() => fetchControversialPosts(appAccessToken)} />
 
-        <Route path="search" element={<Search />}
+        <Route path="found" element={<Found />}
           loader={fetchSearchResult} />
 
         <Route path="*" element={<PageNotFound />} />

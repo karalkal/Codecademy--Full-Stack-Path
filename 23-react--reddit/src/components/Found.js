@@ -4,16 +4,15 @@ import styles from "./GalleryContainer.module.css"
 import getResultsArray from '../utils/getResultsArray';
 
 
-const Hot = () => {
+const Found = () => {
     // Get results as prop from App.js which is gonna be loaded before it is rendered 
-    const hottestPosts = useLoaderData();
+    const foundPosts = useLoaderData(); 
     
-    const resultsArr = getResultsArray(hottestPosts.data.children)
+    const resultsArr = getResultsArray(foundPosts.data.children)
 
     return (
         <main className={styles.mainContainer}>
-            <h1><span className={styles.galleryTitle}>Hot</span>
-                <span className={styles.gallerySubtitle}> (upvoted fresher posts)</span></h1>
+            <h1 className={styles.galleryTitle}>Top Results Found</h1>
             <div className={styles.galleryContainer}>
                 {resultsArr.map(rslt =>
                     <Card result={rslt} />
@@ -24,4 +23,4 @@ const Hot = () => {
     );
 };
 
-export default Hot;
+export default Found;

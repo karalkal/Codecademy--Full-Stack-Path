@@ -32,7 +32,7 @@ const Top = (props) => {
                 : obj.data.preview.images[0].source.url,
             media: obj.data.secure_media === null
                 ? null
-                : obj.data.media.reddit_video.fallback_url
+                : obj.data.secure_media.reddit_video.fallback_url
         }
     })
 

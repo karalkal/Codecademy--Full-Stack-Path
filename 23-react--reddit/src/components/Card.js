@@ -1,5 +1,7 @@
+import { nanoid } from "nanoid"
 import styles from "./Card.module.css"
 import { Link } from "react-router-dom"
+import { Fragment } from "react"
 
 export default function Card({ result }) {
     // The Date constructor from Javascript accepts the number of milliseconds as timestamp, not unix time (number of seconds).
@@ -15,22 +17,20 @@ export default function Card({ result }) {
     }
 
 
-    console.log(
-        // "Title:", result.title,
-        // "\nPermalink: ", result.permalink,
-        // "\nURL: ", result.url,
-        // "\nPic Thumbnail: ", result.img_thumbnail,
-        // "\nPic URL: ", result.img_url,
-        // "\nBadges large: ", result.main_icons,
-        // "\nBadges small: ", result.resized_icons,
-    )
-
-
+    // console.log(
+    //     // "Title:", result.title,
+    //     // "\nPermalink: ", result.permalink,
+    //     // "\nURL: ", result.url,
+    //     // "\nPic Thumbnail: ", result.img_thumbnail,
+    //     // "\nPic URL: ", result.img_url,
+    //     // "\nBadges large: ", result.main_icons,
+    //     // "\nBadges small: ", result.resized_icons,
+    //     // "\nID ", result.id,
+    // )
 
     return (
-        <Link to={redditLink} className={styles.card} key={result.id} target="_blank">
+        <Link to={redditLink} className={styles.card} target="_blank" id={nanoid()}>
             <div>
-
                 {/* IMG if any */}
                 {imageSrc &&
                     <img src={imageSrc}
@@ -71,14 +71,17 @@ export default function Card({ result }) {
             {/* icons and link*/}
             <div className={styles.cardFooter}>
                 <div className={styles.cardIcons}>
-                    {result.main_icons.map(bdg =>
-                        <img src={bdg.icon_url}
-                            alt={bdg.icon_name}
-                            title={`****    ${bdg.icon_name}    ****\n${bdg.icon_description}`}></img>
+                    {result.main_icons.map((bdg, index) =>
+                            <img src={bdg.icon_url}
+                                alt={bdg.icon_name}
+                                title={`****    ${bdg.icon_name}    ****\n${bdg.icon_description}`}
+                                key={index}>
+                            </img>
                     )}
                 </div>
 
-                <Link to={redditLink} className={styles.linkToPost} target="_blank">View</Link>
+                <div className={styles.linkToPost}>View</div>
             </div>
         </Link>)
+
 }

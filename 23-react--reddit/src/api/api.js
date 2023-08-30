@@ -92,7 +92,7 @@ export async function fetchControversialPosts(appAccessToken) {
 }
 
 
-export async function fetchSearchResult(term = "Kurec") {
+export async function fetchSearchResult(term = "Ivan") {
     const endpoint = `https://www.reddit.com/search.json?q=${term}`;
     const response = await fetch(endpoint);
     const json = await response.json();
