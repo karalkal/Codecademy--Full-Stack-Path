@@ -22,7 +22,7 @@
 .card .textCardContent {
     display: flex;
     flex-direction: column;
-    /* justify-content: space-between; */
+    max-width: 50;
 }
 
 .cardTopSection {
@@ -61,14 +61,15 @@
     font-size: 1.1em;
     margin-bottom: 8px;
     padding: 4px;
+    overflow: hidden;
 }
 
 .mediaCardContent {
     margin-left: 1%;
-    width: 44%;
+    min-width: 22%;
+    max-width: 26%;
     object-fit: contain;
-    object-position: 50% 5%; /* 50% 50% is centered */
-    background-color: var(--columbia-blue);
+    object-position: 50% 0%; /* 50% 50% is centered */
 }
 
 
