@@ -1,5 +1,4 @@
 import { useLoaderData } from 'react-router-dom';
-import Home from './Home';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 
@@ -14,8 +13,6 @@ const AppAuth = (props) => {
   useEffect(() => {
     setTimeout(() => {
       localStorage.setItem("access_token", JSON.stringify(authData.access_token))
-
-      props.setHasGrantedAccess(true)
 
       navigate('/', { replace: true });
     }, 800);

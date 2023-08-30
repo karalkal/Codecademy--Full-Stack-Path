@@ -15,7 +15,7 @@ let RANDOM_STR = "ldkfkjdfhkj";
 let SCOPE_STRING = "read"  // Scope Values: read, report, save, submit, etc...
 
 // Load before it renders, no need to use useEffect
-export async function obtainAccessToken() {
+export async function getUserlessAuthorizarion() {
 
     const encodedCredentials = base64_encode(CLIENT_ID + ':' + CLIENT_SECRET).toString('base64')
 

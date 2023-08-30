@@ -7,19 +7,34 @@ import Best from './components/Best';
 import Search from './components/Search';
 import PageNotFound from './components/PageNotFound';
 
-import { fetchSearchResult, fetchBestPosts, obtainAccessToken } from './api/api';
+import { fetchSearchResult, fetchBestPosts, getUserlessAuthorizarion as getUserlessAuthorizarion } from './api/api';
 import AppAuth from './components/AppAuth';
 
 
 function App() {
-  const [hasGrantedAccess, setHasGrantedAccess] = useState(false);
   const [appAccessToken, setAppAccessToken] = useState("");
 
+  //Check if token in localStorage, if not get one
   useEffect(() => {
-    const tokenfromLS = JSON.parse(localStorage.getItem("access_token"))
-    if (tokenfromLS) {
-      setHasGrantedAccess(true)
-      setAppAccessToken(tokenfromLS)
+    let accessToken = localStorage.getItem("access_token")
+    if (accessToken) {
+      console.log("Already have token")
+      setAppAccessToken(JSON.parse(accessToken))
+    }
+    else {
+      const getToken = async () => {
+        const authData = await getUserlessAuthorizarion()
+        accessToken = JSON.stringify(authData.access_token)
+        localStorage.setItem("access_token", accessToken)
+        console.log("Just got new token");
+      }
+
+      // call the function
+      getToken()
+        // make sure to catch any error
+        .catch(console.error);
+
+      setAppAccessToken(accessToken)
     }
   },
     [])
@@ -27,15 +42,14 @@ function App() {
   const appRouter = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={
-        <Root hasGrantedAccess={hasGrantedAccess} />} >
+        <Root />} >
 
         <Route index element={<Home />} />
 
         <Route
           path='app-auth'
-          element={<AppAuth
-            setHasGrantedAccess={setHasGrantedAccess} />}
-          loader={obtainAccessToken} />
+          element={<AppAuth />}
+          loader={getUserlessAuthorizarion} />
 
         <Route
           path="best"
