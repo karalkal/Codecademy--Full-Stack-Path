@@ -5,7 +5,7 @@ export default function PageNotFound() {
         <main>
             <h1>Page not found!</h1>
             <h2>Back to <Link to="/">Homepage</Link></h2>
-        </main >
+        </main>
     );
 };
 

@@ -18,4 +18,20 @@
 then 
 `json-server -p [PORT] -w [path-to-json-file]`
 
+#### Errors
+1. create try / catch block
+2. create <Error> component like:
+```
+export default function CustomError() {
+    const error = useRouteError()
+    return (
+        <>
+            <h1>{error.message}</h1>
+            <h2>Back to <Link to="/">Homepage</Link></h2>
+        </>
+    );
+};
+```
+3. in App.js add errorElement to route props, ideally in parent, so all have access (error will bubble up)
+
 

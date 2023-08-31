@@ -15,7 +15,7 @@ export async function getUserlessAuthorizarion() {
 
     const encodedCredentials = base64_encode(CLIENT_ID + ':' + CLIENT_SECRET).toString('base64')
 
-    // For client_credentials grants include the following information in your POST data (NOT as part of the URL)
+    // For client_credentials grants include the following information in your POST data (NOT as part of the URL) - WTF???
     try {
         let response = await fetch(AUTH_ENDPOINT, {
             method: "POST",
@@ -39,59 +39,92 @@ export async function getUserlessAuthorizarion() {
 }
 
 export async function fetchBestPosts(appAccessToken) {
-    const response = await fetch(`https://oauth.reddit.com/best` + LIST_RESULT_LIMIT_STR, {
-        method: "GET",
-        headers: {
-            'Authorization': `Bearer ${appAccessToken}`,
-            'Content-Type': 'application/json',
-        },
-    })
+    try {
+        const response = await fetch(`https://oauth.reddit.com/best` + LIST_RESULT_LIMIT_STR, {
+            method: "GET",
+            headers: {
+                'Authorization': `Bearer ${appAccessToken}`,
+                'Content-Type': 'application/json',
+            },
+        })
 
-    const json = await response.json();
-    return json
+        if (!response.ok) {
+            let error = await response.json();
+            throw new Error(error.message);
+        }
+        const json = await response.json();
+        return json
+    } catch (error) {
+        throw new Error("API error");
+    }
 }
 
 export async function fetchTopPosts(appAccessToken) {
-    const response = await fetch(`https://oauth.reddit.com/top` + LIST_RESULT_LIMIT_STR, {
-        method: "GET",
-        headers: {
-            'Authorization': `Bearer ${appAccessToken}`,
-            'Content-Type': 'application/json',
-        }
-    })
+    try {
+        const response = await fetch(`https://oauth.reddit.com/top` + LIST_RESULT_LIMIT_STR, {
+            method: "GET",
+            headers: {
+                'Authorization': `Bearer ${appAccessToken}`,
+                'Content-Type': 'application/json',
+            }
+        })
 
-    const json = await response.json();
-    return json
+        if (!response.ok) {
+            let error = await response.json();
+            throw new Error(error.message);
+        }
+        const json = await response.json();
+        return json
+    } catch (error) {
+        throw new Error("API error");
+    }
 }
 
 export async function fetchHottestPosts(appAccessToken) {
-    const response = await fetch(`https://oauth.reddit.com/hot` + LIST_RESULT_LIMIT_STR, {
-        method: "GET",
-        headers: {
-            'Authorization': `Bearer ${appAccessToken}`,
-            'Content-Type': 'application/json',
-        }
-    })
+    try {
+        const response = await fetch(`https://oauth.reddit.com/hot` + LIST_RESULT_LIMIT_STR, {
+            method: "GET",
+            headers: {
+                'Authorization': `Bearer ${appAccessToken}`,
+                'Content-Type': 'application/json',
+            }
+        })
 
-    const json = await response.json();
-    return json
+        if (!response.ok) {
+            let error = await response.json();
+            throw new Error(error.message);
+        }
+        const json = await response.json();
+        return json
+    } catch (error) {
+        throw new Error("API error");
+    }
 }
 
 export async function fetchControversialPosts(appAccessToken) {
-    const response = await fetch(`https://oauth.reddit.com/controversial` + LIST_RESULT_LIMIT_STR, {
-        method: "GET",
-        headers: {
-            'Authorization': `Bearer ${appAccessToken}`,
-            'Content-Type': 'application/json',
-        }
-    })
+    try {
+        const response = await fetch(`https://oauth.reddit.com/controversial` + LIST_RESULT_LIMIT_STR, {
+            method: "GET",
+            headers: {
+                'Authorization': `Bearer ${appAccessToken}`,
+                'Content-Type': 'application/json',
+            }
+        })
 
-    const json = await response.json();
-    return json
+        if (!response.ok) {
+            let error = await response.json();
+            throw new Error(error.message);
+        }
+        const json = await response.json();
+        return json
+    } catch (error) {
+        throw new Error("API error");
+    }
 }
 
 
-export async function fetchSearchResult(term) {
+export async function fetchSearchResult(params) {
+    const term = params
     console.log(term)
     const endpoint = `https://www.reddit.com/search.json?q=${term}`;
     const response = await fetch(endpoint);

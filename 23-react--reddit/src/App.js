@@ -4,17 +4,17 @@ import { RouterProvider, createBrowserRouter, createRoutesFromElements, Route } 
 import RootLayout from './components/RootLayout';
 import Home from './components/Home';
 import Best from './components/Best';
-import Controversial from './components/Controversial';
-import Found from './components/Found';
-import PageNotFound from './components/PageNotFound';
-
-import {
-  fetchSearchResult, fetchBestPosts, getUserlessAuthorizarion, fetchTopPosts,
-  fetchHottestPosts,
-  fetchControversialPosts
-} from './api/api';
 import Top from './components/Top';
 import Hot from './components/Hot';
+import Controversial from './components/Controversial';
+import Found from './components/Found';
+import Error404 from './components/Error404';
+import ErrorGeneric from './components/ErrorGeneric';
+
+
+import {
+  fetchSearchResult, fetchBestPosts, getUserlessAuthorizarion, fetchTopPosts, fetchHottestPosts, fetchControversialPosts
+} from './api/api';
 
 
 function App() {
@@ -47,7 +47,11 @@ function App() {
 
   const appRouter = createBrowserRouter(
     createRoutesFromElements(
-      <Route path="/" element={<RootLayout />} >
+      <Route
+        path="/"
+        element={<RootLayout />}
+        errorElement={<ErrorGeneric />}>
+			
         {/* nested in layout comp */}
         <Route index element={<Home />} />
 
@@ -75,7 +79,7 @@ function App() {
           element={<Found />}
           loader={(term) => fetchSearchResult(term)} />
 
-        <Route path="*" element={<PageNotFound />} />
+        <Route path="*" element={<Error404 />} />
 
       </Route >)
   );

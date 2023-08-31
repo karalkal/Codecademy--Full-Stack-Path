@@ -40,7 +40,7 @@ export default function Card({ result }) {
                 <div className={styles.cardTitle}>{htmlDecode(result.title)}</div>
                 <div className={styles.cardAuthor}>
                     Posted by&nbsp;
-                    <span>{result.author}</span>
+                    <span>{htmlDecode(result.author)}</span>
                     &nbsp;on&nbsp;
                     <span>{new Date(unixTime).toLocaleDateString()}</span>
                 </div>
@@ -51,8 +51,8 @@ export default function Card({ result }) {
                 </div>
                 <div className={styles.cardText}>
                     {result.text.length > 260
-                        ? `${(result.text).substring(0, 260)}...`
-                        : `${result.text} `
+                        ? `${htmlDecode((result.text).substring(0, 260))}...`
+                        : `${htmlDecode(result.text)} `
                     }
                 </div>
             </div>
