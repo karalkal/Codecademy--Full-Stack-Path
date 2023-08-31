@@ -66,8 +66,7 @@
 
 .mediaCardContent {
     margin-left: 1%;
-    min-width: 22%;
-    max-width: 26%;
+    max-width: 44%;
     object-fit: contain;
     object-position: 50% 0%; /* 50% 50% is centered */
 }
