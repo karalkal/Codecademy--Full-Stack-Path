@@ -31,7 +31,6 @@ export async function getUserlessAuthorizarion() {
             throw new Error(error.message);
         }
         const authData = await response.json()
-
         return authData
     }
     catch (error) {
@@ -92,11 +91,11 @@ export async function fetchControversialPosts(appAccessToken) {
 }
 
 
-export async function fetchSearchResult(term = "Ivan") {
+export async function fetchSearchResult(term) {
+    console.log(term)
     const endpoint = `https://www.reddit.com/search.json?q=${term}`;
     const response = await fetch(endpoint);
     const json = await response.json();
-    console.log(json)
     return json
 };
 

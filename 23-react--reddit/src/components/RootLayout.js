@@ -6,7 +6,6 @@ const Root = (props) => {
     return (
         <>
             <Header />
-
             {/* Outlet will render a <main> component depending on the route selected */}
             <Outlet />
         </>

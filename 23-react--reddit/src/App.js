@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { RouterProvider, createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom';
 
-import Root from './components/Root';
+import RootLayout from './components/RootLayout';
 import Home from './components/Home';
 import Best from './components/Best';
 import Controversial from './components/Controversial';
@@ -47,9 +47,8 @@ function App() {
 
   const appRouter = createBrowserRouter(
     createRoutesFromElements(
-      <Route path="/" element={
-        <Root />} >
-
+      <Route path="/" element={<RootLayout />} >
+        {/* nested in layout comp */}
         <Route index element={<Home />} />
 
         <Route
@@ -72,8 +71,9 @@ function App() {
           element={<Controversial appAccessToken={appAccessToken} />}
           loader={() => fetchControversialPosts(appAccessToken)} />
 
-        <Route path="found" element={<Found />}
-          loader={fetchSearchResult} />
+        <Route path="found"
+          element={<Found />}
+          loader={(term) => fetchSearchResult(term)} />
 
         <Route path="*" element={<PageNotFound />} />
 

@@ -1,6 +1,8 @@
 import { nanoid } from "nanoid"
+import { decode as htmlDecode } from 'html-entities';    // deals with html entities which are not displayed properly in JSX
 import styles from "./Card.module.css"
 import { Link } from "react-router-dom"
+
 
 
 export default function Card({ result }) {
@@ -35,7 +37,7 @@ export default function Card({ result }) {
                 </div>
 
                 {/* title, author, datestamp */}
-                <div className={styles.cardTitle}>{result.title}</div>
+                <div className={styles.cardTitle}>{htmlDecode(result.title)}</div>
                 <div className={styles.cardAuthor}>
                     Posted by&nbsp;
                     <span>{result.author}</span>
