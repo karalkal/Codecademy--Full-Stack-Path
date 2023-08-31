@@ -44,10 +44,14 @@ export default function Card({ result }) {
                     &nbsp;on&nbsp;
                     <span>{new Date(unixTime).toLocaleDateString()}</span>
                 </div>
-                {/* subreddit, text*/}
+                {/* subreddit, text, rating*/}
                 <div className={styles.cardSubreddit}>
                     r/
                     <span>{result.subreddit}</span>
+                </div>
+                <div className={styles.postRating}>
+                    upvote_ratio &nbsp;
+                    <span>{result.upvote_ratio}</span>
                 </div>
                 <div className={styles.cardText}>
                     {result.text.length > 260
@@ -55,6 +59,7 @@ export default function Card({ result }) {
                         : `${htmlDecode(result.text)} `
                     }
                 </div>
+
             </div>
 
             {/* IMG if any */}

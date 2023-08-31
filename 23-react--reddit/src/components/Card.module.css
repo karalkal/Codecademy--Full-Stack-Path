@@ -44,7 +44,8 @@
 }
 
 .card .cardSubreddit,
-.card .cardAuthor {
+.card .cardAuthor,
+.card .postRating  {
     font-family: var(--font-primary);
     font-weight: 600;
     margin-bottom: 8px;
