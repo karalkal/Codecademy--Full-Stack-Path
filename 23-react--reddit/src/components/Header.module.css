@@ -73,6 +73,11 @@
     border: 1px solid var(--rich-black);
     background-color: var(--platinum);
 }
+.firstRowItem input:focus,
+.firstRowItem input:active {
+    border: 1px solid var(--glaucous);
+    outline: none;
+}
 
 .firstRowItem .button {
     grid-column: span 1;
