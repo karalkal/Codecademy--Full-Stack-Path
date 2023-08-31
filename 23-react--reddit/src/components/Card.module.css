@@ -1,6 +1,6 @@
 .card {
     background-color: var(--columbia-blue);
-    border: 22px solid var(--platinum);
+    border: 8px solid var(--platinum);
     border-radius: 11px;
     color: var(--rich-black);
     padding: 16px;
@@ -16,7 +16,7 @@
 
 .card:hover {
     background-color: var(--powder-blue);
-    border: 22px solid var(--columbia-blue);
+    border-color: var(--columbia-blue);
 }
 
 .card .textCardContent {
