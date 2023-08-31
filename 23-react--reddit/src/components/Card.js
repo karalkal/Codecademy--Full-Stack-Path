@@ -2,7 +2,9 @@ import { nanoid } from "nanoid"
 import { decode as htmlDecode } from 'html-entities';    // deals with html entities which are not displayed properly in JSX
 import styles from "./Card.module.css"
 import { Link } from "react-router-dom"
-
+import { PiPencilLineLight } from "react-icons/pi";
+import { IoLogoReddit } from "react-icons/io";
+import { BsArrowDownUp } from "react-icons/bs";
 
 
 export default function Card({ result }) {
@@ -39,19 +41,22 @@ export default function Card({ result }) {
                 {/* title, author, datestamp */}
                 <div className={styles.cardTitle}>{htmlDecode(result.title)}</div>
                 <div className={styles.cardAuthor}>
-                    Posted by&nbsp;
-                    <span>{htmlDecode(result.author)}</span>
-                    &nbsp;on&nbsp;
+                <PiPencilLineLight />&nbsp;
+                    Posted&nbsp;by&nbsp;
+                    <span>{htmlDecode(result.author)} </span>
+                     on&nbsp;
                     <span>{new Date(unixTime).toLocaleDateString()}</span>
                 </div>
                 {/* subreddit, text, rating*/}
                 <div className={styles.cardSubreddit}>
+                <IoLogoReddit />&nbsp;
                     r/
                     <span>{result.subreddit}</span>
                 </div>
                 <div className={styles.postRating}>
-                    upvote_ratio &nbsp;
-                    <span>{result.upvote_ratio}</span>
+                <BsArrowDownUp />&nbsp;
+                    upvotes&nbsp;<span>{result.upvotes}</span>
+                    &nbsp; / &nbsp;ratio&nbsp;<span>{result.upvote_ratio}</span>
                 </div>
                 <div className={styles.cardText}>
                     {result.text.length > 260

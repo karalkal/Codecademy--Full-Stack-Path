@@ -19,6 +19,14 @@
     border-color: var(--columbia-blue);
 }
 
+.card svg {
+    /*icons */
+    line-height: 1;
+    background-color: var(--rich-black);
+    color: var(--columbia-blue);
+    font-size: 1.1em;
+}
+
 .card .textCardContent {
     display: flex;
     flex-direction: column;
@@ -39,29 +47,30 @@
     color: var(--rich-black);
     font-family: var(--font-display);
     font-size: 1.4em;
-    margin-bottom: 8px;
-    padding: 4px;
+    margin-bottom: 11px;
 }
 
 .card .cardSubreddit,
 .card .cardAuthor,
-.card .postRating  {
+.card .postRating {
     font-family: var(--font-primary);
     font-weight: 600;
-    margin-bottom: 8px;
+    margin-left: 11px;
+    font-size: 1.1em;
 }
 
 .card .cardSubreddit>span,
-.card .cardAuthor>span {
+.card .cardAuthor>span,
+.card .postRating>span {
     font-size: 1.1em;
     color: var(--glaucous);
 }
 
 .card .cardText {
+    margin-top: 11px;
     color: (--rich-black);
     font-size: 1.1em;
     margin-bottom: 8px;
-    padding: 4px;
     overflow: hidden;
 }
 
@@ -69,7 +78,8 @@
     margin-left: 1%;
     max-width: 44%;
     object-fit: contain;
-    object-position: 50% 0%; /* 50% 50% is centered */
+    object-position: 50% 0%;
+    /* 50% 50% is centered */
 }
 
 
