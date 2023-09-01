@@ -27,16 +27,16 @@ export async function getUserlessAuthorizarion() {
         })
 
         if (!response.ok) {
-            let error = await response.json();
-            throw new Error(error.message);
-        }
-        const authData = await response.json()
-        return authData
-    }
-    catch (error) {
+            throw new Error(`${response.statusText} - ${response.status}`);
+        }   // if ok
+        const json = await response.json();
+        return json
+    } catch (error) {
+        // will catch errors from if (!response.ok) too 
         throw new Error(error.message);
     }
 }
+
 
 export async function fetchBestPosts(appAccessToken) {
     try {
@@ -49,15 +49,16 @@ export async function fetchBestPosts(appAccessToken) {
         })
 
         if (!response.ok) {
-            let error = await response.json();
-            throw new Error(error.message);
-        }
+            throw new Error(`${response.statusText} - ${response.status}`);
+        }   // if ok
         const json = await response.json();
         return json
     } catch (error) {
-        throw new Error("API error");
+        // will catch errors from if (!response.ok) too 
+        throw new Error(error.message);
     }
 }
+
 
 export async function fetchTopPosts(appAccessToken) {
     try {
@@ -70,13 +71,13 @@ export async function fetchTopPosts(appAccessToken) {
         })
 
         if (!response.ok) {
-            let error = await response.json();
-            throw new Error(error.message);
-        }
+            throw new Error(`${response.statusText} - ${response.status}`);
+        }   // if ok
         const json = await response.json();
         return json
     } catch (error) {
-        throw new Error("API error");
+        // will catch errors from if (!response.ok) too 
+        throw new Error(error.message);
     }
 }
 
@@ -91,13 +92,13 @@ export async function fetchHottestPosts(appAccessToken) {
         })
 
         if (!response.ok) {
-            let error = await response.json();
-            throw new Error(error.message);
-        }
+            throw new Error(`${response.statusText} - ${response.status}`);
+        }   // if ok
         const json = await response.json();
         return json
     } catch (error) {
-        throw new Error("API error");
+        // will catch errors from if (!response.ok) too 
+        throw new Error(error.message);
     }
 }
 
@@ -112,13 +113,13 @@ export async function fetchControversialPosts(appAccessToken) {
         })
 
         if (!response.ok) {
-            let error = await response.json();
-            throw new Error(error.message);
-        }
+            throw new Error(`${response.statusText} - ${response.status}`);
+        }   // if ok
         const json = await response.json();
         return json
     } catch (error) {
-        throw new Error("API error");
+        // will catch errors from if (!response.ok) too 
+        throw new Error(error.message);
     }
 }
 

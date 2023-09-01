@@ -6,6 +6,7 @@ import { PiPencilLineLight } from "react-icons/pi";
 import { IoLogoReddit } from "react-icons/io";
 import { BsArrowDownUp } from "react-icons/bs";
 
+//  TODO "&#x200b" does not render correctly
 
 export default function Card({ result }) {
     // The Date constructor from Javascript accepts the number of milliseconds as timestamp, not unix time (number of seconds).
@@ -19,6 +20,8 @@ export default function Card({ result }) {
         && (result.img_thumbnail.slice(-4) === ".png" || result.img_thumbnail.slice(-4) === ".jpg")) {
         imageSrc = result.img_thumbnail
     }
+
+    console.log(result.media)
 
 
     return (
@@ -41,26 +44,26 @@ export default function Card({ result }) {
                 {/* title, author, datestamp */}
                 <div className={styles.cardTitle}>{htmlDecode(result.title)}</div>
                 <div className={styles.cardAuthor}>
-                <PiPencilLineLight />&nbsp;
+                    <PiPencilLineLight />&nbsp;
                     Posted&nbsp;by&nbsp;
                     <span>{htmlDecode(result.author)} </span>
-                     on&nbsp;
+                    on&nbsp;
                     <span>{new Date(unixTime).toLocaleDateString()}</span>
                 </div>
                 {/* subreddit, text, rating*/}
                 <div className={styles.cardSubreddit}>
-                <IoLogoReddit />&nbsp;
+                    <IoLogoReddit />&nbsp;
                     r/
                     <span>{result.subreddit}</span>
                 </div>
                 <div className={styles.postRating}>
-                <BsArrowDownUp />&nbsp;
+                    <BsArrowDownUp />&nbsp;
                     upvotes&nbsp;<span>{result.upvotes}</span>
                     &nbsp; / &nbsp;ratio&nbsp;<span>{result.upvote_ratio}</span>
                 </div>
                 <div className={styles.cardText}>
-                    {result.text.length > 260
-                        ? `${htmlDecode((result.text).substring(0, 260))}...`
+                    {result.text.length > 440
+                        ? `${htmlDecode((result.text).substring(0, 440))}...`
                         : `${htmlDecode(result.text)} `
                     }
                 </div>

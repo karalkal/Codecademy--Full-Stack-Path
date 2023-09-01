@@ -12,12 +12,11 @@ export default function getRelatedVideos(obj) {
             &lt;iframe width="356" height="200" src="https://www.youtube.com/embed/9RFMQEEmU8g?feature=oembed&amp;enablejsapi=1" frameborder="0" .....
             need to extract just the src bit
             */
-
-            console.log(obj.data.secure_media.oembed.html);
             const htmlOfJson = obj.data.secure_media.oembed.html
             const indexOfSrcTag = htmlOfJson.indexOf('src="')
             const indexOfTrailingSemiColon = htmlOfJson.indexOf('"', indexOfSrcTag + 40)
-            const srcLink = htmlOfJson.slice(indexOfSrcTag, indexOfTrailingSemiColon)
+            const srcLink = htmlOfJson.slice(indexOfSrcTag + 5, indexOfTrailingSemiColon)
+            console.log(srcLink)
             return srcLink
         }
         else {

@@ -12,6 +12,9 @@ const Best = () => {
 
     return (
         <main className={styles.mainContainer}>
+
+<iframe width="420" height="315" src='https://www.youtube.com/embed/nMMNkfSQuiU?feature=oembed&amp;enablejsapi=1'></iframe>
+
             <h1><span className={styles.galleryTitle}>Best</span>
                 <span className={styles.gallerySubtitle}> (proportion of upvotes to downvotes)</span></h1>
             <div className={styles.galleryContainer}>

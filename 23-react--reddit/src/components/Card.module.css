@@ -39,15 +39,15 @@
 }
 
 .cardTopSection>.cardIcons>img {
-    width: 35px;
+    width: 26px;
     margin-right: 11px;
 }
 
 .card .cardTitle {
     color: var(--rich-black);
     font-family: var(--font-display);
-    font-size: 1.4em;
-    margin-bottom: 11px;
+    font-size: 1.3em;
+    margin: 11px 0 17px;
 }
 
 .card .cardSubreddit,
@@ -67,7 +67,7 @@
 }
 
 .card .cardText {
-    margin-top: 11px;
+    margin-top: 17px;
     color: (--rich-black);
     font-size: 1.1em;
     margin-bottom: 8px;

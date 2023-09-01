@@ -19,6 +19,7 @@ import {
 
 function App() {
   const [appAccessToken, setAppAccessToken] = useState("");
+  const [hasValidToken, setHasValidToken] = useState(false)
 
   //Check if token in localStorage, if not get one
   useEffect(() => {
@@ -31,16 +32,16 @@ function App() {
     else {
       const getToken = async () => {
         const authData = await getUserlessAuthorizarion()
+        console.log(authData)
         accessToken = JSON.stringify(authData.access_token)
         localStorage.setItem("access_token", accessToken)
         console.log("Just got new token");
       }
       // call the function
       getToken()
-        // make sure to catch any error
-        .catch(console.error);
 
       setAppAccessToken(accessToken)
+      setHasValidToken(true)
     }
   },
     [])
@@ -51,7 +52,7 @@ function App() {
         path="/"
         element={<RootLayout />}
         errorElement={<ErrorGeneric />}>
-			
+
         {/* nested in layout comp */}
         <Route index element={<Home />} />
 

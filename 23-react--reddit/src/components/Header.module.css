@@ -2,7 +2,6 @@
 
 #header {
     background-color: var(--powder-blue);
-    height: 88px;
     padding: 11px 44px;
     display: flex;
     flex-direction: row;
@@ -25,7 +24,7 @@
 #header>div>h1 {
     font-family: var(--font-display);
     color: var(--glaucous);
-    font-size: 2.2em;
+    font-size: 3.1em;
     text-shadow: 2px 2px var(--rich-black);
 }
 
@@ -33,7 +32,7 @@
     display: grid;
     grid-template-columns: repeat(8, 1fr);
     gap: 17px 11px;
-    width: 62%;
+    /* width: 62%; */
 }
 
 .navLink,
