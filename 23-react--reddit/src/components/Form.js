@@ -1,24 +1,25 @@
-import { useState } from "react"
-import { useNavigate } from "react-router-dom"
-import { fetchSearchResult } from "../api/api"
+import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
-export default function Form() {
-    const [searchTerm, setSearchTerm] = useState("")
+
+export default function Form({ setSearchTerm }) {
+    const [searchQuery, setSearchQuery] = useState("")
     const navigate = useNavigate()
 
-
-    function handleChange(event) {
-        setSearchTerm(event.target.value)
-    }
-
     function handleSubmit(event) {
+        // get data and set state of local and global vars
         event.preventDefault()
-        console.log("Seraching for... ", searchTerm);
-        // fetchSearchResult(searchTerm)
+        setSearchTerm(searchQuery)
 
-        navigate({
-            pathname: '/found',
-            search: `q=${searchTerm}`
+        let sq = searchQuery        // save value so we can send it with navigate (below) before resetting the state
+
+        // clear form
+        setSearchQuery("")
+
+        navigate('/found', {
+            state: {
+                sq: sq
+            }
         })
     }
 
@@ -27,9 +28,8 @@ export default function Form() {
             <input
                 type="text"
                 placeholder="Search for..."
-                onChange={handleChange}
-                value={searchTerm}
-            />
+                onChange={(event) => setSearchQuery(event.target.value)}
+                value={searchQuery} />
             {/* Don't forget onSumbit = {callbackfunction} */}
             <button>Search</button>
         </form>

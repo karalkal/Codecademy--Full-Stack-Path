@@ -124,9 +124,7 @@ export async function fetchControversialPosts(appAccessToken) {
 }
 
 
-export async function fetchSearchResult(params) {
-    const term = params
-    console.log(term)
+export async function fetchSearchResult(term) {
     const endpoint = `https://www.reddit.com/search.json?q=${term}`;
     const response = await fetch(endpoint);
     const json = await response.json();

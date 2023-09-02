@@ -2,14 +2,14 @@ import React from 'react';
 import Header from './Header'
 import { Outlet } from 'react-router-dom';
 
-const Root = (props) => {
+const RootLayout = ({setSearchTerm}) => {
     return (
         <>
-            <Header />
+            <Header setSearchTerm={setSearchTerm}/>
             {/* Outlet will render a <main> component depending on the route selected */}
             <Outlet />
         </>
     );
 };
 
-export default Root;
+export default RootLayout;

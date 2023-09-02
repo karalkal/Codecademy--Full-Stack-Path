@@ -21,6 +21,7 @@ import {
 
 function App() {
     const [accessToken, setAccessToken] = useState(localStorage.getItem("access_token"));
+    const [searchTerm, setSearchTerm] = useState("")
 
     useEffect(() => {
         //Check if token in localStorage, if not get new one from API
@@ -59,35 +60,36 @@ function App() {
         createRoutesFromElements(
             <Route
                 path="/"
-                element={<RootLayout />}
-                errorElement={<ErrorGeneric />}>
+                element={<RootLayout setSearchTerm={setSearchTerm} />}
+                errorElement={<ErrorGeneric />} >
 
                 {/* nested in layout comp */}
                 <Route index element={<Home />} />
 
                 <Route
                     path="best"
-                    element={<Best accessToken={accessToken} />}
+                    element={<Best />}
                     loader={() => fetchBestPosts(accessToken)} />
 
                 <Route
                     path="top"
-                    element={<Top accessToken={accessToken} />}
+                    element={<Top />}
                     loader={() => fetchTopPosts(accessToken)} />
 
                 <Route
                     path="hot"
-                    element={<Hot accessToken={accessToken} />}
+                    element={<Hot />}
                     loader={() => fetchHottestPosts(accessToken)} />
 
                 <Route
                     path="controversial"
-                    element={<Controversial accessToken={accessToken} />}
+                    element={<Controversial />}
                     loader={() => fetchControversialPosts(accessToken)} />
 
                 <Route path="found"
-                    element={<Found />}
-                    loader={(term) => fetchSearchResult(term)} />
+                    element={<Found/>}
+                    // loader={() => fetchSearchResult(searchTerm)} 
+                    />
 
                 <Route path="*" element={<Error404 />} />
 
