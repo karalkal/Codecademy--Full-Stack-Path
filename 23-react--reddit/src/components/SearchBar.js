@@ -2,23 +2,20 @@ import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 
 
-export default function Form({ setSearchTerm }) {
+export default function SearchBar() {
     const [searchQuery, setSearchQuery] = useState("")
     const navigate = useNavigate()
 
     function handleSubmit(event) {
-        // get data and set state of local and global vars
         event.preventDefault()
-        setSearchTerm(searchQuery)
 
-        let sq = searchQuery        // save value so we can send it with navigate (below) before resetting the state
 
         // clear form
-        setSearchQuery("")
+        event.target.reset()
 
         navigate('/found', {
             state: {
-                sq: sq
+                searchQuery
             }
         })
     }

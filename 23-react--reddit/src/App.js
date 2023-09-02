@@ -21,7 +21,6 @@ import {
 
 function App() {
     const [accessToken, setAccessToken] = useState(localStorage.getItem("access_token"));
-    const [searchTerm, setSearchTerm] = useState("")
 
     useEffect(() => {
         //Check if token in localStorage, if not get new one from API
@@ -60,7 +59,7 @@ function App() {
         createRoutesFromElements(
             <Route
                 path="/"
-                element={<RootLayout setSearchTerm={setSearchTerm} />}
+                element={<RootLayout />}
                 errorElement={<ErrorGeneric />} >
 
                 {/* nested in layout comp */}
@@ -87,9 +86,9 @@ function App() {
                     loader={() => fetchControversialPosts(accessToken)} />
 
                 <Route path="found"
-                    element={<Found/>}
-                    // loader={() => fetchSearchResult(searchTerm)} 
-                    />
+                    element={<Found />}
+                // loader={() => fetchSearchResult(searchTerm)} 
+                />
 
                 <Route path="*" element={<Error404 />} />
 

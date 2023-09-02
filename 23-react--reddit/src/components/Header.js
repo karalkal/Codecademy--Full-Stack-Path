@@ -1,9 +1,9 @@
-import Form from './Form'
+import SearchBar from './SearchBar'
 import styles from './Header.module.css'
 import { NavLink } from 'react-router-dom'
 
 
-export default function Header({ setSearchTerm }) {
+export default function Header() {
     // console.log(props)
     return <header id={styles.header}>
         <div>
@@ -13,7 +13,7 @@ export default function Header({ setSearchTerm }) {
 
         <nav>
             <div className={`${styles.firstRowItem}`}>
-                <Form className={`${styles.firstRowItem}`} setSearchTerm={setSearchTerm} />
+                <SearchBar className={`${styles.firstRowItem}`} />
             </div>
 
             <NavLink to="best"
