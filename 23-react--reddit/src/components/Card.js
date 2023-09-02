@@ -9,10 +9,12 @@ import { BsArrowDownUp } from "react-icons/bs";
 //  TODO "&#x200b" does not render correctly
 
 export default function Card({ result }) {
+    const redditLink = "https://www.reddit.com" + result.permalink
+
     // The Date constructor from Javascript accepts the number of milliseconds as timestamp, not unix time (number of seconds).
     // So, to adjust that, is just multiply the unix time by 1000.
     const unixTime = result.created_utc * 1000
-    const redditLink = "https://www.reddit.com" + result.permalink
+
     // if thumbnail is "self" (no idea what this is) or we have video (video has thumbnail attached too)
     // check for extension too as articles with no img also have "url_overridden_by_dest"
     let imageSrc = null
@@ -20,8 +22,6 @@ export default function Card({ result }) {
         && (result.img_thumbnail.slice(-4) === ".png" || result.img_thumbnail.slice(-4) === ".jpg")) {
         imageSrc = result.img_thumbnail
     }
-
-    // console.log(result.media)
 
 
     return (
@@ -59,7 +59,7 @@ export default function Card({ result }) {
                 <div className={styles.postRating}>
                     <BsArrowDownUp />&nbsp;
                     upvotes&nbsp;<span>{result.upvotes}</span>
-                    &nbsp; 
+                    &nbsp;
                     / &nbsp;ratio&nbsp;<span>{result.upvote_ratio}</span>
                     / &nbsp;comments&nbsp;<span>{result.num_comments}</span>
                 </div>
@@ -79,15 +79,21 @@ export default function Card({ result }) {
                     className={styles.mediaCardContent}>
                 </img>}
             {/* VIDEO if any */}
-            {result.media &&
+            {/* Reddit video */}
+            {result.video && result.video.videoProvider === "reddit" &&
                 <video
                     controls
                     className={styles.mediaCardContent} >
-                    <source src={result.media} type="video/mp4" />
-                    <source src={result.media} type="video/ogg" />
+                    <source src={result.video.videoSrc} type="video/mp4" />
+                    <source src={result.video.videoSrc} type="video/ogg" />
                     Your browser does not support the video tag.
                 </video>
             }
+            {/* Youtube iframe */}
+            {result.video && result.video.videoProvider === "youtube" &&
+                <iframe title="gyz" className={styles.mediaCardContent} src={result.video.videoSrc}></iframe>
+            }
+
 
 
 

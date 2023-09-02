@@ -83,7 +83,7 @@
 }
 
 
-/*
+
 .card>.cardFooter>.linkToPost {
     background-color: var(--glaucous);
     font-family: var(--font-display);
@@ -95,7 +95,7 @@
     width: fit-content;
     height: fit-content;
 }
-*/
+
 
 /* Responsive columns - one column layout (vertical) on small screens */
 @media screen and (max-width: 600px) {

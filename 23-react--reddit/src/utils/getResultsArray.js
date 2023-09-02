@@ -26,7 +26,7 @@ export default function getResultsArray(largeJson) {
                 ? null
                 : obj.data.preview.images[0].source.url,
             // can have external videos as well
-            media: getRelatedVideos(obj)
+            video: getRelatedVideos(obj)
         }
     })
 
