@@ -1,6 +1,6 @@
 import jwt_decode from "jwt-decode"; //decoded token will have .exp property
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { RouterProvider, createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom';
 
 import RootLayout from './components/RootLayout';
@@ -22,35 +22,37 @@ import {
 function App() {
     const [accessToken, setAccessToken] = useState(localStorage.getItem("access_token"));
 
-    //Check if token in localStorage, if not get one
-    // declare function
-    async function getNewTokenStoreItUpdateState() {
-        const authData = await getUserlessAuthorizarion()
-        let newAccessToken = JSON.stringify(authData.access_token)
-        localStorage.setItem("access_token", newAccessToken)
-        setAccessToken(newAccessToken);
-    }
-
-    // Check if token in localStorage
-    if (accessToken) {
-        // If yes, check if it has expired 
-        let decodedToken = jwt_decode(accessToken);
-        let currentDate = new Date();
-        // Expired
-        if (decodedToken.exp * 1000 < currentDate.getTime()) {			// JWT exp is in seconds
-            console.log("expired token")
-            getNewTokenStoreItUpdateState();
+    useEffect(() => {
+        //Check if token in localStorage, if not get new one from API
+        // declare function
+        async function getNewTokenStoreItUpdateState() {
+            const authData = await getUserlessAuthorizarion()
+            let newAccessToken = authData.access_token
+            localStorage.setItem("access_token", newAccessToken)
+            setAccessToken(newAccessToken);
         }
-        else {
-            console.log("valid token")
-        }
-        // Not expired - will continue to line setAccessToken(JSON.parse(accessToken));
-    }
 
-    else { 			// If no token in localStorage 
-        console.log("no token")
-        getNewTokenStoreItUpdateState()
-    }
+        // Check if token in localStorage
+        if (accessToken) {
+            // If yes, check if it has expired 
+            let decodedToken = jwt_decode(accessToken);
+            let currentDate = new Date();
+            // Expired
+            if (decodedToken.exp * 1000 < currentDate.getTime()) {			// JWT exp is in seconds
+                console.log("expired token")
+                getNewTokenStoreItUpdateState();
+            }
+            else {
+                // Not expired - do nothing
+                console.log("valid token")
+            }
+        }
+
+        else { 			// If no token in localStorage 
+            console.log("no token")
+            getNewTokenStoreItUpdateState()
+        }
+    }, [accessToken])
 
 
     const appRouter = createBrowserRouter(
