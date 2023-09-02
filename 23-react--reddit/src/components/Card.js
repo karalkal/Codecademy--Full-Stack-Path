@@ -21,7 +21,7 @@ export default function Card({ result }) {
         imageSrc = result.img_thumbnail
     }
 
-    console.log(result.media)
+    // console.log(result.media)
 
 
     return (

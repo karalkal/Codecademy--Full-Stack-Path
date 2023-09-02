@@ -3,7 +3,6 @@ import Header from "./Header";
 
 export default function ErrorGeneric() {
     const error = useRouteError()
-    console.log(error)
 
     return (
         <>

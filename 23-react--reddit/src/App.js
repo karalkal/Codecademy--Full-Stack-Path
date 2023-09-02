@@ -1,4 +1,6 @@
-import { useEffect, useState } from 'react';
+import jwt_decode from "jwt-decode"; //decoded token will have .exp property
+
+import { useState } from 'react';
 import { RouterProvider, createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom';
 
 import RootLayout from './components/RootLayout';
@@ -13,84 +15,89 @@ import ErrorGeneric from './components/ErrorGeneric';
 
 
 import {
-  fetchSearchResult, fetchBestPosts, getUserlessAuthorizarion, fetchTopPosts, fetchHottestPosts, fetchControversialPosts
+    fetchSearchResult, fetchBestPosts, getUserlessAuthorizarion, fetchTopPosts, fetchHottestPosts, fetchControversialPosts
 } from './api/api';
 
 
 function App() {
-  const [appAccessToken, setAppAccessToken] = useState("");
-  const [hasValidToken, setHasValidToken] = useState(false)
+    const [accessToken, setAccessToken] = useState(localStorage.getItem("access_token"));
 
-  //Check if token in localStorage, if not get one
-  useEffect(() => {
-    let accessToken = localStorage.getItem("access_token")
-    if (accessToken) {
-      console.log("Already have token")
-      setAppAccessToken(JSON.parse(accessToken))
-    }
-
-    else {
-      const getToken = async () => {
+    //Check if token in localStorage, if not get one
+    // declare function
+    async function getNewTokenStoreItUpdateState() {
         const authData = await getUserlessAuthorizarion()
-        console.log(authData)
-        accessToken = JSON.stringify(authData.access_token)
-        localStorage.setItem("access_token", accessToken)
-        console.log("Just got new token");
-      }
-      // call the function
-      getToken()
-
-      setAppAccessToken(accessToken)
-      setHasValidToken(true)
+        let newAccessToken = JSON.stringify(authData.access_token)
+        localStorage.setItem("access_token", newAccessToken)
+        setAccessToken(newAccessToken);
     }
-  },
-    [])
 
-  const appRouter = createBrowserRouter(
-    createRoutesFromElements(
-      <Route
-        path="/"
-        element={<RootLayout />}
-        errorElement={<ErrorGeneric />}>
+    // Check if token in localStorage
+    if (accessToken) {
+        // If yes, check if it has expired 
+        let decodedToken = jwt_decode(accessToken);
+        let currentDate = new Date();
+        // Expired
+        if (decodedToken.exp * 1000 < currentDate.getTime()) {			// JWT exp is in seconds
+            console.log("expired token")
+            getNewTokenStoreItUpdateState();
+        }
+        else {
+            console.log("valid token")
+        }
+        // Not expired - will continue to line setAccessToken(JSON.parse(accessToken));
+    }
 
-        {/* nested in layout comp */}
-        <Route index element={<Home />} />
-
-        <Route
-          path="best"
-          element={<Best appAccessToken={appAccessToken} />}
-          loader={() => fetchBestPosts(appAccessToken)} />
-
-        <Route
-          path="top"
-          element={<Top appAccessToken={appAccessToken} />}
-          loader={() => fetchTopPosts(appAccessToken)} />
-
-        <Route
-          path="hot"
-          element={<Hot appAccessToken={appAccessToken} />}
-          loader={() => fetchHottestPosts(appAccessToken)} />
-
-        <Route
-          path="controversial"
-          element={<Controversial appAccessToken={appAccessToken} />}
-          loader={() => fetchControversialPosts(appAccessToken)} />
-
-        <Route path="found"
-          element={<Found />}
-          loader={(term) => fetchSearchResult(term)} />
-
-        <Route path="*" element={<Error404 />} />
-
-      </Route >)
-  );
+    else { 			// If no token in localStorage 
+        console.log("no token")
+        getNewTokenStoreItUpdateState()
+    }
 
 
-  return (
-    <>
-      <RouterProvider router={appRouter} />
-    </>
-  );
+    const appRouter = createBrowserRouter(
+        createRoutesFromElements(
+            <Route
+                path="/"
+                element={<RootLayout />}
+                errorElement={<ErrorGeneric />}>
+
+                {/* nested in layout comp */}
+                <Route index element={<Home />} />
+
+                <Route
+                    path="best"
+                    element={<Best accessToken={accessToken} />}
+                    loader={() => fetchBestPosts(accessToken)} />
+
+                <Route
+                    path="top"
+                    element={<Top accessToken={accessToken} />}
+                    loader={() => fetchTopPosts(accessToken)} />
+
+                <Route
+                    path="hot"
+                    element={<Hot accessToken={accessToken} />}
+                    loader={() => fetchHottestPosts(accessToken)} />
+
+                <Route
+                    path="controversial"
+                    element={<Controversial accessToken={accessToken} />}
+                    loader={() => fetchControversialPosts(accessToken)} />
+
+                <Route path="found"
+                    element={<Found />}
+                    loader={(term) => fetchSearchResult(term)} />
+
+                <Route path="*" element={<Error404 />} />
+
+            </Route >)
+    );
+
+
+    return (
+        <>
+            <RouterProvider router={appRouter} />
+        </>
+    );
 }
 
 export default App;
