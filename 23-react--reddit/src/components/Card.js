@@ -59,7 +59,9 @@ export default function Card({ result }) {
                 <div className={styles.postRating}>
                     <BsArrowDownUp />&nbsp;
                     upvotes&nbsp;<span>{result.upvotes}</span>
-                    &nbsp; / &nbsp;ratio&nbsp;<span>{result.upvote_ratio}</span>
+                    &nbsp; 
+                    / &nbsp;ratio&nbsp;<span>{result.upvote_ratio}</span>
+                    / &nbsp;comments&nbsp;<span>{result.num_comments}</span>
                 </div>
                 <div className={styles.cardText}>
                     {result.text.length > 440

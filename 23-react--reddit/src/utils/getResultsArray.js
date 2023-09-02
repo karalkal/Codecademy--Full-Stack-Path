@@ -19,6 +19,7 @@ export default function getResultsArray(largeJson) {
             }),
             upvotes: obj.data.ups,
             upvote_ratio: obj.data.upvote_ratio,
+            num_comments: obj.data.num_comments,
             created_utc: obj.data.created_utc,
             img_thumbnail: obj.data.url_overridden_by_dest,
             img_url: obj.data.preview === undefined
