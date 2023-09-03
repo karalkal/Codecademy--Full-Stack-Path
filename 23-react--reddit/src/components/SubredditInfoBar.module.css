@@ -1,7 +1,7 @@
 .subRBarContainer {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: flex-start;
 
     background-color: var(--columbia-blue);
     border: 8px solid var(--platinum);
@@ -11,8 +11,7 @@
     box-shadow: 0px 0px 8px 8px var(--powder-blue);
     text-align: left;
 
-    grid-column: span 2;
-
+    grid-column: span 2;    
 }
 
 .subRBarContainer:hover {
@@ -20,105 +19,70 @@
     border-color: var(--columbia-blue);
 }
 
-.subRBarContainer img {
-    width: 62px;
-    height: 62px;
-}
 
 .subRTopSection {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    text-align: end;
+    margin-bottom: 11px;
+
+    background-color: var(--powder-blue);
+    padding: 8px;
+    border-radius: 11px;
+    width: 100%;
+
 }
 
-.subRTitle {}
-
-.subRURL {}
-
-.subRMainSection {}
-
-
-.card svg {
-    /*icons */
-    line-height: 1;
-    background-color: var(--rich-black);
-    color: var(--columbia-blue);
-    font-size: 1.1em;
+.subRTopSection img {
+    width: 53px;
+    height: 53px;
+    margin-right: 4px;
 }
 
-.card .textCardContent {
-    display: flex;
-    flex-direction: column;
-    max-width: 50;
-}
-
-.cardTopSection {
-    display: flex;
-    justify-content: space-between;
-}
-
-.cardTopSection>.cardIcons>img {
-    width: 26px;
-    margin-right: 11px;
-}
-
-.card .cardTitle {
-    color: var(--rich-black);
-    font-family: var(--font-display);
-    font-size: 1.3em;
-    margin: 11px 0 17px;
-}
-
-.card .cardSubreddit,
-.card .cardAuthor,
-.card .postRating {
-    font-family: var(--font-primary);
-    font-weight: 600;
-    margin-left: 11px;
-    font-size: 1.1em;
-}
-
-.card .cardSubreddit>span,
-.card .cardAuthor>span,
-.card .postRating>span {
-    font-size: 1.1em;
-    color: var(--glaucous);
-}
-
-.card .cardText {
-    margin-top: 17px;
-    color: (--rich-black);
-    font-size: 1.1em;
+.subRTitle {
     margin-bottom: 8px;
-    overflow: hidden;
-}
-
-.mediaCardContent {
-    margin-left: 1%;
-    max-width: 44%;
-    object-fit: contain;
-    object-position: 50% 0%;
-    /* 50% 50% is centered */
-}
-
-.linkToPost {
-    background-color: var(--glaucous);
-    color: var(--rich_black);
     font-family: var(--font-display);
-    font-size: 1em;
-    padding: 8px 19px;
-    border-radius: 4px;
-    text-transform: uppercase;
-    width: fit-content;
-    height: fit-content;
-    align-self: flex-end;
-    margin-top: 22px;
+    color: var(--glaucous);
+    font-size: 1.2em;
 }
 
-.linkToPost:hover {
-    background-color: var(--rich-black);
-    color: var(--glaucous);
+.subRURL {
+    font-family: var(--font-display);
 }
+
+.subRMiddleSection {
+    margin-bottom: 11px;
+    text-align: center;
+    display: inline-flex;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.subRMiddleSection>div{
+    background-color: var(--powder-blue);
+    border-radius: 11px;
+    width: 100%;
+}
+
+.subRMiddleSection>div>p{
+    border-radius: 11px;
+    margin: 8px 0;
+}
+
+.subRMiddleSectionBold {
+    font-weight: 600;
+    font-size: 1.1em;
+}
+
+.subRBottomSection{
+    background-color: var(--powder-blue);
+    border-radius: 11px;
+    width: 100%;
+    height: 100%;
+    padding: 11px;
+}
+
 
 
 /* Responsive columns - one column layout (vertical) on small screens */

@@ -5,6 +5,7 @@ export const subredditsSubscriptionList = [
     "funny", "facepalm",
     "gifs", "pics",
     "HistoryPorn", "EarthPorn",
+    "QuotesPorn", "Art", 
     "todayilearned", "YouShouldKnow",
     "programming", "ReactJS",
     "redditdev", "technology"
