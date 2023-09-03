@@ -1,5 +1,6 @@
 import { useLoaderData, Link } from 'react-router-dom';
 import styles from "./GalleryContainer.module.css"
+import SubredditInfoBar from './SubredditInfoBar';
 
 
 const Home = () => {
@@ -12,9 +13,9 @@ const Home = () => {
             <h1><div className={styles.galleryTitle}>Favourite Subreddits</div>
                 <div className={styles.gallerySubtitle}> (think of subtitle)</div></h1>
             <div className={styles.galleryContainer}>
-                {/* {resultsArr.map(rslt =>
-                    <Card result={rslt} />
-                )} */}
+                {hottestPosts.map(rslt =>
+                    <SubredditInfoBar result={rslt} />
+                )}
 
             </div>
         </main>
