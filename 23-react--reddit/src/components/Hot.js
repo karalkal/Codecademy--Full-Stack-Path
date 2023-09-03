@@ -12,8 +12,8 @@ const Hot = () => {
 
     return (
         <main className={styles.mainContainer}>
-            <h1><span className={styles.galleryTitle}>Hot</span>
-                <span className={styles.gallerySubtitle}> (upvoted fresher posts)</span></h1>
+            <h1><div className={styles.galleryTitle}>Hot</div>
+                <div className={styles.gallerySubtitle}> (upvoted fresher posts)</div></h1>
             <div className={styles.galleryContainer}>
                 {resultsArr.map(rslt =>
                     <Card result={rslt} />

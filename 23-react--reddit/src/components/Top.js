@@ -12,8 +12,8 @@ const Top = (props) => {
 
     return (
         <main className={styles.mainContainer}>
-            <h1><span className={styles.galleryTitle}>Top</span>
-                <span className={styles.gallerySubtitle}> (like the raw score, upvotes minus downvotes.)</span></h1>
+            <h1><div className={styles.galleryTitle}>This week's Top</div>
+                <div className={styles.gallerySubtitle}> (like raw score, upvotes minus downvotes.)</div></h1>
             <div className={styles.galleryContainer}>
                 {resultsArr.map(rslt =>
                     <Card result={rslt} />

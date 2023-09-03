@@ -12,13 +12,24 @@
 
 .galleryTitle {
     font-family: var(--font-display);
-    text-shadow: 2px 2px var(--glaucous);
+    color: var(--glaucous);
     font-weight: 400;
-    font-size: 1em;
+    font-size: 1.1em;
+    margin-bottom: 11px;
 }
+
+.galleryTitle:before,
+.galleryTitle:after {
+    content: '\2630';
+    padding: 0 8px;
+    font-size: .6em;
+    position: relative;
+    bottom: 3px;
+}
+
 
 .gallerySubtitle {
     font-family: var(--font-display);
     font-weight: 200;
-    font-size: .8em;
+    font-size: .6em;
 }

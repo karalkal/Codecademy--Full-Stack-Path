@@ -8,7 +8,7 @@ import { decode as base64_decode, encode as base64_encode } from 'base-64';
 const AUTH_ENDPOINT = "https://www.reddit.com/api/v1/access_token"
 const CLIENT_ID = process.env.REACT_APP_CLIENT_ID
 const CLIENT_SECRET = process.env.REACT_APP_REDDIT_SECRET_KEY
-const LIST_RESULT_LIMIT_STR = "?limit=44"
+const LIST_RESULT_LIMIT_STR = "limit=44"
 
 // Load before it renders, no need to use useEffect
 export async function getUserlessAuthorizarion() {
@@ -40,7 +40,7 @@ export async function getUserlessAuthorizarion() {
 
 export async function fetchBestPosts(appAccessToken) {
     try {
-        const response = await fetch(`https://oauth.reddit.com/best` + LIST_RESULT_LIMIT_STR, {
+        const response = await fetch(`https://oauth.reddit.com/top?${LIST_RESULT_LIMIT_STR}&t=all`, {
             method: "GET",
             headers: {
                 'Authorization': `Bearer ${appAccessToken}`,
@@ -62,7 +62,7 @@ export async function fetchBestPosts(appAccessToken) {
 
 export async function fetchTopPosts(appAccessToken) {
     try {
-        const response = await fetch(`https://oauth.reddit.com/top` + LIST_RESULT_LIMIT_STR, {
+        const response = await fetch(`https://oauth.reddit.com/top?${LIST_RESULT_LIMIT_STR}&t=week`, {
             method: "GET",
             headers: {
                 'Authorization': `Bearer ${appAccessToken}`,
@@ -83,7 +83,7 @@ export async function fetchTopPosts(appAccessToken) {
 
 export async function fetchHottestPosts(appAccessToken) {
     try {
-        const response = await fetch(`https://oauth.reddit.com/hot` + LIST_RESULT_LIMIT_STR, {
+        const response = await fetch(`https://oauth.reddit.com/hot?${LIST_RESULT_LIMIT_STR}`, {
             method: "GET",
             headers: {
                 'Authorization': `Bearer ${appAccessToken}`,
@@ -104,7 +104,7 @@ export async function fetchHottestPosts(appAccessToken) {
 
 export async function fetchControversialPosts(appAccessToken) {
     try {
-        const response = await fetch(`https://oauth.reddit.com/controversial` + LIST_RESULT_LIMIT_STR, {
+        const response = await fetch(`https://oauth.reddit.com/controversial?${LIST_RESULT_LIMIT_STR}`, {
             method: "GET",
             headers: {
                 'Authorization': `Bearer ${appAccessToken}`,
@@ -125,7 +125,8 @@ export async function fetchControversialPosts(appAccessToken) {
 
 
 export async function fetchSearchResult(term) {
-    const endpoint = `https://www.reddit.com/search.json?q=${term}&sort=comments`;
+    console.log(term)
+    const endpoint = `https://www.reddit.com/search.json?q=${term}&sort=relevance`;
     const response = await fetch(endpoint);
     const json = await response.json();
     return json

@@ -12,8 +12,8 @@ const Best = () => {
 
     return (
         <main className={styles.mainContainer}>
-            <h1><span className={styles.galleryTitle}>Best</span>
-                <span className={styles.gallerySubtitle}> (proportion of upvotes to downvotes)</span></h1>
+            <h1><div className={styles.galleryTitle}>Best of all time</div>
+                <div className={styles.gallerySubtitle}> (Actual endpoint is '/top?limit=44&t=all'. Since app is userless /best returns the same as /hot)</div></h1>
             <div className={styles.galleryContainer}>
                 {resultsArr.map(rslt =>
                     <Card result={rslt} />

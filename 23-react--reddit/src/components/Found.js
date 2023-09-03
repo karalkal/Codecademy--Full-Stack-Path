@@ -33,8 +33,8 @@ const Found = () => {
     if (resultsArr) {
         return (
             <main className={styles.mainContainer}>
-                <h1><span className={styles.galleryTitle}>Top results for "{searchQuery}"</span>
-                    <span className={styles.gallerySubtitle}> (sorted by most commented on)</span></h1>
+                <h1><div className={styles.galleryTitle}>Top results for "{searchQuery}"</div>
+                    <div className={styles.gallerySubtitle}> (sorted by relevance)</div></h1>
                 <div className={styles.galleryContainer}>
                     {resultsArr.map(rslt =>
                         <Card result={rslt} />
