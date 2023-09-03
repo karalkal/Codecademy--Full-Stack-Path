@@ -48,6 +48,12 @@
     border: none;
 }
 
+.navLink:hover,
+.firstRowItem button:hover {
+    background-color: var(--rich-black);
+    color: var(--glaucous);
+}
+
 .navLink:active {
     background-color: var(--platinum);
     color: var(--powder-blue);
