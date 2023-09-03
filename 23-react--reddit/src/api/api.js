@@ -133,4 +133,50 @@ export async function fetchSearchResult(term) {
 };
 
 
+export async function fetchAboutInfoFavSubReddits(appAccessToken, subRedditNames) {
+    let subRedditsAboutInfo = []
+    for (let nameSR of subRedditNames) {
+        const dataSR = await fetchSRAbout(nameSR)
+        const infoSR = {
+            searchedName: nameSR,
+            display_name: dataSR.data.display_name,
+            accounts_active: dataSR.data.accounts_active,
+            subscribers: dataSR.data.subscribers,
+            created_utc: dataSR.data.created_utc,
+            public_description: dataSR.data.public_description,
+            title: dataSR.data.title,
+            url: dataSR.data.url,
+            header_img: dataSR.data.header_img,
+            icon_img: dataSR.data.icon_img,
+        }
+        subRedditsAboutInfo.push(infoSR)
+    }
+
+    return subRedditsAboutInfo
+
+    async function fetchSRAbout(nameSR) {
+        try {
+            const response = await fetch(`https://oauth.reddit.com/r/${nameSR}/about`, {
+                method: "GET",
+                headers: {
+                    'Authorization': `Bearer ${appAccessToken}`,
+                    'Content-Type': 'application/json',
+                }
+            })
+
+            if (!response.ok) {
+                throw new Error(`${response.statusText} - ${response.status}`);
+            }   // if ok
+            const json = await response.json();
+            return json
+        } catch (error) {
+            // will catch errors from if (!response.ok) too 
+            throw new Error(error.message);
+        }
+    }
+
+
+}
+
+
 

@@ -1,10 +1,22 @@
-import React from 'react';
+import { useLoaderData, Link } from 'react-router-dom';
+import styles from "./GalleryContainer.module.css"
 
 
 const Home = () => {
+    // Get results as prop from App.js which is gonna be loaded before it is rendered 
+    const hottestPosts = useLoaderData();
+
+    console.log(hottestPosts)
     return (
-        <main>
-            <h1>Home</h1>
+        <main className={styles.mainContainer}>
+            <h1><div className={styles.galleryTitle}>Favourite Subreddits</div>
+                <div className={styles.gallerySubtitle}> (think of subtitle)</div></h1>
+            <div className={styles.galleryContainer}>
+                {/* {resultsArr.map(rslt =>
+                    <Card result={rslt} />
+                )} */}
+
+            </div>
         </main>
     );
 };

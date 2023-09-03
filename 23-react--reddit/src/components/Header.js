@@ -6,10 +6,10 @@ import { NavLink } from 'react-router-dom'
 export default function Header() {
     // console.log(props)
     return <header id={styles.header}>
-        <div>
-            <img src='logo.svg' className={styles["logo"]} alt="logo" />
-            <h1>Mini Reddit</h1>
-        </div>
+        <NavLink to="/">
+                <img src='logo.svg' className={styles["logo"]} alt="logo" />
+                <h1>Mini Reddit</h1>
+        </NavLink>
 
         <nav>
             <div className={`${styles.firstRowItem}`}>

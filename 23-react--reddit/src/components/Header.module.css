@@ -9,19 +9,19 @@
     justify-content: space-between;
 }
 
-#header>div {
+#header>a {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 44px;
 }
 
-#header>div>.logo {
+#header>a>.logo {
     height: 80px;
     pointer-events: none;
 }
 
-#header>div>h1 {
+#header>a>h1 {
     font-family: var(--font-display);
     color: var(--glaucous);
     font-size: 3.1em;

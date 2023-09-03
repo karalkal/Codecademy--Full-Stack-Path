@@ -15,8 +15,9 @@ import ErrorGeneric from './components/ErrorGeneric';
 
 
 import {
-    fetchSearchResult, fetchBestPosts, getUserlessAuthorizarion, fetchTopPosts, fetchHottestPosts, fetchControversialPosts
+    fetchSearchResult, fetchBestPosts, getUserlessAuthorizarion, fetchTopPosts, fetchHottestPosts, fetchControversialPosts, fetchAboutInfoFavSubReddits
 } from './api/api';
+import { subredditsSubscriptionList } from "./utils/subredditsSubscriptionList";
 
 
 function App() {
@@ -63,7 +64,9 @@ function App() {
                 errorElement={<ErrorGeneric />} >
 
                 {/* nested in layout comp */}
-                <Route index element={<Home />} />
+                <Route index
+                    element={<Home />}
+                    loader={() => fetchAboutInfoFavSubReddits(accessToken, subredditsSubscriptionList)} />                
 
                 <Route
                     path="best"

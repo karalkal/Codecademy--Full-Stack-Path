@@ -12,8 +12,9 @@ const Best = () => {
 
     return (
         <main className={styles.mainContainer}>
-            <h1><div className={styles.galleryTitle}>Best of all time</div>
-                <div className={styles.gallerySubtitle}> (Actual endpoint is '/top?limit=44&t=all'. Since app is userless /best returns the same as /hot)</div></h1>
+            <h1 className={styles.galleryTitle}>Best of all time</h1>
+            <h3 className={styles.gallerySubtitle}> (Actual endpoint is '/top?limit=44&t=all'.
+                Since app is userless /best returns the same as /hot)</h3>
             <div className={styles.galleryContainer}>
                 {resultsArr.map(rslt =>
                     <Card result={rslt} />
