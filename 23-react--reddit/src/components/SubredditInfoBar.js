@@ -4,8 +4,10 @@ import { Link } from "react-router-dom"
 import { BsArrowDownUp } from "react-icons/bs";
 import logo from "../misc/redditB&Wlogo.png";
 
-export default function SubredditInfoBar({ result }) {
-    console.log(result)
+export default function SubredditInfoBar({
+    result,
+    setSelectedSubReddit,
+    setSelectedCriterion }) {
     const subredditURL = "https://www.reddit.com" + result.url
 
     // The Date constructor from Javascript accepts the number of milliseconds as timestamp, not unix time (number of seconds).
@@ -14,14 +16,18 @@ export default function SubredditInfoBar({ result }) {
 
     let srIcon = result.icon_img === "" ? `${logo}` : result.icon_img
 
+    function selecetionHandler(subr, crit) {
+        setSelectedSubReddit(subr)
+        setSelectedCriterion(crit)
+    }
+
     return (
-        <Link to="" className={styles.subRBarContainer} id={nanoid()}>
+        <div className={styles.subRBarContainer} id={nanoid()}>
             <div className={styles.subRTopSection}>
                 <img src={srIcon} alt={result.display_name}></img>
                 <div>
                     <p className={styles.subRTitle}>{result.title}</p>
                     <p className={styles.subRURL}>{result.url}</p>
-
                 </div>
             </div>
 
@@ -44,9 +50,24 @@ export default function SubredditInfoBar({ result }) {
                 <p>{result.public_description}</p>
             </div>
 
+            <div className={styles.subRButtonsDiv}>
+                <button className={styles.subRButton} onClick={() => selecetionHandler(result.url, "best")}>
+                    best
+                </button>
+                <button className={styles.subRButton} onClick={() => selecetionHandler(result.url, "top")}>
+                    top
+                </button>
+                <button className={styles.subRButton} onClick={() => selecetionHandler(result.url, "hot")}>
+                    hot
+                </button>
+                <button className={styles.subRButton} onClick={() => selecetionHandler(result.url, "controversial")}>
+                    contro
+                </button>
+            </div>
 
 
 
-        </Link >
+
+        </div >
     )
 }

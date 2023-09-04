@@ -15,13 +15,17 @@ import ErrorGeneric from './components/ErrorGeneric';
 
 
 import {
-    fetchSearchResult, fetchBestPosts, getUserlessAuthorizarion, fetchTopPosts, fetchHottestPosts, fetchControversialPosts, fetchAboutInfoFavSubReddits
+    getUserlessAuthorizarion,
+    fetchSearchResult, fetchBestPosts, fetchTopPosts, fetchHottestPosts, fetchControversialPosts, fetchAboutInfoFavSubReddits
 } from './api/api';
 import { subredditsSubscriptionList } from "./utils/subredditsSubscriptionList";
+import Subreddit from "./components/Subreddit";
 
 
 function App() {
     const [accessToken, setAccessToken] = useState(localStorage.getItem("access_token"));
+    const [selectedSubReddit, setSelectedSubReddit] = useState({});
+    const [selectedCriterion, setSelectedCriterion] = useState("");
 
     useEffect(() => {
         //Check if token in localStorage, if not get new one from API
@@ -66,7 +70,13 @@ function App() {
                 {/* nested in layout comp */}
                 <Route index
                     element={<Home />}
-                    loader={() => fetchAboutInfoFavSubReddits(accessToken, subredditsSubscriptionList)} />                
+                    loader={() => fetchAboutInfoFavSubReddits(accessToken, subredditsSubscriptionList)}
+                    setSelectedSubReddit={setSelectedSubReddit} />
+
+                <Route path=":"
+                    element={<Subreddit />}
+                    loader={() => fetchAboutInfoFavSubReddits(accessToken, subredditsSubscriptionList)}
+                    selectedSubReddit={selectedSubReddit} />
 
                 <Route
                     path="best"

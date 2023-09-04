@@ -9,7 +9,6 @@ export default function SearchBar() {
     function handleSubmit(event) {
         event.preventDefault()
 
-
         // clear form
         event.target.reset()
 

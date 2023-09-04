@@ -81,6 +81,7 @@ export async function fetchTopPosts(appAccessToken) {
     }
 }
 
+
 export async function fetchHottestPosts(appAccessToken) {
     try {
         const response = await fetch(`https://oauth.reddit.com/hot?${LIST_RESULT_LIMIT_STR}`, {
@@ -101,6 +102,7 @@ export async function fetchHottestPosts(appAccessToken) {
         throw new Error(error.message);
     }
 }
+
 
 export async function fetchControversialPosts(appAccessToken) {
     try {
@@ -174,8 +176,28 @@ export async function fetchAboutInfoFavSubReddits(appAccessToken, subRedditNames
             throw new Error(error.message);
         }
     }
+}
 
 
+export async function fetchPostsPerSubRettit(appAccessToken, selectedSubReddit) {
+    try {
+        const response = await fetch(`https://oauth.reddit.com/${selectedSubReddit}/hot?${LIST_RESULT_LIMIT_STR}`, {
+            method: "GET",
+            headers: {
+                'Authorization': `Bearer ${appAccessToken}`,
+                'Content-Type': 'application/json',
+            }
+        })
+
+        if (!response.ok) {
+            throw new Error(`${response.statusText} - ${response.status}`);
+        }   // if ok
+        const json = await response.json();
+        return json
+    } catch (error) {
+        // will catch errors from if (!response.ok) too 
+        throw new Error(error.message);
+    }
 }
 
 

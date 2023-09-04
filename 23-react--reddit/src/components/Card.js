@@ -25,7 +25,7 @@ export default function Card({ result }) {
 
 
     return (
-        <div className={styles.cardContainer}>
+        <Link to={redditLink} target="_blank" className={styles.cardContainer}>
             <div className={styles.card} id={nanoid()}>
                 <div className={styles.textCardContent}>
                     {/* Icons and link*/}
@@ -97,9 +97,9 @@ export default function Card({ result }) {
             </div>
 
             {/* vitit link */}
-            <Link to={redditLink} target="_blank" className={styles.linkToPost}>
+            {/* <Link to={redditLink} target="_blank" className={styles.linkToPost}>
                 visit
-            </Link>
-        </div>)
+            </Link> */}
+        </Link>)
 
 }
