@@ -69,14 +69,18 @@ function App() {
 
                 {/* nested in layout comp */}
                 <Route index
-                    element={<Home />}
+                    element={<Home
+                        setSelectedSubReddit={setSelectedSubReddit}
+                        setSelectedCriterion={setSelectedCriterion} />}
                     loader={() => fetchAboutInfoFavSubReddits(accessToken, subredditsSubscriptionList)}
-                    setSelectedSubReddit={setSelectedSubReddit} />
+                />
+                {/* object in JSX */}
 
                 <Route path=":"
                     element={<Subreddit />}
                     loader={() => fetchAboutInfoFavSubReddits(accessToken, subredditsSubscriptionList)}
-                    selectedSubReddit={selectedSubReddit} />
+                    selectedSubReddit={selectedSubReddit}
+                    selectedCriterion={selectedCriterion} />
 
                 <Route
                     path="best"
