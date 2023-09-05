@@ -179,9 +179,10 @@ export async function fetchAboutInfoFavSubReddits(appAccessToken, subRedditNames
 }
 
 
-export async function fetchPostsPerSubRettit(appAccessToken, selectedSubReddit) {
-    try {
-        const response = await fetch(`https://oauth.reddit.com/${selectedSubReddit}/hot?${LIST_RESULT_LIMIT_STR}`, {
+export async function fetchPostsPerSubRettit(appAccessToken, selectedSubReddit, selectedCriterion) {
+    console.log(appAccessToken, selectedSubReddit, selectedCriterion);
+    try {           // NB selectedSubReddit comes with leading and trailing slash
+        const response = await fetch(`https://oauth.reddit.com${selectedSubReddit}${selectedCriterion}?${LIST_RESULT_LIMIT_STR}`, {
             method: "GET",
             headers: {
                 'Authorization': `Bearer ${appAccessToken}`,
@@ -193,6 +194,7 @@ export async function fetchPostsPerSubRettit(appAccessToken, selectedSubReddit) 
             throw new Error(`${response.statusText} - ${response.status}`);
         }   // if ok
         const json = await response.json();
+        console.log(json)
         return json
     } catch (error) {
         // will catch errors from if (!response.ok) too 

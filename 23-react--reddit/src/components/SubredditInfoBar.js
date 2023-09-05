@@ -1,14 +1,11 @@
+import { Link, useNavigate } from "react-router-dom"
+import { useState } from "react";
 import { nanoid } from "nanoid"
 import styles from "./SubredditInfoBar.module.css"
-import { Link } from "react-router-dom"
-import { BsArrowDownUp } from "react-icons/bs";
 import logo from "../misc/redditB&Wlogo.png";
 
-export default function SubredditInfoBar({
-    subr,
-    setSelectedSubReddit,
-    setSelectedCriterion }) {
-    const subredditURL = "https://www.reddit.com" + subr.url
+export default function SubredditInfoBar({ subr }) {
+    const navigate = useNavigate()
 
     // The Date constructor from Javascript accepts the number of milliseconds as timestamp, not unix time (number of seconds).
     // So, to adjust that, is just multiply the unix time by 1000.
@@ -16,10 +13,10 @@ export default function SubredditInfoBar({
 
     let srIcon = subr.icon_img === "" ? `${logo}` : subr.icon_img
 
-    function selecetionHandler(subr, crit) {
-        console.log(subr, crit)
-        setSelectedSubReddit(subr)
-        setSelectedCriterion(crit)
+    function selectionHandler(selectedSubReddit, selectedCriterion) {
+        navigate('subreddit', {
+            state: { selectedSubReddit, selectedCriterion }
+        })
     }
 
     return (
@@ -52,16 +49,16 @@ export default function SubredditInfoBar({
             </div>
 
             <div className={styles.subRButtonsDiv}>
-                <button className={styles.subRButton} onClick={() => selecetionHandler(subr.url, "best")}>
+                <button className={styles.subRButton} onClick={() => selectionHandler(subr.url, "best")}>
                     best
                 </button>
-                <button className={styles.subRButton} onClick={() => selecetionHandler(subr.url, "top")}>
+                <button className={styles.subRButton} onClick={() => selectionHandler(subr.url, "top")}>
                     top
                 </button>
-                <button className={styles.subRButton} onClick={() => selecetionHandler(subr.url, "hot")}>
+                <button className={styles.subRButton} onClick={() => selectionHandler(subr.url, "hot")}>
                     hot
                 </button>
-                <button className={styles.subRButton} onClick={() => selecetionHandler(subr.url, "controversial")}>
+                <button className={styles.subRButton} onClick={() => selectionHandler(subr.url, "controversial")}>
                     contro
                 </button>
             </div>

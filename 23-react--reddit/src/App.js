@@ -24,8 +24,6 @@ import Subreddit from "./components/Subreddit";
 
 function App() {
     const [accessToken, setAccessToken] = useState(localStorage.getItem("access_token"));
-    const [selectedSubReddit, setSelectedSubReddit] = useState({});
-    const [selectedCriterion, setSelectedCriterion] = useState("");
 
     useEffect(() => {
         //Check if token in localStorage, if not get new one from API
@@ -69,18 +67,14 @@ function App() {
 
                 {/* nested in layout comp */}
                 <Route index
-                    element={<Home
-                        setSelectedSubReddit={setSelectedSubReddit}
-                        setSelectedCriterion={setSelectedCriterion} />}
-                    loader={() => fetchAboutInfoFavSubReddits(accessToken, subredditsSubscriptionList)}
-                />
+                    element={<Home />}
+                    loader={() => fetchAboutInfoFavSubReddits(accessToken, subredditsSubscriptionList)} />
                 {/* object in JSX */}
 
-                <Route path=":"
-                    element={<Subreddit />}
-                    loader={() => fetchAboutInfoFavSubReddits(accessToken, subredditsSubscriptionList)}
-                    selectedSubReddit={selectedSubReddit}
-                    selectedCriterion={selectedCriterion} />
+                <Route path="subreddit"
+                    element={<Subreddit accessToken={accessToken} />}
+                // loader={() => fetchAboutInfoFavSubReddits(accessToken)} 
+                />
 
                 <Route
                     path="best"

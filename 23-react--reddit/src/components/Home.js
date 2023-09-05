@@ -1,10 +1,9 @@
-import { useLoaderData, Link, useLocation } from 'react-router-dom';
+import { useLoaderData } from 'react-router-dom';
 import styles from "./GalleryContainer.module.css"
 import SubredditInfoBar from './SubredditInfoBar';
 
 
-const Home = ({ setSelectedSubReddit, setSelectedCriterion }) => {
-
+const Home = () => {
     // Get results as prop from App.js which is gonna be loaded before it is rendered 
     const followedSubReddits = useLoaderData();
 
@@ -12,16 +11,14 @@ const Home = ({ setSelectedSubReddit, setSelectedCriterion }) => {
         <main className={styles.mainContainer}>
             <h1><div className={styles.galleryTitle}>Favourite Subreddits</div>
                 <div className={styles.gallerySubtitle}> (think of subtitle)</div></h1>
+
             <div className={styles.galleryContainer}>
                 {followedSubReddits.map(subr =>
-                    <SubredditInfoBar
-                        subr={subr}
-                        setSelectedSubReddit={setSelectedSubReddit}
-                        setSelectedCriterion={setSelectedCriterion}
+                    <SubredditInfoBar subr={subr}
                     />
                 )}
-
             </div>
+
         </main>
     );
 };

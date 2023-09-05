@@ -24,7 +24,8 @@ const Found = () => {
             setResultsArr(kur)
             console.log("resultsArr", resultsArr)
         }
-        getResults();
+
+        getResults();       // CALL THE FUNCTION
         // cleanup?
     }
         , [searchQuery])
