@@ -100,6 +100,7 @@
     text-transform: uppercase;
     box-shadow: none;
     border: none;
+    cursor: pointer;
 }
 
 .subRButton:hover {

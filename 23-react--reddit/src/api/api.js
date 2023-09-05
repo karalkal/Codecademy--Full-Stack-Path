@@ -127,11 +127,19 @@ export async function fetchControversialPosts(appAccessToken) {
 
 
 export async function fetchSearchResult(term) {
-    console.log(term)
-    const endpoint = `https://www.reddit.com/search.json?q=${term}&sort=relevance`;
-    const response = await fetch(endpoint);
-    const json = await response.json();
-    return json
+    try {
+        const response = await fetch(`https://www.reddit.com/search.json?q=${term}&sort=relevance`);
+        
+
+        if (!response.ok) {
+            throw new Error(`${response.statusText} - ${response.status}`);
+        }   // if ok
+        const json = await response.json();
+        return json
+    } catch (error) {
+        // will catch errors from if (!response.ok) too 
+        throw new Error(error.message);
+    }
 };
 
 
@@ -180,8 +188,7 @@ export async function fetchAboutInfoFavSubReddits(appAccessToken, subRedditNames
 
 
 export async function fetchPostsPerSubRettit(appAccessToken, selectedSubReddit, selectedCriterion) {
-    console.log(appAccessToken, selectedSubReddit, selectedCriterion);
-    try {           // NB selectedSubReddit comes with leading and trailing slash
+    try {                   // NB selectedSubReddit comes with leading and trailing slash
         const response = await fetch(`https://oauth.reddit.com${selectedSubReddit}${selectedCriterion}?${LIST_RESULT_LIMIT_STR}`, {
             method: "GET",
             headers: {
@@ -194,7 +201,6 @@ export async function fetchPostsPerSubRettit(appAccessToken, selectedSubReddit, 
             throw new Error(`${response.statusText} - ${response.status}`);
         }   // if ok
         const json = await response.json();
-        console.log(json)
         return json
     } catch (error) {
         // will catch errors from if (!response.ok) too 

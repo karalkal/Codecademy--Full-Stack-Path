@@ -33,7 +33,7 @@ export default function Header() {
 
             <NavLink to="controversial"
                 className={`${styles.secondRowItem} ${styles.navLink}`}>
-                Controversial
+                Contro
             </NavLink>
         </nav>
     </header>

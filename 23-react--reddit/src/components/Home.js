@@ -9,8 +9,8 @@ const Home = () => {
 
     return (
         <main className={styles.mainContainer}>
-            <h1><div className={styles.galleryTitle}>Favourite Subreddits</div>
-                <div className={styles.gallerySubtitle}> (think of subtitle)</div></h1>
+            <h1><div className={styles.galleryTitle}>Selected Subreddits</div>
+                <div className={styles.gallerySubtitle}> (best / top / hot / controversial for a subreddit)</div></h1>
 
             <div className={styles.galleryContainer}>
                 {followedSubReddits.map(subr =>
@@ -22,5 +22,6 @@ const Home = () => {
         </main>
     );
 };
+
 
 export default Home;
