@@ -13,6 +13,7 @@
     font-family: var(--font-display);
     color: var(--glaucous);
     font-weight: 400;
+    margin-bottom: 11px;
 }
 
 .galleryTitle:before,
@@ -27,4 +28,6 @@
 .gallerySubtitle {
     font-family: var(--font-display);
     font-weight: 200;
+    margin-bottom: 44px;
+
 }

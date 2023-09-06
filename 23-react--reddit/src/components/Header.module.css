@@ -2,11 +2,12 @@
 
 #header {
     background-color: var(--powder-blue);
-    padding: 11px 44px;
+    padding: 22px 44px;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: 22px;
 }
 
 #header>a {
@@ -30,13 +31,13 @@
 
 #header>nav {
     display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    gap: 17px 11px;
-    width: 44%;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 11px 17px;
+    width: 53%;
 }
 
 .navLink,
-.firstRowItem button {
+.menuSearchRow button {
     background-color: var(--glaucous);
     color: var(--rich-black);
     font-weight: 600;
@@ -49,7 +50,7 @@
 }
 
 .navLink:hover,
-.firstRowItem button:hover {
+.menuSearchRow button:hover {
     background-color: var(--rich-black);
     color: var(--glaucous);
 }
@@ -59,35 +60,57 @@
     color: var(--powder-blue);
 }
 
-.firstRowItem {
-    grid-column: span 8;
-    /* get all 8 colums from parent grid.. then create new grid */
+
+.menuAboutRow {
+    grid-column: span 12;
+    margin: auto;
+    text-align: center;
+    color: var(--rich-black);
+    font-family: var(--font-display);
+    font-size: 1.5em;
 }
 
-.firstRowItem>form {
+.menuSearchRow {
+    grid-column: span 12;
+    /* get all 12 colums from parent grid... */
+}
+
+.menuSearchRow>form {
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 17px 11px;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 17px;
+    /* ...then create new grid */
 }
 
-.firstRowItem input {
-    grid-column: span 3;
+.menuSearchRow input {
+    grid-column: span 5;
     padding: 6px 11px;
     border-radius: 4px;
     border: 1px solid var(--rich-black);
     background-color: var(--platinum);
+    /* and assign 3 columns to input and one to button */
 }
-.firstRowItem input:focus,
-.firstRowItem input:active {
+
+.menuSearchRow input:focus,
+.menuSearchRow input:active {
     border: 1px solid var(--glaucous);
     outline: none;
 }
 
-.firstRowItem .button {
+.menuSearchRow button {
+    font-size: 1em;
     grid-column: span 1;
 }
 
-.secondRowItem {
-    grid-column: span 2;
+.menuButtonsRow {
+    grid-column: span 12;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 17px;
+}
+
+#aboutBtn {
+    background-color: var(--rich-black);
+    color: var(--glaucous);
 }
