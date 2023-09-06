@@ -15,8 +15,8 @@ const Top = (props) => {
             <h1 className={styles.galleryTitle}>This week's Top</h1>
             <h3 className={styles.gallerySubtitle}> (like raw score, upvotes minus downvotes.)</h3>
             <div className={styles.galleryContainer}>
-                {postsArray.map((rslt, idx) =>
-                    <Card result={rslt} idx={idx} />
+                {postsArray.map(rslt =>
+                    <Card result={rslt} />
                 )}
 
             </div>

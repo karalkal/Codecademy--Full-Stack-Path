@@ -32,7 +32,6 @@ function App() {
         async function getResults() {
             let res = await fetchAboutInfoFavSubReddits(accessToken, subredditsSubscriptionList)
             setFollowedSubReddits(res)
-            console.log("res")
         }
 
         getResults();       // CALL THE FUNCTION

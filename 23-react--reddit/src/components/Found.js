@@ -36,8 +36,8 @@ const Found = () => {
                 <h1 className={styles.galleryTitle}>Top results for "{searchQuery}"</h1>
                 <h3 className={styles.gallerySubtitle}> (sorted by relevance)</h3>
                 <div className={styles.galleryContainer}>
-                    {postsArray.map((rslt, idx) =>
-                        <Card result={rslt} idx={idx} />
+                    {postsArray.map(rslt =>
+                        <Card result={rslt} />
                     )}
 
                 </div>

@@ -60,10 +60,6 @@ export default function SubredditInfoBar({ subr }) {
                     contro
                 </button>
             </div>
-
-
-
-
         </div >
     )
 }

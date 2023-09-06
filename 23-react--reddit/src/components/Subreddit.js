@@ -38,8 +38,8 @@ const Subreddit = ({ accessToken }) => {
             <h3 className={styles.gallerySubtitle}> (Actual endpoint is '/top?limit=44&t=all'.
                 Since app is userless /best returns the same as /hot)</h3>
             <div className={styles.galleryContainer}>
-                {postsArray.map((rslt, idx) =>
-                    <Card result={rslt} idx={idx} />
+                {postsArray.map(rslt =>
+                    <Card result={rslt} />
                 )}
 
             </div>
