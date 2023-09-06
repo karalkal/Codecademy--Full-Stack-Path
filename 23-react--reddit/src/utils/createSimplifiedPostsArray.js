@@ -1,6 +1,6 @@
 import getRelatedVideos from "./getRelatedVideos"
 
-export default function getResultsArray(largeJson) {
+export default function createSimplifiedPostsArray(largeJson) {
     let result = largeJson.map(obj => {
         return {
             id: obj.data.id,

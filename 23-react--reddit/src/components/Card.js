@@ -1,4 +1,3 @@
-import { nanoid } from "nanoid"
 import { decode as htmlDecode } from 'html-entities';    // deals with html entities which are not displayed properly in JSX
 import styles from "./Card.module.css"
 import { Link } from "react-router-dom"
@@ -23,10 +22,9 @@ export default function Card({ result }) {
         imageSrc = result.img_thumbnail
     }
 
-
     return (
-        <Link to={redditLink} target="_blank" className={styles.cardContainer}>
-            <div className={styles.card} id={nanoid()}>
+        <Link to={redditLink} target="_blank" className={styles.cardContainer} key={result.id}>
+            <div className={styles.card}>
                 <div className={styles.textCardContent}>
                     {/* Icons and link*/}
                     <div className={styles.cardTopSection}>

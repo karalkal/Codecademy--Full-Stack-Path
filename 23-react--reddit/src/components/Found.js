@@ -1,13 +1,13 @@
 import { useLocation } from 'react-router-dom';
 import Card from './Card';
 import styles from "./GalleryContainer.module.css"
-import getResultsArray from '../utils/getResultsArray';
+import createSimplifiedPostsArray from '../utils/createSimplifiedPostsArray';
 import { useEffect, useState } from 'react';
 import { fetchSearchResult } from '../api/api';
 
 
 const Found = () => {
-    const [resultsArr, setResultsArr] = useState([])
+    const [postsArray, setpostsArray] = useState([])
 
     const location = useLocation()
 
@@ -20,9 +20,9 @@ const Found = () => {
             console.log("starting search for...", searchQuery)
             let foundPosts = await fetchSearchResult(searchQuery)
 
-            let kur = getResultsArray(foundPosts.data.children)
-            setResultsArr(kur)
-            console.log("resultsArr", resultsArr)
+            let kur = createSimplifiedPostsArray(foundPosts.data.children)
+            setpostsArray(kur)
+            console.log("postsArray", postsArray)
         }
 
         getResults();       // CALL THE FUNCTION
@@ -30,14 +30,14 @@ const Found = () => {
     }
         , [searchQuery])
 
-    if (resultsArr) {
+    if (postsArray) {
         return (
             <main className={styles.mainContainer}>
                 <h1 className={styles.galleryTitle}>Top results for "{searchQuery}"</h1>
                 <h3 className={styles.gallerySubtitle}> (sorted by relevance)</h3>
                 <div className={styles.galleryContainer}>
-                    {resultsArr.map(rslt =>
-                        <Card result={rslt} />
+                    {postsArray.map((rslt, idx) =>
+                        <Card result={rslt} idx={idx} />
                     )}
 
                 </div>

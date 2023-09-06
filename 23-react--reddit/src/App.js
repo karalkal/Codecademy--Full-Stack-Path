@@ -24,6 +24,22 @@ import Subreddit from "./components/Subreddit";
 
 function App() {
     const [accessToken, setAccessToken] = useState(localStorage.getItem("access_token"));
+    const [followedSubReddits, setFollowedSubReddits] = useState([])
+
+    //fetch landing page data, i.e. followed reddits' "about" data, incl. icons
+    // need to load this just once, hence useEffect()
+    useEffect(() => {
+        async function getResults() {
+            let res = await fetchAboutInfoFavSubReddits(accessToken, subredditsSubscriptionList)
+            setFollowedSubReddits(res)
+            console.log("res")
+        }
+
+        getResults();       // CALL THE FUNCTION
+        // cleanup?
+    }
+        , [])
+
 
     useEffect(() => {
         //Check if token in localStorage, if not get new one from API
@@ -67,13 +83,12 @@ function App() {
 
                 {/* nested in layout comp */}
                 <Route index
-                    element={<Home />}
-                    loader={() => fetchAboutInfoFavSubReddits(accessToken, subredditsSubscriptionList)} />
-                {/* object in JSX */}
+                    element={<Home followedSubReddits={followedSubReddits} />}
+                // loader={() => fetchAboutInfoFavSubReddits(accessToken, subredditsSubscriptionList)} 
+                />
 
                 <Route path="subreddit"
                     element={<Subreddit accessToken={accessToken} />}
-                // loader={() => fetchAboutInfoFavSubReddits(accessToken)} 
                 />
 
                 <Route

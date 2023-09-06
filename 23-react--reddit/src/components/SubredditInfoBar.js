@@ -1,6 +1,4 @@
 import { Link, useNavigate } from "react-router-dom"
-import { useState } from "react";
-import { nanoid } from "nanoid"
 import styles from "./SubredditInfoBar.module.css"
 import logo from "../misc/redditB&Wlogo.png";
 
@@ -20,7 +18,7 @@ export default function SubredditInfoBar({ subr }) {
     }
 
     return (
-        <div className={styles.subRBarContainer} id={nanoid()}>
+        <div className={styles.subRBarContainer} key={subr.display_name}>
             <div className={styles.subRTopSection}>
                 <img src={srIcon} alt={subr.display_name}></img>
                 <div>

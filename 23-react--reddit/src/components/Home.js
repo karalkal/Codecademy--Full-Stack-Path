@@ -3,9 +3,7 @@ import styles from "./GalleryContainer.module.css"
 import SubredditInfoBar from './SubredditInfoBar';
 
 
-const Home = () => {
-    // Get results as prop from App.js which is gonna be loaded before it is rendered 
-    const followedSubReddits = useLoaderData();
+const Home = ({ followedSubReddits }) => {
 
     return (
         <main className={styles.mainContainer}>

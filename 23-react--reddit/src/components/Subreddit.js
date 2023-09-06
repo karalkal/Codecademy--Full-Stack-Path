@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react';
 import { useLoaderData, useLocation } from 'react-router-dom';
 import Card from './Card';
 import styles from "./GalleryContainer.module.css"
-import getResultsArray from '../utils/getResultsArray';
+import createSimplifiedPostsArray from '../utils/createSimplifiedPostsArray';
 import { fetchPostsPerSubRettit } from '../api/api';
 
 
 const Subreddit = ({ accessToken }) => {
-    const [resultsArr, setResultsArr] = useState([])
+    const [postsArray, setpostsArray] = useState([])
 
     const location = useLocation()
 
@@ -19,8 +19,8 @@ const Subreddit = ({ accessToken }) => {
             console.log("starting search for:", selectedSubReddit, "criterion", selectedCriterion)
             let foundPosts = await fetchPostsPerSubRettit(accessToken, selectedSubReddit, selectedCriterion)
 
-            let kur = getResultsArray(foundPosts.data.children)
-            setResultsArr(kur)
+            let kur = createSimplifiedPostsArray(foundPosts.data.children)
+            setpostsArray(kur)
         }
 
         getResults();       // CALL THE FUNCTION
@@ -28,7 +28,7 @@ const Subreddit = ({ accessToken }) => {
     }
         , [selectedSubReddit, selectedCriterion])
 
-    if (!resultsArr) {
+    if (!postsArray) {
         return <h1>"Loading data from API..."</h1>
     }
 
@@ -38,8 +38,8 @@ const Subreddit = ({ accessToken }) => {
             <h3 className={styles.gallerySubtitle}> (Actual endpoint is '/top?limit=44&t=all'.
                 Since app is userless /best returns the same as /hot)</h3>
             <div className={styles.galleryContainer}>
-                {resultsArr.map(rslt =>
-                    <Card result={rslt} />
+                {postsArray.map((rslt, idx) =>
+                    <Card result={rslt} idx={idx} />
                 )}
 
             </div>
