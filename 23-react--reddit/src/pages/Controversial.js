@@ -13,8 +13,8 @@ const Controversial = () => {
 
     return (
         <main className={styles.mainContainer}>
-            <h1 className={styles.galleryTitle}>Controversial</h1>
-            <h3 className={styles.gallerySubtitle}> (number of upvotes is roughly equal to number of downvotes)</h3>
+            <h1 className={styles.galleryTitle}>Recent Controversial Posts</h1>
+            <h3 className={styles.gallerySubtitle}> Number of upvotes is roughly equal to number of downvotes</h3>
             <div className={styles.galleryContainer}>
                 {postsArray.map(rslt =>
                     <Card result={rslt} key={rslt.id} />

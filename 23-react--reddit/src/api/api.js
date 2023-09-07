@@ -129,7 +129,7 @@ export async function fetchControversialPosts(appAccessToken) {
 export async function fetchSearchResult(term) {
     try {
         const response = await fetch(`https://www.reddit.com/search.json?q=${term}&sort=relevance`);
-        
+
 
         if (!response.ok) {
             throw new Error(`${response.statusText} - ${response.status}`);
@@ -188,8 +188,21 @@ export async function fetchAboutInfoFavSubReddits(appAccessToken, subRedditNames
 
 
 export async function fetchPostsPerSubRettit(appAccessToken, selectedSubReddit, selectedCriterion) {
+    // App is userless and best returns same as hot, 
+    // hence here we are getting top posts of all time instead
+    let urlPath = `${selectedSubReddit}${selectedCriterion}?${LIST_RESULT_LIMIT_STR}`
+    if (selectedCriterion === "best") {
+        urlPath = `${selectedSubReddit}top?${LIST_RESULT_LIMIT_STR}&t=all`
+    }
+    else if (selectedCriterion === "top") {
+        urlPath = `${selectedSubReddit}top?${LIST_RESULT_LIMIT_STR}&t=day`
+    }
+    else if (selectedCriterion === "controversial") {
+        urlPath = `${selectedSubReddit}controversial?${LIST_RESULT_LIMIT_STR}&t=week`
+    }
+
     try {                   // NB selectedSubReddit comes with leading and trailing slash
-        const response = await fetch(`https://oauth.reddit.com${selectedSubReddit}${selectedCriterion}?${LIST_RESULT_LIMIT_STR}`, {
+        const response = await fetch(`https://oauth.reddit.com${urlPath}`, {
             method: "GET",
             headers: {
                 'Authorization': `Bearer ${appAccessToken}`,

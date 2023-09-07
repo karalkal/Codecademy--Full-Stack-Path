@@ -13,8 +13,8 @@ const Hot = () => {
 
     return (
         <main className={styles.mainContainer}>
-            <h1 className={styles.galleryTitle}>Hot</h1>
-            <h3 className={styles.gallerySubtitle}> (upvoted fresher posts)</h3>
+            <h1 className={styles.galleryTitle}>Recent Hot  Posts</h1>
+            <h3 className={styles.gallerySubtitle}> Upvoted fresher posts</h3>
             <div className={styles.galleryContainer}>
                 {postsArray.map(rslt =>
                     <Card result={rslt} key={rslt.id} />

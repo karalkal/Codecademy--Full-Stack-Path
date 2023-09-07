@@ -13,9 +13,10 @@ const Best = () => {
 
     return (
         <main className={styles.mainContainer}>
-            <h1 className={styles.galleryTitle}>Best of all time</h1>
-            <h3 className={styles.gallerySubtitle}> (Actual endpoint is '/top?limit=44&t=all'.
-                Since app is userless /best returns the same as /hot)</h3>
+            <h1 className={styles.galleryTitle}>Best of All Time</h1>
+            <h3 className={styles.gallerySubtitle}>
+                Since app is userless /best would return the same results as /hot. Hence here app is getting the top results of all times instead.
+            </h3>
             <div className={styles.galleryContainer}>
                 {postsArray.map(rslt =>
                     <Card result={rslt} key={rslt.id} />

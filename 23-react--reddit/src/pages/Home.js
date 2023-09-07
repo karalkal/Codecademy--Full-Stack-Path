@@ -8,7 +8,7 @@ const Home = ({ followedSubReddits }) => {
     return (
         <main className={styles.mainContainer}>
             <h1><div className={styles.galleryTitle}>Selected Subreddits</div>
-                <div className={styles.gallerySubtitle}> (best / top / hot / controversial posts for a subreddit)</div></h1>
+                <div className={styles.gallerySubtitle}>View Best/Top/Hot/Controversial Posts for a Subreddit</div></h1>
 
             <div className={styles.galleryContainer}>
                 {followedSubReddits.map(subr =>

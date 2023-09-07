@@ -29,19 +29,29 @@ const Subreddit = ({ accessToken }) => {
     }
         , [selectedSubReddit, selectedCriterion])
 
-    if (!postsArray) {
-        return <h1>"Loading data from API..."</h1>
+    let subtitle = ""
+    if (selectedCriterion === "best") {
+        subtitle = `Actually top results of all times for ${selectedSubReddit}`
     }
+    else if (selectedCriterion === "top") {
+        subtitle = `Today's Top Posts in in ${selectedSubReddit}`
+    }
+    else if (selectedCriterion === "hot") {
+        subtitle = `New and Popular posts in ${selectedSubReddit}`
+    }
+    else if (selectedCriterion === "controversial") {
+        subtitle = `This Week's Most Controverial Posts in ${selectedSubReddit}`
+    }
+
 
     return (
         <main className={styles.mainContainer}>
-            <h1 className={styles.galleryTitle}>{selectedCriterion.toUpperCase()} posts of {selectedSubReddit}</h1>
-            <h3 className={styles.gallerySubtitle}> (Actual endpoint is '/top?limit=44&t=all'.
-                Since app is userless /best returns the same as /hot)</h3>
+            <h1 className={styles.galleryTitle}>{selectedCriterion.charAt(0).toUpperCase() + selectedCriterion.slice(1)}</h1>
+            <h3 className={styles.gallerySubtitle}>{subtitle}</h3>
             <div className={styles.galleryContainer}>
                 {postsArray.map(rslt =>
                     <Card result={rslt} key={rslt.id} />
-                    )}
+                )}
 
             </div>
         </main>
