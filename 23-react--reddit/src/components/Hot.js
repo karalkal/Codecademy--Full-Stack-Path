@@ -16,7 +16,7 @@ const Hot = () => {
             <h3 className={styles.gallerySubtitle}> (upvoted fresher posts)</h3>
             <div className={styles.galleryContainer}>
                 {postsArray.map(rslt =>
-                    <Card result={rslt} />
+                    <Card result={rslt} key={rslt.id} />
                 )}
 
             </div>

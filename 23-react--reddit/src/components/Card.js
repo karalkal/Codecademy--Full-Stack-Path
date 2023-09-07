@@ -22,8 +22,9 @@ export default function Card({ result }) {
         imageSrc = result.img_thumbnail
     }
 
+
     return (
-        <Link to={redditLink} target="_blank" className={styles.cardContainer} key={result.id}>
+        <Link to={redditLink} target="_blank" className={styles.cardContainer}>
             <div className={styles.card}>
                 <div className={styles.textCardContent}>
                     {/* Icons and link*/}
@@ -82,6 +83,7 @@ export default function Card({ result }) {
                 {result.video && result.video.videoProvider === "reddit" &&
                     <video
                         controls
+                        muted={false}
                         className={styles.mediaCardContent} >
                         <source src={result.video.videoSrc} type="video/mp4" />
                         <source src={result.video.videoSrc} type="video/ogg" />
@@ -94,7 +96,7 @@ export default function Card({ result }) {
                 }
             </div>
 
-            {/* vitit link */}
+            {/* visit link */}
             {/* <Link to={redditLink} target="_blank" className={styles.linkToPost}>
                 visit
             </Link> */}

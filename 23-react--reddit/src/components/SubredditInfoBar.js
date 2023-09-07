@@ -18,7 +18,7 @@ export default function SubredditInfoBar({ subr }) {
     }
 
     return (
-        <div className={styles.subRBarContainer} key={subr.display_name}>
+        <div className={styles.subRBarContainer}>
             <div className={styles.subRTopSection}>
                 <img src={srIcon} alt={subr.display_name}></img>
                 <div>

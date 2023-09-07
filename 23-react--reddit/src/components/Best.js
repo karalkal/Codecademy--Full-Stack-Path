@@ -17,7 +17,7 @@ const Best = () => {
                 Since app is userless /best returns the same as /hot)</h3>
             <div className={styles.galleryContainer}>
                 {postsArray.map(rslt =>
-                    <Card result={rslt} />
+                    <Card result={rslt} key={rslt.id} />
                 )}
 
             </div>

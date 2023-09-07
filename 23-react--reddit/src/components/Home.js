@@ -11,7 +11,7 @@ const Home = ({ followedSubReddits }) => {
 
             <div className={styles.galleryContainer}>
                 {followedSubReddits.map(subr =>
-                    <SubredditInfoBar subr={subr} />
+                    <SubredditInfoBar subr={subr} key={subr.display_name} />
                 )}
             </div>
 

@@ -16,13 +16,10 @@ const Found = () => {
     //fetch results
     useEffect(() => {
         async function getResults() {
-
-            console.log("starting search for...", searchQuery)
             let foundPosts = await fetchSearchResult(searchQuery)
 
-            let kur = createSimplifiedPostsArray(foundPosts.data.children)
-            setpostsArray(kur)
-            console.log("postsArray", postsArray)
+            let res = createSimplifiedPostsArray(foundPosts.data.children)
+            setpostsArray(res)
         }
 
         getResults();       // CALL THE FUNCTION
@@ -37,7 +34,7 @@ const Found = () => {
                 <h3 className={styles.gallerySubtitle}> (sorted by relevance)</h3>
                 <div className={styles.galleryContainer}>
                     {postsArray.map(rslt =>
-                        <Card result={rslt} />
+                        <Card result={rslt} key={rslt.id} />
                     )}
 
                 </div>
