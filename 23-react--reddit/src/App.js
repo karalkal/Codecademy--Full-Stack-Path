@@ -4,14 +4,14 @@ import { useEffect, useState } from 'react';
 import { RouterProvider, createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom';
 
 import RootLayout from './components/RootLayout';
-import Home from './components/Home';
-import Best from './components/Best';
-import Top from './components/Top';
-import Hot from './components/Hot';
-import Controversial from './components/Controversial';
-import Found from './components/Found';
-import Error404 from './components/Error404';
-import ErrorGeneric from './components/ErrorGeneric';
+import Home from './pages/Home';
+import Best from './pages/Best';
+import Top from './pages/Top';
+import Hot from './pages/Hot';
+import Controversial from './pages/Controversial';
+import Found from './pages/Found';
+import Error404 from './pages/Error404';
+import ErrorGeneric from './pages/ErrorGeneric';
 
 
 import {
@@ -19,7 +19,7 @@ import {
     fetchSearchResult, fetchBestPosts, fetchTopPosts, fetchHottestPosts, fetchControversialPosts, fetchAboutInfoFavSubReddits
 } from './api/api';
 import { subredditsSubscriptionList } from "./utils/subredditsSubscriptionList";
-import Subreddit from "./components/Subreddit";
+import Subreddit from "./pages/Subreddit";
 
 
 function App() {

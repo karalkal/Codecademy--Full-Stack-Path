@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { useLoaderData, useLocation } from 'react-router-dom';
-import Card from './Card';
-import styles from "./GalleryContainer.module.css"
+import { useLocation } from 'react-router-dom';
+import Card from '../components/Card';
+import styles from "../components/GalleryContainer.module.css"
 import createSimplifiedPostsArray from '../utils/createSimplifiedPostsArray';
 import { fetchPostsPerSubRettit } from '../api/api';
 
@@ -19,8 +19,8 @@ const Subreddit = ({ accessToken }) => {
             console.log("starting search for:", selectedSubReddit, "criterion", selectedCriterion)
             let foundPosts = await fetchPostsPerSubRettit(accessToken, selectedSubReddit, selectedCriterion)
 
-            let kur = createSimplifiedPostsArray(foundPosts.data.children)
-            setpostsArray(kur)
+            let res = createSimplifiedPostsArray(foundPosts.data.children)
+            setpostsArray(res)
         }
 
         getResults();       // CALL THE FUNCTION
@@ -39,8 +39,8 @@ const Subreddit = ({ accessToken }) => {
                 Since app is userless /best returns the same as /hot)</h3>
             <div className={styles.galleryContainer}>
                 {postsArray.map(rslt =>
-                    <Card result={rslt} />
-                )}
+                    <Card result={rslt} key={rslt.id} />
+                    )}
 
             </div>
         </main>

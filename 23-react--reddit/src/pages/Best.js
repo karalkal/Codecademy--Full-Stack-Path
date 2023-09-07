@@ -1,19 +1,20 @@
 import { useLoaderData, Link } from 'react-router-dom';
-import Card from './Card';
-import styles from "./GalleryContainer.module.css"
+import Card from '../components/Card';
+import styles from "../components/GalleryContainer.module.css"
 import createSimplifiedPostsArray from '../utils/createSimplifiedPostsArray';
 
 
-const Top = (props) => {
+const Best = () => {
     // Get results as prop from App.js which is gonna be loaded before it is rendered 
-    const topPosts = useLoaderData();
+    const bestPosts = useLoaderData();
 
-    const postsArray = createSimplifiedPostsArray(topPosts.data.children)
+    const postsArray = createSimplifiedPostsArray(bestPosts.data.children)
 
     return (
         <main className={styles.mainContainer}>
-            <h1 className={styles.galleryTitle}>This week's Top</h1>
-            <h3 className={styles.gallerySubtitle}> (like raw score, upvotes minus downvotes.)</h3>
+            <h1 className={styles.galleryTitle}>Best of all time</h1>
+            <h3 className={styles.gallerySubtitle}> (Actual endpoint is '/top?limit=44&t=all'.
+                Since app is userless /best returns the same as /hot)</h3>
             <div className={styles.galleryContainer}>
                 {postsArray.map(rslt =>
                     <Card result={rslt} key={rslt.id} />
@@ -24,4 +25,4 @@ const Top = (props) => {
     );
 };
 
-export default Top;
+export default Best;

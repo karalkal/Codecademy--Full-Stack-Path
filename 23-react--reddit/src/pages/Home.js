@@ -1,6 +1,6 @@
 import { nanoid } from "nanoid";
-import styles from "./GalleryContainer.module.css"
-import SubredditInfoBar from './SubredditInfoBar';
+import styles from "../components/GalleryContainer.module.css"
+import SubredditInfoBar from '../components/SubredditInfoBar';
 
 
 const Home = ({ followedSubReddits }) => {
