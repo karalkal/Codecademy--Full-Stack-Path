@@ -22,6 +22,6 @@
 }
 
 #searchForm button {
-    font-size: 1em;
+    font-size: .91rem;
     grid-column: span 1;
 }

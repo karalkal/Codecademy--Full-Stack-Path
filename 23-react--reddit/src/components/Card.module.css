@@ -34,7 +34,7 @@
     line-height: 1;
     background-color: var(--rich-black);
     color: var(--columbia-blue);
-    font-size: 1.1em;
+    font-size: 1.1rem;
 }
 
 .card .textCardContent {
@@ -56,7 +56,7 @@
 .card .cardTitle {
     color: var(--rich-black);
     font-family: var(--font-display);
-    font-size: 1.3em;
+    font-size: 1.5rem;
     margin: 11px 0 17px;
 }
 
@@ -66,20 +66,20 @@
     font-family: var(--font-primary);
     font-weight: 600;
     margin-left: 11px;
-    font-size: 1.1em;
+    font-size: 1.1rem;
 }
 
 .card .cardSubreddit>span,
 .card .cardAuthor>span,
 .card .postRating>span {
-    font-size: 1.1em;
+    font-size: 1.1rem;
     color: var(--glaucous);
 }
 
 .card .cardText {
     margin-top: 17px;
     color: (--rich-black);
-    font-size: 1.1em;
+    font-size: 1.1rem;
     margin-bottom: 8px;
     overflow: hidden;
 }
@@ -92,6 +92,7 @@
     /* 50% 50% is centered */
 }
 
+/*
 .linkToPost {
     background-color: var(--glaucous);
     color: var(--rich_black);
@@ -110,6 +111,7 @@
     background-color: var(--rich-black);
     color: var(--glaucous);
 }
+*/
 
 
 /* Responsive columns - one column layout (vertical) on small screens */
@@ -120,4 +122,3 @@
         margin-bottom: 20px;
     }
 }
-

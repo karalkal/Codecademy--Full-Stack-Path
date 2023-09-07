@@ -15,10 +15,9 @@
 }
 
 .subRBarContainer:hover {
-    background-color: var(--powder-blue);
-    border-color: var(--columbia-blue);
+    background-color: var(--platinum);
+    /* border-color: var(--columbia-blue); */
 }
-
 
 .subRTopSection {
     display: flex;
@@ -31,7 +30,6 @@
     padding: 8px;
     border-radius: 11px;
     width: 100%;
-
 }
 
 .subRTopSection img {
@@ -44,11 +42,12 @@
     margin-bottom: 8px;
     font-family: var(--font-display);
     color: var(--glaucous);
-    font-size: 1.2em;
+    font-size: 1.4rem;
 }
 
 .subRURL {
     font-family: var(--font-display);
+    font-weight: 200;
 }
 
 .subRMiddleSection {
@@ -65,14 +64,14 @@
     width: 100%;
 }
 
-.subRMiddleSection>div>p{
-    border-radius: 11px;
-    margin: 8px 0;
+.subRMiddleSection>div>p:first-child{
+    margin-top: 8px;
+    font-size: .8rem;
 }
 
-.subRMiddleSectionBold {
-    font-weight: 600;
-    font-size: 1.1em;
+.subRMiddleSection>div>p:last-child{
+    margin-bottom: 8px;
+    font-weight: 700;
 }
 
 .subRBottomSection{
@@ -91,6 +90,8 @@
 }
 
 .subRButton{
+    font-size: .8rem;
+
     background-color: var(--glaucous);
     color: var(--rich-black);
     font-weight: 600;

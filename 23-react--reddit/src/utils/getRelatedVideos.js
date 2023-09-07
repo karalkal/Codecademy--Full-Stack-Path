@@ -9,7 +9,10 @@ export default function getRelatedVideos(obj) {
         return null
     }
     else {
-        if (obj.data.secure_media.reddit_video) {       // if reddit video
+        console.log(obj.data.secure_media.reddit_video)
+        if (obj.data.secure_media.reddit_video
+            && obj.data.secure_media.reddit_video.fallback_url
+            && (obj.data.secure_media.reddit_video.fallback_url).includes("v.redd.it")) {       // if reddit video
             const videoSrc = obj.data.secure_media.reddit_video.fallback_url
             video = { videoProvider: "reddit", videoSrc }
         }

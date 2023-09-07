@@ -30,15 +30,15 @@ export default function SubredditInfoBar({ subr }) {
             <div className={styles.subRMiddleSection}>
                 <div>
                     <p>Started</p>
-                    <p className={styles.subRMiddleSectionBold}>{new Date(unixTime).toLocaleDateString()}                    </p>
+                    <p>{new Date(unixTime).toLocaleDateString()}                    </p>
                 </div>
                 <div>
                     <p>Members</p>
-                    <p className={styles.subRMiddleSectionBold}>{subr.accounts_active}</p>
+                    <p>{subr.accounts_active}</p>
                 </div>
                 <div>
                     <p>Active</p>
-                    <p className={styles.subRMiddleSectionBold}> {subr.accounts_active}</p>
+                    <p> {subr.accounts_active}</p>
                 </div>
             </div>
 
