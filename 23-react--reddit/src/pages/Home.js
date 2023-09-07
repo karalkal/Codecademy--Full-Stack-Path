@@ -1,5 +1,6 @@
 import { nanoid } from "nanoid";
-import styles from "../components/GalleryContainer.module.css"
+import styles from "./GalleryContainer.module.css"
+
 import SubredditInfoBar from '../components/SubredditInfoBar';
 
 

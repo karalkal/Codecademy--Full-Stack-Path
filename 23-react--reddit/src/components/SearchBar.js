@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 
+import styles from "./SearchBar.module.css"
 
 export default function SearchBar() {
     const [searchQuery, setSearchQuery] = useState("")
@@ -20,7 +21,7 @@ export default function SearchBar() {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} id={styles.searchForm}>
             <input
                 type="text"
                 placeholder="Search for..."

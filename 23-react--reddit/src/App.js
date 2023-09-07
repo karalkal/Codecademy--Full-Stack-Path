@@ -13,11 +13,7 @@ import Found from './pages/Found';
 import Error404 from './pages/Error404';
 import ErrorGeneric from './pages/ErrorGeneric';
 
-
-import {
-    getUserlessAuthorizarion,
-    fetchSearchResult, fetchBestPosts, fetchTopPosts, fetchHottestPosts, fetchControversialPosts, fetchAboutInfoFavSubReddits
-} from './api/api';
+import { getUserlessAuthorizarion, fetchBestPosts, fetchTopPosts, fetchHottestPosts, fetchControversialPosts, fetchAboutInfoFavSubReddits } from './api/api';
 import { subredditsSubscriptionList } from "./utils/subredditsSubscriptionList";
 import Subreddit from "./pages/Subreddit";
 
