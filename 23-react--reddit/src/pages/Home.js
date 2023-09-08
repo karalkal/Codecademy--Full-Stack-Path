@@ -4,7 +4,7 @@ import styles from "./GalleryContainer.module.css"
 import SubredditInfoBar from '../components/SubredditInfoBar';
 
 
-const Home = ({ followedSubReddits }) => {
+const Home = ({ followedSubReddits, setSelectedSubReddit }) => {
     return (
         <main className={styles.mainContainer}>
             <h1><div className={styles.galleryTitle}>Selected Subreddits</div>
@@ -12,7 +12,10 @@ const Home = ({ followedSubReddits }) => {
 
             <div className={styles.galleryContainer}>
                 {followedSubReddits.map(subr =>
-                    <SubredditInfoBar subr={subr} key={subr.display_name} />
+                    <SubredditInfoBar
+                        subr={subr}
+                        key={subr.display_name}
+                        setSelectedSubReddit={setSelectedSubReddit} />
                 )}
             </div>
 

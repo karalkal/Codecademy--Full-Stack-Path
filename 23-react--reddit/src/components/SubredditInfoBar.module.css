@@ -11,7 +11,8 @@
     box-shadow: 0px 0px 8px 8px var(--powder-blue);
     text-align: left;
 
-    grid-column: span 2;    
+    grid-column: span 2;
+    cursor: pointer;
 }
 
 .subRBarContainer:hover {
@@ -58,22 +59,23 @@
     gap: 8px;
 }
 
-.subRMiddleSection>div{
+.subRMiddleSection>div {
     background-color: var(--powder-blue);
     border-radius: 11px;
     width: 100%;
 }
 
-.subRMiddleSection>div>p:first-child{
+.subRMiddleSection>div>p:first-child {
     margin-top: 8px;
     font-size: .8rem;
 }
 
-.subRMiddleSection>div>p:last-child{
+.subRMiddleSection>div>p:last-child {
     margin-bottom: 8px;
     font-weight: 700;
 }
 
+/*
 .subRBottomSection{
     background-color: var(--powder-blue);
     border-radius: 11px;
@@ -108,8 +110,7 @@
     background-color: var(--rich-black);
     color: var(--glaucous);
 }
-
-
+*/
 
 
 /* Responsive columns - one column layout (vertical) on small screens */

@@ -35,7 +35,8 @@
     width: 53%;
 }
 
-.navLink,
+.menuButtonsRow a,
+.menuButtonsRow button,
 .menuSearchRow button {
     background-color: var(--glaucous);
     color: var(--rich-black);
@@ -47,6 +48,7 @@
     text-transform: uppercase;
     box-shadow: none;
     border: none;
+    cursor: pointer;
 }
 
 .navLink:hover,

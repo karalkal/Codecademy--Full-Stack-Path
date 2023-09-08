@@ -187,7 +187,7 @@ export async function fetchAboutInfoFavSubReddits(appAccessToken, subRedditNames
 }
 
 
-export async function fetchPostsPerSubRettit(appAccessToken, selectedSubReddit, selectedCriterion) {
+export async function fetchPostsFromSubreddit(appAccessToken, selectedSubReddit, selectedCriterion) {
     // App is userless and best returns same as hot, 
     // hence here we are getting top posts of all time instead
     let urlPath = `${selectedSubReddit}${selectedCriterion}?${LIST_RESULT_LIMIT_STR}`

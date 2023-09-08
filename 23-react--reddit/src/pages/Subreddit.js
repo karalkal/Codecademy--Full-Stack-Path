@@ -1,24 +1,24 @@
 import { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+// import { useLocation } from 'react-router-dom';
 import Card from '../components/Card';
 import styles from "./GalleryContainer.module.css"
 
 import createSimplifiedPostsArray from '../utils/createSimplifiedPostsArray';
-import { fetchPostsPerSubRettit } from '../api/api';
+import { fetchPostsFromSubreddit } from '../api/api';
 
 
-const Subreddit = ({ accessToken }) => {
+const Subreddit = ({ accessToken, selectedSubReddit, selectedCriterion }) => {
+    console.log(selectedSubReddit, selectedCriterion)
     const [postsArray, setpostsArray] = useState([])
 
-    const location = useLocation()
-
-    let { selectedSubReddit, selectedCriterion } = location.state
+    // const location = useLocation()
+    // let { selectedSubReddit, selectedCriterion } = location.state
 
     //fetch results
     useEffect(() => {
         async function getResults() {
-            console.log("starting search for:", selectedSubReddit, "criterion", selectedCriterion)
-            let foundPosts = await fetchPostsPerSubRettit(accessToken, selectedSubReddit, selectedCriterion)
+            console.log("starting search for:", selectedSubReddit, "criterion:", selectedCriterion)
+            let foundPosts = await fetchPostsFromSubreddit(accessToken, selectedSubReddit, selectedCriterion)
 
             let res = createSimplifiedPostsArray(foundPosts.data.children)
             setpostsArray(res)

@@ -71,7 +71,7 @@ function App() {
         }
     }, [accessToken])
 
-    console.log(selectedCriterion, selectedSubReddit)
+    console.log(selectedSubReddit, selectedCriterion)
     const appRouter = createBrowserRouter(
         createRoutesFromElements(
             <Route
@@ -87,14 +87,16 @@ function App() {
                         <Home
                             followedSubReddits={followedSubReddits}
                             setSelectedSubReddit={setSelectedSubReddit}
-                            setSelectedCriterion={setSelectedCriterion}
                         />
                     }
                 // loader={() => fetchAboutInfoFavSubReddits(accessToken, subredditsSubscriptionList)} 
                 />
 
                 <Route path="subreddit"
-                    element={<Subreddit accessToken={accessToken} />}
+                    element={<Subreddit
+                        accessToken={accessToken}
+                        selectedSubReddit={selectedSubReddit}
+                        selectedCriterion={selectedCriterion} />}
                 />
 
                 <Route
