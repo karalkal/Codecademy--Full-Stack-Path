@@ -20,17 +20,20 @@ import Subreddit from "./pages/Subreddit";
 
 function App() {
     const [accessToken, setAccessToken] = useState(localStorage.getItem("access_token"));
-    const [followedSubReddits, setFollowedSubReddits] = useState([])
+
+    const [followedSubReddits, setFollowedSubReddits] = useState([]);
+    const [selectedSubReddit, setSelectedSubReddit] = useState('All Subreddits')
+    const [selectedCriterion, setSelectedCriterion] = useState('best')
 
     //fetch landing page data, i.e. followed reddits' "about" data, incl. icons
     // need to load this just once, hence useEffect()
     useEffect(() => {
-        async function getResults() {
+        async function getListOfSubreddits() {
             let res = await fetchAboutInfoFavSubReddits(accessToken, subredditsSubscriptionList)
             setFollowedSubReddits(res)
         }
 
-        getResults();       // CALL THE FUNCTION
+        getListOfSubreddits();       // CALL THE FUNCTION
         // cleanup?
     }
         , [])
@@ -68,17 +71,25 @@ function App() {
         }
     }, [accessToken])
 
-
+    console.log(selectedCriterion, selectedSubReddit)
     const appRouter = createBrowserRouter(
         createRoutesFromElements(
             <Route
-                path="/"
-                element={<RootLayout />}
+                // path="/"
+                element={<RootLayout
+                    selectedSubReddit={selectedSubReddit}
+                    setSelectedCriterion={setSelectedCriterion} />}
                 errorElement={<ErrorGeneric />} >
 
                 {/* nested in layout comp */}
                 <Route index
-                    element={<Home followedSubReddits={followedSubReddits} />}
+                    element={
+                        <Home
+                            followedSubReddits={followedSubReddits}
+                            setSelectedSubReddit={setSelectedSubReddit}
+                            setSelectedCriterion={setSelectedCriterion}
+                        />
+                    }
                 // loader={() => fetchAboutInfoFavSubReddits(accessToken, subredditsSubscriptionList)} 
                 />
 
