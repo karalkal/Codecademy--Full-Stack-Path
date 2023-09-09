@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import styles from "./SubredditInfoBar.module.css"
 import logo from "../misc/redditB&Wlogo.png";
 
@@ -12,16 +12,24 @@ export default function SubredditInfoBar({ subr, setSelectedSubReddit }) {
     let srIcon = subr.icon_img === "" ? `${logo}` : subr.icon_img
 
     function selectionHandler(clickedSubreddit) {
-        setSelectedSubReddit(clickedSubreddit)        
+        console.log(clickedSubreddit)
+        setSelectedSubReddit(clickedSubreddit)
         navigate('subreddit', {
             // state: { selectedSubReddit, selectedCriterion }
         })
     }
 
     return (
-        <button 
-        className={styles.subRBarContainer}
-        onClick={() => selectionHandler(subr.url)}>
+        <button
+            className={styles.subRBarContainer}
+            onClick={() => selectionHandler(
+                {
+                    url: subr.url,
+                    name: subr.display_name,
+                    icon: srIcon
+                }
+            )}>
+
             <div className={styles.subRTopSection}>
                 <img src={srIcon} alt={subr.display_name}></img>
                 <div>

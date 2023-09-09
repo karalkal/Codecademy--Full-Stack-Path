@@ -1,14 +1,13 @@
 import { useEffect, useState } from 'react';
 // import { useLocation } from 'react-router-dom';
 import Card from '../components/Card';
-import styles from "./GalleryContainer.module.css"
+import styles from "./Results.module.css"
 
 import createSimplifiedPostsArray from '../utils/createSimplifiedPostsArray';
 import { fetchPostsFromSubreddit } from '../api/api';
 
 
-const Subreddit = ({ accessToken, selectedSubReddit, selectedCriterion }) => {
-    console.log(selectedSubReddit, selectedCriterion)
+const Results = ({ accessToken, selectedSubReddit, selectedCriterion }) => {
     const [postsArray, setpostsArray] = useState([])
 
     // const location = useLocation()
@@ -17,8 +16,9 @@ const Subreddit = ({ accessToken, selectedSubReddit, selectedCriterion }) => {
     //fetch results
     useEffect(() => {
         async function getResults() {
-            console.log("starting search for:", selectedSubReddit, "criterion:", selectedCriterion)
-            let foundPosts = await fetchPostsFromSubreddit(accessToken, selectedSubReddit, selectedCriterion)
+            // selectedSubReddit is Object with name, icon and url
+            console.log("starting search for:", selectedSubReddit.name, "criterion:", selectedCriterion)
+            let foundPosts = await fetchPostsFromSubreddit(accessToken, selectedSubReddit.url, selectedCriterion)
 
             let res = createSimplifiedPostsArray(foundPosts.data.children)
             setpostsArray(res)
@@ -31,22 +31,29 @@ const Subreddit = ({ accessToken, selectedSubReddit, selectedCriterion }) => {
 
     let subtitle = ""
     if (selectedCriterion === "best") {
-        subtitle = `Actually top results of all times for ${selectedSubReddit}`
+        subtitle = `Since app is userless API request to /best would return the same results as /hot. \n
+        Hence here app is getting the top results of all times instead.`
     }
     else if (selectedCriterion === "top") {
-        subtitle = `Today's Top Posts in in ${selectedSubReddit}`
+        subtitle = `Today's Top Posts`
     }
     else if (selectedCriterion === "hot") {
-        subtitle = `New and Popular posts in ${selectedSubReddit}`
+        subtitle = `New and Popular posts`
     }
     else if (selectedCriterion === "controversial") {
-        subtitle = `This Week's Most Controverial Posts in ${selectedSubReddit}`
+        subtitle = `This Week's Most Controverial Posts`
     }
 
 
     return (
         <main className={styles.mainContainer}>
-            <h1 className={styles.galleryTitle}>{selectedCriterion.charAt(0).toUpperCase() + selectedCriterion.slice(1)}</h1>
+            <div className={styles.galleryTitle}>
+                <span className={styles.galleryCriterion}>{selectedCriterion.charAt(0).toUpperCase() + selectedCriterion.slice(1)}
+                    &nbsp;in&nbsp;
+                </span>
+                <img src={selectedSubReddit.icon} alt={selectedSubReddit.name} className={styles.galleryIcon}></img>
+                <span className={styles.galleryRedditName}>r/{selectedSubReddit.name}</span>
+            </div>
             <h3 className={styles.gallerySubtitle}>{subtitle}</h3>
             <div className={styles.galleryContainer}>
                 {postsArray.map(rslt =>
@@ -59,4 +66,4 @@ const Subreddit = ({ accessToken, selectedSubReddit, selectedCriterion }) => {
 
 };
 
-export default Subreddit;
+export default Results;

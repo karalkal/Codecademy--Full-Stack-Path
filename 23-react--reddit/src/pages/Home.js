@@ -1,7 +1,6 @@
-import { nanoid } from "nanoid";
-import styles from "./GalleryContainer.module.css"
-
+import styles from "./Results.module.css"
 import SubredditInfoBar from '../components/SubredditInfoBar';
+import FirstInfoBar from "../components/FirstInfoBar";
 
 
 const Home = ({ followedSubReddits, setSelectedSubReddit }) => {
@@ -11,6 +10,8 @@ const Home = ({ followedSubReddits, setSelectedSubReddit }) => {
                 <div className={styles.gallerySubtitle}>View Best/Top/Hot/Controversial Posts for a Subreddit</div></h1>
 
             <div className={styles.galleryContainer}>
+                <FirstInfoBar setSelectedSubReddit={setSelectedSubReddit} />
+
                 {followedSubReddits.map(subr =>
                     <SubredditInfoBar
                         subr={subr}

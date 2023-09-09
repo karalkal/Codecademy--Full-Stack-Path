@@ -11,8 +11,6 @@ export default function Header({ selectedSubReddit, setSelectedCriterion }) {
         </NavLink>
 
         <nav>
-            <p className={styles.menuAboutRow}>{selectedSubReddit}</p>
-
             <div className={`${styles.menuSearchRow}`}>
                 <SearchBar />
             </div>

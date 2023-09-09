@@ -5,24 +5,26 @@ import { RouterProvider, createBrowserRouter, createRoutesFromElements, Route } 
 
 import RootLayout from './components/RootLayout';
 import Home from './pages/Home';
-import Best from './pages/Best';
-import Top from './pages/Top';
-import Hot from './pages/Hot';
-import Controversial from './pages/Controversial';
 import Found from './pages/Found';
 import Error404 from './pages/Error404';
 import ErrorGeneric from './pages/ErrorGeneric';
 
-import { getUserlessAuthorizarion, fetchBestPosts, fetchTopPosts, fetchHottestPosts, fetchControversialPosts, fetchAboutInfoFavSubReddits } from './api/api';
+import { getUserlessAuthorizarion, fetchAboutInfoFavSubReddits } from './api/api';
 import { subredditsSubscriptionList } from "./utils/subredditsSubscriptionList";
-import Subreddit from "./pages/Subreddit";
+import Results from "./pages/Results";
+
+import logo from "./misc/redditBluelogo.png";
 
 
 function App() {
     const [accessToken, setAccessToken] = useState(localStorage.getItem("access_token"));
 
     const [followedSubReddits, setFollowedSubReddits] = useState([]);
-    const [selectedSubReddit, setSelectedSubReddit] = useState('All Subreddits')
+    const [selectedSubReddit, setSelectedSubReddit] = useState({
+        url: "/",
+        name: 'ALL',
+        icon: logo
+    })
     const [selectedCriterion, setSelectedCriterion] = useState('best')
 
     //fetch landing page data, i.e. followed reddits' "about" data, incl. icons
@@ -89,35 +91,14 @@ function App() {
                             setSelectedSubReddit={setSelectedSubReddit}
                         />
                     }
-                // loader={() => fetchAboutInfoFavSubReddits(accessToken, subredditsSubscriptionList)} 
                 />
 
                 <Route path="subreddit"
-                    element={<Subreddit
+                    element={<Results
                         accessToken={accessToken}
                         selectedSubReddit={selectedSubReddit}
                         selectedCriterion={selectedCriterion} />}
                 />
-
-                <Route
-                    path="best"
-                    element={<Best />}
-                    loader={() => fetchBestPosts(accessToken)} />
-
-                <Route
-                    path="top"
-                    element={<Top />}
-                    loader={() => fetchTopPosts(accessToken)} />
-
-                <Route
-                    path="hot"
-                    element={<Hot />}
-                    loader={() => fetchHottestPosts(accessToken)} />
-
-                <Route
-                    path="controversial"
-                    element={<Controversial />}
-                    loader={() => fetchControversialPosts(accessToken)} />
 
                 <Route path="found"
                     element={<Found />}

@@ -51,7 +51,8 @@
     cursor: pointer;
 }
 
-.navLink:hover,
+.menuButtonsRow a:hover,
+.menuButtonsRow button:hover,
 .menuSearchRow button:hover {
     background-color: var(--rich-black);
     color: var(--glaucous);
@@ -60,15 +61,6 @@
 .navLink:active {
     background-color: var(--platinum);
     color: var(--powder-blue);
-}
-
-.menuAboutRow {
-    grid-column: span 12;
-    margin: auto;
-    text-align: center;
-    color: var(--rich-black);
-    font-family: var(--font-display);
-    font-size: 1.5em;
 }
 
 .menuSearchRow {

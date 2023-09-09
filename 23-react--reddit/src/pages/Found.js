@@ -1,6 +1,6 @@
 import { useLocation } from 'react-router-dom';
 import Card from '../components/Card';
-import styles from "./GalleryContainer.module.css"
+import styles from "./Results.module.css"
 
 import createSimplifiedPostsArray from '../utils/createSimplifiedPostsArray';
 import { useEffect, useState } from 'react';

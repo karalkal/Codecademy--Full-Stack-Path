@@ -1,52 +1,50 @@
-import { Link, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import styles from "./SubredditInfoBar.module.css"
-import logo from "../misc/redditB&Wlogo.png";
+import logo from "../misc/redditBluelogo.png";
 
-export default function SubredditInfoBar({ subr, setSelectedSubReddit }) {
+export default function FirstInfoBar({ setSelectedSubReddit }) {
     const navigate = useNavigate()
 
-    // The Date constructor from Javascript accepts the number of milliseconds as timestamp, not unix time (number of seconds).
-    // So, to adjust that, is just multiply the unix time by 1000.
-    const unixTime = subr.created_utc * 1000
-
-    let srIcon = subr.icon_img === "" ? `${logo}` : subr.icon_img
-
-    function selectionHandler(clickedSubreddit) {
-        setSelectedSubReddit(clickedSubreddit)        
+    function selectionHandler() {
+        setSelectedSubReddit({
+            url: "/",
+            name: 'All Subreddits',
+            icon: logo
+        })
         navigate('subreddit', {
             // state: { selectedSubReddit, selectedCriterion }
         })
     }
 
     return (
-        <button 
-        className={styles.subRBarContainer}
-        onClick={() => selectionHandler(subr.url)}>
+        <button
+            className={styles.subRBarContainer}
+            onClick={selectionHandler}>
             <div className={styles.subRTopSection}>
-                <img src={srIcon} alt={subr.display_name}></img>
+                <img src={logo} alt="reddit logo"></img>
                 <div>
-                    <p className={styles.subRTitle}>{subr.title}</p>
-                    <p className={styles.subRURL}>{subr.url}</p>
+                    <p className={styles.subRTitle}>ALL REDDIT</p>
+                    <p className={styles.subRURL}>results for the platform as a whole</p>
                 </div>
             </div>
 
             <div className={styles.subRMiddleSection}>
                 <div>
-                    <p>Started</p>
-                    <p>{new Date(unixTime).toLocaleDateString()}                    </p>
+                    <p>Created</p>
+                    <p>23/06/2005</p>
                 </div>
                 <div>
-                    <p>Members</p>
-                    <p>{subr.accounts_active}</p>
+                    <p>DAU</p>
+                    <p>~55 M</p>
                 </div>
                 <div>
-                    <p>Active</p>
-                    <p> {subr.accounts_active}</p>
+                    <p>MAU</p>
+                    <p>~1.7 Bn</p>
                 </div>
             </div>
 
             <div className={styles.subRBottomSection}>
-                <p>{subr.public_description}</p>
+                <p>Reddit is an American social news aggregation, content rating, and discussion website. Registered users submit content to the site such as links, text posts, images, and videos, which are then voted up or down by other members. </p>
             </div>
 
             {/* <div className={styles.subRButtonsDiv}>
