@@ -16,9 +16,13 @@ export default function Card({ result }) {
 
     // if thumbnail is "self" (no idea what this is) or we have video (video has thumbnail attached too)
     // check for extension too as articles with no img also have "url_overridden_by_dest"
+    // check for video  as well
     let imageSrc = null
     if (result.img_thumbnail && !result.media
-        && (result.img_thumbnail.slice(-4) === ".png" || result.img_thumbnail.slice(-4) === ".jpg")) {
+        && (result.img_thumbnail.slice(-4) === ".png"
+            || result.img_thumbnail.slice(-4) === ".jpg"
+            || result.img_thumbnail.slice(-4) === ".gif")
+    ) {
         imageSrc = result.img_thumbnail
     }
 
@@ -92,7 +96,11 @@ export default function Card({ result }) {
                 }
                 {/* Youtube iframe */}
                 {result.video && result.video.videoProvider === "youtube" &&
-                    <iframe title="gyz" className={styles.mediaCardContent} src={result.video.videoSrc}></iframe>
+                    <iframe title="youtubevideo" className={styles.mediaCardContent} src={result.video.videoSrc}></iframe>
+                
+                }{/* *.gifv iframe */}
+                {result.video && result.video.videoProvider === "gifv" &&
+                    <iframe title="gifvvideo" className={styles.mediaCardContent} src={result.video.videoSrc}></iframe>
                 }
             </div>
 

@@ -40,8 +40,7 @@ export async function getUserlessAuthorizarion() {
 
 export async function fetchSearchResult(appAccessToken, selectedSubRedditUrl, searchQuery) {
     // url has dash in forn and at back
-    let urlPath = `${selectedSubRedditUrl}search?${LIST_RESULT_LIMIT_STR}&q=${searchQuery}&sort=relevance`
-    console.log(urlPath)
+    let urlPath = `${selectedSubRedditUrl}search?${LIST_RESULT_LIMIT_STR}&q=${searchQuery}&sort=relevance&restrict_sr=true`
 
     try {                   // NB selectedSubReddit comes with leading and trailing slash
         const response = await fetch(`https://oauth.reddit.com${urlPath}`, {

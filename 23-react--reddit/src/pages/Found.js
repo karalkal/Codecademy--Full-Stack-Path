@@ -18,6 +18,8 @@ const Found = ({ accessToken, selectedSubReddit }) => {
     useEffect(() => {
         async function getResults() {
             let foundPosts = await fetchSearchResult(accessToken, selectedSubReddit.url, searchQuery)
+            
+            console.log(foundPosts);
 
             let res = createSimplifiedPostsArray(foundPosts.data.children)
             setpostsArray(res)
