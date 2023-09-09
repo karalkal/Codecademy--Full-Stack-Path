@@ -13,7 +13,8 @@ export default function SubredditInfoBar({ subr, setSelectedSubReddit }) {
 
     function selectionHandler(clickedSubreddit) {
         setSelectedSubReddit(clickedSubreddit)
-        navigate('subreddit', {
+        navigate("results"
+, {
             // state: { selectedSubReddit, selectedCriterion }
         })
     }

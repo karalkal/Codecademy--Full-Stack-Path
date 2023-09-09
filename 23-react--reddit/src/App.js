@@ -92,7 +92,7 @@ function App() {
                     }
                 />
 
-                <Route path="subreddit"
+                <Route path="results"
                     element={<Results
                         accessToken={accessToken}
                         selectedSubReddit={selectedSubReddit}

@@ -11,7 +11,8 @@ export default function FirstInfoBar({ setSelectedSubReddit }) {
             name: 'ALL',
             icon: logo
         })
-        navigate('subreddit', {
+        navigate("results"
+, {
             // state: { selectedSubReddit, selectedCriterion }
         })
     }
