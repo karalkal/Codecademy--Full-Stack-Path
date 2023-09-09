@@ -12,7 +12,6 @@ export default function SubredditInfoBar({ subr, setSelectedSubReddit }) {
     let srIcon = subr.icon_img === "" ? `${logo}` : subr.icon_img
 
     function selectionHandler(clickedSubreddit) {
-        console.log(clickedSubreddit)
         setSelectedSubReddit(clickedSubreddit)
         navigate('subreddit', {
             // state: { selectedSubReddit, selectedCriterion }

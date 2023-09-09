@@ -8,7 +8,7 @@ export default function FirstInfoBar({ setSelectedSubReddit }) {
     function selectionHandler() {
         setSelectedSubReddit({
             url: "/",
-            name: 'All Subreddits',
+            name: 'ALL',
             icon: logo
         })
         navigate('subreddit', {

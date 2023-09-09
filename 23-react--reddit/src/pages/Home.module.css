@@ -25,3 +25,9 @@
     margin-bottom: 31px;
     font-size: 1.5rem;
 }
+
+.galleryContainer {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 44px 22px;
+}

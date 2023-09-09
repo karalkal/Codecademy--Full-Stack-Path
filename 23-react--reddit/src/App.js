@@ -73,7 +73,6 @@ function App() {
         }
     }, [accessToken])
 
-    console.log(selectedSubReddit, selectedCriterion)
     const appRouter = createBrowserRouter(
         createRoutesFromElements(
             <Route

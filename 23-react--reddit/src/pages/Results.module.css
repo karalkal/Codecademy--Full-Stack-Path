@@ -8,16 +8,10 @@
     justify-content: center;
 }
 
-.galleryContainer {
-    display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    gap: 44px 22px;
-}
-
 .galleryIcon {
     height: 44px;
     margin: auto 4px auto 11px;
-    border: 1px solid var(--rich-black);
+    border: 1px dotted var(--rich-black);
     border-radius: 4px;
 }
 
@@ -50,4 +44,10 @@
     font-weight: 300;
     margin-bottom: 31px;
     font-size: 1.5rem;
+}
+
+.galleryContainer {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 44px 22px;
 }

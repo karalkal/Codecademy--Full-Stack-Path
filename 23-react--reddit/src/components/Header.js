@@ -1,9 +1,15 @@
 import SearchBar from './SearchBar'
 import styles from './Header.module.css'
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 
 
-export default function Header({ selectedSubReddit, setSelectedCriterion }) {
+export default function Header({ setSelectedCriterion }) {
+    const navigate = useNavigate()
+    function selectionHandler(clickedCrit) {
+        setSelectedCriterion(clickedCrit)
+        navigate('subreddit')
+    }
+
     return <header id={styles.header}>
         <NavLink to="/">
             <img src='logo.svg' className={styles["logo"]} alt="logo" />
@@ -17,10 +23,10 @@ export default function Header({ selectedSubReddit, setSelectedCriterion }) {
 
             <div className={styles.menuButtonsRow}>
                 <NavLink to="/">Home</NavLink>
-                <button onClick={() => setSelectedCriterion("best")}>Best</button>
-                <button onClick={() => setSelectedCriterion("top")}>Top</button>
-                <button onClick={() => setSelectedCriterion("hot")}>Hot</button>
-                <button onClick={() => setSelectedCriterion("controversial")}>Contro</button>
+                <button onClick={() => selectionHandler("best")}>Best</button>
+                <button onClick={() => selectionHandler("top")}>Top</button>
+                <button onClick={() => selectionHandler("hot")}>Hot</button>
+                <button onClick={() => selectionHandler("controversial")}>Contro</button>
                 <Link to={"https://github.com/karalkal/Codecademy-Front-End/tree/main/23-react--reddit"} target='_blank' id={styles.aboutBtn}>
                     About
                 </Link>
