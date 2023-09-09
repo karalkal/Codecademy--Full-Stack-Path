@@ -94,13 +94,21 @@ export default function Card({ result }) {
                         Your browser does not support the video tag.
                     </video>
                 }
+                {/* gifv video */}
+                {result.video && result.video.videoProvider === "gifv" &&
+                    <video
+                        controls
+                        muted={false}
+                        className={styles.mediaCardContent} >
+                        <source src={result.video.videoSrc} type="video/mp4" />
+                        <source src={result.video.videoSrc} type="video/ogg" />
+                        Your browser does not support the video tag.
+                    </video>
+                }
                 {/* Youtube iframe */}
                 {result.video && result.video.videoProvider === "youtube" &&
                     <iframe title="youtubevideo" className={styles.mediaCardContent} src={result.video.videoSrc}></iframe>
                 
-                }{/* *.gifv iframe */}
-                {result.video && result.video.videoProvider === "gifv" &&
-                    <iframe title="gifvvideo" className={styles.mediaCardContent} src={result.video.videoSrc}></iframe>
                 }
             </div>
 

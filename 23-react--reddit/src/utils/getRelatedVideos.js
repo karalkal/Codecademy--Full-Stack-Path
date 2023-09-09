@@ -10,7 +10,7 @@ export default function getRelatedVideos(obj) {
         return null
     }
     else {      // if media exists
-        // if gifv
+        // if gifv (some made out format by imgur)
         if (obj.data.url_overridden_by_dest
             && obj.data.url_overridden_by_dest.includes('.gifv')) {
             let videoSrc = obj.data.url_overridden_by_dest.replace('.gifv', '.mp4');
@@ -34,7 +34,9 @@ export default function getRelatedVideos(obj) {
             console.log("reddit 2", video)
         }
         // if from youtube
-        else if (obj.data.secure_media && obj.data.secure_media.oembed.html) {
+        else if (obj.data.secure_media
+            && obj.data.secure_media.oembed.html
+            && obj.data.secure_media.oembed.html.includes('https://www.youtube.com')) {
             /*
             it will look sometthing like:
             &lt;iframe width="356" height="200" src="https://www.youtube.com/embed/9RFMQEEmU8g?feature=oembed&amp;enablejsapi=1" frameborder="0" .....
@@ -53,7 +55,7 @@ export default function getRelatedVideos(obj) {
             }
         }
         else {
-            console.log("checked everything, still null")
+            console.log("checked everything, still null", obj)
             return null
         }
     }
