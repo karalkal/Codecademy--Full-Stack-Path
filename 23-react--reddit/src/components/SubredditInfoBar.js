@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom"
 import styles from "./SubredditInfoBar.module.css"
 import logo from "../misc/redditB&Wlogo.png";
 
-export default function SubredditInfoBar({ subr, setSelectedSubReddit }) {
+export default function SubredditInfoBar({ subr, selectedCriterion, setSelectedSubReddit }) {
     const navigate = useNavigate()
 
     // The Date constructor from Javascript accepts the number of milliseconds as timestamp, not unix time (number of seconds).
@@ -12,11 +12,9 @@ export default function SubredditInfoBar({ subr, setSelectedSubReddit }) {
     let srIcon = subr.icon_img === "" ? `${logo}` : subr.icon_img
 
     function selectionHandler(clickedSubreddit) {
-        setSelectedSubReddit(clickedSubreddit)
-        navigate("results"
-, {
-            // state: { selectedSubReddit, selectedCriterion }
-        })
+        setSelectedSubReddit(clickedSubreddit)      
+
+    navigate(`${clickedSubreddit.name}/${selectedCriterion}`)
     }
 
     return (

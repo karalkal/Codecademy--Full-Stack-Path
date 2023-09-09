@@ -87,12 +87,13 @@ function App() {
                     element={
                         <Home
                             followedSubReddits={followedSubReddits}
+                            selectedCriterion={selectedCriterion}
                             setSelectedSubReddit={setSelectedSubReddit}
                         />
                     }
                 />
 
-                <Route path="results"
+                <Route path={`${selectedSubReddit.name}/${selectedCriterion}`}
                     element={<Results
                         accessToken={accessToken}
                         selectedSubReddit={selectedSubReddit}

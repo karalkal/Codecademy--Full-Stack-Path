@@ -43,9 +43,9 @@ const Results = ({ accessToken, selectedSubReddit, selectedCriterion }) => {
         subtitle = `This Week's Most Controverial Posts`
     }
 
-
     return (
         <main className={styles.mainContainer}>
+
             <div className={styles.galleryTitle}>
                 <span className={styles.galleryCriterion}>{selectedCriterion.charAt(0).toUpperCase() + selectedCriterion.slice(1)}
                     &nbsp;in&nbsp;
@@ -53,7 +53,9 @@ const Results = ({ accessToken, selectedSubReddit, selectedCriterion }) => {
                 <img src={selectedSubReddit.icon} alt={selectedSubReddit.name} className={styles.galleryIcon}></img>
                 <span className={styles.galleryRedditName}>r/{selectedSubReddit.name}</span>
             </div>
-            <h3 className={styles.gallerySubtitle}>{subtitle}</h3>
+
+            <h2 className={styles.gallerySubtitle}>{subtitle}</h2>
+
             <div className={styles.galleryContainer}>
                 {postsArray.map(rslt =>
                     <Card result={rslt} key={rslt.id} />

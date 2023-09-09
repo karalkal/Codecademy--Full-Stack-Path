@@ -6,7 +6,7 @@ export default function getRelatedVideos(obj) {
     let video = null
 
     if (!obj.data.secure_media && !obj.data.preview && !obj.data.url_overridden_by_dest) {    // if no video in json return null
-        console.log("Nothing?", obj.data)
+        // console.log("Nothing?", obj.data)
         return null
     }
     else {      // if media exists
@@ -15,7 +15,7 @@ export default function getRelatedVideos(obj) {
             && obj.data.url_overridden_by_dest.includes('.gifv')) {
             let videoSrc = obj.data.url_overridden_by_dest.replace('.gifv', '.mp4');
             video = { videoProvider: "gifv", videoSrc }
-            console.log("GIFV", video)
+            // console.log("GIFV", video)
         }
         // if reddit video 1
         else if (obj.data.secure_media
@@ -23,7 +23,7 @@ export default function getRelatedVideos(obj) {
             && obj.data.secure_media.reddit_video.fallback_url) {
             const videoSrc = obj.data.secure_media.reddit_video.fallback_url
             video = { videoProvider: "reddit", videoSrc }
-            console.log("reddit 1", video)
+            // console.log("reddit 1", video)
         }
         // if reddit video 2
         else if (obj.data.preview
@@ -31,7 +31,7 @@ export default function getRelatedVideos(obj) {
             && obj.data.preview.reddit_video_preview.fallback_url) {
             const videoSrc = obj.data.preview.reddit_video_preview.fallback_url
             video = { videoProvider: "reddit", videoSrc }
-            console.log("reddit 2", video)
+            // console.log("reddit 2", video)
         }
         // if from youtube
         else if (obj.data.secure_media
@@ -43,7 +43,6 @@ export default function getRelatedVideos(obj) {
             need to extract just the src bit
             */
             const htmlOfJson = obj.data.secure_media.oembed.html
-            console.log(obj.data.secure_media.oembed)
             const indexOfSrcTag = htmlOfJson.indexOf('src="')
             const indexOfTrailingSemiColon = htmlOfJson.indexOf('"', indexOfSrcTag + 40)
 
@@ -51,11 +50,11 @@ export default function getRelatedVideos(obj) {
 
             if (videoSrc.startsWith('https://www.youtube.com')) {
                 video = { videoProvider: "youtube", videoSrc }
-                console.log("youtube", video)
+                // console.log("youtube", video)
             }
         }
         else {
-            console.log("checked everything, still null", obj)
+            // console.log("checked everything, still null", obj)
             return null
         }
     }

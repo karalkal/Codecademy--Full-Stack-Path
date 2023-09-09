@@ -18,7 +18,7 @@ const Found = ({ accessToken, selectedSubReddit }) => {
     useEffect(() => {
         async function getResults() {
             let foundPosts = await fetchSearchResult(accessToken, selectedSubReddit.url, searchQuery)
-            
+
             console.log(foundPosts);
 
             let res = createSimplifiedPostsArray(foundPosts.data.children)
@@ -30,24 +30,24 @@ const Found = ({ accessToken, selectedSubReddit }) => {
     }
         , [searchQuery])
 
-    if (postsArray) {
-        return (
-            <main className={styles.mainContainer}>
 
-                <h1 className={styles.galleryTitle}>Top results for "{searchQuery}"</h1>
+    return (
+        <main className={styles.mainContainer}>
 
-                <h2 className={styles.gallerySubtitle}> (sorted by relevance)</h2>
+            <h1 className={styles.galleryTitle}>Top results for "{searchQuery}"</h1>
 
-                <div className={styles.galleryContainer}>
+            <h2 className={styles.gallerySubtitle}> (sorted by relevance)</h2>
 
-                    {postsArray.map(rslt =>
-                        <Card result={rslt} key={rslt.id} />
-                    )}
+            <div className={styles.galleryContainer}>
 
-                </div>
-            </main>
-        );
-    };
-}
+                {postsArray.map(rslt =>
+                    <Card result={rslt} key={rslt.id} />
+                )}
+
+            </div>
+        </main>
+    );
+};
+
 
 export default Found;
