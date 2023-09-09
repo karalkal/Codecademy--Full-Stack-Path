@@ -38,10 +38,19 @@ export async function getUserlessAuthorizarion() {
 }
 
 
-export async function fetchSearchResult(term) {
-    try {
-        const response = await fetch(`https://www.reddit.com/search.json?q=${term}&sort=relevance`);
+export async function fetchSearchResult(appAccessToken, selectedSubRedditUrl, searchQuery) {
+    // url has dash in forn and at back
+    let urlPath = `${selectedSubRedditUrl}search?${LIST_RESULT_LIMIT_STR}&q=${searchQuery}&sort=relevance`
+    console.log(urlPath)
 
+    try {                   // NB selectedSubReddit comes with leading and trailing slash
+        const response = await fetch(`https://oauth.reddit.com${urlPath}`, {
+            method: "GET",
+            headers: {
+                'Authorization': `Bearer ${appAccessToken}`,
+                'Content-Type': 'application/json',
+            }
+        })
 
         if (!response.ok) {
             throw new Error(`${response.statusText} - ${response.status}`);

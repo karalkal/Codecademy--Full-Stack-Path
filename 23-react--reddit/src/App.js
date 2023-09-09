@@ -100,8 +100,9 @@ function App() {
                 />
 
                 <Route path="found"
-                    element={<Found />}
-                // loader={() => fetchSearchResult(searchTerm)} 
+                    element={<Found
+                        accessToken={accessToken}
+                        selectedSubReddit={selectedSubReddit} />}
                 />
 
                 <Route path="*" element={<Error404 />} />

@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom"
 import styles from "./SubredditInfoBar.module.css"
+import specificStyles from "./FirstInfoBar.module.css"
 import logo from "../misc/redditBluelogo.png";
 
 export default function FirstInfoBar({ setSelectedSubReddit }) {
@@ -19,7 +20,7 @@ export default function FirstInfoBar({ setSelectedSubReddit }) {
 
     return (
         <button
-            className={styles.subRBarContainer}
+            className={specificStyles.firstBarContainer}
             onClick={selectionHandler}>
             <div className={styles.subRTopSection}>
                 <img src={logo} alt="reddit logo"></img>

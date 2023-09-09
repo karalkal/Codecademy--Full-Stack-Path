@@ -17,7 +17,6 @@ const Results = ({ accessToken, selectedSubReddit, selectedCriterion }) => {
     useEffect(() => {
         async function getResults() {
             // selectedSubReddit is Object with name, icon and url
-            console.log("starting search for:", selectedSubReddit.name, "criterion:", selectedCriterion)
             let foundPosts = await fetchPostsFromSubreddit(accessToken, selectedSubReddit.url, selectedCriterion)
 
             let res = createSimplifiedPostsArray(foundPosts.data.children)

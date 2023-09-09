@@ -9,7 +9,7 @@ const Home = ({ followedSubReddits, setSelectedSubReddit }) => {
 
             <h1 className={styles.galleryTitle}>Selected Subreddits</h1>
             
-            <div className={styles.gallerySubtitle}>View Best/Top/Hot/Controversial Posts for a Subreddit</div>
+            <h2 className={styles.gallerySubtitle}>View Best/Top/Hot/Controversial Posts for a Subreddit</h2>
 
             <div className={styles.galleryContainer}>
                 <FirstInfoBar setSelectedSubReddit={setSelectedSubReddit} />
