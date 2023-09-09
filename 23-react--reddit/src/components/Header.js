@@ -3,12 +3,12 @@ import styles from './Header.module.css'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 
 
-export default function Header({ setSelectedCriterion, selectedSubReddit }) {
+export default function Header({ selectedSubReddit, selectedCriterion, setSelectedCriterion }) {
     const navigate = useNavigate()
     function selectionHandler(clickedCrit) {
         setSelectedCriterion(clickedCrit)
-        navigate("results"
-)
+        // selectedCriterion MUST now be === clickedCrit, not ideal implementation
+        navigate(`${selectedSubReddit.name}/${clickedCrit}`)
     }
 
     return <header id={styles.header}>
@@ -19,7 +19,7 @@ export default function Header({ setSelectedCriterion, selectedSubReddit }) {
 
         <nav>
             <div className={`${styles.menuSearchRow}`}>
-                <SearchBar selectedSubReddit={selectedSubReddit}/>
+                <SearchBar selectedSubReddit={selectedSubReddit} />
             </div>
 
             <div className={styles.menuButtonsRow}>

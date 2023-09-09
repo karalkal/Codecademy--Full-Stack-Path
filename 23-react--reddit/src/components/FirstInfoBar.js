@@ -3,7 +3,7 @@ import styles from "./SubredditInfoBar.module.css"
 import specificStyles from "./FirstInfoBar.module.css"
 import logo from "../misc/redditBluelogo.png";
 
-export default function FirstInfoBar({ setSelectedSubReddit }) {
+export default function FirstInfoBar({ selectedCriterion, setSelectedSubReddit }) {
     const navigate = useNavigate()
 
     function selectionHandler() {
@@ -12,10 +12,8 @@ export default function FirstInfoBar({ setSelectedSubReddit }) {
             name: 'ALL',
             icon: logo
         })
-        navigate("results"
-, {
-            // state: { selectedSubReddit, selectedCriterion }
-        })
+        navigate(`/${selectedCriterion}`)
+
     }
 
     return (

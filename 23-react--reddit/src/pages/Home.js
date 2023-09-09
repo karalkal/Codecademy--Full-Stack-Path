@@ -12,7 +12,9 @@ const Home = ({ followedSubReddits, selectedCriterion, setSelectedSubReddit }) =
             <h2 className={styles.gallerySubtitle}>View Best/Top/Hot/Controversial Posts for a Subreddit</h2>
 
             <div className={styles.galleryContainer}>
-                <FirstInfoBar setSelectedSubReddit={setSelectedSubReddit} />
+                <FirstInfoBar
+                    selectedCriterion={selectedCriterion}
+                    setSelectedSubReddit={setSelectedSubReddit} />
 
                 {followedSubReddits.map(subr =>
                     <SubredditInfoBar

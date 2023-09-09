@@ -79,6 +79,7 @@ function App() {
                 // path="/"
                 element={<RootLayout
                     selectedSubReddit={selectedSubReddit}
+                    selectedCriterion={selectedCriterion}
                     setSelectedCriterion={setSelectedCriterion} />}
                 errorElement={<ErrorGeneric />} >
 
