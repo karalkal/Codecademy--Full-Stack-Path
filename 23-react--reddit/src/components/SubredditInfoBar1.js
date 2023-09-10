@@ -1,8 +1,12 @@
 import { useNavigate } from "react-router-dom"
+
 import styles from "./SubredditInfoBar.module.css"
 import logo from "../misc/redditB&Wlogo.png";
+import createSimplifiedPostsArray from '../utils/createSimplifiedPostsArray';
+import { fetchPostsFromSubreddit } from '../api/api';
 
-export default function SubredditInfoBar({ subr, selectedCriterion, setSelectedSubReddit }) {
+
+export default function SubredditInfoBar({ subr, accessToken, selectedSubReddit, selectedCriterion, setSelectedSubReddit }) {
     const navigate = useNavigate()
 
     // The Date constructor from Javascript accepts the number of milliseconds as timestamp, not unix time (number of seconds).
@@ -11,10 +15,14 @@ export default function SubredditInfoBar({ subr, selectedCriterion, setSelectedS
 
     let srIcon = subr.icon_img === "" ? `${logo}` : subr.icon_img
 
-    function selectionHandler(clickedSubreddit) {
-        setSelectedSubReddit(clickedSubreddit)
+    async function selectionHandler(clickedSubreddit) {
+        // setSelectedSubReddit(clickedSubreddit)
+        let foundPosts = await fetchPostsFromSubreddit(accessToken, selectedSubReddit.url, selectedCriterion)
 
-        navigate(`${clickedSubreddit.name}/${selectedCriterion}`)
+        let res = createSimplifiedPostsArray(foundPosts.data.children)
+
+        // navigate(`${clickedSubreddit.name}/${selectedCriterion}`)
+        navigate("results", { state: res })
     }
 
     return (

@@ -1,32 +1,12 @@
-import { useEffect, useState } from 'react';
-// import { useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import Card from '../components/Card';
 import styles from "./Results.module.css"
 
-import createSimplifiedPostsArray from '../utils/createSimplifiedPostsArray';
-import { fetchPostsFromSubreddit } from '../api/api';
 
-
-const Results = ({ accessToken, selectedSubReddit, selectedCriterion }) => {
-    const [postsArray, setPostsArray] = useState([])
-
-    // const location = useLocation()
-    // let { selectedSubReddit, selectedCriterion } = location.state
-
-    //fetch results
-    useEffect(() => {
-        async function getResults() {
-            // selectedSubReddit is Object with name, icon and url
-            let foundPosts = await fetchPostsFromSubreddit(accessToken, selectedSubReddit.url, selectedCriterion)
-
-            let res = createSimplifiedPostsArray(foundPosts.data.children)
-            setPostsArray(res)
-        }
-
-        getResults();       // CALL THE FUNCTION
-        // cleanup?
-    }
-        , [accessToken, selectedSubReddit, selectedCriterion])
+const Results = ({ selectedCriterion, selectedSubReddit }) => {
+    const location = useLocation()
+    console.log(location.state)
+    const postsArray = location.state
 
     let subtitle = ""
     if (selectedCriterion === "best") {

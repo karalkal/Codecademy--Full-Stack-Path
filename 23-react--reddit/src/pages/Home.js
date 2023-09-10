@@ -21,7 +21,8 @@ const Home = ({ followedSubReddits, selectedCriterion, setSelectedSubReddit }) =
                         key={subr.url}
                         subr={subr}
                         selectedCriterion={selectedCriterion}
-                        setSelectedSubReddit={setSelectedSubReddit} />
+                        setSelectedSubReddit={setSelectedSubReddit}
+                    />
                 )}
             </div>
 

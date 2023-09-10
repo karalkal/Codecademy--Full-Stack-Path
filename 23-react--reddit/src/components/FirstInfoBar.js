@@ -12,8 +12,7 @@ export default function FirstInfoBar({ selectedCriterion, setSelectedSubReddit }
             name: 'ALL',
             icon: logo
         })
-        navigate(`/${selectedCriterion}`)
-
+        navigate(`ALL/${selectedCriterion}`)
     }
 
     return (

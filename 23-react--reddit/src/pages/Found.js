@@ -8,7 +8,7 @@ import { fetchSearchResult } from '../api/api';
 
 
 const Found = ({ accessToken, selectedSubReddit }) => {
-    const [postsArray, setpostsArray] = useState([])
+    const [postsArray, setPostsArray] = useState([])
 
     const location = useLocation()
 
@@ -22,19 +22,19 @@ const Found = ({ accessToken, selectedSubReddit }) => {
             console.log(foundPosts);
 
             let res = createSimplifiedPostsArray(foundPosts.data.children)
-            setpostsArray(res)
+            setPostsArray(res)
         }
 
         getResults();       // CALL THE FUNCTION
         // cleanup?
     }
-        , [searchQuery])
+        , [accessToken, selectedSubReddit.url, searchQuery])
 
 
     return (
         <main className={styles.mainContainer}>
 
-            <h1 className={styles.galleryTitle}>Top results for "{searchQuery}"</h1>
+            <h1 className={styles.galleryTitle}>Top results for "{searchQuery}" in {selectedSubReddit.name}</h1>
 
             <h2 className={styles.gallerySubtitle}> (sorted by relevance)</h2>
 

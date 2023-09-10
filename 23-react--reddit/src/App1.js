@@ -38,7 +38,7 @@ function App() {
         getListOfSubreddits();       // CALL THE FUNCTION
         // cleanup?
     }
-        , [accessToken])
+        , [])
 
 
     useEffect(() => {
@@ -73,13 +73,16 @@ function App() {
         }
     }, [accessToken])
 
+
     const appRouter = createBrowserRouter(
         createRoutesFromElements(
             <Route
                 // path="/"
                 element={<RootLayout
+                    accessToken={accessToken}
                     selectedSubReddit={selectedSubReddit}
-                    setSelectedCriterion={setSelectedCriterion} />}
+                    setSelectedCriterion={setSelectedCriterion}
+                />}
                 errorElement={<ErrorGeneric />} >
 
                 {/* nested in layout comp */}
@@ -87,21 +90,24 @@ function App() {
                     element={
                         <Home
                             followedSubReddits={followedSubReddits}
+                            setSelectedSubReddit={setSelectedSubReddit}
+                            accessToken={accessToken}
+                            selectedSubReddit={selectedSubReddit}
                             selectedCriterion={selectedCriterion}
-                            setSelectedSubReddit={setSelectedSubReddit} />}
+                        />
+                    }
                 />
 
-                <Route path={`${selectedSubReddit.name}/${selectedCriterion}`}
+                {/* <Route path={`${selectedSubReddit.name}/${selectedCriterion}`} */}
+                <Route path={`results`}
                     element={<Results
-                        accessToken={accessToken}
-                        selectedSubReddit={selectedSubReddit}
-                        selectedCriterion={selectedCriterion} />}
+                        selectedCriterion={selectedCriterion}
+                        selectedSubReddit={selectedSubReddit} />}
                 />
 
                 <Route path="found"
                     element={<Found
-                        accessToken={accessToken}
-                        selectedSubReddit={selectedSubReddit} />}
+                    />}
                 />
 
                 <Route path="*" element={<Error404 />} />
