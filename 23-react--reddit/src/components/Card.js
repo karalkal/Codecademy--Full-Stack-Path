@@ -28,7 +28,7 @@ export default function Card({ result }) {
 
 
     return (
-        <Link to={redditLink} target="_blank" className={styles.cardContainer}>
+        <Link to={`/${result.id.toString()}`}  target="_blank" className={styles.cardContainer}>
             <div className={styles.card}>
                 <div className={styles.textCardContent}>
                     {/* Icons and link*/}

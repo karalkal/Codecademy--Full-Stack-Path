@@ -4,7 +4,7 @@ import FirstInfoBar from "../components/FirstInfoBar";
 
 
 const Home = ({ followedSubReddits, setSelectedSubReddit, setSelectedCriterion, accessToken, selectedCriterion, setDynamicUrlPath }) => {
-    // default is "best"
+    // default is "best", reset it so whenever new subr is selected initial request will be to "best", not whatever the prev state was
     setSelectedCriterion('best');
 
     return (

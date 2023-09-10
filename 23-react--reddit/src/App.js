@@ -13,6 +13,7 @@ import { subredditsSubscriptionList } from "./utils/subredditsSubscriptionList";
 import Results from "./pages/Results";
 
 import logo from "./misc/redditBluelogo.png";
+import Details from "./pages/Details";
 
 
 function App() {
@@ -87,7 +88,7 @@ function App() {
                         <Home
                             followedSubReddits={followedSubReddits}
                             setSelectedSubReddit={setSelectedSubReddit}
-                            setSelectedCriterion = {setSelectedCriterion}
+                            setSelectedCriterion={setSelectedCriterion}
                             accessToken={accessToken}
                             selectedCriterion={selectedCriterion}
                             setDynamicUrlPath={setDynamicUrlPath} />}
@@ -96,6 +97,12 @@ function App() {
                 <Route path={dynamicUrlPath}
                     // <Route path={`results`}
                     element={<Results
+                        selectedCriterion={selectedCriterion}
+                        selectedSubReddit={selectedSubReddit} />}
+                />
+
+                <Route path=":id"
+                    element={<Details
                         selectedCriterion={selectedCriterion}
                         selectedSubReddit={selectedSubReddit} />}
                 />
