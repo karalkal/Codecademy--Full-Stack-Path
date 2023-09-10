@@ -15,9 +15,9 @@ export default function FirstInfoBar({ accessToken, setSelectedSubReddit, select
         let postsArray = createSimplifiedPostsArray(fetchedResults.data.children)
         
         setSelectedSubReddit({ url: "/", name: 'ALL', icon: logo })
-        
-        // navigate(`ALL/${selectedCriterion}`)
-        navigate("results", { state: { postsArray } })
+
+        navigate(`ALL/${selectedCriterion}`, { state: { postsArray } })
+        // navigate("results", { state: { postsArray } })
     }
 
     return (

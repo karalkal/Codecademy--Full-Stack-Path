@@ -75,6 +75,7 @@ function App() {
                 element={<RootLayout
                     accessToken={accessToken}
                     selectedSubReddit={selectedSubReddit}
+                    selectedCriterion={selectedCriterion}
                     setSelectedCriterion={setSelectedCriterion}
                 />}
                 errorElement={<ErrorGeneric />} >
@@ -89,8 +90,8 @@ function App() {
                             selectedCriterion={selectedCriterion} />}
                 />
 
-                {/* <Route path={`${selectedSubReddit.name}/${selectedCriterion}`} */}
-                <Route path={`results`}
+                <Route path={`${selectedSubReddit.name}/${selectedCriterion}`}
+                // <Route path={`results`}
                     element={<Results
                         selectedCriterion={selectedCriterion}
                         selectedSubReddit={selectedSubReddit} />}

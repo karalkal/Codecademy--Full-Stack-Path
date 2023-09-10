@@ -7,7 +7,7 @@ import { fetchPostsFromSubreddit } from '../api/api';
 
 
 export default function SubredditInfoBar({ subr, accessToken, setSelectedSubReddit, selectedCriterion }) {
-    
+
     const navigate = useNavigate()
 
     // The Date constructor from Javascript accepts the number of milliseconds as timestamp, not unix time (number of seconds).
@@ -22,8 +22,8 @@ export default function SubredditInfoBar({ subr, accessToken, setSelectedSubRedd
         
         setSelectedSubReddit(clickedSubreddit)
 
-        // navigate(`${clickedSubreddit.name}/${selectedCriterion}`)
-        navigate("results", { state: { postsArray } })
+        navigate(`${clickedSubreddit.name}/${selectedCriterion}`, { state: { postsArray } })
+        // navigate("results", { state: { postsArray } })
     }
 
     return (

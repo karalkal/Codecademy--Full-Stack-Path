@@ -16,8 +16,8 @@ export default function Header({ accessToken, selectedSubReddit, setSelectedCrit
         
         setSelectedCriterion(clickedCrit)
 
-        // navigate(`${clickedSubreddit.name}/${selectedCriterion}`)
-        navigate("results", { state: { postsArray } })
+        navigate(`${selectedSubReddit.name}/${clickedCrit}`, { state: { postsArray } })
+        // navigate("results", { state: { postsArray } })
     }
 
 
@@ -31,7 +31,8 @@ export default function Header({ accessToken, selectedSubReddit, setSelectedCrit
             <div className={`${styles.menuSearchRow}`}>
                 <SearchBar 
                 accessToken={accessToken} 
-                selectedSubReddit={selectedSubReddit}                  />
+                selectedSubReddit={selectedSubReddit}
+                setSelectedCriterion={setSelectedCriterion}                  />
             </div>
 
             <div className={styles.menuButtonsRow}>

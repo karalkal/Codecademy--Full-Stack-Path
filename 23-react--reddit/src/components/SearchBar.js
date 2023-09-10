@@ -6,7 +6,7 @@ import { fetchSearchResult } from '../api/api';
 
 import styles from "./SearchBar.module.css"
 
-export default function SearchBar({ accessToken, selectedSubReddit }) {
+export default function SearchBar({ accessToken, selectedSubReddit, setSelectedCriterion }) {
     const [searchQuery, setSearchQuery] = useState("")
 
     const navigate = useNavigate()
@@ -15,15 +15,19 @@ export default function SearchBar({ accessToken, selectedSubReddit }) {
 
     async function handleSubmit(event) {
         event.preventDefault()
-        
+
         //fetch results
         let fetchedResults = await fetchSearchResult(accessToken, selectedSubReddit.url, searchQuery)
         let postsArray = createSimplifiedPostsArray(fetchedResults.data.children)
 
+        // set querystring as criterion
+        setSelectedCriterion(searchQuery)
+
+        navigate(`${selectedSubReddit.name}/${searchQuery}`, { state: { postsArray } })
+        // navigate("results", { state: { postsArray, searchQuery } })
+
         // clear form
         setSearchQuery("")
-
-        navigate("results", { state: { postsArray, searchQuery } })
     }
 
     return (
