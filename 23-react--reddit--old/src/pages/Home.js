@@ -3,7 +3,7 @@ import SubredditInfoBar from '../components/SubredditInfoBar';
 import FirstInfoBar from "../components/FirstInfoBar";
 
 
-const Home = ({ followedSubReddits, setSelectedSubReddit, accessToken, selectedCriterion }) => {
+const Home = ({ followedSubReddits, selectedCriterion, setSelectedSubReddit }) => {
     return (
         <main className={styles.mainContainer}>
 
@@ -13,18 +13,15 @@ const Home = ({ followedSubReddits, setSelectedSubReddit, accessToken, selectedC
 
             <div className={styles.galleryContainer}>
                 <FirstInfoBar
-                    setSelectedSubReddit={setSelectedSubReddit} 
-                    accessToken={accessToken}
                     selectedCriterion={selectedCriterion}
-                    />
+                    setSelectedSubReddit={setSelectedSubReddit} />
 
                 {followedSubReddits.map(subr =>
                     <SubredditInfoBar
                         key={subr.url}
                         subr={subr}
-                        setSelectedSubReddit={setSelectedSubReddit}
-                        accessToken={accessToken}
                         selectedCriterion={selectedCriterion}
+                        setSelectedSubReddit={setSelectedSubReddit}
                     />
                 )}
             </div>

@@ -3,8 +3,9 @@ import jwt_decode from "jwt-decode"; //decoded token will have .exp property
 import { useEffect, useState } from 'react';
 import { RouterProvider, createBrowserRouter, createRoutesFromElements, Route } from 'react-router-dom';
 
-import RootLayout from './layouts/RootLayout';
+import RootLayout from './components/RootLayout';
 import Home from './pages/Home';
+import Found from './pages/Found';
 import Error404 from './pages/Error404';
 import ErrorGeneric from './pages/ErrorGeneric';
 
@@ -16,12 +17,14 @@ import logo from "./misc/redditBluelogo.png";
 
 
 function App() {
+    window.history.replaceState({}, document.title)
+
     const [accessToken, setAccessToken] = useState(localStorage.getItem("access_token"));
     const [followedSubReddits, setFollowedSubReddits] = useState([]);
     const [selectedSubReddit, setSelectedSubReddit] = useState({ url: "/", name: 'ALL', icon: logo })
-    const [selectedCriterion, setSelectedCriterion] = useState('best');
+    const [selectedCriterion, setSelectedCriterion] = useState('best')
 
-    // Fetch landing page data, i.e. followed reddits' "about" data, incl. icons
+    //fetch landing page data, i.e. followed reddits' "about" data, incl. icons
     // need to load this just once, hence useEffect()
     useEffect(() => {
         async function getListOfSubreddits() {
@@ -32,11 +35,11 @@ function App() {
         getListOfSubreddits();       // CALL THE FUNCTION
         // cleanup?
     }
-        , [])
+        , [accessToken])
 
 
-    // Check if token in localStorage, if not get new one from API
     useEffect(() => {
+        //Check if token in localStorage, if not get new one from API
         // declare function
         async function getNewTokenStoreItUpdateState() {
             const authData = await getUserlessAuthorizarion()
@@ -67,16 +70,13 @@ function App() {
         }
     }, [accessToken])
 
-
     const appRouter = createBrowserRouter(
         createRoutesFromElements(
             <Route
                 // path="/"
                 element={<RootLayout
-                    accessToken={accessToken}
                     selectedSubReddit={selectedSubReddit}
-                    setSelectedCriterion={setSelectedCriterion}
-                />}
+                    setSelectedCriterion={setSelectedCriterion} />}
                 errorElement={<ErrorGeneric />} >
 
                 {/* nested in layout comp */}
@@ -84,15 +84,20 @@ function App() {
                     element={
                         <Home
                             followedSubReddits={followedSubReddits}
-                            setSelectedSubReddit={setSelectedSubReddit}
-                            accessToken={accessToken}
-                            selectedCriterion={selectedCriterion} />}
+                            selectedCriterion={selectedCriterion}
+                            setSelectedSubReddit={setSelectedSubReddit} />}
                 />
 
-                {/* <Route path={`${selectedSubReddit.name}/${selectedCriterion}`} */}
-                <Route path={`results`}
+                <Route path={`${selectedSubReddit.name}/${selectedCriterion}`}
                     element={<Results
-                        selectedCriterion={selectedCriterion}
+                        accessToken={accessToken}
+                        selectedSubReddit={selectedSubReddit}
+                        selectedCriterion={selectedCriterion} />}
+                />
+
+                <Route path="found"
+                    element={<Found
+                        accessToken={accessToken}
                         selectedSubReddit={selectedSubReddit} />}
                 />
 

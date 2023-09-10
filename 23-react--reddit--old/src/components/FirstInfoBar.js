@@ -1,23 +1,18 @@
 import { useNavigate } from "react-router-dom"
-
 import styles from "./SubredditInfoBar.module.css"
 import specificStyles from "./FirstInfoBar.module.css"
 import logo from "../misc/redditBluelogo.png";
-import createSimplifiedPostsArray from '../utils/createSimplifiedPostsArray';
-import { fetchPostsFromSubreddit } from '../api/api';
 
-
-export default function FirstInfoBar({ accessToken, setSelectedSubReddit, selectedCriterion }) {
+export default function FirstInfoBar({ selectedCriterion, setSelectedSubReddit }) {
     const navigate = useNavigate()
 
-    async function selectionHandler() {
-        let fetchedResults = await fetchPostsFromSubreddit(accessToken, "/", selectedCriterion)
-        let postsArray = createSimplifiedPostsArray(fetchedResults.data.children)
-        
-        setSelectedSubReddit({ url: "/", name: 'ALL', icon: logo })
-        
-        // navigate(`ALL/${selectedCriterion}`)
-        navigate("results", { state: { postsArray } })
+    function selectionHandler() {
+        setSelectedSubReddit({
+            url: "/",
+            name: 'ALL',
+            icon: logo
+        })
+        navigate(`ALL/${selectedCriterion}`)
     }
 
     return (

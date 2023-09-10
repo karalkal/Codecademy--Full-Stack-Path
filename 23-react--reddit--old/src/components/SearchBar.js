@@ -1,28 +1,25 @@
-import { useState } from 'react';
+import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import createSimplifiedPostsArray from '../utils/createSimplifiedPostsArray';
-import { fetchSearchResult } from '../api/api';
-
 
 import styles from "./SearchBar.module.css"
 
-export default function SearchBar({ accessToken, selectedSubReddit }) {
+export default function SearchBar({selectedSubReddit}) {
     const [searchQuery, setSearchQuery] = useState("")
-
     const navigate = useNavigate()
 
     const inputPlaceholder = "Search in r/" + selectedSubReddit.name + " for..."
 
-    async function handleSubmit(event) {
+    function handleSubmit(event) {
         event.preventDefault()
+
         // clear form
         event.target.reset()
-        //fetch results
-        let fetchedResults = await fetchSearchResult(accessToken, selectedSubReddit.url, searchQuery)
 
-        let postsArray = createSimplifiedPostsArray(fetchedResults.data.children)
-
-        navigate("results", { state: { postsArray, searchQuery } })
+        navigate('/found', {
+            state: {
+                searchQuery
+            }
+        })
     }
 
     return (
