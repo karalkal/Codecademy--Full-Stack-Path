@@ -6,7 +6,7 @@ import createSimplifiedPostsArray from '../utils/createSimplifiedPostsArray';
 import { fetchPostsFromSubreddit } from '../api/api';
 
 
-export default function SubredditInfoBar({ subr, accessToken, setSelectedSubReddit, selectedCriterion }) {
+export default function SubredditInfoBar({ subr, setSelectedSubReddit, accessToken, selectedCriterion, setDynamicUrlPath }) {
 
     const navigate = useNavigate()
 
@@ -19,10 +19,13 @@ export default function SubredditInfoBar({ subr, accessToken, setSelectedSubRedd
     async function selectionHandler(clickedSubreddit) {
         let fetchedResults = await fetchPostsFromSubreddit(accessToken, clickedSubreddit.url, selectedCriterion)
         let postsArray = createSimplifiedPostsArray(fetchedResults.data.children)
-        
+
         setSelectedSubReddit(clickedSubreddit)
 
-        navigate(`${clickedSubreddit.name}/${selectedCriterion}`, { state: { postsArray } })
+        const pathToNavigateTo = `${clickedSubreddit.name}/${selectedCriterion}`
+        setDynamicUrlPath(pathToNavigateTo)
+
+        navigate(pathToNavigateTo, { state: { postsArray } })
         // navigate("results", { state: { postsArray } })
     }
 

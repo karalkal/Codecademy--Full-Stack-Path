@@ -7,16 +7,19 @@ import createSimplifiedPostsArray from '../utils/createSimplifiedPostsArray';
 import { fetchPostsFromSubreddit } from '../api/api';
 
 
-export default function FirstInfoBar({ accessToken, setSelectedSubReddit, selectedCriterion }) {
+export default function FirstInfoBar({ setSelectedSubReddit, accessToken, selectedCriterion, setDynamicUrlPath }) {
     const navigate = useNavigate()
 
     async function selectionHandler() {
         let fetchedResults = await fetchPostsFromSubreddit(accessToken, "/", selectedCriterion)
         let postsArray = createSimplifiedPostsArray(fetchedResults.data.children)
-        
+
         setSelectedSubReddit({ url: "/", name: 'ALL', icon: logo })
 
-        navigate(`ALL/${selectedCriterion}`, { state: { postsArray } })
+        const pathToNavigateTo = `ALL/${selectedCriterion}`
+        setDynamicUrlPath(pathToNavigateTo)
+
+        navigate(pathToNavigateTo, { state: { postsArray } })
         // navigate("results", { state: { postsArray } })
     }
 

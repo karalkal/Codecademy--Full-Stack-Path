@@ -3,7 +3,7 @@ import SubredditInfoBar from '../components/SubredditInfoBar';
 import FirstInfoBar from "../components/FirstInfoBar";
 
 
-const Home = ({ followedSubReddits, setSelectedSubReddit, accessToken, selectedCriterion }) => {
+const Home = ({ followedSubReddits, setSelectedSubReddit, accessToken, selectedCriterion, setDynamicUrlPath }) => {
     return (
         <main className={styles.mainContainer}>
 
@@ -13,10 +13,11 @@ const Home = ({ followedSubReddits, setSelectedSubReddit, accessToken, selectedC
 
             <div className={styles.galleryContainer}>
                 <FirstInfoBar
-                    setSelectedSubReddit={setSelectedSubReddit} 
+                    setSelectedSubReddit={setSelectedSubReddit}
                     accessToken={accessToken}
                     selectedCriterion={selectedCriterion}
-                    />
+                    setDynamicUrlPath={setDynamicUrlPath}
+                />
 
                 {followedSubReddits.map(subr =>
                     <SubredditInfoBar
@@ -25,6 +26,7 @@ const Home = ({ followedSubReddits, setSelectedSubReddit, accessToken, selectedC
                         setSelectedSubReddit={setSelectedSubReddit}
                         accessToken={accessToken}
                         selectedCriterion={selectedCriterion}
+                        setDynamicUrlPath={setDynamicUrlPath}
                     />
                 )}
             </div>

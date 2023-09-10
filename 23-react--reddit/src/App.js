@@ -20,6 +20,7 @@ function App() {
     const [followedSubReddits, setFollowedSubReddits] = useState([]);
     const [selectedSubReddit, setSelectedSubReddit] = useState({ url: "/", name: 'ALL', icon: logo })
     const [selectedCriterion, setSelectedCriterion] = useState('best');
+    const [dynamicUrlPath, setDynamicUrlPath] = useState("")
 
     // Fetch landing page data, i.e. followed reddits' "about" data, incl. icons
     // need to load this just once, hence useEffect()
@@ -75,8 +76,8 @@ function App() {
                 element={<RootLayout
                     accessToken={accessToken}
                     selectedSubReddit={selectedSubReddit}
-                    selectedCriterion={selectedCriterion}
                     setSelectedCriterion={setSelectedCriterion}
+                    setDynamicUrlPath={setDynamicUrlPath}
                 />}
                 errorElement={<ErrorGeneric />} >
 
@@ -87,11 +88,12 @@ function App() {
                             followedSubReddits={followedSubReddits}
                             setSelectedSubReddit={setSelectedSubReddit}
                             accessToken={accessToken}
-                            selectedCriterion={selectedCriterion} />}
+                            selectedCriterion={selectedCriterion}
+                            setDynamicUrlPath={setDynamicUrlPath} />}
                 />
 
-                <Route path={`${selectedSubReddit.name}/${selectedCriterion}`}
-                // <Route path={`results`}
+                <Route path={dynamicUrlPath}
+                    // <Route path={`results`}
                     element={<Results
                         selectedCriterion={selectedCriterion}
                         selectedSubReddit={selectedSubReddit} />}
