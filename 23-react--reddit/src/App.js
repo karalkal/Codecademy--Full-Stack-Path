@@ -32,7 +32,7 @@ function App() {
         getListOfSubreddits();       // CALL THE FUNCTION
         // cleanup?
     }
-        , [])
+        , [accessToken])
 
 
     // Check if token in localStorage, if not get new one from API
