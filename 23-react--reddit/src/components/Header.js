@@ -1,17 +1,25 @@
-import SearchBar from './SearchBar'
-import styles from './Header.module.css'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
+
+import styles from './Header.module.css'
+import SearchBar from './SearchBar'
+import createSimplifiedPostsArray from '../utils/createSimplifiedPostsArray';
+import { fetchPostsFromSubreddit } from '../api/api';
 
 
 export default function Header({ accessToken, selectedSubReddit, setSelectedCriterion }) {
 
     const navigate = useNavigate()
 
-    function selectionHandler(clickedCrit) {
+    async function selectionHandler(clickedCrit) {
+        let fetchedResults = await fetchPostsFromSubreddit(accessToken, selectedSubReddit.url, clickedCrit)
+        let postsArray = createSimplifiedPostsArray(fetchedResults.data.children)
+        
         setSelectedCriterion(clickedCrit)
-        // selectedCriterion MUST now be === clickedCrit, not ideal implementation
-        navigate(`${selectedSubReddit.name}/${clickedCrit}`)
+
+        // navigate(`${clickedSubreddit.name}/${selectedCriterion}`)
+        navigate("results", { state: { postsArray } })
     }
+
 
     return <header id={styles.header}>
         <NavLink to="/">

@@ -15,12 +15,13 @@ export default function SearchBar({ accessToken, selectedSubReddit }) {
 
     async function handleSubmit(event) {
         event.preventDefault()
-        // clear form
-        event.target.reset()
+        
         //fetch results
         let fetchedResults = await fetchSearchResult(accessToken, selectedSubReddit.url, searchQuery)
-
         let postsArray = createSimplifiedPostsArray(fetchedResults.data.children)
+
+        // clear form
+        setSearchQuery("")
 
         navigate("results", { state: { postsArray, searchQuery } })
     }
