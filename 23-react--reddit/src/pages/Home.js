@@ -3,7 +3,10 @@ import SubredditInfoBar from '../components/SubredditInfoBar';
 import FirstInfoBar from "../components/FirstInfoBar";
 
 
-const Home = ({ followedSubReddits, setSelectedSubReddit, accessToken, selectedCriterion, setDynamicUrlPath }) => {
+const Home = ({ followedSubReddits, setSelectedSubReddit, setSelectedCriterion, accessToken, selectedCriterion, setDynamicUrlPath }) => {
+    // default is "best"
+    setSelectedCriterion('best');
+
     return (
         <main className={styles.mainContainer}>
 

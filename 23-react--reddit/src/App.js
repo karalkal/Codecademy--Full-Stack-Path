@@ -87,6 +87,7 @@ function App() {
                         <Home
                             followedSubReddits={followedSubReddits}
                             setSelectedSubReddit={setSelectedSubReddit}
+                            setSelectedCriterion = {setSelectedCriterion}
                             accessToken={accessToken}
                             selectedCriterion={selectedCriterion}
                             setDynamicUrlPath={setDynamicUrlPath} />}
