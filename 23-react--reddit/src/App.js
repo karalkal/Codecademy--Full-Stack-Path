@@ -5,15 +5,14 @@ import { RouterProvider, createBrowserRouter, createRoutesFromElements, Route } 
 
 import RootLayout from './layouts/RootLayout';
 import Home from './pages/Home';
+import Results from "./pages/Results";
 import Error404 from './pages/Error404';
 import ErrorGeneric from './pages/ErrorGeneric';
-
-import { getUserlessAuthorizarion, fetchAboutInfoFavSubReddits } from './api/api';
-import { subredditsSubscriptionList } from "./utils/subredditsSubscriptionList";
-import Results from "./pages/Results";
-
-import logo from "./misc/redditBluelogo.png";
 import Details from "./pages/Details";
+
+import { getUserlessAuthorizarion, fetchAboutInfoFavSubReddits, fetchPostDetails } from './api/api';
+import { subredditsSubscriptionList } from "./utils/subredditsSubscriptionList";
+import logo from "./misc/redditBluelogo.png";
 
 
 function App() {
@@ -103,8 +102,9 @@ function App() {
 
                 <Route path=":id"
                     element={<Details
-                        selectedCriterion={selectedCriterion}
-                        selectedSubReddit={selectedSubReddit} />}
+                        accessToken={accessToken}
+                        setDynamicUrlPath={setDynamicUrlPath}
+                    />}
                 />
 
                 <Route path="*" element={<Error404 />} />
