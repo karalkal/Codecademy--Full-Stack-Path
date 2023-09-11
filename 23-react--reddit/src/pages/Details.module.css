@@ -55,7 +55,6 @@
 }
 
 
-
 .linkToPost {
     background-color: var(--glaucous);
     color: var(--rich_black);
@@ -67,7 +66,8 @@
     width: fit-content;
     height: fit-content;
     align-self: flex-end;
-    margin-top: 22px;
+    /* margin-top: auto puts it at the end of the container; */
+    margin: auto 11px 11px 22px;
 }
 
 .linkToPost:hover {

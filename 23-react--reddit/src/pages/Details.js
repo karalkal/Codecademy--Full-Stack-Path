@@ -55,11 +55,13 @@ function Details({ accessToken, setDynamicUrlPath }) {
 
     return (
         <main className={styles.mainContainer}>
-
-            {/* <img src={selectedSubReddit.icon} alt={selectedSubReddit.name} className={styles.galleryIcon}></img> */}
-            <h1 className={styles.postTitle}>{postObj.title}</h1>
-            <h2 className={styles.postSubtitle}>r/{postObj.subreddit}</h2>
-            <div>
+            <div className={styles.postTopSection}>
+                <h1 className={styles.postTitle}>{postObj.title}</h1>
+                {/* <img src={selectedSubReddit.icon} alt={selectedSubReddit.name} className={styles.galleryIcon}></img> */}
+                <h2 className={styles.postSubtitle}>r/{postObj.subreddit}</h2>
+            </div>
+            
+            <div className={styles.postMidSection}>
                 <div className={styles.cardAuthor}>
                     <PiPencilLineLight />&nbsp;
                     Posted&nbsp;by&nbsp;
