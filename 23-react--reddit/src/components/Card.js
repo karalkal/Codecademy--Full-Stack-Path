@@ -1,9 +1,12 @@
 import { decode as htmlDecode } from 'html-entities';    // deals with html entities which are not displayed properly in JSX
 import styles from "./Card.module.css"
 import { Link } from "react-router-dom"
+
 import { PiPencilLineLight } from "react-icons/pi";
-import { IoLogoReddit } from "react-icons/io";
-import { BsArrowDownUp } from "react-icons/bs";
+import { PiRedditLogo } from "react-icons/pi";
+import { PiCalendarBlankLight } from "react-icons/pi";
+import { PiArrowsDownUpLight } from "react-icons/pi";
+import { VscCommentDraft } from "react-icons/vsc";
 
 //  TODO "&#x200b" does not render correctly
 
@@ -47,26 +50,33 @@ export default function Card({ result }) {
 
                     {/* title, author, datestamp */}
                     <div className={styles.cardTitle}>{htmlDecode(result.title)}</div>
-                    <div className={styles.cardAuthor}>
-                        <PiPencilLineLight />&nbsp;
-                        Posted&nbsp;by&nbsp;
+                    <div className={styles.cardInfo}>
+                        <PiPencilLineLight  />&nbsp;
+                        posted&nbsp;by&nbsp;
                         <span>{htmlDecode(result.author)} </span>
+                    </div>
+                    <div className={styles.cardInfo}>
+                        <PiCalendarBlankLight />&nbsp;
                         on&nbsp;
                         <span>{new Date(unixTime).toLocaleDateString()}</span>
                     </div>
                     {/* subreddit, text, rating*/}
-                    <div className={styles.cardSubreddit}>
-                        <IoLogoReddit />&nbsp;
+                    <div className={styles.cardInfo}>
+                        <PiRedditLogo />&nbsp;
                         r/
                         <span>{result.subreddit}</span>
                     </div>
-                    <div className={styles.postRating}>
-                        <BsArrowDownUp />&nbsp;
+                    <div className={styles.cardInfo}>
+                        <PiArrowsDownUpLight />&nbsp;
                         upvotes&nbsp;<span>{result.upvotes}</span>
-                        &nbsp;
-                        / &nbsp;ratio&nbsp;<span>{result.upvote_ratio}</span>
-                        / &nbsp;comments&nbsp;<span>{result.num_comments}</span>
+                        &nbsp;/&nbsp;
+                        ratio&nbsp;<span>{result.upvote_ratio}</span>
                     </div>
+                    <div className={styles.cardInfo}>
+                        <VscCommentDraft />&nbsp;
+                        comments&nbsp;<span>{result.num_comments}</span>
+                    </div>
+
                     <div className={styles.cardText}>
                         {result.text.length > 440
                             ? `${htmlDecode((result.text).substring(0, 440))}...`

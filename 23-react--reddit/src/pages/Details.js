@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom"
 
 import { decode as htmlDecode } from 'html-entities';    // deals with html entities which are not displayed properly in JSX
+
 import { PiPencilLineLight } from "react-icons/pi";
-import { IoLogoReddit } from "react-icons/io";
-import { BsArrowDownUp } from "react-icons/bs";
+import {TfiTime } from "react-icons/tfi";
+import { PiArrowsDownUpLight } from "react-icons/pi";
+import { VscCommentDraft } from "react-icons/vsc";
 
 import styles from "./Details.module.css"
 import { fetchPostDetails } from "../api/api";
@@ -31,15 +33,24 @@ function Details({ accessToken, setDynamicUrlPath }) {
     }
         , [accessToken, id])
 
-    console.log(postObj)
-
 
     const redditLink = "https://www.reddit.com" + postObj.permalink
 
     // The Date constructor from Javascript accepts the number of milliseconds as timestamp, not unix time (number of seconds).
     // So, to adjust that, is just multiply the unix time by 1000.
     const unixTime = postObj.created_utc * 1000
-
+    let date = new Date(unixTime);
+    // Hours part from the timestamp
+    let hours = date.getHours();
+    // Minutes part from the timestamp
+    let minutes = "0" + date.getMinutes();
+    // Seconds part from the timestamp
+    let seconds = "0" + date.getSeconds();
+    
+    // Will display time in 10:30:23 format
+    let formattedTime = hours + 'h ' + minutes.substr(-2) + 'm ' + seconds.substr(-2) + "s";
+    let formattedDate = date.toLocaleDateString()
+    
     // if thumbnail is "self" (no idea what this is) or we have video (video has thumbnail attached too)
     // check for extension too as articles with no img also have "url_overridden_by_dest"
     // check for video  as well
@@ -60,34 +71,36 @@ function Details({ accessToken, setDynamicUrlPath }) {
                 {/* <img src={selectedSubReddit.icon} alt={selectedSubReddit.name} className={styles.galleryIcon}></img> */}
                 <h2 className={styles.postSubtitle}>r/{postObj.subreddit}</h2>
             </div>
-            
+
             <div className={styles.postMidSection}>
-                <div className={styles.cardAuthor}>
+                <div>
                     <PiPencilLineLight />&nbsp;
-                    Posted&nbsp;by&nbsp;
-                    <span>{htmlDecode(postObj.author)} </span>
+                    posted&nbsp;by&nbsp;
+                    <span>{htmlDecode(postObj.author)} </span>                   
+                </div>
+                <div>
+                    <TfiTime />&nbsp;                    
                     on&nbsp;
-                    <span>{new Date(unixTime).toLocaleDateString()}</span>
+                    <span>{formattedDate} </span>
+                    at <span>{formattedTime}</span>
                 </div>
                 {/* subreddit, text, rating*/}
-                <div className={styles.cardSubreddit}>
-                    <IoLogoReddit />&nbsp;
-                    r/
-                    <span>{postObj.subreddit}</span>
-                </div>
-                <div className={styles.postRating}>
-                    <BsArrowDownUp />&nbsp;
+                <div>
+                    <PiArrowsDownUpLight />&nbsp;
                     upvotes&nbsp;<span>{postObj.upvotes}</span>
                     &nbsp;
                     / &nbsp;ratio&nbsp;<span>{postObj.upvote_ratio}</span>
-                    / &nbsp;comments&nbsp;<span>{postObj.num_comments}</span>
+                </div>
+                <div>
+                    <VscCommentDraft />&nbsp;
+                    comments&nbsp;<span>{postObj.num_comments}</span>
                 </div>
             </div>
 
 
             {/* visit link */}
             <Link to={redditLink} target="_blank" className={styles.linkToPost}>
-                visit
+                to Original Article
             </Link>
         </main>
     )

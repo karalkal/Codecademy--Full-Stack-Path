@@ -27,15 +27,6 @@
     justify-content: space-between;
 }
 
-
-.card svg {
-    /*icons */
-    line-height: 1;
-    background-color: var(--rich-black);
-    color: var(--columbia-blue);
-    font-size: 1.1rem;
-}
-
 .card .textCardContent {
     display: flex;
     flex-direction: column;
@@ -59,18 +50,24 @@
     margin: 11px 0 17px;
 }
 
-.card .cardSubreddit,
-.card .cardAuthor,
-.card .postRating {
+.card .cardInfo {
     font-family: var(--font-primary);
     font-weight: 600;
     margin-left: 11px;
     font-size: 1.1rem;
 }
 
-.card .cardSubreddit>span,
-.card .cardAuthor>span,
-.card .postRating>span {
+.card svg {
+    /*icons */
+    line-height: 1;
+    background-color: var(--rich-black);
+    color: var(--columbia-blue);
+    font-size: 1.1rem;
+    height: 24px;
+    width: 24px;
+}
+
+.card .cardInfo>span {
     font-size: 1.1rem;
     color: var(--glaucous);
 }

@@ -1,19 +1,18 @@
 .mainContainer {
     min-height: 50vh;
-
+    text-align: left;
     margin: 11px 44px;
+    padding: 22px;
 
     /* Copied form card container, put button at the bottom of whole thingie with this flex*/
     display: flex;
     flex-direction: column;
-    /* justify-content: space-between; */
 
     background-color: var(--columbia-blue);
     border: 8px solid var(--platinum);
     border-radius: 11px;
     color: var(--rich-black);
     box-shadow: 0px 0px 8px 8px var(--powder-blue);
-    text-align: center;
 }
 
 
@@ -22,16 +21,6 @@
     font-family: var(--font-display);
     color: var(--glaucous);
     font-weight: 400;
-}
-
-.postTitle:before,
-.postTitle:after {
-    content: '\2630';
-    padding: 0 8px;
-    font-size: 1.7rem;
-    color: var(--glaucous);
-    position: relative;
-    bottom: 2px;
 }
 
 .postSubtitle {
@@ -48,26 +37,41 @@
     border-radius: 4px;
 }
 
-.postContainer {
-    display: grid;
-    grid-template-columns: repeat(8, 1fr);
-    gap: 44px 22px;
+.postMidSection div {
+    font-family: var(--font-primary);
+    font-weight: 600;
+    margin-left: 11px;
+    font-size: 1.1rem;
 }
 
+.postMidSection svg {
+    line-height: 1;
+    background-color: var(--rich-black);
+    color: var(--columbia-blue);
+    font-size: 1.1rem;
+    height: 24px;
+    width: 24px;
+}
+
+
+.postMidSection span {
+    font-size: 1.1rem;
+    color: var(--glaucous);
+}
 
 .linkToPost {
     background-color: var(--glaucous);
     color: var(--rich_black);
     font-family: var(--font-display);
     font-size: 1em;
-    padding: 8px 19px;
+    padding: 11px 26px;
     border-radius: 4px;
     text-transform: uppercase;
     width: fit-content;
     height: fit-content;
     align-self: flex-end;
     /* margin-top: auto puts it at the end of the container; */
-    margin: auto 11px 11px 22px;
+    margin-top: auto;
 }
 
 .linkToPost:hover {
