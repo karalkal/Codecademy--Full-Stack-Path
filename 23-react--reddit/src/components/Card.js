@@ -7,28 +7,15 @@ import { PiRedditLogo } from "react-icons/pi";
 import { PiCalendarBlankLight } from "react-icons/pi";
 import { PiArrowsDownUpLight } from "react-icons/pi";
 import { VscCommentDraft } from "react-icons/vsc";
+import formatUTCToDateAndTime from '../utils/formatUTCToDateAndTime';
+import filterObjectForImageFiles from '../utils/filterObjectForImageFiles';
 
 //  TODO "&#x200b" does not render correctly
 
 export default function Card({ result }) {
-    const redditLink = "https://www.reddit.com" + result.permalink
-
-    // The Date constructor from Javascript accepts the number of milliseconds as timestamp, not unix time (number of seconds).
-    // So, to adjust that, is just multiply the unix time by 1000.
-    const unixTime = result.created_utc * 1000
-
-    // if thumbnail is "self" (no idea what this is) or we have video (video has thumbnail attached too)
-    // check for extension too as articles with no img also have "url_overridden_by_dest"
-    // check for video  as well
-    let imageSrc = null
-    if (result.img_thumbnail && !result.media
-        && (result.img_thumbnail.slice(-4) === ".png"
-            || result.img_thumbnail.slice(-4) === ".jpg"
-            || result.img_thumbnail.slice(-4) === ".gif")
-    ) {
-        imageSrc = result.img_thumbnail
-    }
-
+    const redditLink = "https://www.reddit.com" + result.permalink;
+    const { formattedTime, formattedDate } = formatUTCToDateAndTime(result);
+    const imageSrc = filterObjectForImageFiles(result)
 
     return (
         <Link to={`/${result.id.toString()}`} className={styles.cardContainer}>
@@ -51,14 +38,14 @@ export default function Card({ result }) {
                     {/* title, author, datestamp */}
                     <div className={styles.cardTitle}>{htmlDecode(result.title)}</div>
                     <div className={styles.cardInfo}>
-                        <PiPencilLineLight  />&nbsp;
+                        <PiPencilLineLight />&nbsp;
                         posted&nbsp;by&nbsp;
                         <span>{htmlDecode(result.author)} </span>
                     </div>
                     <div className={styles.cardInfo}>
                         <PiCalendarBlankLight />&nbsp;
                         on&nbsp;
-                        <span>{new Date(unixTime).toLocaleDateString()}</span>
+                        <span>{formattedDate}</span>
                     </div>
                     {/* subreddit, text, rating*/}
                     <div className={styles.cardInfo}>
@@ -118,7 +105,6 @@ export default function Card({ result }) {
                 {/* Youtube iframe */}
                 {result.video && result.video.videoProvider === "youtube" &&
                     <iframe title="youtubevideo" className={styles.mediaCardContent} src={result.video.videoSrc}></iframe>
-
                 }
             </div>
 

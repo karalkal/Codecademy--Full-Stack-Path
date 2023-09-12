@@ -4,15 +4,14 @@ import styles from "./SubredditInfoBar.module.css"
 import logo from "../misc/redditB&Wlogo.png";
 import createSimplifiedPostsArray from '../utils/createSimplifiedPostsArray';
 import { fetchPostsFromSubreddit } from '../api/api';
+import formatUTCToDateAndTime from "../utils/formatUTCToDateAndTime";
 
 
 export default function SubredditInfoBar({ subr, setSelectedSubReddit, accessToken, selectedCriterion, setDynamicUrlPath }) {
 
     const navigate = useNavigate()
 
-    // The Date constructor from Javascript accepts the number of milliseconds as timestamp, not unix time (number of seconds).
-    // So, to adjust that, is just multiply the unix time by 1000.
-    const unixTime = subr.created_utc * 1000
+    const { formattedTime, formattedDate } = formatUTCToDateAndTime(subr);
 
     let srIcon = subr.icon_img === "" ? `${logo}` : subr.icon_img
 
@@ -51,7 +50,7 @@ export default function SubredditInfoBar({ subr, setSelectedSubReddit, accessTok
             <div className={styles.subRMiddleSection}>
                 <div>
                     <p>Started</p>
-                    <p>{new Date(unixTime).toLocaleDateString()}                    </p>
+                    <p>{formattedDate}</p>
                 </div>
                 <div>
                     <p>Members</p>

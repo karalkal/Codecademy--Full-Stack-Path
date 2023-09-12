@@ -11,6 +11,8 @@ import { VscCommentDraft } from "react-icons/vsc";
 import styles from "./Details.module.css"
 import { fetchPostDetails } from "../api/api";
 import createSimplifiedPostsArray from "../utils/createSimplifiedPostsArray";
+import formatUTCToDateAndTime from "../utils/formatUTCToDateAndTime";
+import filterObjectForImageFiles from "../utils/filterObjectForImageFiles";
 
 
 function Details({ accessToken, setDynamicUrlPath }) {
@@ -34,29 +36,9 @@ function Details({ accessToken, setDynamicUrlPath }) {
         , [accessToken, id])
 
 
-    const redditLink = "https://www.reddit.com" + postObj.permalink
-
-    // The Date constructor from Javascript accepts the number of milliseconds as timestamp, not unix time (number of seconds).
-    // So, to adjust that, is just multiply the unix time by 1000.
-    const unixTime = postObj.created_utc * 1000
-    let date = new Date(unixTime);
-    let hours = date.getHours();
-    let minutes = "0" + date.getMinutes();
-    let seconds = "0" + date.getSeconds();
-
-    let formattedTime = hours + 'h ' + minutes.substr(-2) + 'm ' + seconds.substr(-2) + "s";
-    let formattedDate = date.toLocaleDateString()
-
-    // if thumbnail is "self" (no idea what this is) or we have video (video has thumbnail attached too)
-    // check for extension too as articles with no img also have "url_overridden_by_dest"
-    // check for video  as well
-    let imageSrc = null
-    if (postObj.img_thumbnail && !postObj.media
-        && (postObj.img_thumbnail.slice(-4) === ".png"
-            || postObj.img_thumbnail.slice(-4) === ".jpg"
-            || postObj.img_thumbnail.slice(-4) === ".gif")) {
-        imageSrc = postObj.img_thumbnail
-    }
+    const redditLink = "https://www.reddit.com" + postObj.permalink;
+    const { formattedTime, formattedDate } = formatUTCToDateAndTime(postObj);
+    const imageSrc = filterObjectForImageFiles(postObj);
 
 
     return (
