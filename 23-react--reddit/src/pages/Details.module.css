@@ -6,6 +6,7 @@
 
     /* Copied form card container, put button at the bottom of whole thingie with this flex*/
     display: flex;
+    row-gap: 22px;
     flex-direction: column;
 
     background-color: var(--columbia-blue);
@@ -15,8 +16,39 @@
     box-shadow: 0px 0px 8px 8px var(--powder-blue);
 }
 
+.innerHorizContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.innerHorizContainer .textCardContent {
+    display: flex;
+    flex-direction: column;
+}
+
+.innerHorizContainer .mediaCardContent {
+    margin-left: 1%;
+    max-width: 53%;
+    object-fit: contain;
+    object-position: 50% 0%;
+    /* 50% 50% is centered */
+}
+
+.postIcons {
+    background-color: var(--powder-blue);
+    border-radius: 11px;
+    width: 100%;
+    padding: 8px;
+}
+
+.postIcons img {
+    width: 26px;
+    margin-right: 11px;
+}
 
 .postTitle {
+    margin-top: 15px;
     font-size: 2.2rem;
     font-family: var(--font-display);
     color: var(--glaucous);
@@ -25,22 +57,26 @@
 
 .postSubtitle {
     font-family: var(--font-main);
-    font-weight: 300;
-    margin-bottom: 31px;
-    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    font-size: 1.7rem;
 }
 
-.postIcon {
-    height: 44px;
-    margin: auto 4px auto 11px;
-    border: 1px dotted var(--rich-black);
-    border-radius: 4px;
+.postMidSection {
+    background-color: var(--powder-blue);
+    border-radius: 11px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 17px;
+    padding: 8px;
 }
 
 .postMidSection div {
+    grid-column: span 2;
     font-family: var(--font-primary);
     font-weight: 600;
-    margin-left: 11px;
+    /* margin-left: 11px; */
     font-size: 1.1rem;
 }
 
@@ -53,10 +89,17 @@
     width: 24px;
 }
 
-
 .postMidSection span {
     font-size: 1.1rem;
     color: var(--glaucous);
+}
+
+.postText {
+    margin-top: 17px;
+    color: (--rich-black);
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+    overflow: hidden;
 }
 
 .linkToPost {
