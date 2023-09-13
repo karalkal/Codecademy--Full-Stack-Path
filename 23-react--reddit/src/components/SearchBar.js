@@ -6,7 +6,7 @@ import { fetchSearchResult } from '../api/api';
 
 import styles from "./SearchBar.module.css"
 
-export default function SearchBar({ accessToken, selectedSubReddit, setSelectedCriterion, setDynamicUrlPath }) {
+export default function SearchBar({ accessToken, selectedSubReddit, setDynamicUrlPath }) {
     const [searchQuery, setSearchQuery] = useState("")
 
     const navigate = useNavigate()

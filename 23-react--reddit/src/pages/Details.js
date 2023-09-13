@@ -8,11 +8,14 @@ import { TfiTime } from "react-icons/tfi";
 import { PiArrowsDownUpLight } from "react-icons/pi";
 import { VscCommentDraft } from "react-icons/vsc";
 
+import Comment from "../components/Comment";
 import styles from "./Details.module.css"
 import { fetchPostDetails } from "../api/api";
+
 import createSimplifiedPostsArray from "../utils/createSimplifiedPostsArray";
 import formatUTCToDateAndTime from "../utils/formatUTCToDateAndTime";
 import filterObjectForImageFiles from "../utils/filterObjectForImageFiles";
+import createCommentsArray from "../utils/createCommentsArray";
 
 
 function Details({ accessToken, setDynamicUrlPath }) {
@@ -23,12 +26,15 @@ function Details({ accessToken, setDynamicUrlPath }) {
     useEffect(() => {
         async function getPostData() {
             let fetchedResults = await fetchPostDetails(accessToken, id)
+
             // I believe [0] is the actual post - an array of one object, 
             // [1] are the comments data.children -> array of objects -> data
             let post = createSimplifiedPostsArray(fetchedResults[0].data.children)
 
             setPostObj(post[0])     // remember: post will be an array with single child
-            // setCommentsArray(comments)
+
+            const comments = createCommentsArray(fetchedResults[1].data.children)
+            setCommentsArray(comments)
         }
 
         getPostData();       // CALL THE FUNCTION
@@ -40,7 +46,7 @@ function Details({ accessToken, setDynamicUrlPath }) {
     const { formattedTime, formattedDate } = formatUTCToDateAndTime(postObj);
     const imageSrc = filterObjectForImageFiles(postObj);
 
-
+    
     return (
         <main className={styles.mainContainer}>
 
@@ -94,7 +100,6 @@ function Details({ accessToken, setDynamicUrlPath }) {
                     <div className={styles.postText}>
                         {htmlDecode(postObj.text)}
                     </div>
-
                 </div>
 
                 {/* MEDIA DIV IF ANY */}
@@ -132,6 +137,13 @@ function Details({ accessToken, setDynamicUrlPath }) {
                     <iframe title="youtubevideo" className={styles.mediaCardContent} src={postObj.video.videoSrc}></iframe>
 
                 }
+            </div>
+
+            <div className={styles.commentsSection}>
+                <h2 className={`${styles.postSubtitle}`}>Comments:</h2>
+                {commentsArray.map(cmnt => (
+                    <Comment comment={cmnt} />
+                ))}
             </div>
 
             {/* visit link */}

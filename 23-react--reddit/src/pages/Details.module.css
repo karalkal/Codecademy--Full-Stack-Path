@@ -102,6 +102,12 @@
     overflow: hidden;
 }
 
+.commentsSection {
+    border-top: 2px solid var(--glaucous);
+    color: var(--rich-black);
+    padding: 16px;
+}
+
 .linkToPost {
     background-color: var(--glaucous);
     color: var(--rich_black);
