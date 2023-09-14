@@ -23,7 +23,7 @@ export default function Card({ result }) {
                 <div className={styles.textCardContent}>
                     {/* Icons and link*/}
                     <div className={styles.cardTopSection}>
-                        <div className={styles.cardIcons}>
+                        {/* <div className={styles.cardIcons}>
                             {result.main_icons.map((bdg, index) =>
                                 <img src={bdg.icon_url}
                                     alt={bdg.icon_name}
@@ -31,7 +31,7 @@ export default function Card({ result }) {
                                     key={index}>
                                 </img>
                             )}
-                        </div>
+                        </div> */}
                         {/* <div className={styles.linkToPost}>View</div> */}
                     </div>
 

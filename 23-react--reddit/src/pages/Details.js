@@ -54,7 +54,7 @@ function Details({ accessToken, setDynamicUrlPath }) {
 
                 <div className={styles.textCardContent}>
 
-                    {postObj.main_icons &&
+                    {/* {postObj.main_icons &&
                         <div className={styles.postIcons}>
                             {postObj.main_icons.map((bdg, index) =>
                                 <img src={bdg.icon_url}
@@ -64,7 +64,7 @@ function Details({ accessToken, setDynamicUrlPath }) {
                                 </img>
                             )}
                         </div>
-                    }
+                    } */}
 
                     <div className={styles.postTopSection}>
                         <h1 className={styles.postTitle}>{postObj.title}</h1>

@@ -11,13 +11,13 @@ export default function createSimplifiedPostsArray(largeJson) {
             subreddit: obj.data.subreddit,
             permalink: obj.data.permalink,
             url: obj.data.url,
-            main_icons: (obj.data.all_awardings).map(award => {
-                return {
-                    icon_url: award.icon_url,
-                    icon_description: award.description,
-                    icon_name: award.name,
-                }
-            }),
+            // main_icons: (obj.data.all_awardings).map(award => {
+            //     return {
+            //         icon_url: award.icon_url,
+            //         icon_description: award.description,
+            //         icon_name: award.name,
+            //     }
+            // }),
             upvotes: obj.data.ups,
             upvote_ratio: obj.data.upvote_ratio,
             num_comments: obj.data.num_comments,
