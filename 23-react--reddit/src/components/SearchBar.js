@@ -6,7 +6,7 @@ import { fetchSearchResult } from '../api/api';
 
 import styles from "./SearchBar.module.css"
 
-export default function SearchBar({ accessToken, selectedSubReddit, setDynamicUrlPath }) {
+export default function SearchBar({ accessToken, selectedSubReddit }) {
     const [searchQuery, setSearchQuery] = useState("")
 
     const navigate = useNavigate()
@@ -21,7 +21,6 @@ export default function SearchBar({ accessToken, selectedSubReddit, setDynamicUr
         let postsArray = createSimplifiedPostsArray(fetchedResults.data.children)
 
         const pathToNavigateTo = `${selectedSubReddit.name}/${searchQuery}`
-        setDynamicUrlPath(pathToNavigateTo)
 
         navigate(pathToNavigateTo, { state: { postsArray, searchQuery } })
         // navigate("results", { state: { postsArray, searchQuery } })

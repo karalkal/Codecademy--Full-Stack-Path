@@ -6,7 +6,7 @@ import createSimplifiedPostsArray from '../utils/createSimplifiedPostsArray';
 import { fetchPostsFromSubreddit } from '../api/api';
 
 
-export default function Header({ accessToken, selectedSubReddit, setSelectedCriterion, setDynamicUrlPath }) {
+export default function Header({ accessToken, selectedSubReddit, setSelectedCriterion }) {
 
     const navigate = useNavigate()
 
@@ -15,9 +15,9 @@ export default function Header({ accessToken, selectedSubReddit, setSelectedCrit
         let postsArray = createSimplifiedPostsArray(fetchedResults.data.children)
 
         setSelectedCriterion(clickedCrit)
+        localStorage.setItem("crit", JSON.stringify(clickedCrit))
 
         const pathToNavigateTo = `${selectedSubReddit.name}/${clickedCrit}`
-        setDynamicUrlPath(pathToNavigateTo)
 
         navigate(pathToNavigateTo, { state: { postsArray } })
         // navigate("results", { state: { postsArray } })
@@ -35,8 +35,8 @@ export default function Header({ accessToken, selectedSubReddit, setSelectedCrit
                 <SearchBar
                     accessToken={accessToken}
                     selectedSubReddit={selectedSubReddit}
-                    setSelectedCriterion={setSelectedCriterion} 
-                    setDynamicUrlPath = {setDynamicUrlPath}/>
+                    setSelectedCriterion={setSelectedCriterion}
+                />
             </div>
 
             <div className={styles.menuButtonsRow}>

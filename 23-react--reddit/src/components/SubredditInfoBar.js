@@ -7,11 +7,11 @@ import { fetchPostsFromSubreddit } from '../api/api';
 import formatUTCToDateAndTime from "../utils/formatUTCToDateAndTime";
 
 
-export default function SubredditInfoBar({ subr, setSelectedSubReddit, accessToken, selectedCriterion, setDynamicUrlPath }) {
+export default function SubredditInfoBar({ subr, setSelectedSubReddit, accessToken, selectedCriterion }) {
 
     const navigate = useNavigate()
 
-    const { formattedTime, formattedDate } = formatUTCToDateAndTime(subr);
+    const {formattedDate } = formatUTCToDateAndTime(subr);
 
     let srIcon = subr.icon_img === "" ? `${logo}` : subr.icon_img
 
@@ -20,9 +20,9 @@ export default function SubredditInfoBar({ subr, setSelectedSubReddit, accessTok
         let postsArray = createSimplifiedPostsArray(fetchedResults.data.children)
 
         setSelectedSubReddit(clickedSubreddit)
+        localStorage.setItem("subR", JSON.stringify(clickedSubreddit))
 
         const pathToNavigateTo = `${clickedSubreddit.name}/${selectedCriterion}`
-        setDynamicUrlPath(pathToNavigateTo)
 
         navigate(pathToNavigateTo, { state: { postsArray } })
         // navigate("results", { state: { postsArray } })

@@ -10,7 +10,7 @@ import Error404 from './pages/Error404';
 import ErrorGeneric from './pages/ErrorGeneric';
 import Details from "./pages/Details";
 
-import { getUserlessAuthorizarion, fetchAboutInfoFavSubReddits, fetchPostDetails } from './api/api';
+import { getUserlessAuthorizarion, fetchAboutInfoFavSubReddits } from './api/api';
 import { subredditsSubscriptionList } from "./utils/subredditsSubscriptionList";
 import logo from "./misc/redditBluelogo.png";
 
@@ -18,9 +18,8 @@ import logo from "./misc/redditBluelogo.png";
 function App() {
     const [accessToken, setAccessToken] = useState(localStorage.getItem("access_token"));
     const [followedSubReddits, setFollowedSubReddits] = useState([]);
-    const [selectedSubReddit, setSelectedSubReddit] = useState({ url: "/", name: 'ALL', icon: logo })
-    const [selectedCriterion, setSelectedCriterion] = useState('best');
-    const [dynamicUrlPath, setDynamicUrlPath] = useState("")
+    const [selectedSubReddit, setSelectedSubReddit] = useState({})      // get/set from/in localStorage
+    const [selectedCriterion, setSelectedCriterion] = useState('');
 
     // Fetch landing page data, i.e. followed reddits' "about" data, incl. icons
     // need to load this just once, hence useEffect()
@@ -68,6 +67,36 @@ function App() {
         }
     }, [accessToken])
 
+    // To persists data -> if user has selected subreddit upon refresh display relevant results, otherwise at each refresh App
+    // resets state and renders some mixed up crap 
+    useEffect(() => {
+        let selectedSubrInLocalStorage = localStorage.getItem("subR")
+        // if null, set in localStorage default value, i.e. ALL subreddits
+        if (!selectedSubrInLocalStorage) {
+            localStorage.setItem("subR", JSON.stringify(
+                { url: "/", name: 'ALL', icon: logo }
+            ))
+        }
+        console.log(JSON.parse(localStorage.getItem("subR")).name)
+
+        // now get value from localStorage and set is as state
+        setSelectedSubReddit(JSON.parse(localStorage.getItem("subR")))
+    }, [])
+
+
+    // Same as above, to persist criterion 
+    useEffect(() => {
+        let selectedSubrInLocalStorage = localStorage.getItem("crit")
+        // if null, set in localStorage default value, i.e. ALL subreddits
+        if (!selectedSubrInLocalStorage) {
+            localStorage.setItem("crit", "best")
+        }
+        console.log(localStorage.getItem("crit"))
+
+        // now get value from localStorage and set is as state
+        setSelectedCriterion(localStorage.getItem("crit"))
+    }, [])
+
 
     const appRouter = createBrowserRouter(
         createRoutesFromElements(
@@ -77,7 +106,6 @@ function App() {
                     accessToken={accessToken}
                     selectedSubReddit={selectedSubReddit}
                     setSelectedCriterion={setSelectedCriterion}
-                    setDynamicUrlPath={setDynamicUrlPath}
                 />}
                 errorElement={<ErrorGeneric />} >
 
@@ -91,21 +119,20 @@ function App() {
                             selectedCriterion={selectedCriterion}
                             setSelectedCriterion={setSelectedCriterion}
                             accessToken={accessToken}
-                            setDynamicUrlPath={setDynamicUrlPath} />}
+                        />}
                 />
 
                 <Route path=":selectedSubReddit/:selectedCriterion"
-                // <Route path={dynamicUrlPath}
-                    // <Route path={`results`}
+                    // <Route path="results"
                     element={<Results
                         selectedCriterion={selectedCriterion}
-                        selectedSubReddit={selectedSubReddit} />}
+                        selectedSubReddit={selectedSubReddit}
+                    />}
                 />
 
                 <Route path=":id"
                     element={<Details
                         accessToken={accessToken}
-                        setDynamicUrlPath={setDynamicUrlPath}
                     />}
                 />
 

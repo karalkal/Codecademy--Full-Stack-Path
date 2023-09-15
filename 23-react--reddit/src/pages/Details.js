@@ -18,7 +18,7 @@ import filterObjectForImageFiles from "../utils/filterObjectForImageFiles";
 import createCommentsArray from "../utils/createCommentsArray";
 
 
-function Details({ accessToken, setDynamicUrlPath }) {
+function Details({ accessToken }) {
     const { id } = useParams();
     const [postObj, setPostObj] = useState({})
     const [commentsArray, setCommentsArray] = useState([])
