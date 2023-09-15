@@ -2,6 +2,7 @@ import { Link, NavLink, useNavigate } from 'react-router-dom'
 
 import styles from './Header.module.css'
 import SearchBar from './SearchBar'
+import blueLogo from "../misc/redditBluelogo.png";
 import createSimplifiedPostsArray from '../utils/createSimplifiedPostsArray';
 import { fetchPostsFromSubreddit } from '../api/api';
 
@@ -26,7 +27,7 @@ export default function Header({ accessToken, selectedSubReddit, setSelectedCrit
 
     return <header id={styles.header}>
         <NavLink to="/">
-            <img src='logo.svg' className={styles["logo"]} alt="logo" />
+            <img src={blueLogo} className={styles["logo"]} alt="blue&black reddit logo" />
             <h1>Mini Reddit</h1>
         </NavLink>
 

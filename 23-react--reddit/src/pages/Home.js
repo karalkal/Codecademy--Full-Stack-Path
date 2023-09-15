@@ -2,22 +2,22 @@ import styles from "./Home.module.css"
 import SubredditInfoBar from '../components/SubredditInfoBar';
 import FirstInfoBar from "../components/FirstInfoBar";
 import { useEffect } from "react";
-import logo from "../misc/redditBluelogo.png";
+import blueLogo from "../misc/redditBluelogo.png";
 
 
-const Home = ({ followedSubReddits, selectedSubReddit, setSelectedSubReddit, selectedCriterion, setSelectedCriterion, accessToken }) => {
+const Home = ({ followedSubReddits, setSelectedSubReddit, selectedCriterion, setSelectedCriterion, accessToken }) => {
     // default is "best", reset it so whenever new subr is selected initial request will be to "best", 
     // not whatever the prev state was.
     // useEffect to avoid "Warning: Cannot update a component (`App`) while rendering a different component (`Home`)."
 
+    //RESET SUBREDDIT AND CRIT => when in Home these are no longer needed
     useEffect(() => {
         localStorage.setItem("subR", JSON.stringify(
-            { url: "/", name: 'ALL', icon: logo }
+            { url: "/", name: 'ALL', icon: blueLogo }
         ))
         localStorage.setItem("crit", "best")
 
-        // setSelectedSubReddit({ url: "/", name: 'ALL', icon: logo });
-        // above is probably ok, but in order to have single source of truth:
+        // It is probably ok to set states directly, but in order to have single source of truth:
         setSelectedSubReddit(JSON.parse(localStorage.getItem("subR")))
         setSelectedCriterion('best');
 

@@ -12,7 +12,7 @@ import Details from "./pages/Details";
 
 import { getUserlessAuthorizarion, fetchAboutInfoFavSubReddits } from './api/api';
 import { subredditsSubscriptionList } from "./utils/subredditsSubscriptionList";
-import logo from "./misc/redditBluelogo.png";
+import blueLogo from "./misc/redditBluelogo.png";
 
 
 function App() {
@@ -74,7 +74,7 @@ function App() {
         // if null, set in localStorage default value, i.e. ALL subreddits
         if (!selectedSubrInLocalStorage) {
             localStorage.setItem("subR", JSON.stringify(
-                { url: "/", name: 'ALL', icon: logo }
+                { url: "/", name: 'ALL', icon: blueLogo }
             ))
         }
         console.log(JSON.parse(localStorage.getItem("subR")).name)
@@ -114,7 +114,6 @@ function App() {
                     element={
                         <Home
                             followedSubReddits={followedSubReddits}
-                            selectedSubReddit={selectedSubReddit}
                             setSelectedSubReddit={setSelectedSubReddit}
                             selectedCriterion={selectedCriterion}
                             setSelectedCriterion={setSelectedCriterion}

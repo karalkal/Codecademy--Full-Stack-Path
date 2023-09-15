@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom"
 
 import styles from "./SubredditInfoBar.module.css"
-import logo from "../misc/redditB&Wlogo.png";
+import logoBW from "../misc/redditB&Wlogo.png";
 import createSimplifiedPostsArray from '../utils/createSimplifiedPostsArray';
 import { fetchPostsFromSubreddit } from '../api/api';
 import formatUTCToDateAndTime from "../utils/formatUTCToDateAndTime";
@@ -11,9 +11,9 @@ export default function SubredditInfoBar({ subr, setSelectedSubReddit, accessTok
 
     const navigate = useNavigate()
 
-    const {formattedDate } = formatUTCToDateAndTime(subr);
+    const { formattedDate } = formatUTCToDateAndTime(subr);
 
-    let srIcon = subr.icon_img === "" ? `${logo}` : subr.icon_img
+    let srIcon = subr.icon_img === "" ? `${logoBW}` : subr.icon_img
 
     async function selectionHandler(clickedSubreddit) {
         let fetchedResults = await fetchPostsFromSubreddit(accessToken, clickedSubreddit.url, selectedCriterion)
@@ -66,20 +66,6 @@ export default function SubredditInfoBar({ subr, setSelectedSubReddit, accessTok
                 <p>{subr.public_description}</p>
             </div>
 
-            {/* <div className={styles.subRButtonsDiv}>
-                <button className={styles.subRButton} onClick={() => selectionHandler(subr.url, "best")}>
-                    best
-                </button>
-                <button className={styles.subRButton} onClick={() => selectionHandler(subr.url, "top")}>
-                    top
-                </button>
-                <button className={styles.subRButton} onClick={() => selectionHandler(subr.url, "hot")}>
-                    hot
-                </button>
-                <button className={styles.subRButton} onClick={() => selectionHandler(subr.url, "controversial")}>
-                    contro
-                </button>
-            </div> */}
         </button >
     )
 }
