@@ -1,42 +1,20 @@
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 
 import Card from '../components/Card';
 import styles from "./Results.module.css"
+import generateResultsHeaderData from '../utils/generateResultsHeaderData';
 
 
 const Results = ({ selectedSubReddit, selectedCriterion }) => {
+    const params = useParams()
+    console.log(params)
 
     const location = useLocation()
     const searchQuery = location.state.searchQuery
     const postsArray = location.state.postsArray
 
-    let displayedCriterion = ""
-    let displayedSubtitle = ""
-
-    // If redirected from searchBar => displaying results from search
-    if (searchQuery) {
-        displayedCriterion = `Found Results for "${searchQuery}"`
-        displayedSubtitle = "sorted by relevance"
-    }
-
-    // If not => displaying listing by criterion
-    else {
-        displayedCriterion = selectedCriterion.charAt(0).toUpperCase() + selectedCriterion.slice(1)
-
-        if (selectedCriterion === "best") {
-            displayedSubtitle = `Since app is userless API request to /best would return the same results as /hot. \n
-        Hence here app is getting the top results of all times instead.`
-        }
-        else if (selectedCriterion === "top") {
-            displayedSubtitle = `Today's Top Posts`
-        }
-        else if (selectedCriterion === "hot") {
-            displayedSubtitle = `New and Popular posts`
-        }
-        else if (selectedCriterion === "controversial") {
-            displayedSubtitle = `This Week's Most Controverial Posts`
-        }
-    }
+    let {displayedCriterion, displayedSubtitle} = generateResultsHeaderData(selectedCriterion, searchQuery)
+    
 
     return (
         <main className={styles.mainContainer}>

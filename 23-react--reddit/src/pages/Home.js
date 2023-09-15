@@ -1,11 +1,21 @@
 import styles from "./Home.module.css"
 import SubredditInfoBar from '../components/SubredditInfoBar';
 import FirstInfoBar from "../components/FirstInfoBar";
+import { useEffect } from "react";
+import logo from "../misc/redditBluelogo.png";
 
 
-const Home = ({ followedSubReddits, setSelectedSubReddit, setSelectedCriterion, accessToken, selectedCriterion, setDynamicUrlPath }) => {
-    // default is "best", reset it so whenever new subr is selected initial request will be to "best", not whatever the prev state was
-    setSelectedCriterion('best');
+const Home = ({ followedSubReddits, selectedSubReddit, setSelectedSubReddit, selectedCriterion, setSelectedCriterion, accessToken, setDynamicUrlPath }) => {
+    // default is "best", reset it so whenever new subr is selected initial request will be to "best", 
+    // not whatever the prev state was.
+    // useEffect to avoid "Warning: Cannot update a component (`App`) while rendering a different component (`Home`)."
+
+    useEffect(() => {
+        setSelectedCriterion('best');
+        setSelectedSubReddit({ url: "/", name: 'ALL', icon: logo });
+        setDynamicUrlPath("")
+    }, [])
+
 
     return (
         <main className={styles.mainContainer}>

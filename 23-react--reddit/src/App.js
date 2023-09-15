@@ -86,14 +86,16 @@ function App() {
                     element={
                         <Home
                             followedSubReddits={followedSubReddits}
+                            selectedSubReddit={selectedSubReddit}
                             setSelectedSubReddit={setSelectedSubReddit}
+                            selectedCriterion={selectedCriterion}
                             setSelectedCriterion={setSelectedCriterion}
                             accessToken={accessToken}
-                            selectedCriterion={selectedCriterion}
                             setDynamicUrlPath={setDynamicUrlPath} />}
                 />
 
-                <Route path={dynamicUrlPath}
+                <Route path=":selectedSubReddit/:selectedCriterion"
+                // <Route path={dynamicUrlPath}
                     // <Route path={`results`}
                     element={<Results
                         selectedCriterion={selectedCriterion}

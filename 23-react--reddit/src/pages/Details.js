@@ -46,7 +46,7 @@ function Details({ accessToken, setDynamicUrlPath }) {
     const { formattedTime, formattedDate } = formatUTCToDateAndTime(postObj);
     const imageSrc = filterObjectForImageFiles(postObj);
 
-    
+
     return (
         <main className={styles.mainContainer}>
 
@@ -141,8 +141,8 @@ function Details({ accessToken, setDynamicUrlPath }) {
 
             <div className={styles.commentsSection}>
                 <h2 className={`${styles.postSubtitle}`}>Comments:</h2>
-                {commentsArray.map(cmnt => (
-                    <Comment comment={cmnt} />
+                {commentsArray.map((cmnt, idx) => (
+                    <Comment key={idx} comment={cmnt} />
                 ))}
             </div>
 

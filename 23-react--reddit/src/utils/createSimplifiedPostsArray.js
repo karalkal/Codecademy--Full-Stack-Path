@@ -2,7 +2,6 @@ import getRelatedVideos from "./getRelatedVideos"
 
 export default function createSimplifiedPostsArray(largeJson) {
     let result = largeJson.map(obj => {
-        console.log(obj.data.all_awardings)
         return {
             id: obj.data.id,
             title: obj.data.title,
