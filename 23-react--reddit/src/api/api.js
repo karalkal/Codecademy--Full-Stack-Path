@@ -38,30 +38,6 @@ export async function getUserlessAuthorizarion() {
 }
 
 
-export async function fetchSearchResult(appAccessToken, selectedSubRedditUrl, searchQuery) {
-    // url has dash in forn and at back
-    let urlPath = `${selectedSubRedditUrl}search?${LIST_RESULT_LIMIT_STR}&q=${searchQuery}&sort=relevance&restrict_sr=true`
-
-    try {                   // NB selectedSubReddit comes with leading and trailing slash
-        const response = await fetch(`https://oauth.reddit.com${urlPath}`, {
-            method: "GET",
-            headers: {
-                'Authorization': `Bearer ${appAccessToken}`,
-                'Content-Type': 'application/json',
-            }
-        })
-
-        if (!response.ok) {
-            throw new Error(`${response.statusText} - ${response.status}`);
-        }   // if ok
-        const json = await response.json();
-        return json
-    } catch (error) {
-        // will catch errors from if (!response.ok) too 
-        throw new Error(error.message);
-    }
-};
-
 
 export async function fetchAboutInfoFavSubReddits(appAccessToken, subRedditNames) {
     let subRedditsAboutInfo = []
@@ -107,6 +83,31 @@ export async function fetchAboutInfoFavSubReddits(appAccessToken, subRedditNames
 }
 
 
+export async function fetchSearchResult(appAccessToken, selectedSubRedditUrl, searchQuery) {
+    // url has dash in forn and at back
+    let urlPath = `${selectedSubRedditUrl}search?${LIST_RESULT_LIMIT_STR}&q=${searchQuery}&sort=relevance&restrict_sr=true`
+
+    try {                   // NB selectedSubReddit comes with leading and trailing slash
+        const response = await fetch(`https://oauth.reddit.com${urlPath}`, {
+            method: "GET",
+            headers: {
+                'Authorization': `Bearer ${appAccessToken}`,
+                'Content-Type': 'application/json',
+            }
+        })
+
+        if (!response.ok) {
+            throw new Error(`${response.statusText} - ${response.status}`);
+        }   // if ok
+        const json = await response.json();
+        return json
+    } catch (error) {
+        // will catch errors from if (!response.ok) too 
+        throw new Error(error.message);
+    }
+};
+
+
 export async function fetchPostsFromSubreddit(appAccessToken, selectedSubReddit, selectedCriterion) {
     // App is userless and best returns same as hot, 
     // hence here we are getting top posts of all time instead
@@ -147,7 +148,7 @@ export async function fetchPostDetails(appAccessToken, postID) {
         const response = await fetch(`https://oauth.reddit.com/comments/${postID}`, {
             method: "GET",
             headers: {
-                'Authorization': `Barer ${appAccessToken}`,
+                'Authorization': `Bearer ${appAccessToken}`,
                 'Content-Type': 'application/json',
             }
         })

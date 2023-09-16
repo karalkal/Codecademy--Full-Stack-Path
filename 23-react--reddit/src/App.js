@@ -17,12 +17,13 @@ import blueLogo from "./misc/redditBluelogo.png";
 
 function App() {
     const [accessToken, setAccessToken] = useState(localStorage.getItem("access_token"));
-    const [followedSubReddits, setFollowedSubReddits] = useState([]);
     const [selectedSubReddit, setSelectedSubReddit] = useState({})      // get/set from/in localStorage
     const [selectedCriterion, setSelectedCriterion] = useState('');
 
+    /*
     // Fetch landing page data, i.e. followed reddits' "about" data, incl. icons
     // need to load this just once, hence useEffect()
+    // Now refactored with loader 
     useEffect(() => {
         async function getListOfSubreddits() {
             let res = await fetchAboutInfoFavSubReddits(accessToken, subredditsSubscriptionList)
@@ -33,7 +34,7 @@ function App() {
         // cleanup?
     }
         , [accessToken])
-
+    */
 
     // Check if token in localStorage, if not get new one from API
     useEffect(() => {
@@ -110,26 +111,22 @@ function App() {
                 <Route index
                     element={
                         <Home
-                            followedSubReddits={followedSubReddits}
+                            // followedSubReddits={followedSubReddits}
                             setSelectedSubReddit={setSelectedSubReddit}
                             selectedCriterion={selectedCriterion}
                             setSelectedCriterion={setSelectedCriterion}
-                            accessToken={accessToken}
-                        />}
-                    errorElement={<ErrorGeneric />} />
+                            accessToken={accessToken} />}
+                    loader={() => fetchAboutInfoFavSubReddits(accessToken, subredditsSubscriptionList)} />
 
                 <Route path=":gyz1/:gyz2"
-                    // <Route path="results"
                     element={<Results
                         selectedCriterion={selectedCriterion}
-                        selectedSubReddit={selectedSubReddit}
-                    />}
+                        selectedSubReddit={selectedSubReddit} />}
                 />
 
                 <Route path="post/:id"
                     element={<Details
-                        accessToken={accessToken}
-                    />}
+                        accessToken={accessToken} />}
                     loader={({ params }) => fetchPostDetails(accessToken, params.id)}
                 />
 

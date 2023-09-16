@@ -3,14 +3,17 @@ import SubredditInfoBar from '../components/SubredditInfoBar';
 import FirstInfoBar from "../components/FirstInfoBar";
 import { useEffect } from "react";
 import blueLogo from "../misc/redditBluelogo.png";
+import { useLoaderData } from "react-router-dom";
 
 
-const Home = ({ followedSubReddits, setSelectedSubReddit, selectedCriterion, setSelectedCriterion, accessToken }) => {
-    // default is "best", reset it so whenever new subr is selected initial request will be to "best", 
+const Home = ({ setSelectedSubReddit, selectedCriterion, setSelectedCriterion, accessToken }) => {
+    const followedSubReddits = useLoaderData()
+
+    // Default is "best", reset it so whenever new subr is selected initial request will be to "best", 
     // not whatever the prev state was.
     // useEffect to avoid "Warning: Cannot update a component (`App`) while rendering a different component (`Home`)."
 
-    //RESET SUBREDDIT AND CRIT => when in Home these are no longer needed
+    //RESET SUBREDDIT AND CRITERION => when in Home these are no longer needed
     useEffect(() => {
         localStorage.setItem("subR", JSON.stringify(
             { url: "/", name: 'ALL', icon: blueLogo }
@@ -23,7 +26,7 @@ const Home = ({ followedSubReddits, setSelectedSubReddit, selectedCriterion, set
 
     }, [])
 
-
+ 
     return (
         <main className={styles.mainContainer}>
 

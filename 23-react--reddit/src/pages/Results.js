@@ -12,7 +12,10 @@ const Results = ({ selectedSubReddit, selectedCriterion }) => {
 
     let { displayedCriterion, displayedSubtitle } = generateResultsHeaderData(selectedCriterion, searchQuery)
 
-
+    if (!postsArray) {
+        console.log("Nada!")
+        return
+    }
     return (
         <main className={styles.mainContainer}>
 
