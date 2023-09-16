@@ -9,8 +9,7 @@ export default function ErrorGeneric() {
     return (
         <>
             <Header accessToken={"Error"} selectedSubReddit={error.message} setSelectedCriterion={error.message} />
-            <main className={styles.mainContainer}>
-
+            <div className={styles.errorDiv}>
                 <h1 className={styles.errorTitle} >{error.message}</h1>
                 <h2 className={styles.errorSubtitle}>
                     <Link to="/"
@@ -19,7 +18,7 @@ export default function ErrorGeneric() {
                     </Link>
                     , then Reload and Retry
                 </h2>
-            </main>
+            </div>
         </>
     );
 };

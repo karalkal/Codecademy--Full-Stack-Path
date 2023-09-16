@@ -1,14 +1,5 @@
-.mainContainer {
+.errorDiv {
     min-height: 35vh;
-    text-align: left;
-    margin: 11px 44px;
-    padding: 22px;
-    background-color: var(--columbia-blue);
-    border: 8px solid var(--platinum);
-    border-radius: 11px;
-    color: var(--rich-black);
-    box-shadow: 0px 0px 8px 8px var(--powder-blue);
-
     text-align: center
 }
 
@@ -27,18 +18,13 @@
     font-size: 1.5rem;
 }
 
-.errorSubtitle a{
+.errorSubtitle a {
     text-decoration: underline;
 }
 
 /* mediaqueries */
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
-    .mainContainer {
-        margin: 8px 19px;
-        padding: 11px;
-    }
-
     .errorTitle {
         margin: 0 0 8px 0;
         font-size: 1.5rem;
@@ -53,11 +39,6 @@
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) and (max-width: 822px) {
-    .mainContainer {
-        margin: 8px 19px;
-        padding: 11px;
-    }
-
     .errorTitle {
         margin: 0 0 8px 0;
         font-size: 1.7rem;

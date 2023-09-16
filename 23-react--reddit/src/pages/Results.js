@@ -17,8 +17,7 @@ const Results = ({ selectedSubReddit, selectedCriterion }) => {
         return
     }
     return (
-        <main className={styles.mainContainer}>
-
+        <>
             <div className={styles.galleryTitle}>
                 <span className={styles.galleryCriterion}>{displayedCriterion}
                     &nbsp;in&nbsp;
@@ -35,7 +34,7 @@ const Results = ({ selectedSubReddit, selectedCriterion }) => {
                 )}
 
             </div>
-        </main>
+        </>
     );
 };
 

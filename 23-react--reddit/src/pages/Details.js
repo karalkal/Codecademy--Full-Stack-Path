@@ -30,8 +30,7 @@ function Details() {
 
 
     return (
-        <main className={styles.mainContainer}>
-
+        <>
             <div className={styles.innerHorizContainer}>
 
                 <div className={styles.textCardContent}>
@@ -129,7 +128,7 @@ function Details() {
             <Link to={redditLink} target="_blank" className={styles.linkToPost}>
                 to Original Article
             </Link>
-        </main>
+        </>
     )
 }
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../components/Header'
 import { Outlet } from 'react-router-dom';
+import styles from './RootLayout.module.css'
 
 const RootLayout = ({ accessToken, selectedSubReddit, setSelectedCriterion }) => {
     return (
@@ -11,7 +12,9 @@ const RootLayout = ({ accessToken, selectedSubReddit, setSelectedCriterion }) =>
                 setSelectedCriterion={setSelectedCriterion}
             />
             {/* Outlet will render a <main> component depending on the route selected */}
-            <Outlet />
+            <main className={styles.mainContainer}>
+                <Outlet />
+            </main>
         </>
     );
 };

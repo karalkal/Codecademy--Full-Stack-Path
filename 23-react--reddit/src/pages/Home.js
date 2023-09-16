@@ -28,8 +28,7 @@ const Home = ({ setSelectedSubReddit, selectedCriterion, setSelectedCriterion, a
 
  
     return (
-        <main className={styles.mainContainer}>
-
+        <>
             <h1 className={styles.galleryTitle}>Selected Subreddits</h1>
 
             <h2 className={styles.gallerySubtitle}>View Best/Top/Hot/Controversial Posts for a Subreddit</h2>
@@ -52,7 +51,7 @@ const Home = ({ setSelectedSubReddit, selectedCriterion, setSelectedCriterion, a
                 )}
             </div>
 
-        </main>
+        </>
     );
 };
 
