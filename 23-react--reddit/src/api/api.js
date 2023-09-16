@@ -147,7 +147,7 @@ export async function fetchPostDetails(appAccessToken, postID) {
         const response = await fetch(`https://oauth.reddit.com/comments/${postID}`, {
             method: "GET",
             headers: {
-                'Authorization': `Bearer ${appAccessToken}`,
+                'Authorization': `Berer ${appAccessToken}`,
                 'Content-Type': 'application/json',
             }
         })
@@ -159,6 +159,8 @@ export async function fetchPostDetails(appAccessToken, postID) {
         return json
     } catch (error) {
         // will catch errors from if (!response.ok) too 
+        console.log(error)
+
         throw new Error(error.message);
     }
 }

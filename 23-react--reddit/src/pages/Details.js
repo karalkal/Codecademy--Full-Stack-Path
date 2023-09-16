@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom"
+import { useParams, Link, useLoaderData } from "react-router-dom"
 
 import { decode as htmlDecode } from 'html-entities';    // deals with html entities which are not displayed properly in JSX
 
@@ -18,29 +18,13 @@ import filterObjectForImageFiles from "../utils/filterObjectForImageFiles";
 import createCommentsArray from "../utils/createCommentsArray";
 
 
-function Details({ accessToken }) {
-    const { id } = useParams();
-    const [postObj, setPostObj] = useState({})
-    const [commentsArray, setCommentsArray] = useState([])
+function Details() {
+    let fetchedResults = useLoaderData();
 
-    useEffect(() => {
-        async function getPostData() {
-            let fetchedResults = await fetchPostDetails(accessToken, id)
+    let post = createSimplifiedPostsArray(fetchedResults[0].data.children);
+    const postObj = post[0];    // remember: post will be an array with single child
 
-            // I believe [0] is the actual post - an array of one object, 
-            // [1] are the comments data.children -> array of objects -> data
-            let post = createSimplifiedPostsArray(fetchedResults[0].data.children)
-
-            setPostObj(post[0])     // remember: post will be an array with single child
-
-            const comments = createCommentsArray(fetchedResults[1].data.children)
-            setCommentsArray(comments)
-        }
-
-        getPostData();       // CALL THE FUNCTION
-    }
-        , [accessToken, id])
-
+    const commentsArray = createCommentsArray(fetchedResults[1].data.children);
 
     const redditLink = "https://www.reddit.com" + postObj.permalink;
     const { formattedTime, formattedDate } = formatUTCToDateAndTime(postObj);
@@ -74,19 +58,19 @@ function Details({ accessToken }) {
 
                     <div className={styles.postMidSection}>
                         <div>
-                            <PiPencilLineLight /> posted&nbsp;by&nbsp;
-                            <span>{htmlDecode(postObj.author)} </span>
+                            <PiPencilLineLight />&nbsp;
+                            posted by <span>{htmlDecode(postObj.author)} </span>
                         </div>
                         <div>
-                            <TfiTime /> on&nbsp;
-                            <span>{formattedDate} </span>
+                            <TfiTime />&nbsp;
+                            on&nbsp;<span>{formattedDate} </span>
                             at&nbsp;<span>{formattedTime}</span>
                         </div>
                         {/* subreddit, text, rating*/}
                         <div>
-                            <PiArrowsDownUpLight /> upvotes&nbsp;<span>{postObj.upvotes}</span>
-                            &nbsp;
-                            / ratio&nbsp;<span>{postObj.upvote_ratio}</span>
+                            <PiArrowsDownUpLight />&nbsp;
+                            upvotes&nbsp;<span>{postObj.upvotes}</span>
+                            &nbsp;/ ratio&nbsp;<span>{postObj.upvote_ratio}</span>
                         </div>
                         <div>
                             <VscCommentDraft /> comments&nbsp;<span>{postObj.num_comments}</span>

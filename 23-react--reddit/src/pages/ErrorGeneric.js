@@ -2,6 +2,8 @@ import { Link, useRouteError } from "react-router-dom";
 import Header from "../components/Header";
 
 export default function ErrorGeneric() {
+
+    console.log(error)
     const error = useRouteError()
 
     return (

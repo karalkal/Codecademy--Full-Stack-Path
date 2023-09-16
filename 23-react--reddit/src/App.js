@@ -10,7 +10,7 @@ import Error404 from './pages/Error404';
 import ErrorGeneric from './pages/ErrorGeneric';
 import Details from "./pages/Details";
 
-import { getUserlessAuthorizarion, fetchAboutInfoFavSubReddits } from './api/api';
+import { getUserlessAuthorizarion, fetchAboutInfoFavSubReddits, fetchPostDetails } from './api/api';
 import { subredditsSubscriptionList } from "./utils/subredditsSubscriptionList";
 import blueLogo from "./misc/redditBluelogo.png";
 
@@ -117,7 +117,7 @@ function App() {
                             setSelectedCriterion={setSelectedCriterion}
                             accessToken={accessToken}
                         />}
-                />
+                    errorElement={<ErrorGeneric />} />
 
                 <Route path=":gyz1/:gyz2"
                     // <Route path="results"
@@ -131,7 +131,8 @@ function App() {
                     element={<Details
                         accessToken={accessToken}
                     />}
-                />
+                    loader={({ params }) => fetchPostDetails(accessToken, params.id)}
+                    errorElement={<ErrorGeneric />} />
 
                 <Route path="*" element={<Error404 />} />
 
