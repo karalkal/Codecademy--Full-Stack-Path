@@ -74,26 +74,22 @@ function Details({ accessToken }) {
 
                     <div className={styles.postMidSection}>
                         <div>
-                            <PiPencilLineLight />&nbsp;
-                            posted&nbsp;by&nbsp;
+                            <PiPencilLineLight /> posted&nbsp;by&nbsp;
                             <span>{htmlDecode(postObj.author)} </span>
                         </div>
                         <div>
-                            <TfiTime />&nbsp;
-                            on&nbsp;
+                            <TfiTime /> on&nbsp;
                             <span>{formattedDate} </span>
-                            at <span>{formattedTime}</span>
+                            at&nbsp;<span>{formattedTime}</span>
                         </div>
                         {/* subreddit, text, rating*/}
                         <div>
-                            <PiArrowsDownUpLight />&nbsp;
-                            upvotes&nbsp;<span>{postObj.upvotes}</span>
+                            <PiArrowsDownUpLight /> upvotes&nbsp;<span>{postObj.upvotes}</span>
                             &nbsp;
-                            / &nbsp;ratio&nbsp;<span>{postObj.upvote_ratio}</span>
+                            / ratio&nbsp;<span>{postObj.upvote_ratio}</span>
                         </div>
                         <div>
-                            <VscCommentDraft />&nbsp;
-                            comments&nbsp;<span>{postObj.num_comments}</span>
+                            <VscCommentDraft /> comments&nbsp;<span>{postObj.num_comments}</span>
                         </div>
                     </div>
 

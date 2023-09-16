@@ -17,10 +17,10 @@ export default function Comment({ comment }) {
                     <span>{comment.ups}</span>
                 </div>
 
-                <p>On <b>{formattedDate}</b> at <b>{formattedTime}</b>
+                <p>On&nbsp;<b>{formattedDate}</b> at&nbsp;<b>{formattedTime}</b>
                     <span className={styles.commentAuthor}>
                         <BsReddit className={styles.redditIcon} />
-                        {comment.author}</span>&nbsp;&nbsp;wrote:
+                        {comment.author}</span>&nbsp;wrote:
                 </p>
             </div>
 

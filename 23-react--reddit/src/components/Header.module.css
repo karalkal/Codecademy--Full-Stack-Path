@@ -81,6 +81,7 @@
 }
 
 
+/* mediaqueries */
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
     #header {
@@ -114,7 +115,7 @@
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) and (max-width: 768px) {
+@media only screen and (min-width: 600px) and (max-width: 822px) {
     #header {
         padding: 8px 22px;
         display: block;
@@ -141,8 +142,8 @@
     }
 }
 
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) and (max-width: 992px) {
+/* Medium devices (landscape tablets, 822px and up) */
+@media only screen and (min-width: 822px) and (max-width: 992px) {
     #header {
         padding: 8px 22px;
         margin-bottom: 11px;
@@ -150,6 +151,7 @@
 
     #header>a {
         gap: 22px;
+        width: 20%;
     }
 
     #header>a>.logo {
@@ -162,38 +164,17 @@
     }
 
     #header>nav {
-        display: grid;
-        grid-template-columns: repeat(12, 1fr);
-        gap: 11px 17px;
-    }
-
-    #header>nav {
-        display: grid;
-        grid-template-columns: repeat(12, 1fr);
-        gap: 11px 17px;
-        width: 53%;
-    }
-
-    .menuButtonsRow a,
-    .menuButtonsRow button,
-    .menuSearchRow button {
-        font-size: .8rem;
-    }
-
-    .menuSearchRow * {
-        font-size: .8rem;
-    }
-
-    .menuButtonsRow {
-        grid-column: span 12;
-        display: grid;
-        grid-template-columns: repeat(6, 1fr);
-        gap: 11px;
+        width: 70%;
     }
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) {}
+@media only screen and (min-width: 992px) and (max-width: 1200px){
+    #header>a>h1 {
+        font-size: 2.6rem;
+        font-weight: 700;
+    }
+}
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {}

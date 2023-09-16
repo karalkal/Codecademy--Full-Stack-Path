@@ -9,6 +9,6 @@ export default function formatUTCToDateAndTime(utcObject) {
     let seconds = "0" + date.getSeconds();
 
     let formattedDate = date.toLocaleDateString()
-    let formattedTime = hours + 'h ' + minutes.substr(-2) + 'm ' + seconds.substr(-2) + "s";
+    let formattedTime = hours + 'h\xa0' + minutes.substr(-2) + 'm\xa0' + seconds.substr(-2) + "s";
     return ({ formattedTime, formattedDate })
 }
