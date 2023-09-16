@@ -90,33 +90,107 @@
     }
 
     #header>a>.logo {
-        height: 44px;
+        height: 3.5rem;
     }
 
     #header>a>h1 {
-        color: var(--glaucous);
-        font-size: 2rem;
+        font-size: 2.2rem;
     }
 
     #header>nav {
-        display: inline-block;
+        width: 100%;
     }
 
-    .menuAboutRow {
-        font-size: 1.1rem;
+    .menuSearchRow {
+        margin: 22px 0 11px;
     }
 
-    .menuSearchRow,
     .menuButtonsRow {
-        display: block
+        grid-column: span 12;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 17px;
     }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) and (max-width: 768px) {}
+@media only screen and (min-width: 600px) and (max-width: 768px) {
+    #header {
+        padding: 8px 22px;
+        display: block;
+        margin-bottom: 11px;
+    }
+
+    #header>a>h1 {
+        font-size: 3.1rem;
+    }
+
+    #header>nav {
+        width: 100%;
+    }
+
+    .menuSearchRow {
+        margin: 22px 0;
+    }
+
+    .menuButtonsRow {
+        grid-column: span 12;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 17px;
+    }
+}
 
 /* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) and (max-width: 992px) {}
+@media only screen and (min-width: 768px) and (max-width: 992px) {
+    #header {
+        padding: 8px 22px;
+        margin-bottom: 11px;
+    }
+
+    #header>a {
+        gap: 22px;
+    }
+
+    #header>a>.logo {
+        height: 4rem;
+    }
+
+    #header>a>h1 {
+        font-size: 2.4rem;
+        font-weight: 500;
+    }
+
+    #header>nav {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 11px 17px;
+    }
+
+    #header>nav {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 11px 17px;
+        width: 53%;
+    }
+
+    .menuButtonsRow a,
+    .menuButtonsRow button,
+    .menuSearchRow button {
+        font-size: .8rem;
+    }
+
+    .menuSearchRow * {
+        font-size: .8rem;
+    }
+
+    .menuButtonsRow {
+        grid-column: span 12;
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        gap: 11px;
+    }
+}
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {}

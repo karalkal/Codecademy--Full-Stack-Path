@@ -20,8 +20,3 @@
     border: 1px solid var(--glaucous);
     outline: none;
 }
-
-#searchForm button {
-    font-size: .91rem;
-    grid-column: span 1;
-}
