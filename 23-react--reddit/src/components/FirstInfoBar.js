@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom"
 
 import styles from "./SubredditInfoBar.module.css"
 import specificStyles from "./FirstInfoBar.module.css"
-import logo from "../misc/redditBluelogo.png";
+import blueLogo from "../misc/redditBluelogo.png";
 import createSimplifiedPostsArray from '../utils/createSimplifiedPostsArray';
 import { fetchPostsFromSubreddit } from '../api/api';
 
@@ -14,7 +14,8 @@ export default function FirstInfoBar({ setSelectedSubReddit, accessToken, select
         let fetchedResults = await fetchPostsFromSubreddit(accessToken, "/", selectedCriterion)
         let postsArray = createSimplifiedPostsArray(fetchedResults.data.children)
 
-        setSelectedSubReddit({ url: "/", name: 'ALL', icon: logo })
+        setSelectedSubReddit({ url: "/", name: 'ALL', icon: blueLogo })
+        localStorage.setItem("subR", JSON.stringify({ url: "/", name: 'ALL', icon: blueLogo }))
 
         const pathToNavigateTo = `ALL/${selectedCriterion}`
 
@@ -27,7 +28,7 @@ export default function FirstInfoBar({ setSelectedSubReddit, accessToken, select
             className={specificStyles.firstBarContainer}
             onClick={selectionHandler}>
             <div className={styles.subRTopSection}>
-                <img src={logo} alt="reddit logo"></img>
+                <img src={blueLogo} alt="reddit logo"></img>
                 <div>
                     <p className={styles.subRTitle}>ALL REDDIT</p>
                     <p className={styles.subRURL}>results for the platform as a whole</p>

@@ -77,7 +77,6 @@ function App() {
                 { url: "/", name: 'ALL', icon: blueLogo }
             ))
         }
-        console.log(JSON.parse(localStorage.getItem("subR")).name)
 
         // now get value from localStorage and set is as state
         setSelectedSubReddit(JSON.parse(localStorage.getItem("subR")))
@@ -91,7 +90,6 @@ function App() {
         if (!selectedSubrInLocalStorage) {
             localStorage.setItem("crit", "best")
         }
-        console.log(localStorage.getItem("crit"))
 
         // now get value from localStorage and set is as state
         setSelectedCriterion(localStorage.getItem("crit"))
@@ -121,7 +119,7 @@ function App() {
                         />}
                 />
 
-                <Route path=":selectedSubReddit/:selectedCriterion"
+                <Route path=":gyz1/:gyz2"
                     // <Route path="results"
                     element={<Results
                         selectedCriterion={selectedCriterion}

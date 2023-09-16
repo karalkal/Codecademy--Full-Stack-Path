@@ -6,15 +6,12 @@ import generateResultsHeaderData from '../utils/generateResultsHeaderData';
 
 
 const Results = ({ selectedSubReddit, selectedCriterion }) => {
-    const params = useParams()
-    console.log(params)
-
     const location = useLocation()
     const searchQuery = location.state.searchQuery
     const postsArray = location.state.postsArray
 
-    let {displayedCriterion, displayedSubtitle} = generateResultsHeaderData(selectedCriterion, searchQuery)
-    
+    let { displayedCriterion, displayedSubtitle } = generateResultsHeaderData(selectedCriterion, searchQuery)
+
 
     return (
         <main className={styles.mainContainer}>
