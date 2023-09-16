@@ -1,17 +1,24 @@
 import { Link, useRouteError } from "react-router-dom";
 import Header from "../components/Header";
+import styles from "./Errors.module.css"
 
 export default function ErrorGeneric() {
 
-    console.log(error)
     const error = useRouteError()
 
     return (
         <>
-            <Header />
-            <main>
-                <h1>{error.message}</h1>
-                <h2>Back to <Link to="/">Homepage</Link></h2>
+            <Header accessToken={"Error"} selectedSubReddit={error.message} setSelectedCriterion={error.message} />
+            <main className={styles.mainContainer}>
+
+                <h1 className={styles.errorTitle} >{error.message}</h1>
+                <h2 className={styles.errorSubtitle}>
+                    <Link to="/"
+                        className={styles.errorSubtitle}>
+                        Return to Homepage
+                    </Link>
+                    , then Reload and Retry
+                </h2>
             </main>
         </>
     );

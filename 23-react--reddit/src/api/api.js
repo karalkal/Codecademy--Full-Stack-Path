@@ -147,11 +147,10 @@ export async function fetchPostDetails(appAccessToken, postID) {
         const response = await fetch(`https://oauth.reddit.com/comments/${postID}`, {
             method: "GET",
             headers: {
-                'Authorization': `Berer ${appAccessToken}`,
+                'Authorization': `Barer ${appAccessToken}`,
                 'Content-Type': 'application/json',
             }
         })
-
         if (!response.ok) {
             throw new Error(`${response.statusText} - ${response.status}`);
         }   // if ok
@@ -159,7 +158,6 @@ export async function fetchPostDetails(appAccessToken, postID) {
         return json
     } catch (error) {
         // will catch errors from if (!response.ok) too 
-        console.log(error)
 
         throw new Error(error.message);
     }

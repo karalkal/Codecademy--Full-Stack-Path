@@ -82,7 +82,6 @@ function App() {
         setSelectedSubReddit(JSON.parse(localStorage.getItem("subR")))
     }, [])
 
-
     // Same as above, to persist criterion 
     useEffect(() => {
         let selectedSubrInLocalStorage = localStorage.getItem("crit")
@@ -127,12 +126,12 @@ function App() {
                     />}
                 />
 
-                <Route path=":id"
+                <Route path="post/:id"
                     element={<Details
                         accessToken={accessToken}
                     />}
                     loader={({ params }) => fetchPostDetails(accessToken, params.id)}
-                    errorElement={<ErrorGeneric />} />
+                />
 
                 <Route path="*" element={<Error404 />} />
 

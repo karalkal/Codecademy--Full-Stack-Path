@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { useParams, Link, useLoaderData } from "react-router-dom"
+import { Link, useLoaderData } from "react-router-dom"
 
 import { decode as htmlDecode } from 'html-entities';    // deals with html entities which are not displayed properly in JSX
 
@@ -10,7 +9,6 @@ import { VscCommentDraft } from "react-icons/vsc";
 
 import Comment from "../components/Comment";
 import styles from "./Details.module.css"
-import { fetchPostDetails } from "../api/api";
 
 import createSimplifiedPostsArray from "../utils/createSimplifiedPostsArray";
 import formatUTCToDateAndTime from "../utils/formatUTCToDateAndTime";
@@ -73,7 +71,8 @@ function Details() {
                             &nbsp;/ ratio&nbsp;<span>{postObj.upvote_ratio}</span>
                         </div>
                         <div>
-                            <VscCommentDraft /> comments&nbsp;<span>{postObj.num_comments}</span>
+                            <VscCommentDraft />&nbsp;
+                            comments&nbsp;<span>{postObj.num_comments}</span>
                         </div>
                     </div>
 

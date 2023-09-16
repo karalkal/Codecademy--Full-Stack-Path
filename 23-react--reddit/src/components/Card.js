@@ -18,7 +18,7 @@ export default function Card({ result }) {
     const imageSrc = filterObjectForImageFiles(result)
 
     return (
-        <Link to={`/${result.id.toString()}`} className={styles.cardContainer}>
+        <Link to={`/post/${result.id.toString()}`} className={styles.cardContainer}>
             <div className={styles.card}>
                 <div className={styles.textCardContent}>
                     {/* Icons and link*/}

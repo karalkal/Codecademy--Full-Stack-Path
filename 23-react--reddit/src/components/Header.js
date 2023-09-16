@@ -30,26 +30,29 @@ export default function Header({ accessToken, selectedSubReddit, setSelectedCrit
             <img src={blueLogo} className={styles["logo"]} alt="blue&black reddit logo" />
             <h1>Mini Reddit</h1>
         </NavLink>
+        {/* If genericError is rendered headwe will receive the eror as props.
+If this is the case, nav will not be desplayed */}
+        {accessToken !== "Error" &&
+            <nav>
+                <div className={`${styles.menuSearchRow}`}>
+                    <SearchBar
+                        accessToken={accessToken}
+                        selectedSubReddit={selectedSubReddit}
+                        setSelectedCriterion={setSelectedCriterion}
+                    />
+                </div>
 
-        <nav>
-            <div className={`${styles.menuSearchRow}`}>
-                <SearchBar
-                    accessToken={accessToken}
-                    selectedSubReddit={selectedSubReddit}
-                    setSelectedCriterion={setSelectedCriterion}
-                />
-            </div>
-
-            <div className={styles.menuButtonsRow}>
-                <NavLink to="/">Home</NavLink>
-                <button onClick={() => selectionHandler("best")}>Best</button>
-                <button onClick={() => selectionHandler("top")}>Top</button>
-                <button onClick={() => selectionHandler("hot")}>Hot</button>
-                <button onClick={() => selectionHandler("controversial")}>Contro</button>
-                <Link to={"https://github.com/karalkal/Codecademy-Front-End/tree/main/23-react--reddit"} target='_blank' id={styles.aboutBtn}>
-                    About
-                </Link>
-            </div>
-        </nav>
+                <div className={styles.menuButtonsRow}>
+                    <NavLink to="/">Home</NavLink>
+                    <button onClick={() => selectionHandler("best")}>Best</button>
+                    <button onClick={() => selectionHandler("top")}>Top</button>
+                    <button onClick={() => selectionHandler("hot")}>Hot</button>
+                    <button onClick={() => selectionHandler("controversial")}>Contro</button>
+                    <Link to={"https://github.com/karalkal/Codecademy-Front-End/tree/main/23-react--reddit"} target='_blank' id={styles.aboutBtn}>
+                        About
+                    </Link>
+                </div>
+            </nav>
+        }
     </header >
 }
