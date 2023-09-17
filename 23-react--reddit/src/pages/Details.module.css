@@ -55,6 +55,7 @@
     grid-template-columns: repeat(4, 1fr);
     gap: 17px;
     padding: 8px;
+    margin: 22px auto;
 }
 
 .postMidSection div {
@@ -91,6 +92,7 @@
     border-top: 2px solid var(--glaucous);
     color: var(--rich-black);
     padding: 16px;
+    margin-top: 22px;
 }
 
 .linkToPost {
@@ -142,9 +144,9 @@
     }
 
     .postMidSection svg {
-        height: 26px;
-        width: 26px;
-        display: none;
+        height: 17px;
+        width: 17px;
+        /* display: none; */
     }
 
     .postMidSection span {

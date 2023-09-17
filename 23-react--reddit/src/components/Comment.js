@@ -20,7 +20,7 @@ export default function Comment({ comment }) {
                 <p>On&nbsp;<b>{formattedDate}</b> at&nbsp;<b>{formattedTime}</b>
                     <span className={styles.commentAuthor}>
                         <BsReddit className={styles.redditIcon} />
-                        {comment.author}</span>&nbsp;wrote:
+                        {comment.author}</span> wrote:
                 </p>
             </div>
 

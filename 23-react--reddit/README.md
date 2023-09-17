@@ -34,4 +34,40 @@ export default function CustomError() {
 ```
 3. in App.js add errorElement to route props, ideally in parent, so all have access (error will bubble up)
 
+#Deployment @ Surge
+```npm run build```
+
+To install Surge CLI globally:
+```npm install -g surge```
+
+Run surge inside the build folder.
+```
+cd build
+surge
+```
+
+Follow the prompts. First, you’ll be asked for an email and password.
+
+Welcome to surge! (surge.sh)
+Login (or create surge account) by entering email & password.
+      email: admin@ashusingh.me
+      password:
+
+Before filling in any other prompts, it’s a good idea to confirm your Surge account.
+
+Verify your email to create your Surge account
+
+In the terminal, you’ll be asked to confirm your project directory. Hit Enter.
+
+You’ll see the domain of your project. Again, hit Enter.
+NB If overwriting existing project, just overwrite suggested url with actual url of your project (ahead-cannon.surge.sh)
+
+    project: D:\code\react-example-deploy\build\
+    domain: ahead-cannon.surge.sh 
+
+This will publish your application.
+
+   Success! - Published to ahead-cannon.surge.sh
+
+
 

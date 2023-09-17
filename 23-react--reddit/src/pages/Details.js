@@ -117,6 +117,12 @@ function Details() {
                 }
             </div>
 
+            {/* visit link */}
+            <Link to={redditLink} target="_blank" className={styles.linkToPost}>
+                to Original Article
+            </Link>
+            
+            {/* comments */}
             <div className={styles.commentsSection}>
                 <h2 className={`${styles.postSubtitle}`}>Comments:</h2>
                 {commentsArray.map((cmnt, idx) => (
@@ -124,10 +130,7 @@ function Details() {
                 ))}
             </div>
 
-            {/* visit link */}
-            <Link to={redditLink} target="_blank" className={styles.linkToPost}>
-                to Original Article
-            </Link>
+
         </>
     )
 }
