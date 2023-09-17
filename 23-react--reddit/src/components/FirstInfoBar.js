@@ -31,7 +31,7 @@ export default function FirstInfoBar({ setSelectedSubReddit, accessToken, select
                 <img src={blueLogo} alt="reddit logo"></img>
                 <div>
                     <p className={styles.subRTitle}>ALL REDDIT</p>
-                    <p className={styles.subRURL}>results for the platform as a whole</p>
+                    <p className={styles.subRURL}>data for whole platform</p>
                 </div>
             </div>
 

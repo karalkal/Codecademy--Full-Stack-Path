@@ -1,6 +1,7 @@
 export default function generateResultsHeaderData(selectedCriterion, searchQuery) {
     let displayedCriterion = ""
     let displayedSubtitle = ""
+    let titleOnHover = ""
 
     // If redirected from searchBar => displaying results from search
     if (searchQuery) {
@@ -13,7 +14,8 @@ export default function generateResultsHeaderData(selectedCriterion, searchQuery
         displayedCriterion = selectedCriterion.charAt(0).toUpperCase() + selectedCriterion.slice(1)
 
         if (selectedCriterion === "best") {
-            displayedSubtitle = `Since app is userless API request to /best would return the same results as /hot. \n
+            displayedSubtitle = "Top of all times (hover over for more info)"
+            titleOnHover = `Since app is userless API request to /best would return the same results as /hot. \n
         Hence here app is getting the top results of all times instead.`
         }
         else if (selectedCriterion === "top") {
@@ -27,5 +29,5 @@ export default function generateResultsHeaderData(selectedCriterion, searchQuery
         }
     }
 
-    return { displayedCriterion, displayedSubtitle }
+    return { displayedCriterion, displayedSubtitle, titleOnHover }
 }

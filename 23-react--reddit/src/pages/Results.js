@@ -10,7 +10,7 @@ const Results = ({ selectedSubReddit, selectedCriterion }) => {
     const searchQuery = location.state.searchQuery
     const postsArray = location.state.postsArray
 
-    let { displayedCriterion, displayedSubtitle } = generateResultsHeaderData(selectedCriterion, searchQuery)
+    let { displayedCriterion, displayedSubtitle, titleOnHover } = generateResultsHeaderData(selectedCriterion, searchQuery)
 
     if (!postsArray) {
         console.log("Nada!")
@@ -26,7 +26,7 @@ const Results = ({ selectedSubReddit, selectedCriterion }) => {
                 <span className={styles.galleryRedditName}>r/{selectedSubReddit.name}</span>
             </div>
 
-            <h2 className={styles.gallerySubtitle}>{displayedSubtitle}</h2>
+            <h2 className={styles.gallerySubtitle} title={titleOnHover}>{displayedSubtitle}</h2>
 
             <div className={styles.galleryContainer}>
                 {postsArray.map(rslt =>

@@ -38,7 +38,6 @@ export async function getUserlessAuthorizarion() {
 }
 
 
-
 export async function fetchAboutInfoFavSubReddits(appAccessToken, subRedditNames) {
     let subRedditsAboutInfo = []
     for (let nameSR of subRedditNames) {
