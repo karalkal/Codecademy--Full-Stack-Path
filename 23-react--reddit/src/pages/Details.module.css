@@ -170,8 +170,8 @@
     }
 }
 
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) and (max-width: 822px) {
+/* Small devices (portrait tablets and large phones, 601px and up) */
+@media only screen and (min-width: 601px) and (max-width: 821px) {
     .innerHorizContainer {
         display: block;
     }
@@ -213,7 +213,7 @@
 }
 
 /* Medium devices (landscape tablets, 822px and up) */
-@media only screen and (min-width: 822px) and (max-width: 992px) {
+@media only screen and (min-width: 822px) and (max-width: 991px) {
     .postTitle {
         margin: 0 0 8px 0;
         font-size: 1.5rem;
@@ -227,7 +227,7 @@
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) and (max-width: 1200px) {
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
     .postTitle {
         font-size: 1.7rem;
         font-weight: 300;
