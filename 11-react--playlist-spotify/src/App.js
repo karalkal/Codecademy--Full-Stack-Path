@@ -1,5 +1,5 @@
 /* 
-This example app has been seen here: https://dev.to/dom_the_dev/how-to-use-the-spotify-api-in-your-react-js-app-50pn
+Example app: https://dev.to/dom_the_dev/how-to-use-the-spotify-api-in-your-react-js-app-50pn
 1. Loggin in, if no token found in localStorage, display link to the Spotify Authentication page. 
 2. After logging in and accepting the terms you will be redirected back to the app at localhost:3000.
 3. After accepting the terms you will be redirected back to the app at localhost:3000. A hash is passed to the URL.
@@ -9,10 +9,11 @@ This example app has been seen here: https://dev.to/dom_the_dev/how-to-use-the-s
             Authorization: `Bearer ${token}`,
         },
 
-Tried to use onClick={logIn} and get tghe token from the response. This is WRONG:
+Tried to use onClick={logIn} and get the token from the response. This is WRONG:
 https://stackoverflow.com/questions/33029349/getting-spotify-api-access-token-from-frontend-javascript-code
 I believe the issue here is that you're attempting to retrieve JSON data from the endpoint where you should direct your users. 
 So instead of making a request to it, you should supply a button on your page that links to your https://accounts.spotify.com/authorize/{...} URL
+Once authorised (or not) you will recive an appropriate final URL will contain a hash fragment
 */
 
 import { nanoid } from 'nanoid'
@@ -34,7 +35,7 @@ function App() {
 
   const SEARCH_ENDPOINT = "https://api.spotify.com/v1/search"
   const SEARCH_TYPE = ["track"].join(",") // excluded "album", "artist", "playlist", "show", "episode", "audiobook"
-  const SEARCH_RESULTS_LIMIT = 10   //Default value: 20 Range: 0 - 50
+  const SEARCH_RESULTS_LIMIT = 35   //Default value: 20 Range: 0 - 50
 
   const CURRENT_USER_ENDPOINT = "https://api.spotify.com/v1/me"
   const PLAYLIST_CREATE_ENDPOINT = "https://api.spotify.com/v1/users"    //https://api.spotify.com/v1/users/{user_id}/playlists
@@ -206,7 +207,7 @@ function App() {
 
   return (
     <>
-      <header id={styles.header}>
+      <header>
         <img src={logo} className={styles["logo"]} alt="logo" />
         <h1>Spotify Playlist Creator</h1>
         {!token
@@ -219,7 +220,7 @@ function App() {
         }
       </header>
 
-      <main id={styles.main}>
+      <main>
         <ErrorModal
           show={showErrorModal}
           handleClose={() => setShowErrorModal(false)}
@@ -230,7 +231,7 @@ function App() {
           <button type={"submit"}>Search</button>
         </form>}
 
-        {token && foundTracks.length > 0 && <section className={styles.mainContainer}>
+        {token && foundTracks.length > 0 && <section className={styles.resultsAndPlaylist}>
           <FoundSection
             tracks={foundTracks}
             onAddTrack={addTrackHandler} />

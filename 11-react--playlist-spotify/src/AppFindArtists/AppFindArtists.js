@@ -6,7 +6,8 @@ import styles from './AppFindArtists.module.css';
 import { useEffect, useState } from 'react';
 
 const CLIENT_ID = process.env.REACT_APP_CLIENT_ID
-const CLIENT_SECRET = process.env.REACT_APP_CLIENT_SECRET
+// const CLIENT_SECRET = process.env.REACT_APP_CLIENT_SECRET
+// IF YOU WANT TO USE IT MOVE IT TO BACKEND
 const FETCH_TOKEN_ENDPOINT = 'https://accounts.spotify.com/api/token'
 
 async function fetchAuthToken() {

@@ -49,7 +49,6 @@ html {
   text-align: center;
 }
 
-
 a {
   text-decoration: none;
 }
@@ -58,19 +57,18 @@ button {
   background-color: var(--mauve);
   color: var(--c1);
   font-weight: 600;
-  font-size: .8em;
+  font-size: .8rem;
   padding: 14px 32px;
   border-radius: 500px;
   text-transform: uppercase;
   box-shadow: none;
   border: none;
-  cursor: url("../public/cursors/sign-of-the-horns-svgrepo-com.svg" ), pointer;
+  cursor: url("../public/cursors/sign-of-the-horns-svgrepo-com.svg"), pointer;
 }
 
-
-#header {
+header {
   background-color: var(--c1);
-  height: 62px;
+  height: 88px;
   padding: 11px 44px;
   display: flex;
   flex-direction: row;
@@ -78,66 +76,111 @@ button {
   justify-content: space-between;
 }
 
-#header>h1 {
-  font-family: var(--font-funky);
-  color: var(--french-violet);
-  font-size: 2.2em;
+header>.logo {
+  height: 62%;
+  pointer-events: none;
 }
 
-#header>.link {
+header>h1 {
+  font-family: var(--font-funky);
+  color: var(--french-violet);
+  font-size: 2.6rem;
+}
+
+header>.link {
   color: var(--french-violet);
   margin: 22px;
 }
 
-#header>.logo {
-  height: 90%;
-  pointer-events: none;
-}
-
-#main {
-  margin-top: 26px;
-}
-
-#main>form {
+main>form {
   margin-top: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-#main>form>input {
+main>form>input {
   border-radius: 500px;
   border: 2px solid var(--french-violet);
   margin-right: 26px;
-  padding-left: 26px;
-  height: 3.2em;
-  width: 26%;  
+  height: 2.8rem;
+  width: 26%;
 }
 
-#main>form>input:focus {
+main>form>input:focus {
   outline: none;
   border: none;
-
 }
 
-section#info {
-  margin: 0 40px;
-  border: 1px solid var(--mauve);
-  font-style: oblique;
-  font-size: 1.3em;
-  padding: 17px;
-}
-
-section#result {
-  padding: 40px;
-  display: grid;
-  grid-template-columns: auto auto auto auto;
-  gap: 10px 80px;
-  /* row-gap: 40; column-gap: 50px; */
-}
-
-.mainContainer {
+.resultsAndPlaylist {
   margin-top: 44px;
   padding: 11px 44px;
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: start;
   justify-content: space-between;
 }
+
+
+/* mediaqueries */
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+  button {
+    font-weight: 400;
+    font-size: .7rem;
+    padding: 8px 11px;
+  }
+
+  header {
+    height: 44px;
+    padding: 11px;
+  }
+
+  header>.logo {
+    height: 90%;
+    pointer-events: none;
+  }
+
+  header>h1 {
+    font-size: 1rem;
+  }
+
+  header>.link {
+    color: var(--french-violet);
+    margin: 22px;
+  }
+
+  main>form {
+    padding: 11px;
+    margin-top: 11px;
+  }
+
+  main>form>input {
+    height: 2rem;
+    width: 100%;
+  }
+
+  .resultsAndPlaylist {
+    padding: 0;
+    margin-top: 11px;
+    display: block;
+  }
+
+  .resultsAndPlaylist div {
+    width: 100%;
+    height: 530px;
+    overflow: scroll;
+  }
+}
+
+/* Small devices (portrait tablets and large phones, 601px and up) */
+@media only screen and (min-width: 601px) and (max-width: 821px) {}
+
+/* Medium devices (landscape tablets, 822px and up) */
+@media only screen and (min-width: 822px) and (max-width: 991px) {}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) and (max-width: 1199px) {}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {}

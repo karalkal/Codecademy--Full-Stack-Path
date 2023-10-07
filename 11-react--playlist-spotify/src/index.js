@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import App from './App';
 // import AppFindArtists from './AppFindArtists/AppFindArtists';    // since it is default export we can name in any way we like
 import reportWebVitals from './reportWebVitals';
