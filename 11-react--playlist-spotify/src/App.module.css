@@ -64,7 +64,7 @@ button {
   text-transform: uppercase;
   box-shadow: none;
   border: none;
-  cursor: url("./cursors/sign-of-the-horns-svgrepo-com.svg" ), pointer;
+  cursor: url("../public/cursors/sign-of-the-horns-svgrepo-com.svg" ), pointer;
 }
 
 

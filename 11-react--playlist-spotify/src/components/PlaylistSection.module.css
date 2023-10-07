@@ -103,5 +103,5 @@ form>div {
     max-width: 4em;
     max-height: 4em;
     padding: 0;
-    cursor: url("./cursors/remove-svgrepo-com.svg" ), pointer;
+    cursor: url("../../public/cursors/remove-svgrepo-com.svg" ), pointer;
 }

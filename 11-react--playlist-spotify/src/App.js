@@ -21,9 +21,9 @@ import logo from './logo1.svg';
 import styles from './App.module.css';
 import { useEffect, useState } from 'react';
 
-import FoundSection from './FoundSection';
-import PlaylistSection from './PlaylistSection';
-import ErrorModal from './ErrorModal';
+import FoundSection from './components/FoundSection';
+import PlaylistSection from './components/PlaylistSection';
+import ErrorModal from './components/ErrorModal';
 
 function App() {
   const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize"
@@ -197,8 +197,6 @@ function App() {
       alert(`Playlist ${playlistName} created`)
     }
   }
-
-
 
 
   function displayNoPlaylistTitleError() {
