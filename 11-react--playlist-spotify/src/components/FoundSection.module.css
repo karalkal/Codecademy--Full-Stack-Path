@@ -63,14 +63,6 @@
     grid-area: bottom-right;
 }
 
-/* .foundItemContainer>span {
-    grid-area: bottom-grid;
-    display: flex;
-    flex-direction: row;
-    justify-content: left;
-    gap: 11px
-} */
-
 .foundItemContainer * {
     white-space: nowrap;
     overflow: hidden;
@@ -99,7 +91,6 @@
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
     .resultsContainer {
-        border: 2px solid var(--french-violet);
         box-shadow: none;
         width: 100%;
         max-height: 530px;
@@ -118,8 +109,8 @@
             'top-grid top-grid top-grid right-grid'
             'middle-grid middle-grid middle-grid right-grid'
             'bottom-grid bottom-grid bottom-grid right-grid';
-            padding: 6px;
-            gap: 6px;
+        padding: 6px;
+        gap: 6px;
     }
 
     .foundItemContainer>.foundTrack {
@@ -140,11 +131,60 @@
 
     .addBtn {
         grid-area: right-grid;
+        border-radius: 50%;
+        height: 3rem;
+        width: 3rem;
+        padding: 0;
     }
 }
 
 /* Small devices (portrait tablets and large phones, 601px and up) */
-@media only screen and (min-width: 601px) and (max-width: 821px) {}
+@media only screen and (min-width: 601px) and (max-width: 821px) {
+    .resultsContainer {
+        width: 49%;
+    }
+
+    .sectionTitle {
+        font-size: 1.25em;
+        padding: 8px;
+        gap: 6px
+    }
+
+    .foundItemContainer {
+        display: grid;
+        grid-template-areas:
+            'top-grid top-grid top-grid right-grid'
+            'middle-grid middle-grid middle-grid right-grid'
+            'bottom-grid bottom-grid bottom-grid right-grid';
+        padding: 6px;
+        gap: 6px;
+    }
+
+    .foundItemContainer>.foundTrack {
+        grid-area: top-grid;
+        font-weight: 600;
+        font-size: .9rem;
+    }
+
+    .foundItemContainer>.foundArtist {
+        grid-area: middle-grid;
+        font-size: .8rem;
+    }
+
+    .foundItemContainer>.foundAlbum {
+        grid-area: bottom-grid;
+        font-size: .7rem;
+    }
+
+    .addBtn {
+        font-size: .7rem;
+        grid-area: right-grid;
+        border-radius: 50%;
+        height: 3rem;
+        width: 3rem;
+        padding: 0;
+    }
+}
 
 
 /* Medium devices (landscape tablets, 822px and up) */

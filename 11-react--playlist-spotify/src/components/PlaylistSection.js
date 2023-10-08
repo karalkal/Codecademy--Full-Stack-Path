@@ -15,9 +15,9 @@ export default function PlaylistSection({ playlist, createPlaylist, displayNoPla
                 id={myTrack.id}
                 name={myTrack.name}
                 className={styles.playlistItemContainer}>
-                <h4>{index + 1}. {trackName}</h4>
-                <span><p className={styles.playlistArtist}>{trackArtist} </p>
-                    <p className={styles.playlistAlbum}>{trackAlbum}</p></span>
+                <h4 className={styles.playlistTrack}>{index + 1}. {trackName}</h4>
+                <p className={styles.playlistArtist}>{trackArtist} </p>
+                <p className={styles.playlistAlbum}>{trackAlbum}</p>
                 <button
                     className={styles.removeBtn}
                     onClick={() => onRemoveTrack(myTrack.myId)}>del</button>
