@@ -11,7 +11,7 @@ export default function FoundSection({ tracks, onAddTrack }) {
             <div key={track.id}
                 id={track.id}
                 name={track.name}
-                className={styles.foundContainer}>
+                className={styles.foundItemContainer}>
                 <p className={styles.foundTrack}>{index + 1}. {trackName}</p>
                 <span><p className={styles.foundArtist}>{trackArtist} </p>
                     <p className={styles.foundAlbum}>{trackAlbum}</p></span>

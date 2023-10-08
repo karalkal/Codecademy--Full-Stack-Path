@@ -57,7 +57,7 @@ button {
   background-color: var(--mauve);
   color: var(--c1);
   font-weight: 600;
-  font-size: .8rem;
+  font-size: 1rem;
   padding: 14px 32px;
   border-radius: 500px;
   text-transform: uppercase;
@@ -85,11 +85,7 @@ header>h1 {
   font-family: var(--font-funky);
   color: var(--french-violet);
   font-size: 2.6rem;
-}
-
-header>.link {
-  color: var(--french-violet);
-  margin: 22px;
+  margin: 0 11px;
 }
 
 main>form {
@@ -100,6 +96,7 @@ main>form {
 }
 
 main>form>input {
+  padding-left: 22px;
   border-radius: 500px;
   border: 2px solid var(--french-violet);
   margin-right: 26px;
@@ -126,13 +123,13 @@ main>form>input:focus {
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
   button {
-    font-weight: 400;
-    font-size: .7rem;
-    padding: 8px 11px;
+    font-weight: 500;
+    padding: 11px;
+    font-size: .8rem;
   }
 
   header {
-    height: 44px;
+    height: 53px;
     padding: 11px;
   }
 
@@ -142,12 +139,7 @@ main>form>input:focus {
   }
 
   header>h1 {
-    font-size: 1rem;
-  }
-
-  header>.link {
-    color: var(--french-violet);
-    margin: 22px;
+    font-size: 1.2rem;
   }
 
   main>form {
@@ -174,7 +166,38 @@ main>form>input:focus {
 }
 
 /* Small devices (portrait tablets and large phones, 601px and up) */
-@media only screen and (min-width: 601px) and (max-width: 821px) {}
+@media only screen and (min-width: 601px) and (max-width: 821px) {
+  button {
+    padding: 11px 15px;
+    font-size: 1rem;
+  }
+
+  header {
+    height: 71px;
+    padding: 11px;
+  }
+
+  header>.logo {
+    height: 90%;
+    pointer-events: none;
+  }
+
+  header>h1 {
+    font-size: 1.8rem;
+    margin: 0 17px;
+  }
+
+  main>form {
+    padding: 11px;
+    margin-top: 11px;
+  }
+
+  main>form>input {
+    height: 2rem;
+    width: 100%;
+  }
+}
+
 
 /* Medium devices (landscape tablets, 822px and up) */
 @media only screen and (min-width: 822px) and (max-width: 991px) {}

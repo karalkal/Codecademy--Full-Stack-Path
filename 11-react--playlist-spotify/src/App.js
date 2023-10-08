@@ -212,7 +212,7 @@ function App() {
         <h1>Spotify Playlist Creator</h1>
         {!token
           ?
-          <a id="logInLink" href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${PLAYLIST_SCOPES}`}>
+          <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}&scope=${PLAYLIST_SCOPES}`}>
             <button>Login to Spotify</button>
           </a>
           :
