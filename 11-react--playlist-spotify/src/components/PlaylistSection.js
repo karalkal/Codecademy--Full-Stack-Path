@@ -14,8 +14,8 @@ export default function PlaylistSection({ playlist, createPlaylist, displayNoPla
             <div key={myTrack.myId}     // myId is unique for each ENTRY, id is for each track, i.e. can have same track in playlist more than once
                 id={myTrack.id}
                 name={myTrack.name}
-                className={styles.playlistContainer}>
-                <p className={styles.playlistTrack}>{index + 1}. {trackName}</p>
+                className={styles.playlistItemContainer}>
+                <h4>{index + 1}. {trackName}</h4>
                 <span><p className={styles.playlistArtist}>{trackArtist} </p>
                     <p className={styles.playlistAlbum}>{trackAlbum}</p></span>
                 <button
@@ -40,9 +40,7 @@ export default function PlaylistSection({ playlist, createPlaylist, displayNoPla
                 <button >create</button>
             </form>
 
-            <div>
-                {tracksComponents}
-            </div>
+            {tracksComponents}
         </div>
     )
 }

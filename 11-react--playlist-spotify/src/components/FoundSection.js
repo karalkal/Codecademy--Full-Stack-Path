@@ -12,9 +12,9 @@ export default function FoundSection({ tracks, onAddTrack }) {
                 id={track.id}
                 name={track.name}
                 className={styles.foundItemContainer}>
-                <p className={styles.foundTrack}>{index + 1}. {trackName}</p>
-                <span><p className={styles.foundArtist}>{trackArtist} </p>
-                    <p className={styles.foundAlbum}>{trackAlbum}</p></span>
+                <h4 className={styles.foundTrack}>{index + 1}. {trackName}</h4>
+                <p className={styles.foundArtist}>{trackArtist} </p>
+                <p className={styles.foundAlbum}>{trackAlbum}</p>
                 <button
                     className={styles.addBtn}
                     onClick={() => onAddTrack(track.id)}>add</button>
@@ -23,10 +23,8 @@ export default function FoundSection({ tracks, onAddTrack }) {
 
     return (
         <div className={styles.resultsContainer}>
-            <h1>Results: </h1>
-            <div>
-                {tracksComponents}
-            </div>
+            <h1 className={styles.sectionTitle}>Results: </h1>
+            {tracksComponents}
         </div>
     )
 }
