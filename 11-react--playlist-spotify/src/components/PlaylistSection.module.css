@@ -208,18 +208,18 @@
 
     .playlistItemContainer>.playlistTrack {
         grid-area: top-grid;
-        font-weight: 600;
-        font-size: .9rem;
+        font-weight: 700;
+        font-size: 1rem;
     }
 
     .playlistItemContainer>.playlistArtist {
         grid-area: middle-grid;
-        font-size: .8rem;
+        font-size: 1rem;
     }
 
     .playlistItemContainer>.playlistAlbum {
         grid-area: bottom-grid;
-        font-size: .7rem;
+        font-size: .8rem;
     }
 
     .removeBtn {
@@ -250,18 +250,18 @@
 
     .playlistItemContainer>.playlistTrack {
         grid-area: top-grid;
-        font-weight: 600;
-        font-size: .9rem;
+        font-weight: 700;
+        font-size: 1rem;
     }
 
     .playlistItemContainer>.playlistArtist {
         grid-area: middle-grid;
-        font-size: .8rem;
+        font-size: 1rem;
     }
 
     .playlistItemContainer>.playlistAlbum {
         grid-area: bottom-grid;
-        font-size: .7rem;
+        font-size: .9rem;
     }
 
     .removeBtn {
