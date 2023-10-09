@@ -10,9 +10,8 @@ This means that "The implicit grant flow is carried out on the client side and i
 
 **Note:** You must create custom environment variables beginning with REACT\_APP\_. Any other variables except NODE\_ENV will be ignored. Changing any environment variables will require you to restart the development server if it is running. These environment variables will be defined for you on process.env. For example, having an environment variable named REACT\_APP\_NOT\_SECRET\_CODE will be exposed in your JS as process.env.REACT\_APP\_NOT\_SECRET\_CODE.
 
-# Notes
+## Notes
 By default App.js will be rendered in index.js but this can easily be switched to AppExample.js .
-In the latter I will try to implement proper Authorization Code with PKCE Flow <https://developer.spotify.com/documentation/web-api/tutorials/code-pkce-flow>
+In the latter I will implement proper Authorization Code with PKCE Flow <https://developer.spotify.com/documentation/web-api/tutorials/code-pkce-flow>
 
-... when the time is right.
-
+... when the time is right.  

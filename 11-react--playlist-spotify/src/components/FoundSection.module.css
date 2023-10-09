@@ -26,7 +26,7 @@
     background-color: var(--c1);
     border: 2px solid var(--french-violet);
     box-shadow: -8px -8px var(--french-violet);
-    width: 44%;
+    width: 46%;
 }
 
 .sectionTitle {
@@ -100,7 +100,6 @@
     .sectionTitle {
         font-size: 1.25em;
         padding: 8px;
-        gap: 6px
     }
 
     .foundItemContainer {
@@ -142,12 +141,12 @@
 @media only screen and (min-width: 601px) and (max-width: 821px) {
     .resultsContainer {
         width: 49%;
+        box-shadow: none;
     }
 
     .sectionTitle {
         font-size: 1.25em;
         padding: 8px;
-        gap: 6px
     }
 
     .foundItemContainer {
@@ -186,12 +185,99 @@
     }
 }
 
-
 /* Medium devices (landscape tablets, 822px and up) */
-@media only screen and (min-width: 822px) and (max-width: 991px) {}
+@media only screen and (min-width: 822px) and (max-width: 991px) {
+    .resultsContainer {
+        width: 48%;
+    }
+
+    .sectionTitle {
+        font-size: 1.5em;
+        padding: 11px;
+    }
+
+    .foundItemContainer {
+        display: grid;
+        grid-template-areas:
+            'top-grid top-grid top-grid right-grid'
+            'middle-grid middle-grid middle-grid right-grid'
+            'bottom-grid bottom-grid bottom-grid right-grid';
+        padding: 6px;
+        gap: 6px;
+    }
+
+    .foundItemContainer>.foundTrack {
+        grid-area: top-grid;
+        font-weight: 700;
+        font-size: 1rem;
+    }
+
+    .foundItemContainer>.foundArtist {
+        grid-area: middle-grid;
+        font-size: 1rem;
+    }
+
+    .foundItemContainer>.foundAlbum {
+        grid-area: bottom-grid;
+        font-size: .8rem;
+    }
+
+    .addBtn {
+        font-size: .8rem;
+        grid-area: right-grid;
+        border-radius: 50%;
+        height: 3rem;
+        width: 3rem;
+        padding: 0;
+    }
+}
 
 /* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) and (max-width: 1199px) {}
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+    .resultsContainer {
+        width: 47.5%;
+    }
+
+    .sectionTitle {
+        font-size: 1.8em;
+        padding: 11px;
+    }
+
+    .foundItemContainer {
+        display: grid;
+        grid-template-areas:
+            'top-grid top-grid top-grid right-grid'
+            'middle-grid middle-grid middle-grid right-grid'
+            'bottom-grid bottom-grid bottom-grid right-grid';
+        padding: 8px;
+        gap: 8px;
+    }
+
+    .foundItemContainer>.foundTrack {
+        grid-area: top-grid;
+        font-weight: 700;
+        font-size: 1rem;
+    }
+
+    .foundItemContainer>.foundArtist {
+        grid-area: middle-grid;
+        font-size: 1rem;
+    }
+
+    .foundItemContainer>.foundAlbum {
+        grid-area: bottom-grid;
+        font-size: .9rem;
+    }
+
+    .addBtn {
+        font-size: .8rem;
+        grid-area: right-grid;
+        border-radius: 50%;
+        height: 3rem;
+        width: 3rem;
+        padding: 0;
+    }
+}
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {}

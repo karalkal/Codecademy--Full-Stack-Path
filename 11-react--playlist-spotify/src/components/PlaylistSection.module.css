@@ -26,7 +26,7 @@
     background-color: var(--c1);
     border: 2px solid var(--french-violet);
     box-shadow: 8px -8px var(--french-violet);
-    width: 44%;
+    width: 46%;
 }
 
 .playlistItemContainer {
@@ -79,10 +79,6 @@
     cursor: url("../../public/cursors/remove-svgrepo-com.svg"), pointer;
 }
 
-form>div {
-    height: 2.9em;
-}
-
 #playlistCreateForm {
     width: 100%;
     display: flex;
@@ -95,7 +91,8 @@ form>div {
     border: 2px solid var(--french-violet);
     color: var(--c1);
     padding: 11px;
-    width: 71%;
+    margin-right: 26px;
+    width: 100%;
 }
 
 #playlistCreateForm>input:focus {
@@ -113,12 +110,6 @@ form>div {
         width: 100%;
         min-height: 170px;
         overflow: scroll;
-    }
-
-    .sectionTitle {
-        font-size: 1.25em;
-        padding: 8px;
-        gap: 6px
     }
 
     .playlistItemContainer {
@@ -160,12 +151,7 @@ form>div {
 @media only screen and (min-width: 601px) and (max-width: 821px) {
     .resultsContainer {
         width: 49%;
-    }
-
-    .sectionTitle {
-        font-size: 1.25em;
-        padding: 8px;
-        gap: 6px
+        box-shadow: none;
     }
 
     .playlistItemContainer {
@@ -205,10 +191,88 @@ form>div {
 }
 
 /* Medium devices (landscape tablets, 822px and up) */
-@media only screen and (min-width: 822px) and (max-width: 991px) {}
+@media only screen and (min-width: 822px) and (max-width: 991px) {
+    .resultsContainer {
+        width: 48%;
+    }
+
+    .playlistItemContainer {
+        display: grid;
+        grid-template-areas:
+            'top-grid top-grid top-grid right-grid'
+            'middle-grid middle-grid middle-grid right-grid'
+            'bottom-grid bottom-grid bottom-grid right-grid';
+        padding: 6px;
+        gap: 6px;
+    }
+
+    .playlistItemContainer>.playlistTrack {
+        grid-area: top-grid;
+        font-weight: 600;
+        font-size: .9rem;
+    }
+
+    .playlistItemContainer>.playlistArtist {
+        grid-area: middle-grid;
+        font-size: .8rem;
+    }
+
+    .playlistItemContainer>.playlistAlbum {
+        grid-area: bottom-grid;
+        font-size: .7rem;
+    }
+
+    .removeBtn {
+        font-size: .8rem;
+        grid-area: right-grid;
+        border-radius: 50%;
+        height: 3rem;
+        width: 3rem;
+        padding: 0;
+    }
+}
 
 /* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) and (max-width: 1199px) {}
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+    .resultsContainer {
+        width: 47.5%;
+    }
+
+    .playlistItemContainer {
+        display: grid;
+        grid-template-areas:
+            'top-grid top-grid top-grid right-grid'
+            'middle-grid middle-grid middle-grid right-grid'
+            'bottom-grid bottom-grid bottom-grid right-grid';
+        padding: 8px;
+        gap: 8px;
+    }
+
+    .playlistItemContainer>.playlistTrack {
+        grid-area: top-grid;
+        font-weight: 600;
+        font-size: .9rem;
+    }
+
+    .playlistItemContainer>.playlistArtist {
+        grid-area: middle-grid;
+        font-size: .8rem;
+    }
+
+    .playlistItemContainer>.playlistAlbum {
+        grid-area: bottom-grid;
+        font-size: .7rem;
+    }
+
+    .removeBtn {
+        font-size: .8rem;
+        grid-area: right-grid;
+        border-radius: 50%;
+        height: 3rem;
+        width: 3rem;
+        padding: 0;
+    }
+}
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {}

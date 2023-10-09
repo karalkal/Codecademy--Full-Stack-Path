@@ -77,7 +77,7 @@ header {
 }
 
 header>.logo {
-  height: 62%;
+  height: 80%;
   pointer-events: none;
 }
 
@@ -101,7 +101,7 @@ main>form>input {
   border: 2px solid var(--french-violet);
   margin-right: 26px;
   height: 2.8rem;
-  width: 26%;
+  width: 44%;
 }
 
 main>form>input:focus {
@@ -111,7 +111,8 @@ main>form>input:focus {
 
 .resultsAndPlaylist {
   margin-top: 44px;
-  padding: 11px 44px;
+  padding: 11px 52px;
+  /* +8 from border*/
   display: flex;
   flex-direction: row;
   align-items: start;
@@ -135,7 +136,6 @@ main>form>input:focus {
 
   header>.logo {
     height: 90%;
-    pointer-events: none;
   }
 
   header>h1 {
@@ -173,7 +173,6 @@ main>form>input:focus {
 
   header>.logo {
     height: 90%;
-    pointer-events: none;
   }
 
   header>h1 {
@@ -191,7 +190,6 @@ main>form>input:focus {
     width: 100%;
   }
 
-
   .resultsAndPlaylist {
     margin-top: 22px;
     padding: 11px;
@@ -200,10 +198,78 @@ main>form>input:focus {
 
 
 /* Medium devices (landscape tablets, 822px and up) */
-@media only screen and (min-width: 822px) and (max-width: 991px) {}
+@media only screen and (min-width: 822px) and (max-width: 991px) {
+  button {
+    padding: 13px 18px;
+    font-size: .8rem;
+  }
+
+  header {
+    height: 80px;
+    padding: 17px;
+  }
+
+  header>.logo {
+    height: 100%;
+  }
+
+  header>h1 {
+    font-size: 2.2rem;
+    margin: 0 17px;
+  }
+
+  main>form {
+    padding: 11px 17px;
+    margin-top: 11px;
+  }
+
+  main>form>input {
+    height: 2.4rem;
+    width: 100%;
+  }
+
+  .resultsAndPlaylist {
+    margin-top: 22px;
+    padding: 17px 22px;
+  }
+}
 
 /* Large devices (laptops/desktops, 992px and up) */
-@media only screen and (min-width: 992px) and (max-width: 1199px) {}
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+  button {
+    padding: 13px 22px;
+    font-size: .9rem;
+  }
+
+  header {
+    height: 91px;
+    padding: 22px;
+  }
+
+  header>.logo {
+    height: 100%;
+  }
+
+  header>h1 {
+    font-size: 2.4rem;
+    margin: 0 17px;
+  }
+
+  main>form {
+    padding: 11px 17px;
+    margin-top: 11px;
+  }
+
+  main>form>input {
+    height: 2.4rem;
+    width: 100%;
+  }
+
+  .resultsAndPlaylist {
+    margin-top: 22px;
+    padding: 17px 30px;
+  }
+}
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {}
