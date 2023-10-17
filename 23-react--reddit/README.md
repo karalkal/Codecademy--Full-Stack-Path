@@ -34,13 +34,15 @@ export default function CustomError() {
 ```
 3. in App.js add errorElement to route props, ideally in parent, so all have access (error will bubble up)
 
-#Deployment @ Surge
+# Deployment @ Surge
+
 ```npm run build```
 
 To install Surge CLI globally:
 ```npm install -g surge```
 
 Run surge inside the build folder.
+
 ```
 cd build
 surge
@@ -68,6 +70,4 @@ NB If overwriting existing project, just overwrite suggested url with actual url
 This will publish your application.
 
    Success! - Published to ahead-cannon.surge.sh
-
-
-
+   
