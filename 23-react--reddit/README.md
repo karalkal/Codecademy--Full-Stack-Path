@@ -38,7 +38,7 @@ export default function CustomError() {
 
 ```npm run build```
 
-To install Surge CLI globally:
+To install Surge CLI globally:  
 ```npm install -g surge```
 
 Run surge inside the build folder.

@@ -8,6 +8,6 @@ export const subredditsSubscriptionList = [
     "programming", "ReactJS",
     "redditdev", "technology",
     "worldnews", "europe", "science", 
-    "AmItheAsshole", "DoesAnybodyElse",         // Life discussios
-    "aww", "cringepics",                        // cats, idiots
+    "AmItheAsshole", "DoesAnybodyElse",         // Life discussions
+    "aww", "britishproblems",                   // cats, idiots
 ]
